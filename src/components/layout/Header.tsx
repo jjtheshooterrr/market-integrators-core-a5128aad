@@ -35,9 +35,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-heading font-bold text-xl">MI</span>
-            </div>
+            <img 
+              src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.webp" 
+              alt="Market Integrators Logo" 
+              className="h-10 w-auto"
+            />
             <span className="font-heading font-bold text-xl hidden sm:block">
               Market Integrators
             </span>

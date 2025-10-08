@@ -1,0 +1,253 @@
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import * as THREE from 'three'
+import gsap from 'gsap'
+import { motion, AnimatePresence } from 'framer-motion'
+
+/** Raster image → points (alpha/luma threshold) */
+async function rasterToPoints(src: string, {
+  density = 4,
+  threshold = 0.6,
+  maxPoints = 8000,
+}: { density?: number; threshold?: number; maxPoints?: number } = {}) {
+  const img = new Image()
+  img.crossOrigin = 'anonymous'
+  img.decoding = 'async'
+  img.src = src
+  await img.decode()
+
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+
+  const targetMax = 520
+  const scale = targetMax / Math.max(img.naturalWidth, img.naturalHeight)
+  canvas.width = Math.round(img.naturalWidth * scale)
+  canvas.height = Math.round(img.naturalHeight * scale)
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+  const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+  const pts: number[] = []
+  for (let y = 0; y < height; y += density) {
+    for (let x = 0; x < width; x += density) {
+      const i = (y * width + x) * 4
+      const r = data[i] / 255
+      const g = data[i + 1] / 255
+      const b = data[i + 2] / 255
+      const a = data[i + 3] / 255
+      const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
+      const signal = a > 0.05 ? a : 1 - luma
+      if (signal > threshold) pts.push(x, y)
+    }
+  }
+
+  if (pts.length / 2 > maxPoints) {
+    const keep = Math.floor(maxPoints)
+    const stride = Math.ceil((pts.length / 2) / keep)
+    const slim: number[] = []
+    for (let i = 0; i < pts.length; i += stride * 2) slim.push(pts[i], pts[i + 1])
+    return normalizePointsFromImage(slim, width, height)
+  }
+  return normalizePointsFromImage(pts, width, height)
+}
+
+/** SVG → points using geometry lengths for crisp outlines */
+async function svgToPoints(src: string, { maxPoints = 8000 }: { maxPoints?: number } = {}) {
+  const res = await fetch(src, { cache: 'force-cache' })
+  const svgText = await res.text()
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(svgText, 'image/svg+xml')
+  const svg = doc.querySelector('svg') as SVGSVGElement | null
+  if (!svg) throw new Error('Invalid SVG')
+
+  const geoms = Array.from(
+    svg.querySelectorAll<SVGGeometryElement>('path, polygon, polyline, circle, ellipse, rect, line')
+  )
+  if (geoms.length === 0) throw new Error('No geometry in SVG')
+
+  const lengths = geoms.map((g) => {
+    try { return g.getTotalLength() } catch { return 0 }
+  })
+  const totalLen = lengths.reduce((a, b) => a + b, 0) || 1
+
+  const pts: number[] = []
+  geoms.forEach((g, idx) => {
+    const L = lengths[idx] || 0
+    const n = Math.max(2, Math.round((L / totalLen) * maxPoints))
+    for (let i = 0; i < n; i++) {
+      const p = g.getPointAtLength((i / n) * L)
+      pts.push(p.x, p.y)
+    }
+  })
+
+  return normalizePointsFromBounds(pts)
+}
+
+/** Choose best sampler for src (SVG vs raster) */
+async function logoToPoints(src: string, opts: any = {}) {
+  if (/\.svg(\?|#|$)/i.test(src)) return svgToPoints(src, opts)
+  return rasterToPoints(src, opts)
+}
+
+/** Normalize raster XY into centered 3D positions */
+function normalizePointsFromImage(rawXY: number[], width: number, height: number) {
+  const positions: number[] = []
+  const cx = width / 2
+  const cy = height / 2
+  const maxSide = Math.max(width, height)
+  const aspectScale = 3.2
+  for (let i = 0; i < rawXY.length; i += 2) {
+    const x = (rawXY[i] - cx) / maxSide
+    const y = (cy - rawXY[i + 1]) / maxSide
+    positions.push(x * aspectScale, y * aspectScale, 0)
+  }
+  return new Float32Array(positions)
+}
+
+/** Normalize from raw point bounds (for SVG coordinates) */
+function normalizePointsFromBounds(rawXY: number[]) {
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+  for (let i = 0; i < rawXY.length; i += 2) {
+    const x = rawXY[i]
+    const y = rawXY[i + 1]
+    if (x < minX) minX = x; if (x > maxX) maxX = x
+    if (y < minY) minY = y; if (y > maxY) maxY = y
+  }
+  const width = Math.max(1, maxX - minX)
+  const height = Math.max(1, maxY - minY)
+  const positions: number[] = []
+  const cx = (minX + maxX) / 2
+  const cy = (minY + maxY) / 2
+  const maxSide = Math.max(width, height)
+  const aspectScale = 3.2
+  for (let i = 0; i < rawXY.length; i += 2) {
+    const x = (rawXY[i] - cx) / maxSide
+    const y = (cy - rawXY[i + 1]) / maxSide
+    positions.push(x * aspectScale, y * aspectScale, 0)
+  }
+  return new Float32Array(positions)
+}
+
+/** Points cloud that morphs to target positions */
+function MorphPoints({ targetPositions, reducedMotion, onComplete }: { 
+  targetPositions: Float32Array; 
+  reducedMotion: boolean;
+  onComplete: () => void;
+}) {
+  const count = targetPositions.length / 3
+  const geomRef = useRef<THREE.BufferGeometry>(null!)
+  const startPositions = useMemo(() => {
+    const arr = new Float32Array(targetPositions.length)
+    for (let i = 0; i < count; i++) {
+      const phi = Math.acos(2 * Math.random() - 1)
+      const theta = 2 * Math.PI * Math.random()
+      const r = 1.2 + Math.random() * 0.6
+      arr[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta)
+      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
+      arr[i * 3 + 2] = r * Math.cos(phi)
+    }
+    return arr
+  }, [count])
+
+  useEffect(() => {
+    const geom = geomRef.current
+    geom.setAttribute('position', new THREE.BufferAttribute(startPositions.slice(0), 3))
+
+    if (reducedMotion) {
+      geom.attributes.position.array.set(targetPositions)
+      geom.attributes.position.needsUpdate = true
+      setTimeout(onComplete, 1500)
+      return
+    }
+
+    const pos = geom.attributes.position.array as Float32Array
+    const tween = gsap.to(pos, {
+      duration: 1.15,
+      ease: 'power3.inOut',
+      // @ts-ignore gsap endArray supports typed arrays
+      endArray: targetPositions,
+      onUpdate: () => (geom.attributes.position.needsUpdate = true),
+      onComplete: () => setTimeout(onComplete, 800),
+    })
+    return () => { tween?.kill() }
+  }, [targetPositions, reducedMotion, startPositions, onComplete])
+
+  const tRef = useRef(0)
+  useFrame((_, delta) => {
+    if (reducedMotion) return
+    tRef.current += delta
+    const geom = geomRef.current
+    const pos = geom.attributes.position.array as Float32Array
+    for (let i = 0; i < pos.length; i += 3) {
+      const n = (i / 3) * 0.17
+      pos[i + 2] = 0.03 * Math.sin(tRef.current * 1.6 + n)
+    }
+    geom.attributes.position.needsUpdate = true
+  })
+
+  return (
+    <points>
+      <bufferGeometry ref={geomRef} />
+      <pointsMaterial size={0.035} sizeAttenuation transparent opacity={0.95} color="#000000" />
+    </points>
+  )
+}
+
+export default function LoadingScreen({
+  imgSrc,
+  onComplete,
+}: {
+  imgSrc: string
+  onComplete: () => void
+}) {
+  const [positions, setPositions] = useState<Float32Array | null>(null)
+  const [reduced, setReduced] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const handle = () => setReduced(!!mq.matches)
+    handle(); mq.addEventListener?.('change', handle)
+    return () => mq.removeEventListener?.('change', handle)
+  }, [])
+
+  useEffect(() => {
+    let mounted = true
+    logoToPoints(imgSrc, { density: 4 })
+      .then((pts) => mounted && setPositions(pts))
+      .catch(() => mounted && setPositions(new Float32Array()))
+    return () => { mounted = false }
+  }, [imgSrc])
+
+  const handleMorphComplete = () => {
+    setTimeout(() => {
+      setIsVisible(false)
+      setTimeout(onComplete, 600)
+    }, 400)
+  }
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="fixed inset-0 z-50 bg-white flex items-center justify-center"
+        >
+          {positions && positions.length > 0 && (
+            <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 55 }} className="w-full h-full">
+              <ambientLight intensity={0.8} />
+              <directionalLight position={[2, 2, 4]} intensity={0.5} />
+              <MorphPoints 
+                targetPositions={positions} 
+                reducedMotion={reduced}
+                onComplete={handleMorphComplete}
+              />
+            </Canvas>
+          )}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}

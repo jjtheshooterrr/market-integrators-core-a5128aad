@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      mi_home_metrics: {
+        Row: {
+          created_at: string | null
+          icon: string | null
+          id: string
+          is_public: boolean | null
+          label: string
+          order_index: number | null
+          suffix: string | null
+          value: number
+        }
+        Insert: {
+          created_at?: string | null
+          icon?: string | null
+          id?: string
+          is_public?: boolean | null
+          label: string
+          order_index?: number | null
+          suffix?: string | null
+          value: number
+        }
+        Update: {
+          created_at?: string | null
+          icon?: string | null
+          id?: string
+          is_public?: boolean | null
+          label?: string
+          order_index?: number | null
+          suffix?: string | null
+          value?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

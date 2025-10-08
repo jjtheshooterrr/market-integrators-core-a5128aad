@@ -12,6 +12,7 @@ import { TypeAnimation } from "react-type-animation";
 import ThreeBackground from "@/components/effects/ThreeBackground";
 import MagneticButton from "@/components/effects/MagneticButton";
 import GlitchText from "@/components/effects/GlitchText";
+import MetricsDisplay from "./MetricsDisplay";
 
 const HeroEnhanced = () => {
   const [init, setInit] = useState(false);
@@ -168,32 +169,14 @@ const HeroEnhanced = () => {
             </MagneticButton>
           </motion.div>
 
-          {/* Trust Indicators with CountUp and Stagger */}
+          {/* Trust Indicators - Now powered by GraphQL */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 2.6 }}
-            className="mt-12 grid grid-cols-3 gap-8 max-w-2xl"
+            className="mt-12"
           >
-            {[
-              { end: 10, suffix: "+", label: "Years Experience" },
-              { end: 500, suffix: "+", label: "Clients Served" },
-              { end: 50, prefix: "$", suffix: "M+", label: "Revenue Generated" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 2.8 + index * 0.1 }}
-                whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-              >
-                <div className="text-3xl font-bold text-primary mb-1">
-                  {stat.prefix}
-                  <CountUp end={stat.end} duration={2.5} suffix={stat.suffix} />
-                </div>
-                <div className="text-sm text-primary-foreground/80">{stat.label}</div>
-              </motion.div>
-            ))}
+            <MetricsDisplay />
           </motion.div>
         </div>
       </motion.div>

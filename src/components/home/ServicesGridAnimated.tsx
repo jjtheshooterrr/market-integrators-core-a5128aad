@@ -1,45 +1,31 @@
 import { Link } from "react-router-dom";
 import { MousePointerClick, Search, Globe, Video, BarChart3, FileCode } from "lucide-react";
-import { useSpring, animated } from "@react-spring/web";
-import { useGesture } from "@use-gesture/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const AnimatedCard = ({ service, index }: { service: any; index: number }) => {
   const Icon = service.icon;
-  const [{ x, y, rotateX, rotateY, scale }, api] = useSpring(() => ({
-    x: 0,
-    y: 0,
-    rotateX: 0,
-    rotateY: 0,
-    scale: 1,
-    config: { mass: 5, tension: 350, friction: 40 },
-  }));
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
 
-  const bind = useGesture({
-    onMove: ({ xy: [px, py], currentTarget }) => {
-      const rect = (currentTarget as HTMLElement).getBoundingClientRect();
-      const x = px - rect.left - rect.width / 2;
-      const y = py - rect.top - rect.height / 2;
-      api.start({
-        x: x / 10,
-        y: y / 10,
-        rotateX: -y / 20,
-        rotateY: x / 20,
-        scale: 1.05,
-      });
-    },
-    onHover: ({ hovering }) => {
-      if (!hovering) {
-        api.start({
-          x: 0,
-          y: 0,
-          rotateX: 0,
-          rotateY: 0,
-          scale: 1,
-        });
-      }
-    },
-  });
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateXValue = (y - centerY) / 10;
+    const rotateYValue = (centerX - x) / 10;
+
+    setRotateX(rotateXValue);
+    setRotateY(rotateYValue);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
 
   return (
     <motion.div
@@ -49,11 +35,19 @@ const AnimatedCard = ({ service, index }: { service: any; index: number }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Link to={service.href}>
-        <animated.div
-          {...bind()}
-          style={{
-            transform: `perspective(600px)`,
+        <motion.div
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          animate={{
+            rotateX,
+            rotateY,
           }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          style={{
+            transformStyle: "preserve-3d",
+            perspective: "1000px",
+          }}
+          whileHover={{ scale: 1.05 }}
           className="card-premium p-8 group cursor-pointer"
         >
           <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
@@ -63,7 +57,7 @@ const AnimatedCard = ({ service, index }: { service: any; index: number }) => {
           <p className="text-muted-foreground leading-relaxed">
             {service.description}
           </p>
-        </animated.div>
+        </motion.div>
       </Link>
     </motion.div>
   );

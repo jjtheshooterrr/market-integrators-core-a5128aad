@@ -8,38 +8,27 @@ import MetricsSection from "@/components/home/MetricsSection";
 import CTASection from "@/components/home/CTASection";
 import CustomCursor from "@/components/effects/CustomCursor";
 import ParallaxSection from "@/components/effects/ParallaxSection";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
 const Index = () => {
-  // Smooth scroll setup (yours)
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
     requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
 
-  // 👇 Add THIS effect: fire a tiny GraphQL request on load
-  // (use a ref so dev StrictMode doesn’t double-fire)
-  const firedOnce = useRef(false);
-  useEffect(() => {
-    if (firedOnce.current) return;
-    firedOnce.current = true;
-
-    fetch("/graphql", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: "{ __typename }" }),
-      keepalive: true, // helps scanners that navigate away quickly
-    }).catch(console.error);
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   return (

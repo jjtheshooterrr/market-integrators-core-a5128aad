@@ -1,4 +1,4 @@
-import { Target, Lightbulb, Rocket, LineChart } from "lucide-react";
+import { Brain, GitBranch, Rocket, TrendingUp, BarChart3 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,28 +12,34 @@ const ProcessStepsAnimated = () => {
 
   const steps = [
     {
-      icon: Target,
+      icon: Brain,
       number: "01",
-      title: "Strategy & Discovery",
-      description: "We analyze your business, competitors, and market to create a data-driven marketing roadmap.",
+      title: "Intelligence & Insight",
+      description: "Deep-dive analysis into your data, market trends, and customer signals.",
     },
     {
-      icon: Lightbulb,
+      icon: GitBranch,
       number: "02",
-      title: "Campaign Development",
-      description: "Our experts design and build campaigns optimized for maximum ROI and conversions.",
+      title: "Strategic Architecture",
+      description: "Build your marketing system like an engineer: structure, flow, and performance built in.",
     },
     {
       icon: Rocket,
       number: "03",
-      title: "Launch & Optimize",
-      description: "We launch your campaigns and continuously test and optimize for better performance.",
+      title: "Launch & Learn",
+      description: "Deploy, test, and iterate — every week, every channel, every audience.",
     },
     {
-      icon: LineChart,
+      icon: TrendingUp,
       number: "04",
-      title: "Track & Report",
-      description: "Receive detailed analytics and insights showing exactly how your investment is performing.",
+      title: "Optimize & Scale",
+      description: "Continuous performance tuning powered by machine learning and predictive modeling.",
+    },
+    {
+      icon: BarChart3,
+      number: "05",
+      title: "Transparency & Reporting",
+      description: "Access real metrics in real time through your analytics dashboard.",
     },
   ];
 
@@ -70,9 +76,9 @@ const ProcessStepsAnimated = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">How We Work</h2>
+          <h2 className="mb-4">Our Methodology: From Intelligence to Impact</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A proven process designed to deliver measurable results from day one
+            We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth systems.
           </p>
         </motion.div>
 
@@ -86,7 +92,7 @@ const ProcessStepsAnimated = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (

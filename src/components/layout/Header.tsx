@@ -13,41 +13,59 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const navigation = [{
-    name: "Services",
-    href: "/services"
-  }, {
-    name: "Pricing",
-    href: "/pricing"
-  }, {
-    name: "Industries",
-    href: "/industries"
-  }, {
-    name: "Case Studies",
-    href: "/case-studies"
-  }, {
-    name: "About",
-    href: "/about-us"
-  }, {
-    name: "Contact",
-    href: "/contact-us"
-  }];
-  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background shadow-md" : "bg-background/95 backdrop-blur-sm"}`}>
+  const navigation = [
+    {
+      name: "Services",
+      href: "/services",
+    },
+    {
+      name: "Pricing",
+      href: "/pricing",
+    },
+    {
+      name: "Industries",
+      href: "/industries",
+    },
+    {
+      name: "Case Studies",
+      href: "/case-studies",
+    },
+    {
+      name: "About",
+      href: "/about-us",
+    },
+    {
+      name: "Contact",
+      href: "/contact-us",
+    },
+  ];
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background shadow-md" : "bg-background/95 backdrop-blur-sm"}`}
+    >
       <nav className="container-custom bg-white">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.webp" alt="Market Integrators Logo" className="h-20 w-20" />
-            <span className="font-heading font-bold text-xl hidden sm:block">
-              Market Integrators
-            </span>
+            <img
+              src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-white.png"
+              alt="Market Integrators Logo"
+              className="h-20 w-20"
+            />
+            <span className="font-heading font-bold text-xl hidden sm:block">Market Integrators</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navigation.map(item => <Link key={item.name} to={item.href} className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"}`}>
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"}`}
+              >
                 {item.name}
-              </Link>)}
+              </Link>
+            ))}
           </div>
 
           {/* CTA Button */}
@@ -57,26 +75,40 @@ const Header = () => {
             </Button>
 
             {/* Mobile Menu Button */}
-            <button className="lg:hidden p-2 text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
+            <button
+              className="lg:hidden p-2 text-foreground"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && <div className="lg:hidden py-4 border-t border-border">
+        {isMobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
-              {navigation.map(item => <Link key={item.name} to={item.href} className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"}`} onClick={() => setIsMobileMenuOpen(false)}>
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   {item.name}
-                </Link>)}
+                </Link>
+              ))}
               <Button asChild className="btn-text w-full">
                 <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
                   Request Proposal
                 </Link>
               </Button>
             </div>
-          </div>}
+          </div>
+        )}
       </nav>
-    </header>;
+    </header>
+  );
 };
 export default Header;

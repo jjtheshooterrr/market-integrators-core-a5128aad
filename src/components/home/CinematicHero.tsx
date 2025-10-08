@@ -2,10 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect, lazy, Suspense } from "react";
+
+const LogoMorph = lazy(() => import("@/components/effects/LogoMorph"));
 
 const CinematicHero = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const [showLogoMorph, setShowLogoMorph] = useState(false);
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -16,6 +20,12 @@ const CinematicHero = () => {
 
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Load logo morph after initial render to avoid blocking FCP/LCP
+  useEffect(() => {
+    const timer = setTimeout(() => setShowLogoMorph(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Animation variants
   const wordVariants: Variants = {
@@ -76,6 +86,15 @@ const CinematicHero = () => {
       {/* Content */}
       <div className="container-custom relative z-10 py-32 md:py-40">
         <div className="max-w-5xl mx-auto text-center">
+          {/* Logo Morph Animation */}
+          {showLogoMorph && (
+            <Suspense fallback={<div className="h-24 mb-6" />}>
+              <div className="h-24 mb-6">
+                <LogoMorph />
+              </div>
+            </Suspense>
+          )}
+          
           {/* Headline with Staggered Word Reveal */}
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight">
             {headline.map((word, i) => (

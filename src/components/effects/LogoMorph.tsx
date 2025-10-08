@@ -1,7 +1,8 @@
+// src/components/effects/LogoMorph.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import gsap from "gsap";
+import { gsap } from "gsap";
 
 /* ------------------ POINT SAMPLING ------------------ */
 
@@ -40,11 +41,14 @@ async function rasterToPoints(
     }
   }
 
+  // downsample if needed
   if (points.length / 2 > maxPoints) {
     const stride = Math.ceil(points.length / 2 / maxPoints);
-    const trimmed: number[] = [];
-    for (let i = 0; i < points.length; i += stride * 2) trimmed.push(points[i], points[i + 1]);
-    return normalize(trimmed, width, height);
+    const slim: number[] = [];
+    for (let i = 0; i < points.length; i += stride * 2) {
+      slim.push(points[i], points[i + 1]);
+    }
+    return normalize(slim, width, height);
   }
 
   return normalize(points, width, height);
@@ -54,12 +58,13 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
   const out: number[] = [];
   const cx = width / 2;
   const cy = height / 2;
-  const scale = 3.2;
+  const maxSide = Math.max(width, height);
+  const S = 3.2;
 
   for (let i = 0; i < rawXY.length; i += 2) {
-    const x = (rawXY[i] - cx) / Math.max(width, height);
-    const y = (cy - rawXY[i + 1]) / Math.max(width, height);
-    out.push(x * scale, y * scale, 0);
+    const x = (rawXY[i] - cx) / maxSide;
+    const y = (cy - rawXY[i + 1]) / maxSide;
+    out.push(x * S, y * S, 0);
   }
   return new Float32Array(out);
 }
@@ -75,7 +80,7 @@ function MorphPoints({
   color?: string;
   onComplete?: () => void;
 }) {
-  const geom = useRef<THREE.BufferGeometry>(null!);
+  const geomRef = useRef<THREE.BufferGeometry>(null!);
   const count = targetPositions.length / 3;
 
   const startPositions = useMemo(() => {
@@ -92,48 +97,55 @@ function MorphPoints({
   }, [count]);
 
   useEffect(() => {
-    const g = geom.current;
-    g.setAttribute("position", new THREE.BufferAttribute(startPositions.slice(), 3));
+    const geom = geomRef.current;
+    geom.setAttribute("position", new THREE.BufferAttribute(startPositions.slice(), 3));
 
-    const pos = g.attributes.position.array as Float32Array;
+    const pos = geom.attributes.position.array as Float32Array;
     const tween = gsap.to(pos, {
       duration: 1.4,
       ease: "power3.inOut",
-      // @ts-ignore
+      // @ts-ignore endArray supported for typed arrays
       endArray: targetPositions,
-      onUpdate: () => (g.attributes.position.needsUpdate = true),
-      onComplete: () => setTimeout(() => onComplete?.(), 200),
+      onUpdate: () => {
+        geom.attributes.position.needsUpdate = true;
+      },
+      onComplete: () => {
+        setTimeout(() => onComplete?.(), 200);
+      },
     });
-    return () => tween.kill();
+
+    return () => {
+      tween.kill(); // <-- return void cleanup, fixes TS2345
+    };
   }, [targetPositions, onComplete, startPositions]);
 
-  // subtle shimmer effect
-  const time = useRef(0);
+  // subtle z shimmer for depth
+  const tRef = useRef(0);
   useFrame((_, delta) => {
-    time.current += delta;
-    const arr = geom.current.attributes.position.array as Float32Array;
-    for (let i = 0; i < arr.length; i += 3) {
-      arr[i + 2] = 0.04 * Math.sin(time.current * 1.5 + i * 0.05);
+    tRef.current += delta;
+    const a = geomRef.current.attributes.position.array as Float32Array;
+    for (let i = 0; i < a.length; i += 3) {
+      a[i + 2] = 0.04 * Math.sin(tRef.current * 1.5 + (i / 3) * 0.17);
     }
-    geom.current.attributes.position.needsUpdate = true;
+    geomRef.current.attributes.position.needsUpdate = true;
   });
 
   return (
     <points>
-      <bufferGeometry ref={geom} />
+      <bufferGeometry ref={geomRef} />
       <pointsMaterial size={0.035} sizeAttenuation transparent opacity={0.95} color={color} />
     </points>
   );
 }
 
-/* ------------------ LOGO MORPH COMPONENT ------------------ */
+/* ------------------ PUBLIC COMPONENT ------------------ */
 
 export default function LogoMorph({
   src,
   color = "#ef1f2b",
   height = 120,
 }: {
-  src: string;
+  src: string; // REQUIRED
   color?: string;
   height?: number;
 }) {
@@ -141,11 +153,18 @@ export default function LogoMorph({
   const [showFill, setShowFill] = useState(false);
 
   useEffect(() => {
-    rasterToPoints(src, { density: 3.5, threshold: 0.4, maxPoints: 12000 }).then(setPositions);
+    let mounted = true;
+    rasterToPoints(src, { density: 3.5, threshold: 0.4, maxPoints: 12000 }).then((p) => {
+      if (mounted) setPositions(p);
+    });
+    return () => {
+      mounted = false;
+    };
   }, [src]);
 
   const finish = () => {
     setShowFill(true);
+    // fade the solid mask after a moment; keep the morph result visible beneath
     setTimeout(() => setShowFill(false), 1000);
   };
 
@@ -162,7 +181,12 @@ export default function LogoMorph({
       }}
     >
       {positions && (
-        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 55 }} style={{ position: "absolute", inset: 0 }}>
+        <Canvas
+          dpr={[1, 2]}
+          camera={{ position: [0, 0, 6], fov: 55 }}
+          style={{ position: "absolute", inset: 0 }}
+          gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        >
           <ambientLight intensity={0.8} />
           <directionalLight position={[2, 2, 4]} intensity={0.6} />
           <MorphPoints targetPositions={positions} color={color} onComplete={finish} />
@@ -183,7 +207,7 @@ export default function LogoMorph({
             maskPosition: "center",
             WebkitMaskSize: "auto 100%",
             maskSize: "auto 100%",
-            transition: "opacity 0.4s ease",
+            transition: "opacity .4s ease",
           }}
         />
       )}

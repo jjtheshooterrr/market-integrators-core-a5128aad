@@ -68,10 +68,7 @@ const CinematicHero = () => {
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
       {/* Animated Gradient Background with Vignette */}
-      <motion.div
-        style={prefersReducedMotion ? {} : { y, opacity }}
-        className="absolute inset-0 z-0"
-      >
+      <motion.div style={prefersReducedMotion ? {} : { y, opacity }} className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-brand-red-dark animate-gradient-slow" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
       </motion.div>
@@ -102,7 +99,8 @@ const CinematicHero = () => {
             transition={{ delay: 0.6, duration: 0.5 }}
             className="font-body text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Full-funnel, data-driven growth strategies that turn insights into action and campaigns into revenue. We engineer digital solutions that deliver measurable impact across every customer touchpoint.
+            Full-funnel, data-driven growth strategies that turn insights into action and campaigns into revenue. We
+            engineer digital solutions that deliver measurable impact across every customer touchpoint.
           </motion.p>
 
           {/* CTAs */}
@@ -117,9 +115,7 @@ const CinematicHero = () => {
               size="lg"
               className="bg-brand-red hover:bg-brand-red-dark text-white font-body font-semibold px-8 py-6 text-base shadow-red transition-all duration-300 hover:shadow-[0_0_40px_hsl(var(--brand-red)/0.5)] hover:scale-105"
             >
-              <Link to="/contact-us">
-                Request Free Proposal
-              </Link>
+              <Link to="/contact-us">Request Free Proposal</Link>
             </Button>
 
             <Button
@@ -173,11 +169,7 @@ const CinematicHero = () => {
       <motion.div
         initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
         animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: [0, 10, 0] }}
-        transition={
-          prefersReducedMotion
-            ? { duration: 0 }
-            : { duration: 1.5, delay: 1.5, repeat: Infinity }
-        }
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.5, delay: 1.5, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">

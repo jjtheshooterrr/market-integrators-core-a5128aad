@@ -17,7 +17,7 @@ const Index = () => {
     <>
       {showLoading && (
         <LoadingScreen
-          imgSrc="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/FreeSample-Vectorizer-io-IMG_2671%20(1).svg"
+          imgSrc="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/FreeSample-Vectorizer-io-IMG_2671%20(1)%20(1).svg"
           onComplete={() => setShowLoading(false)}
         />
       )}
@@ -25,19 +25,19 @@ const Index = () => {
         <Header />
         <main className="pt-20">
           <HeroEnhanced />
-        <ParallaxSection speed={0.3}>
-          <ServicesGridAnimated />
-        </ParallaxSection>
-        <ParallaxSection speed={0.5}>
-          <ProcessStepsAnimated />
-        </ParallaxSection>
-        <ParallaxSection speed={0.4}>
-          <FeaturedCaseStudy />
-        </ParallaxSection>
-        <ParallaxSection speed={0.3}>
-          <MetricsSection />
-        </ParallaxSection>
-        <CTASection />
+          <ParallaxSection speed={0.3}>
+            <ServicesGridAnimated />
+          </ParallaxSection>
+          <ParallaxSection speed={0.5}>
+            <ProcessStepsAnimated />
+          </ParallaxSection>
+          <ParallaxSection speed={0.4}>
+            <FeaturedCaseStudy />
+          </ParallaxSection>
+          <ParallaxSection speed={0.3}>
+            <MetricsSection />
+          </ParallaxSection>
+          <CTASection />
         </main>
         <Footer />
       </div>

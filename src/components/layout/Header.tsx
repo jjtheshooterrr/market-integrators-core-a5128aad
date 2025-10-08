@@ -20,8 +20,8 @@ const Header = () => {
     name: "Pricing",
     href: "/pricing"
   }, {
-    name: "Who We Serve",
-    href: "/who-we-serve"
+    name: "Industries",
+    href: "/industries"
   }, {
     name: "Case Studies",
     href: "/case-studies"

@@ -180,4 +180,72 @@
       transform: translateX(0);
     }
   }
+  
+  /* Glitch effect */
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  .glitch {
+    position: relative;
+    animation: glitch 0.3s ease-in-out infinite;
+  }
+  
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(210, 10, 10, 0.2) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  /* Neon glow */
+  .neon-glow {
+    text-shadow: 
+      0 0 7px hsl(var(--primary)),
+      0 0 10px hsl(var(--primary)),
+      0 0 21px hsl(var(--primary)),
+      0 0 42px hsl(var(--primary));
+  }
+  
+  /* Smooth cursor */
+  * {
+    cursor: none !important;
+  }
+  
+  @media (max-width: 768px) {
+    * {
+      cursor: auto !important;
+    }
+  }
 }

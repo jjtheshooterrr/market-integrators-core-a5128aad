@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Hero from "@/components/home/Hero";
+import HeroEnhanced from "@/components/home/HeroEnhanced";
 import ServicesGridAnimated from "@/components/home/ServicesGridAnimated";
 import ProcessStepsAnimated from "@/components/home/ProcessStepsAnimated";
 import FeaturedCaseStudy from "@/components/home/FeaturedCaseStudy";
 import CTASection from "@/components/home/CTASection";
+import CustomCursor from "@/components/effects/CustomCursor";
+import ParallaxSection from "@/components/effects/ParallaxSection";
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
@@ -30,12 +32,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <CustomCursor />
       <Header />
       <main className="pt-20">
-        <Hero />
-        <ServicesGridAnimated />
-        <ProcessStepsAnimated />
-        <FeaturedCaseStudy />
+        <HeroEnhanced />
+        <ParallaxSection speed={0.3}>
+          <ServicesGridAnimated />
+        </ParallaxSection>
+        <ParallaxSection speed={0.5}>
+          <ProcessStepsAnimated />
+        </ParallaxSection>
+        <ParallaxSection speed={0.4}>
+          <FeaturedCaseStudy />
+        </ParallaxSection>
         <CTASection />
       </main>
       <Footer />

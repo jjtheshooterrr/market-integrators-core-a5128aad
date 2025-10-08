@@ -1,3 +1,4 @@
+// src/components/home/CinematicHero.tsx
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
@@ -8,8 +9,25 @@ const LogoMorph = lazy(() => import("@/components/effects/LogoMorph"));
 
 const CinematicHero = () => {
   const heroRef = useRef<HTMLElement>(null);
+
+  // Safe prefers-reduced-motion (avoids SSR/window issues)
+  const [prefersReducedMotion, setPRM] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handler = () => setPRM(mq.matches);
+    handler();
+    mq.addEventListener?.("change", handler);
+    return () => mq.removeEventListener?.("change", handler);
+  }, []);
+
+  // Defer LogoMorph mount slightly to avoid impacting FCP/LCP
   const [showLogoMorph, setShowLogoMorph] = useState(false);
-  
+  useEffect(() => {
+    const t = setTimeout(() => setShowLogoMorph(true), 120);
+    return () => clearTimeout(t);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -18,26 +36,13 @@ const CinematicHero = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
 
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Load logo morph after initial render to avoid blocking FCP/LCP
-  useEffect(() => {
-    const timer = setTimeout(() => setShowLogoMorph(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   // Animation variants
   const wordVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     }),
   };
 
@@ -46,12 +51,7 @@ const CinematicHero = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        delay: 0.8,
-        type: "spring",
-        stiffness: 200,
-        damping: 15,
-      },
+      transition: { delay: 0.8, type: "spring", stiffness: 200, damping: 15 },
     },
   };
 
@@ -60,10 +60,7 @@ const CinematicHero = () => {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        delay: 1.2 + i * 0.15,
-        duration: 0.4,
-      },
+      transition: { delay: 1.2 + i * 0.15, duration: 0.4 },
     }),
   };
 
@@ -86,15 +83,19 @@ const CinematicHero = () => {
       {/* Content */}
       <div className="container-custom relative z-10 py-32 md:py-40">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Logo Morph Animation */}
-          {showLogoMorph && (
+          {/* Inline Logo Morph (in the gap above the H1) */}
+          {showLogoMorph && !prefersReducedMotion && (
             <Suspense fallback={<div className="h-24 mb-6" />}>
-              <div className="h-24 mb-6">
-                <LogoMorph />
+              <div className="mx-auto -mt-2 mb-6 md:mb-8 w-48 md:w-56 lg:w-64 h-24 md:h-28 lg:h-32">
+                <LogoMorph
+                  src="/logo-mark-only.svg" // <-- ensure this path is correct
+                  color="hsl(var(--brand-red))"
+                  height={112}
+                />
               </div>
             </Suspense>
           )}
-          
+
           {/* Headline with Staggered Word Reveal */}
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight">
             {headline.map((word, i) => (

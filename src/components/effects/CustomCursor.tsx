@@ -51,7 +51,7 @@ const CustomCursor = () => {
           height: cursorSizeSpring,
         }}
       >
-        <div className="w-full h-full rounded-full border-2 border-primary bg-primary/20 backdrop-blur-sm" />
+        <div className="w-full h-full rounded-full border-2 border-white bg-white/20 backdrop-blur-sm" />
       </motion.div>
       
       <motion.div
@@ -61,7 +61,7 @@ const CustomCursor = () => {
           y: cursorY,
         }}
       >
-        <div className="w-1 h-1 rounded-full bg-primary" />
+        <div className="w-1 h-1 rounded-full bg-white" />
       </motion.div>
     </>
   );

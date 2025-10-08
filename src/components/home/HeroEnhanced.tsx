@@ -41,11 +41,7 @@ const HeroEnhanced = () => {
     <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image with Parallax */}
       <motion.div style={{ scale, opacity }} className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Digital Marketing Analytics"
-          className="w-full h-full object-cover"
-        />
+        <img src={heroImage} alt="Digital Marketing Analytics" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/80 to-foreground/60" />
       </motion.div>
 
@@ -107,15 +103,10 @@ const HeroEnhanced = () => {
             </motion.div>
             <span className="text-sm font-medium text-primary-foreground">Results-Driven Marketing Agency</span>
           </motion.div>
-          
+
           <h1 className="text-primary-foreground mb-6">
             <TypeAnimation
-              sequence={[
-                "Digital Marketing That",
-                500,
-                "Digital Marketing That Moves the Needle",
-                2000,
-              ]}
+              sequence={["Digital Marketing That", 500, "Digital Marketing That", 2000]}
               wrapper="span"
               speed={50}
               repeat={0}
@@ -131,16 +122,17 @@ const HeroEnhanced = () => {
               <GlitchText>Moves the Needle</GlitchText>
             </motion.span>
           </h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 2 }}
             className="text-xl text-primary-foreground/90 mb-8 leading-relaxed max-w-2xl"
           >
-            Drive traffic, generate qualified leads, and increase revenue with data-driven PPC, SEO, web design, and video marketing strategies tailored to your business.
+            Drive traffic, generate qualified leads, and increase revenue with data-driven PPC, SEO, web design, and
+            video marketing strategies tailored to your business.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -156,13 +148,16 @@ const HeroEnhanced = () => {
                 </Button>
               </motion.div>
             </MagneticButton>
-            
+
             <MagneticButton>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button asChild size="lg" variant="outline" className="btn-text border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground">
-                  <Link to="/pricing">
-                    View Pricing
-                  </Link>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="btn-text border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
+                >
+                  <Link to="/pricing">View Pricing</Link>
                 </Button>
               </motion.div>
             </MagneticButton>

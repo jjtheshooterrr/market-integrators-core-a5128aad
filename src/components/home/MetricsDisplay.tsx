@@ -13,7 +13,7 @@ interface MetricNode {
 }
 
 interface MetricsData {
-  mi_home_metricsConnection: {
+  mi_home_metricsCollection: {
     edges: Array<{
       node: MetricNode;
     }>;
@@ -48,7 +48,7 @@ const MetricsDisplay = () => {
 
   console.log('MetricsDisplay Data:', data);
 
-  const metrics = data?.mi_home_metricsConnection?.edges || [];
+  const metrics = data?.mi_home_metricsCollection?.edges || [];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

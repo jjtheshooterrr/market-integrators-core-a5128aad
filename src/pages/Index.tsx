@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import HeroEnhanced from "@/components/home/HeroEnhanced";
+import CinematicHero from "@/components/home/CinematicHero";
 import ServicesGridAnimated from "@/components/home/ServicesGridAnimated";
 import ProcessStepsAnimated from "@/components/home/ProcessStepsAnimated";
 import FeaturedCaseStudy from "@/components/home/FeaturedCaseStudy";
@@ -23,8 +23,8 @@ const Index = () => {
       )}
       <div className="min-h-screen">
         <Header />
-        <main className="pt-20">
-          <HeroEnhanced />
+        <main>
+          <CinematicHero />
           <ParallaxSection speed={0.3}>
             <ServicesGridAnimated />
           </ParallaxSection>

@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
         heading: ['Montserrat', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
       },

@@ -50,15 +50,15 @@ const ProcessStepsAnimated = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top center",
-        end: "bottom center",
+        end: "bottom bottom",
         scrub: 1,
       },
     });
 
     tl.fromTo(
       progressLineRef.current,
-      { scaleX: 0 },
-      { scaleX: 1, ease: "none" }
+      { scaleY: 0 },
+      { scaleY: 1, ease: "none" }
     );
 
     return () => {
@@ -82,50 +82,82 @@ const ProcessStepsAnimated = () => {
           </p>
         </motion.div>
 
-        {/* Progress Line */}
-        <div className="relative mb-16 hidden lg:block">
-          <div className="absolute top-0 left-0 w-full h-1 bg-border" />
+        {/* Vertical Timeline */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Center Line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-border/30 hidden md:block" />
           <div
             ref={progressLineRef}
-            className="absolute top-0 left-0 h-1 bg-primary origin-left"
-            style={{ width: '100%' }}
+            className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-destructive origin-top hidden md:block"
           />
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="relative"
-              >
-                <div className="text-center">
+          <div className="space-y-24">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              const isEven = index % 2 === 0;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col gap-8`}
+                >
+                  {/* Card */}
+                  <div className={`flex-1 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'} text-center`}>
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-destructive/30 transition-all duration-300 hover:shadow-lg hover:shadow-destructive/5"
+                    >
+                      <div className={`flex items-start gap-4 ${isEven ? 'md:flex-row-reverse md:text-right' : 'md:flex-row md:text-left'} flex-col text-center`}>
+                        <div className="flex-shrink-0 mx-auto md:mx-0">
+                          <div className="relative w-16 h-16">
+                            <div className="absolute inset-0 bg-destructive/10 rounded-xl" />
+                            <div className="relative w-full h-full flex items-center justify-center">
+                              <Icon className="text-destructive" size={28} strokeWidth={1.5} />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Center Node */}
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.15 + 0.2, type: "spring" }}
-                    className="relative inline-flex items-center justify-center w-20 h-20 mb-6"
+                    transition={{ duration: 0.5, delay: 0.3, type: "spring" }}
+                    className="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block"
                   >
-                    <div className="absolute inset-0 bg-primary/10 rounded-full" />
-                    <Icon className="relative text-primary" size={32} />
+                    <div className="relative w-12 h-12">
+                      <div className="absolute inset-0 bg-destructive/20 rounded-full animate-pulse" />
+                      <div className="absolute inset-2 bg-background rounded-full border-2 border-destructive flex items-center justify-center">
+                        <span className="text-xs font-bold text-destructive">{step.number}</span>
+                      </div>
+                    </div>
                   </motion.div>
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -mt-2 text-6xl font-bold text-primary/5">
-                    {step.number}
+
+                  {/* Mobile number badge */}
+                  <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-10 h-10 bg-destructive/20 rounded-full border-2 border-destructive flex items-center justify-center">
+                      <span className="text-xs font-bold text-destructive">{step.number}</span>
+                    </div>
                   </div>
-                  <h3 className="text-xl mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

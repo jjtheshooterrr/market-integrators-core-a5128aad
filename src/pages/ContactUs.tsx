@@ -35,6 +35,25 @@ const ContactUs = () => {
       });
 
       if (error) throw error;
+
+      // Send confirmation emails
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          firstName: formData.get('firstName') as string,
+          lastName: formData.get('lastName') as string,
+          email: formData.get('email') as string,
+          phone: formData.get('phone') as string,
+          company: formData.get('company') as string || undefined,
+          website: formData.get('website') as string || undefined,
+          service: service,
+          message: formData.get('message') as string,
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending emails:', emailError);
+        // Don't fail the whole submission if email fails
+      }
       
       toast.success("Thank you! We'll be in touch within 24 hours.");
       (e.target as HTMLFormElement).reset();

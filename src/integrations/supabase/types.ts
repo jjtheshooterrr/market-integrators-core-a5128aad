@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_leads: {
+        Row: {
+          company: string | null
+          consent: boolean
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          message: string
+          phone: string | null
+          service: string
+          website: string | null
+        }
+        Insert: {
+          company?: string | null
+          consent?: boolean
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          message: string
+          phone?: string | null
+          service: string
+          website?: string | null
+        }
+        Update: {
+          company?: string | null
+          consent?: boolean
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          message?: string
+          phone?: string | null
+          service?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       mi_home_metrics: {
         Row: {
           created_at: string | null

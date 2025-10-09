@@ -9,20 +9,42 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [service, setService] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
     
-    toast.success("Thank you! We'll be in touch within 24 hours.");
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    try {
+      const { error } = await supabase.from('contact_leads').insert({
+        first_name: formData.get('firstName') as string,
+        last_name: formData.get('lastName') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string,
+        company: formData.get('company') as string || null,
+        website: formData.get('website') as string || null,
+        service: service,
+        message: formData.get('message') as string,
+        consent: true
+      });
+
+      if (error) throw error;
+      
+      toast.success("Thank you! We'll be in touch within 24 hours.");
+      (e.target as HTMLFormElement).reset();
+      setService("");
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,39 +70,39 @@ const ContactUs = () => {
                 <h2 className="mb-8">Request Your Free Proposal</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <Label htmlFor="firstName">First Name *</Label>
-                      <Input id="firstName" required className="mt-2" />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name *</Label>
-                      <Input id="lastName" required className="mt-2" />
-                    </div>
+                  <div>
+                    <Label htmlFor="firstName">First Name *</Label>
+                    <Input id="firstName" name="firstName" required className="mt-2" />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName">Last Name *</Label>
+                    <Input id="lastName" name="lastName" required className="mt-2" />
+                  </div>
                   </div>
 
                   <div>
                     <Label htmlFor="email">Email Address *</Label>
-                    <Input id="email" type="email" required className="mt-2" />
+                    <Input id="email" name="email" type="email" required className="mt-2" />
                   </div>
 
                   <div>
                     <Label htmlFor="phone">Phone Number *</Label>
-                    <Input id="phone" type="tel" required className="mt-2" />
+                    <Input id="phone" name="phone" type="tel" required className="mt-2" />
                   </div>
 
                   <div>
                     <Label htmlFor="company">Company Name</Label>
-                    <Input id="company" className="mt-2" />
+                    <Input id="company" name="company" className="mt-2" />
                   </div>
 
                   <div>
                     <Label htmlFor="website">Website URL</Label>
-                    <Input id="website" type="url" placeholder="https://" className="mt-2" />
+                    <Input id="website" name="website" type="url" placeholder="https://" className="mt-2" />
                   </div>
 
                   <div>
                     <Label htmlFor="service">Service Interest *</Label>
-                    <Select required>
+                    <Select required value={service} onValueChange={setService}>
                       <SelectTrigger className="mt-2">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
@@ -99,7 +121,8 @@ const ContactUs = () => {
                   <div>
                     <Label htmlFor="message">Tell Us About Your Goals *</Label>
                     <Textarea 
-                      id="message" 
+                      id="message"
+                      name="message"
                       required 
                       className="mt-2 min-h-32" 
                       placeholder="What are you hoping to achieve with digital marketing?"

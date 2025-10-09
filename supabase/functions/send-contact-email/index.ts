@@ -31,7 +31,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to the submitter
     const confirmationEmail = await resend.emails.send({
-      from: "Market Integrators <onboarding@resend.dev>",
+      from: "Market Integrators <noreply@marketintegrators.com>",
       to: [email],
       subject: "Thank You for Contacting Market Integrators",
       html: `
@@ -55,7 +55,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification to Market Integrators
     const notificationEmail = await resend.emails.send({
-      from: "Market Integrators Contact Form <onboarding@resend.dev>",
+      from: "Market Integrators Contact Form <noreply@marketintegrators.com>",
       to: ["marketintegrator@gmail.com"],
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `

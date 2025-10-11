@@ -7,7 +7,7 @@ import { useRef, useState, useEffect, lazy, Suspense } from "react";
 
 const LogoMorph = lazy(() => import("@/components/effects/LogoMorph"));
 
-const CinematicHero = () => {
+const CinematicHero = ({ loadingComplete = false }: { loadingComplete?: boolean }) => {
   const heroRef = useRef<HTMLElement>(null);
 
   // Safe prefers-reduced-motion (avoids SSR/window issues)
@@ -21,12 +21,13 @@ const CinematicHero = () => {
     return () => mq.removeEventListener?.("change", handler);
   }, []);
 
-  // Defer LogoMorph mount slightly to avoid impacting FCP/LCP
+  // Show LogoMorph animation AFTER loading screen completes
   const [showLogoMorph, setShowLogoMorph] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setShowLogoMorph(true), 120);
+    if (!loadingComplete) return;
+    const t = setTimeout(() => setShowLogoMorph(true), 300);
     return () => clearTimeout(t);
-  }, []);
+  }, [loadingComplete]);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,

@@ -8,12 +8,12 @@ import MetricsSection from "@/components/home/MetricsSection";
 import CTASection from "@/components/home/CTASection";
 import ParallaxSection from "@/components/effects/ParallaxSection";
 
-const Index = () => {
+const Index = ({ loadingComplete = false }: { loadingComplete?: boolean }) => {
   return (
     <div className="min-h-screen">
       <Header />
       <main>
-        <CinematicHero />
+        <CinematicHero loadingComplete={loadingComplete} />
         <ParallaxSection speed={0.3}>
           <ServicesGridAnimated />
         </ParallaxSection>

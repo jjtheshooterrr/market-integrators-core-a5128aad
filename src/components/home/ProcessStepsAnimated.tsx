@@ -111,9 +111,16 @@ const ProcessStepsAnimated = () => {
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: 0.4 }}
-                      className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-destructive/30 transition-all duration-300 hover:shadow-lg hover:shadow-destructive/5"
+                      className="relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-destructive/30 transition-all duration-300 hover:shadow-lg hover:shadow-destructive/5"
                     >
-                      <div className={`flex items-start gap-4 ${isEven ? 'md:flex-row-reverse md:text-right' : 'md:flex-row md:text-left'} flex-col text-center`}>
+                      {/* Number badge - shown on all screen sizes */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div className="w-10 h-10 bg-destructive/20 rounded-full border-2 border-destructive flex items-center justify-center">
+                          <span className="text-xs font-bold text-destructive">{step.number}</span>
+                        </div>
+                      </div>
+
+                      <div className={`flex items-start gap-4 ${isEven ? 'md:flex-row-reverse md:text-right' : 'md:flex-row md:text-left'} flex-col text-center mt-2`}>
                         <div className="flex-shrink-0 mx-auto md:mx-0">
                           <div className="relative w-16 h-16">
                             <div className="absolute inset-0 bg-destructive/10 rounded-xl" />
@@ -132,7 +139,7 @@ const ProcessStepsAnimated = () => {
                     </motion.div>
                   </div>
 
-                  {/* Center Node */}
+                  {/* Center Node - only for visual timeline on desktop */}
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -140,20 +147,10 @@ const ProcessStepsAnimated = () => {
                     transition={{ duration: 0.5, delay: 0.3, type: "spring" }}
                     className="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block"
                   >
-                    <div className="relative w-12 h-12">
-                      <div className="absolute inset-0 bg-destructive/20 rounded-full animate-pulse" />
-                      <div className="absolute inset-2 bg-background rounded-full border-2 border-destructive flex items-center justify-center">
-                        <span className="text-xs font-bold text-destructive">{step.number}</span>
-                      </div>
+                    <div className="relative w-3 h-3">
+                      <div className="absolute inset-0 bg-destructive rounded-full" />
                     </div>
                   </motion.div>
-
-                  {/* Mobile number badge */}
-                  <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div className="w-10 h-10 bg-destructive/20 rounded-full border-2 border-destructive flex items-center justify-center">
-                      <span className="text-xs font-bold text-destructive">{step.number}</span>
-                    </div>
-                  </div>
                 </motion.div>
               );
             })}

@@ -7,7 +7,7 @@ import { useRef, useState, useEffect, lazy, Suspense } from "react";
 
 const LogoMorph = lazy(() => import("@/components/effects/LogoMorph"));
 
-const CinematicHero = ({ loadingComplete = false }: { loadingComplete?: boolean }) => {
+const CinematicHero = () => {
   const heroRef = useRef<HTMLElement>(null);
 
   // Safe prefers-reduced-motion (avoids SSR/window issues)
@@ -21,13 +21,12 @@ const CinematicHero = ({ loadingComplete = false }: { loadingComplete?: boolean 
     return () => mq.removeEventListener?.("change", handler);
   }, []);
 
-  // Show LogoMorph animation AFTER loading screen completes
+  // Show LogoMorph animation on mount
   const [showLogoMorph, setShowLogoMorph] = useState(false);
   useEffect(() => {
-    if (!loadingComplete) return;
-    const t = setTimeout(() => setShowLogoMorph(true), 300);
+    const t = setTimeout(() => setShowLogoMorph(true), 100);
     return () => clearTimeout(t);
-  }, [loadingComplete]);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -86,12 +85,12 @@ const CinematicHero = ({ loadingComplete = false }: { loadingComplete?: boolean 
         <div className="max-w-5xl mx-auto text-center">
           {/* Inline Logo Morph (in the gap above the H1) */}
           {showLogoMorph && !prefersReducedMotion && (
-            <Suspense fallback={<div className="h-24 mb-6" />}>
-              <div className="mx-auto -mt-2 mb-6 md:mb-8 w-48 md:w-56 lg:w-64 h-24 md:h-28 lg:h-32">
+            <Suspense fallback={<div className="h-32 mb-8" />}>
+              <div className="mx-auto mb-8 w-full max-w-md h-32 md:h-40 lg:h-48">
                 <LogoMorph
-                  src="/logo-mark-only.svg" // <-- ensure this path is correct
-                  color="hsl(var(--brand-red))"
-                  height={112}
+                  src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegratorslogotransparent.webp"
+                  color="hsl(0, 90%, 53%)"
+                  height={160}
                 />
               </div>
             </Suspense>

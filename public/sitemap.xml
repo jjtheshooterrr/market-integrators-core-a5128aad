@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yoursite.com/</loc>
+    <loc>https://www.marketintegrators.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/services</loc>
+    <loc>https://www.marketintegrators.com/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/services/ppc-services</loc>
+    <loc>https://www.marketintegrators.com/services/ppc-services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/pricing</loc>
+    <loc>https://www.marketintegrators.com/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/industries</loc>
+    <loc>https://www.marketintegrators.com/industries</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/case-studies</loc>
+    <loc>https://www.marketintegrators.com/case-studies</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/about-us</loc>
+    <loc>https://www.marketintegrators.com/about-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/contact-us</loc>
+    <loc>https://www.marketintegrators.com/contact-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/careers</loc>
+    <loc>https://www.marketintegrators.com/careers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/privacy-policy</loc>
+    <loc>https://www.marketintegrators.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/terms-of-service</loc>
+    <loc>https://www.marketintegrators.com/terms-of-service</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

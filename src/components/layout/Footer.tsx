@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 const Footer = () => {
   const services = [
     {
@@ -95,6 +95,64 @@ const Footer = () => {
                 <MapPin size={18} />
                 <span>Houston, TX</span>
               </div>
+            </div>
+            
+            {/* Social Media */}
+            <div className="flex items-center space-x-4 mt-6">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-foreground/80 hover:text-primary transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={20} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-foreground/80 hover:text-primary transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-foreground/80 hover:text-primary transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <Twitter size={20} />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-foreground/80 hover:text-primary transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube size={20} />
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-foreground/80 hover:text-primary transition-colors text-sm font-bold"
+                aria-label="TikTok"
+              >
+                TT
+              </a>
+              <a
+                href="https://indeed.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-foreground/80 hover:text-primary transition-colors text-sm font-bold"
+                aria-label="Indeed"
+              >
+                in
+              </a>
             </div>
           </div>
 

@@ -18,7 +18,8 @@ const Header = () => {
   const serviceLinks = [
     { name: "All Services", href: "/services" },
     { name: "PPC Services", href: "/services/ppc-services" },
-    { name: "Cybersecurity", href: "/services/cybersecurity" }
+    { name: "Cybersecurity", href: "/services/cybersecurity" },
+    { name: "Data Analytics", href: "/services/data-analytics" }
   ];
 
   const navigation = [

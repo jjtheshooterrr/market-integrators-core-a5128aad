@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { FaTiktok, FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaLinkedin } from "react-icons/fa6";
 const Footer = () => {
   const services = [
     {
@@ -106,7 +107,7 @@ const Footer = () => {
                 className="text-dark-foreground/80 hover:text-primary transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook size={20} />
+                <FaFacebook size={20} />
               </a>
               <a
                 href="https://instagram.com"
@@ -115,7 +116,7 @@ const Footer = () => {
                 className="text-dark-foreground/80 hover:text-primary transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram size={20} />
+                <FaInstagram size={20} />
               </a>
               <a
                 href="https://twitter.com"
@@ -124,7 +125,7 @@ const Footer = () => {
                 className="text-dark-foreground/80 hover:text-primary transition-colors"
                 aria-label="X (Twitter)"
               >
-                <Twitter size={20} />
+                <FaXTwitter size={20} />
               </a>
               <a
                 href="https://youtube.com"
@@ -133,25 +134,25 @@ const Footer = () => {
                 className="text-dark-foreground/80 hover:text-primary transition-colors"
                 aria-label="YouTube"
               >
-                <Youtube size={20} />
+                <FaYoutube size={20} />
               </a>
               <a
                 href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-foreground/80 hover:text-primary transition-colors text-sm font-bold"
+                className="text-dark-foreground/80 hover:text-primary transition-colors"
                 aria-label="TikTok"
               >
-                TT
+                <FaTiktok size={20} />
               </a>
               <a
-                href="https://indeed.com"
+                href="https://linkedin.com/company/marketintegrators"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-foreground/80 hover:text-primary transition-colors text-sm font-bold"
-                aria-label="Indeed"
+                className="text-dark-foreground/80 hover:text-primary transition-colors"
+                aria-label="LinkedIn"
               >
-                in
+                <FaLinkedin size={20} />
               </a>
             </div>
           </div>

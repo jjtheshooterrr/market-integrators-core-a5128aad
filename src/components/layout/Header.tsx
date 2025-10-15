@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,10 +17,10 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const serviceLinks = [
-    { name: "All Services", href: "/services" },
-    { name: "PPC Services", href: "/services/ppc-services" },
-    { name: "Cybersecurity", href: "/services/cybersecurity" },
-    { name: "Data Analytics", href: "/services/data-analytics" }
+    { name: "All Services", href: "/services", icon: Layers, description: "View our complete service portfolio" },
+    { name: "PPC Services", href: "/services/ppc-services", icon: Megaphone, description: "Paid advertising campaigns" },
+    { name: "Cybersecurity", href: "/services/cybersecurity", icon: Shield, description: "Advanced security solutions" },
+    { name: "Data Analytics", href: "/services/data-analytics", icon: BarChart3, description: "Insights from your data" }
   ];
 
   const navigation = [
@@ -64,21 +65,57 @@ const Header = () => {
                 <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
               </button>
               
-              {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-lg z-50">
-                  <div className="py-2">
-                    {serviceLinks.map((service) => (
-                      <Link
-                        key={service.name}
-                        to={service.href}
-                        className={`block px-4 py-2 font-body font-medium transition-colors hover:bg-muted hover:text-primary ${location.pathname === service.href ? "text-primary bg-muted" : "text-foreground"}`}
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-80 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-2xl overflow-hidden z-50"
+                  >
+                    <div className="p-2">
+                      {serviceLinks.map((service, index) => {
+                        const Icon = service.icon;
+                        return (
+                          <Link
+                            key={service.name}
+                            to={service.href}
+                            className="group"
+                          >
+                            <motion.div
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.05 }}
+                              className={`flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${
+                                location.pathname === service.href ? "bg-primary/10" : ""
+                              }`}
+                            >
+                              <div className={`p-2 rounded-lg transition-colors ${
+                                location.pathname === service.href 
+                                  ? "bg-primary text-primary-foreground" 
+                                  : "bg-muted group-hover:bg-primary/20"
+                              }`}>
+                                <Icon className="w-5 h-5" />
+                              </div>
+                              <div className="flex-1">
+                                <div className={`font-body font-semibold transition-colors ${
+                                  location.pathname === service.href ? "text-primary" : "text-foreground group-hover:text-primary"
+                                }`}>
+                                  {service.name}
+                                </div>
+                                <div className="text-xs text-muted-foreground mt-0.5">
+                                  {service.description}
+                                </div>
+                              </div>
+                            </motion.div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {navigation.map(item => <Link key={item.name} to={item.href} className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"}`}>

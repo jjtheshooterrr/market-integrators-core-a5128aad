@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone } from "lucide-react";
+import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +24,8 @@ const Header = () => {
     { name: "AI & Machine Learning", href: "/services/ai-and-machine-learning", icon: Brain, description: "Intelligent automation solutions" },
     { name: "Cloud Services", href: "/services/cloud", icon: Cloud, description: "Scalable cloud infrastructure" },
     { name: "Website Development", href: "/services/website-development", icon: Globe, description: "Custom web solutions" },
-    { name: "App Development", href: "/services/app-development", icon: Smartphone, description: "Native & cross-platform apps" }
+    { name: "App Development", href: "/services/app-development", icon: Smartphone, description: "Native & cross-platform apps" },
+    { name: "Digital Strategy Consulting", href: "/services/digital-strategy-consulting", icon: Lightbulb, description: "Strategic digital transformation" }
   ];
 
   const navigation = [

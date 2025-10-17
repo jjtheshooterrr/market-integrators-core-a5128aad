@@ -18,6 +18,7 @@ import ServiceDataAnalytics from "./pages/ServiceDataAnalytics";
 import ServiceAIML from "./pages/ServiceAIML";
 import ServiceCloud from "./pages/ServiceCloud";
 import ServiceWebDevelopment from "./pages/ServiceWebDevelopment";
+import ServiceAppDevelopment from "./pages/ServiceAppDevelopment";
 import Industries from "./pages/Industries";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/services/ai-and-machine-learning" element={<ServiceAIML />} />
             <Route path="/services/cloud" element={<ServiceCloud />} />
             <Route path="/services/website-development" element={<ServiceWebDevelopment />} />
+            <Route path="/services/app-development" element={<ServiceAppDevelopment />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/contact-us" element={<ContactUs />} />

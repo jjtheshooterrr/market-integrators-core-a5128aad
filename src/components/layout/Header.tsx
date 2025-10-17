@@ -16,17 +16,30 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const serviceLinks = [
-    { name: "All Services", href: "/services", icon: Layers, description: "View our complete service portfolio" },
-    { name: "PPC Services", href: "/services/ppc-services", icon: Megaphone, description: "Paid advertising campaigns" },
-    { name: "Cybersecurity", href: "/services/cybersecurity", icon: Shield, description: "Advanced security solutions" },
-    { name: "Data Analytics", href: "/services/data-analytics", icon: BarChart3, description: "Insights from your data" },
-    { name: "AI & Machine Learning", href: "/services/ai-and-machine-learning", icon: Brain, description: "Intelligent automation solutions" },
-    { name: "Cloud Services", href: "/services/cloud", icon: Cloud, description: "Scalable cloud infrastructure" },
-    { name: "Website Development", href: "/services/website-development", icon: Globe, description: "Custom web solutions" },
-    { name: "App Development", href: "/services/app-development", icon: Smartphone, description: "Native & cross-platform apps" },
-    { name: "Digital Strategy Consulting", href: "/services/digital-strategy-consulting", icon: Lightbulb, description: "Strategic digital transformation" },
-    { name: "SEO & Organic Growth", href: "/services/search-engine-optimization-and-organic-growth", icon: Search, description: "Search engine optimization" }
+  const serviceCategories = [
+    {
+      category: "TECHNOLOGY & INNOVATION",
+      services: [
+        { name: "AI & Machine Learning", href: "/services/ai-and-machine-learning", icon: Brain, description: "Intelligent automation solutions" },
+        { name: "Cloud Services", href: "/services/cloud", icon: Cloud, description: "Scalable cloud infrastructure" },
+        { name: "Cybersecurity", href: "/services/cybersecurity", icon: Shield, description: "Advanced security solutions" },
+        { name: "Data Analytics", href: "/services/data-analytics", icon: BarChart3, description: "Insights from your data" },
+        { name: "App Development", href: "/services/app-development", icon: Smartphone, description: "Native & cross-platform apps" },
+        { name: "Website Development", href: "/services/website-development", icon: Globe, description: "Custom web solutions" },
+        { name: "Digital Strategy Consulting", href: "/services/digital-strategy-consulting", icon: Lightbulb, description: "Strategic digital transformation" }
+      ]
+    },
+    {
+      category: "MARKETING & GROWTH",
+      services: [
+        { name: "PPC & Paid Media", href: "/services/ppc-services", icon: Megaphone, description: "Paid advertising campaigns" },
+        { name: "SEO & Organic Growth", href: "/services/search-engine-optimization-and-organic-growth", icon: Search, description: "Search engine optimization" }
+      ]
+    },
+    {
+      category: "CREATIVE MEDIA STUDIO",
+      services: []
+    }
   ];
 
   const navigation = [
@@ -80,44 +93,59 @@ const Header = () => {
                     transition={{ duration: 0.2 }}
                     className="absolute top-full left-0 mt-2 w-80 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-2xl overflow-hidden z-50"
                   >
-                    <div className="p-2">
-                      {serviceLinks.map((service, index) => {
-                        const Icon = service.icon;
-                        return (
-                          <Link
-                            key={service.name}
-                            to={service.href}
-                            className="group"
-                          >
-                            <motion.div
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.05 }}
-                              className={`flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${
-                                location.pathname === service.href ? "bg-primary/10" : ""
-                              }`}
-                            >
-                              <div className={`p-2 rounded-lg transition-colors ${
-                                location.pathname === service.href 
-                                  ? "bg-primary text-primary-foreground" 
-                                  : "bg-muted group-hover:bg-primary/20"
-                              }`}>
-                                <Icon className="w-5 h-5" />
-                              </div>
-                              <div className="flex-1">
-                                <div className={`font-body font-semibold transition-colors ${
-                                  location.pathname === service.href ? "text-primary" : "text-foreground group-hover:text-primary"
-                                }`}>
-                                  {service.name}
-                                </div>
-                                <div className="text-xs text-muted-foreground mt-0.5">
-                                  {service.description}
-                                </div>
-                              </div>
-                            </motion.div>
-                          </Link>
-                        );
-                      })}
+                    <div className="p-2 max-h-[80vh] overflow-y-auto">
+                      {serviceCategories.map((category, categoryIndex) => (
+                        <div key={category.category} className={categoryIndex > 0 ? "mt-4 pt-4 border-t border-border" : ""}>
+                          <div className="px-4 py-2">
+                            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                              {category.category}
+                            </h3>
+                          </div>
+                          {category.services.length > 0 ? (
+                            category.services.map((service, index) => {
+                              const Icon = service.icon;
+                              return (
+                                <Link
+                                  key={service.name}
+                                  to={service.href}
+                                  className="group"
+                                >
+                                  <motion.div
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: (categoryIndex * 0.1) + (index * 0.05) }}
+                                    className={`flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${
+                                      location.pathname === service.href ? "bg-primary/10" : ""
+                                    }`}
+                                  >
+                                    <div className={`p-2 rounded-lg transition-colors ${
+                                      location.pathname === service.href 
+                                        ? "bg-primary text-primary-foreground" 
+                                        : "bg-muted group-hover:bg-primary/20"
+                                    }`}>
+                                      <Icon className="w-5 h-5" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className={`font-body font-semibold transition-colors ${
+                                        location.pathname === service.href ? "text-primary" : "text-foreground group-hover:text-primary"
+                                      }`}>
+                                        {service.name}
+                                      </div>
+                                      <div className="text-xs text-muted-foreground mt-0.5">
+                                        {service.description}
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                </Link>
+                              );
+                            })
+                          ) : (
+                            <div className="px-4 py-3 text-sm text-muted-foreground italic">
+                              Coming Soon
+                            </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -156,19 +184,32 @@ const Header = () => {
                 </button>
                 
                 {isMobileServicesOpen && (
-                  <div className="ml-4 mt-2 space-y-2">
-                    {serviceLinks.map((service) => (
-                      <Link
-                        key={service.name}
-                        to={service.href}
-                        className={`block font-body font-medium transition-colors hover:text-primary ${location.pathname === service.href ? "text-primary" : "text-foreground"}`}
-                        onClick={() => {
-                          setIsMobileMenuOpen(false);
-                          setIsMobileServicesOpen(false);
-                        }}
-                      >
-                        {service.name}
-                      </Link>
+                  <div className="ml-4 mt-2 space-y-4">
+                    {serviceCategories.map((category) => (
+                      <div key={category.category}>
+                        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
+                          {category.category}
+                        </h3>
+                        {category.services.length > 0 ? (
+                          <div className="space-y-2">
+                            {category.services.map((service) => (
+                              <Link
+                                key={service.name}
+                                to={service.href}
+                                className={`block font-body font-medium transition-colors hover:text-primary ${location.pathname === service.href ? "text-primary" : "text-foreground"}`}
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+                                  setIsMobileServicesOpen(false);
+                                }}
+                              >
+                                {service.name}
+                              </Link>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="text-sm text-muted-foreground italic">Coming Soon</div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}

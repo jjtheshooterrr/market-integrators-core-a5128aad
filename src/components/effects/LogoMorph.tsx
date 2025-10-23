@@ -81,10 +81,12 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
 function NucleusRing({
   center = new THREE.Vector3(0, 0, 0),
   radius,
-  count = 120,
-  speedMin = 0.35,
-  speedMax = 0.7,
-  thickness = 0.06, // small radial jitter so it shimmers a bit
+  count = 160,
+  speedMin = 0.28,
+  speedMax = 0.65,
+  thickness = 0.1, // radial jitter for shimmer
+  size = 0.028,
+  reverse = false,
 }: {
   center?: THREE.Vector3;
   radius: number;
@@ -92,19 +94,21 @@ function NucleusRing({
   speedMin?: number;
   speedMax?: number;
   thickness?: number;
+  size?: number;
+  reverse?: boolean;
 }) {
   const geomRef = useRef<THREE.BufferGeometry>(null!);
 
   // seeds for each orbiter
   const seeds = useMemo(() => {
-    return Array.from({ length: count }, (_, i) => ({
+    return Array.from({ length: count }, () => ({
       phase: Math.random() * Math.PI * 2,
-      speed: speedMin + Math.random() * (speedMax - speedMin),
+      speed: (reverse ? -1 : 1) * (speedMin + Math.random() * (speedMax - speedMin)),
       rJitter: (Math.random() - 0.5) * thickness,
-      zJitterAmp: 0.05 + Math.random() * 0.05,
+      zJitterAmp: 0.05 + Math.random() * 0.06,
       zPhase: Math.random() * Math.PI * 2,
     }));
-  }, [count, speedMin, speedMax, thickness]);
+  }, [count, speedMin, speedMax, thickness, reverse]);
 
   // initial positions on the ring
   const startPositions = useMemo(() => {
@@ -133,7 +137,7 @@ function NucleusRing({
       const s = seeds[i];
       const ang = s.phase + tRef.current * s.speed;
 
-      const r = radius + s.rJitter * Math.sin(tRef.current * (0.8 + s.speed));
+      const r = radius + s.rJitter * Math.sin(tRef.current * (0.8 + Math.abs(s.speed)));
       a[i * 3] = center.x + Math.cos(ang) * r;
       a[i * 3 + 1] = center.y + Math.sin(ang) * r;
       a[i * 3 + 2] = center.z + Math.sin(tRef.current * 1.2 + s.zPhase) * s.zJitterAmp; // tiny 3D wobble
@@ -145,7 +149,7 @@ function NucleusRing({
     <points>
       <bufferGeometry ref={geomRef} />
       <pointsMaterial
-        size={0.02}
+        size={size}
         sizeAttenuation
         transparent
         opacity={0.95}
@@ -166,6 +170,7 @@ function MorphPoints({
   idleAmp = 0.06, // idle amplitude (world units)
   idleSpeed = 0.9, // idle speed multiplier
   onBounds, // reports center & radius for the ring
+  ringScale = 1.95, // <-- bigger ring (was 1.25)
 }: {
   targetPositions: Float32Array;
   color?: string;
@@ -173,6 +178,7 @@ function MorphPoints({
   idleAmp?: number;
   idleSpeed?: number;
   onBounds?: (center: THREE.Vector3, radius: number) => void;
+  ringScale?: number;
 }) {
   const geomRef = useRef<THREE.BufferGeometry>(null!);
   const count = targetPositions.length / 3;
@@ -235,7 +241,7 @@ function MorphPoints({
         const cy = (minY + maxY) / 2;
         const halfW = (maxX - minX) / 2;
         const halfH = (maxY - minY) / 2;
-        const radius = Math.max(halfW, halfH) * 1.25; // ring just outside the logo
+        const radius = Math.max(halfW, halfH) * ringScale; // bigger ring here
 
         onBounds?.(new THREE.Vector3(cx, cy, 0), radius);
         onComplete?.();
@@ -245,7 +251,7 @@ function MorphPoints({
     return () => {
       tween.kill(); // cleanup (void)
     };
-  }, [targetPositions, onComplete, startPositions, onBounds]);
+  }, [targetPositions, onComplete, startPositions, onBounds, ringScale]);
 
   // small deterministic seeds per point (no extra lib)
   const seeds = useMemo(() => {
@@ -382,10 +388,16 @@ export default function LogoMorph({
               setRingCenter(c);
               setRingRadius(r);
             }}
+            ringScale={1.95} // <--- bigger ring
           />
 
-          {/* White orbiting nucleus — rendered AFTER the logo so it stays crisp underneath */}
-          {ringCenter && ringRadius && <NucleusRing center={ringCenter} radius={ringRadius} count={140} />}
+          {/* White orbiting nucleus rings (one large, one slightly larger & reverse) */}
+          {ringCenter && ringRadius && (
+            <>
+              <NucleusRing center={ringCenter} radius={ringRadius} count={180} size={0.03} />
+              <NucleusRing center={ringCenter} radius={ringRadius * 1.08} count={140} reverse size={0.025} />
+            </>
+          )}
         </Canvas>
       )}
 

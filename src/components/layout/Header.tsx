@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2, Video, Edit3, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2, Video, Edit3, Sparkles, Box } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,7 +42,8 @@ const Header = () => {
       services: [
         { name: "Video Production", href: "/services/video-production", icon: Video, description: "Professional video content creation" },
         { name: "Post-Production & Editing", href: "/services/post-production-editing", icon: Edit3, description: "Expert video editing & effects" },
-        { name: "Animation & Motion Graphics", href: "/services/animation-and-motion-graphics", icon: Sparkles, description: "Dynamic animations & graphics" }
+        { name: "Animation & Motion Graphics", href: "/services/animation-and-motion-graphics", icon: Sparkles, description: "Dynamic animations & graphics" },
+        { name: "3D & Visual Effects", href: "/services/3d-and-visual-effects", icon: Box, description: "Stunning 3D renders & VFX" }
       ]
     }
   ];

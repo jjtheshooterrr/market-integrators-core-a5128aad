@@ -25,6 +25,7 @@ import ServiceSocialMedia from "./pages/ServiceSocialMedia";
 import ServiceVideoProduction from "./pages/ServiceVideoProduction";
 import ServicePostProduction from "./pages/ServicePostProduction";
 import ServiceAnimation from "./pages/ServiceAnimation";
+import Service3DVisualEffects from "./pages/Service3DVisualEffects";
 import Industries from "./pages/Industries";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/services/video-production" element={<ServiceVideoProduction />} />
             <Route path="/services/post-production-editing" element={<ServicePostProduction />} />
             <Route path="/services/animation-and-motion-graphics" element={<ServiceAnimation />} />
+            <Route path="/services/3d-and-visual-effects" element={<Service3DVisualEffects />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/contact-us" element={<ContactUs />} />

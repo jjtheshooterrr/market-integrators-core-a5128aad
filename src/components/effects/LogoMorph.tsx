@@ -4,11 +4,17 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { gsap } from "gsap";
 
-/* ------------------ POINT SAMPLING ------------------ */
+/* ------------------ POINT SAMPLING (alpha-only + jitter) ------------------ */
 
 async function rasterToPoints(
   src: string,
-  { density = 4, threshold = 0.55, maxPoints = 10000 } = {},
+  {
+    density = 3.2, // slightly denser but still fast
+    threshold = 0.5, // alpha-only threshold
+    maxPoints = 12000,
+    maxRenderSize = 520, // clamp raster size for perf
+    jitter = 0.75, // px jitter inside each cell to kill the grid look
+  } = {},
 ): Promise<Float32Array> {
   const img = new Image();
   img.crossOrigin = "anonymous";
@@ -20,38 +26,40 @@ async function rasterToPoints(
   const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
   ctx.imageSmoothingEnabled = false;
 
-  const scale = 520 / Math.max(img.naturalWidth, img.naturalHeight);
+  const scale = maxRenderSize / Math.max(img.naturalWidth, img.naturalHeight);
   canvas.width = Math.round(img.naturalWidth * scale);
   canvas.height = Math.round(img.naturalHeight * scale);
+
+  // draw clean (no matte bleed)
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
   const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const points: number[] = [];
 
+  const pts: number[] = [];
   for (let y = 0; y < height; y += density) {
     for (let x = 0; x < width; x += density) {
       const i = (y * width + x) * 4;
-      const r = data[i] / 255,
-        g = data[i + 1] / 255,
-        b = data[i + 2] / 255,
-        a = data[i + 3] / 255;
-      const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-      const s = a > 0.05 ? a : 1 - l;
-      if (s > threshold) points.push(x, y);
+      const a = data[i + 3] / 255; // <- ALPHA ONLY
+      if (a >= threshold) {
+        const jx = (Math.random() - 0.5) * jitter; // subtle jitter inside the cell
+        const jy = (Math.random() - 0.5) * jitter;
+        pts.push(x + jx, y + jy);
+      }
     }
   }
 
-  // downsample if needed
-  if (points.length / 2 > maxPoints) {
-    const stride = Math.ceil(points.length / 2 / maxPoints);
+  // Downsample if needed (even stride)
+  if (pts.length / 2 > maxPoints) {
+    const stride = Math.ceil(pts.length / 2 / maxPoints);
     const slim: number[] = [];
-    for (let i = 0; i < points.length; i += stride * 2) {
-      slim.push(points[i], points[i + 1]);
+    for (let i = 0; i < pts.length; i += stride * 2) {
+      slim.push(pts[i], pts[i + 1]);
     }
     return normalize(slim, width, height);
   }
 
-  return normalize(points, width, height);
+  return normalize(pts, width, height);
 }
 
 function normalize(rawXY: number[], width: number, height: number): Float32Array {
@@ -59,7 +67,7 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
   const cx = width / 2;
   const cy = height / 2;
   const maxSide = Math.max(width, height);
-  const S = 3.2;
+  const S = 3.2; // world scale
 
   for (let i = 0; i < rawXY.length; i += 2) {
     const x = (rawXY[i] - cx) / maxSide;
@@ -69,7 +77,7 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
   return new Float32Array(out);
 }
 
-/* ------------------ MORPH POINTS ------------------ */
+/* ------------------ MORPH POINTS (ring spawn + additive glow) ------------------ */
 
 function MorphPoints({
   targetPositions,
@@ -83,15 +91,16 @@ function MorphPoints({
   const geomRef = useRef<THREE.BufferGeometry>(null!);
   const count = targetPositions.length / 3;
 
+  // spawn on a ring around the logo (no box reveal)
   const startPositions = useMemo(() => {
     const arr = new Float32Array(targetPositions.length);
+    const R = 3.8; // ring radius
     for (let i = 0; i < count; i++) {
-      const phi = Math.acos(2 * Math.random() - 1);
       const theta = Math.random() * Math.PI * 2;
-      const r = 2 + Math.random() * 2.5;
-      arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      arr[i * 3 + 2] = r * Math.cos(phi);
+      const rad = R * (0.8 + Math.random() * 0.4);
+      arr[i * 3] = Math.cos(theta) * rad;
+      arr[i * 3 + 1] = Math.sin(theta) * rad;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 0.2;
     }
     return arr;
   }, [count]);
@@ -102,30 +111,27 @@ function MorphPoints({
 
     const pos = geom.attributes.position.array as Float32Array;
     const tween = gsap.to(pos, {
-      duration: 1.4,
+      duration: 1.6,
       ease: "power3.inOut",
-      // @ts-ignore endArray supported for typed arrays
+      // @ts-ignore: endArray is supported by GSAP on typed arrays
       endArray: targetPositions,
       onUpdate: () => {
         geom.attributes.position.needsUpdate = true;
       },
       onComplete: () => {
-        setTimeout(() => onComplete?.(), 200);
+        onComplete?.();
       },
     });
-
-    return () => {
-      tween.kill(); // <-- return void cleanup, fixes TS2345
-    };
+    return () => tween.kill();
   }, [targetPositions, onComplete, startPositions]);
 
-  // subtle z shimmer for depth
+  // micro z shimmer for depth
   const tRef = useRef(0);
   useFrame((_, delta) => {
     tRef.current += delta;
     const a = geomRef.current.attributes.position.array as Float32Array;
     for (let i = 0; i < a.length; i += 3) {
-      a[i + 2] = 0.04 * Math.sin(tRef.current * 1.5 + (i / 3) * 0.17);
+      a[i + 2] = 0.035 * Math.sin(tRef.current * 1.4 + (i / 3) * 0.19);
     }
     geomRef.current.attributes.position.needsUpdate = true;
   });
@@ -133,7 +139,15 @@ function MorphPoints({
   return (
     <points>
       <bufferGeometry ref={geomRef} />
-      <pointsMaterial size={0.035} sizeAttenuation transparent opacity={0.95} color={color} />
+      <pointsMaterial
+        size={0.038}
+        sizeAttenuation
+        transparent
+        opacity={0.95}
+        color={color}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
     </points>
   );
 }
@@ -144,17 +158,24 @@ export default function LogoMorph({
   src,
   color = "#ef1f2b",
   height = 120,
+  showMaskFill = false, // default off (prevents any flash)
 }: {
   src: string; // REQUIRED
   color?: string;
   height?: number;
+  showMaskFill?: boolean;
 }) {
   const [positions, setPositions] = useState<Float32Array | null>(null);
   const [showFill, setShowFill] = useState(false);
 
   useEffect(() => {
     let mounted = true;
-    rasterToPoints(src, { density: 3.5, threshold: 0.4, maxPoints: 12000 }).then((p) => {
+    rasterToPoints(src, {
+      density: 3.0,
+      threshold: 0.5, // alpha only
+      maxPoints: 12000,
+      jitter: 0.8,
+    }).then((p) => {
       if (mounted) setPositions(p);
     });
     return () => {
@@ -163,9 +184,9 @@ export default function LogoMorph({
   }, [src]);
 
   const finish = () => {
+    if (!showMaskFill) return;
     setShowFill(true);
-    // fade the solid mask after a moment; keep the morph result visible beneath
-    setTimeout(() => setShowFill(false), 1000);
+    setTimeout(() => setShowFill(false), 800);
   };
 
   return (
@@ -187,8 +208,8 @@ export default function LogoMorph({
           style={{ position: "absolute", inset: 0 }}
           gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
         >
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[2, 2, 4]} intensity={0.6} />
+          <ambientLight intensity={0.9} />
+          <directionalLight position={[2, 2, 4]} intensity={0.5} />
           <MorphPoints targetPositions={positions} color={color} onComplete={finish} />
         </Canvas>
       )}
@@ -207,7 +228,7 @@ export default function LogoMorph({
             maskPosition: "center",
             WebkitMaskSize: "auto 100%",
             maskSize: "auto 100%",
-            transition: "opacity .4s ease",
+            transition: "opacity .35s ease",
           }}
         />
       )}

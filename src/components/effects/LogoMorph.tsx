@@ -76,19 +76,26 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
   return new Float32Array(out);
 }
 
-/* ------------------ MORPH POINTS (ring spawn + additive glow) ------------------ */
+/* ------------------ MORPH POINTS (ring spawn + additive glow + idle hover) ------------------ */
 
 function MorphPoints({
   targetPositions,
   color = "#ef1f2b",
   onComplete,
+  idleAmp = 0.06, // idle amplitude (world units)
+  idleSpeed = 0.9, // idle speed multiplier
 }: {
   targetPositions: Float32Array;
   color?: string;
   onComplete?: () => void;
+  idleAmp?: number;
+  idleSpeed?: number;
 }) {
   const geomRef = useRef<THREE.BufferGeometry>(null!);
   const count = targetPositions.length / 3;
+
+  // color: convert sRGB string/hex to linear for accurate output
+  const matColor = useMemo(() => new THREE.Color(color).convertSRGBToLinear(), [color]);
 
   // spawn on a ring around the logo (no box reveal)
   const startPositions = useMemo(() => {
@@ -104,13 +111,17 @@ function MorphPoints({
     return arr;
   }, [count]);
 
+  // base (rest) positions to hover around after morph
+  const baseRef = useRef<Float32Array | null>(null);
+  const idleRef = useRef(false);
+
   useEffect(() => {
     const geom = geomRef.current;
     geom.setAttribute("position", new THREE.BufferAttribute(startPositions.slice(), 3));
 
-    // Use a plain number[] for GSAP typing compatibility
-    const posArray = geom.attributes.position.array as Float32Array;
-    const posForGsap = Array.from(posArray);
+    // GSAP prefers number[]; mirror to typed array each tick
+    const posTyped = geom.attributes.position.array as Float32Array;
+    const posForGsap = Array.from(posTyped);
     const targetForGsap = Array.from(targetPositions);
 
     const tween = gsap.to(posForGsap, {
@@ -118,26 +129,59 @@ function MorphPoints({
       ease: "power3.inOut",
       endArray: targetForGsap,
       onUpdate: () => {
-        // copy back to typed array for WebGL
-        for (let i = 0; i < posArray.length; i++) posArray[i] = posForGsap[i];
+        for (let i = 0; i < posTyped.length; i++) posTyped[i] = posForGsap[i];
         geom.attributes.position.needsUpdate = true;
       },
-      onComplete: () => onComplete?.(),
+      onComplete: () => {
+        // lock in a clean base to hover around
+        baseRef.current = new Float32Array(targetPositions);
+        idleRef.current = true;
+        onComplete?.();
+      },
     });
 
-    // ✅ cleanup returns void
     return () => {
-      tween.kill();
+      tween.kill(); // cleanup (void)
     };
   }, [targetPositions, onComplete, startPositions]);
 
-  // micro z shimmer for depth
+  // small deterministic seeds per point (no extra lib)
+  const seeds = useMemo(() => {
+    const s = new Float32Array(count);
+    for (let i = 0; i < count; i++) s[i] = (Math.sin(i * 12.9898) * 43758.5453) % (Math.PI * 2);
+    return s;
+  }, [count]);
+
+  // idle hover: layered trig offsets around base shape
   const tRef = useRef(0);
   useFrame((_, delta) => {
-    tRef.current += delta;
+    const base = baseRef.current;
+    if (!base) return;
+
+    tRef.current += delta * idleSpeed;
+
     const a = geomRef.current.attributes.position.array as Float32Array;
+
     for (let i = 0; i < a.length; i += 3) {
-      a[i + 2] = 0.035 * Math.sin(tRef.current * 1.4 + (i / 3) * 0.19);
+      const idx = i / 3;
+      const seed = seeds[idx];
+
+      // base position
+      const bx = base[i];
+      const by = base[i + 1];
+      const bz = base[i + 2];
+
+      // layered motion (3 simple harmonic components)
+      const ox =
+        Math.sin(tRef.current + seed) * idleAmp * 0.7 + Math.sin(tRef.current * 0.7 + seed * 1.7) * idleAmp * 0.3;
+      const oy =
+        Math.cos(tRef.current * 0.95 + seed * 1.13) * idleAmp * 0.7 +
+        Math.sin(tRef.current * 1.3 + seed * 2.1) * idleAmp * 0.25;
+      const oz = Math.sin(tRef.current * 1.4 + seed * 0.6) * idleAmp * 0.6;
+
+      a[i] = bx + ox;
+      a[i + 1] = by + oy;
+      a[i + 2] = bz + oz;
     }
     geomRef.current.attributes.position.needsUpdate = true;
   });
@@ -150,7 +194,7 @@ function MorphPoints({
         sizeAttenuation
         transparent
         opacity={0.95}
-        color={color}
+        color={matColor}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
       />
@@ -213,6 +257,13 @@ export default function LogoMorph({
           camera={{ position: [0, 0, 6], fov: 55 }}
           style={{ position: "absolute", inset: 0 }}
           gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+          onCreated={(state) => {
+            // Accurate brand color: no tone mapping + sRGB output
+            state.gl.toneMapping = THREE.NoToneMapping;
+            // three r152+
+            // @ts-ignore
+            state.gl.outputColorSpace = THREE.SRGBColorSpace;
+          }}
         >
           <ambientLight intensity={0.9} />
           <directionalLight position={[2, 2, 4]} intensity={0.5} />

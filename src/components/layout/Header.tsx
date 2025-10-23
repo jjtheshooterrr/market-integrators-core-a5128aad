@@ -178,7 +178,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && <div className="lg:hidden py-4 border-t border-border bg-background">
+        {isMobileMenuOpen && <div className="lg:hidden py-4 border-t border-border bg-background max-h-[calc(100vh-5rem)] overflow-y-auto">
             <div className="flex flex-col space-y-4">
               {/* Mobile Services Dropdown */}
               <div>

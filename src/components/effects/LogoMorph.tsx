@@ -9,11 +9,11 @@ import { gsap } from "gsap";
 async function rasterToPoints(
   src: string,
   {
-    density = 3.2, // slightly denser but still fast
+    density = 3.2,
     threshold = 0.5, // alpha-only threshold
     maxPoints = 12000,
     maxRenderSize = 520, // clamp raster size for perf
-    jitter = 0.75, // px jitter inside each cell to kill the grid look
+    jitter = 0.75, // px jitter to kill grid feel
   } = {},
 ): Promise<Float32Array> {
   const img = new Image();
@@ -30,7 +30,6 @@ async function rasterToPoints(
   canvas.width = Math.round(img.naturalWidth * scale);
   canvas.height = Math.round(img.naturalHeight * scale);
 
-  // draw clean (no matte bleed)
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
@@ -40,16 +39,16 @@ async function rasterToPoints(
   for (let y = 0; y < height; y += density) {
     for (let x = 0; x < width; x += density) {
       const i = (y * width + x) * 4;
-      const a = data[i + 3] / 255; // <- ALPHA ONLY
+      const a = data[i + 3] / 255; // ALPHA ONLY
       if (a >= threshold) {
-        const jx = (Math.random() - 0.5) * jitter; // subtle jitter inside the cell
+        const jx = (Math.random() - 0.5) * jitter;
         const jy = (Math.random() - 0.5) * jitter;
         pts.push(x + jx, y + jy);
       }
     }
   }
 
-  // Downsample if needed (even stride)
+  // Downsample if needed
   if (pts.length / 2 > maxPoints) {
     const stride = Math.ceil(pts.length / 2 / maxPoints);
     const slim: number[] = [];
@@ -67,7 +66,7 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
   const cx = width / 2;
   const cy = height / 2;
   const maxSide = Math.max(width, height);
-  const S = 3.2; // world scale
+  const S = 3.2;
 
   for (let i = 0; i < rawXY.length; i += 2) {
     const x = (rawXY[i] - cx) / maxSide;
@@ -94,7 +93,7 @@ function MorphPoints({
   // spawn on a ring around the logo (no box reveal)
   const startPositions = useMemo(() => {
     const arr = new Float32Array(targetPositions.length);
-    const R = 3.8; // ring radius
+    const R = 3.8;
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
       const rad = R * (0.8 + Math.random() * 0.4);
@@ -109,20 +108,27 @@ function MorphPoints({
     const geom = geomRef.current;
     geom.setAttribute("position", new THREE.BufferAttribute(startPositions.slice(), 3));
 
-    const pos = geom.attributes.position.array as Float32Array;
-    const tween = gsap.to(pos, {
+    // Use a plain number[] for GSAP typing compatibility
+    const posArray = geom.attributes.position.array as Float32Array;
+    const posForGsap = Array.from(posArray);
+    const targetForGsap = Array.from(targetPositions);
+
+    const tween = gsap.to(posForGsap, {
       duration: 1.6,
       ease: "power3.inOut",
-      // @ts-ignore: endArray is supported by GSAP on typed arrays
-      endArray: targetPositions,
+      endArray: targetForGsap,
       onUpdate: () => {
+        // copy back to typed array for WebGL
+        for (let i = 0; i < posArray.length; i++) posArray[i] = posForGsap[i];
         geom.attributes.position.needsUpdate = true;
       },
-      onComplete: () => {
-        onComplete?.();
-      },
+      onComplete: () => onComplete?.(),
     });
-    return () => tween.kill();
+
+    // ✅ cleanup returns void
+    return () => {
+      tween.kill();
+    };
   }, [targetPositions, onComplete, startPositions]);
 
   // micro z shimmer for depth
@@ -158,7 +164,7 @@ export default function LogoMorph({
   src,
   color = "#ef1f2b",
   height = 120,
-  showMaskFill = false, // default off (prevents any flash)
+  showMaskFill = false, // keep off to avoid any flash
 }: {
   src: string; // REQUIRED
   color?: string;
@@ -172,7 +178,7 @@ export default function LogoMorph({
     let mounted = true;
     rasterToPoints(src, {
       density: 3.0,
-      threshold: 0.5, // alpha only
+      threshold: 0.5,
       maxPoints: 12000,
       jitter: 0.8,
     }).then((p) => {

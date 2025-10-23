@@ -13,7 +13,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <main>
-        <CinematicHero />
+        <CinematicHero src="/placeholder.svg" />
         <ParallaxSection speed={0.3}>
           <ServicesGridAnimated />
         </ParallaxSection>

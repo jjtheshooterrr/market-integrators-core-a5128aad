@@ -13,7 +13,7 @@ async function rasterToPoints(
     threshold = 0.5, // alpha-only threshold
     maxPoints = 12000,
     maxRenderSize = 520, // clamp raster size for perf
-    jitter = 0.75, // px jitter to kill grid feel
+    jitter = 0.75, // px jitter to remove grid feel
   } = {},
 ): Promise<Float32Array> {
   const img = new Image();
@@ -76,6 +76,87 @@ function normalize(rawXY: number[], width: number, height: number): Float32Array
   return new Float32Array(out);
 }
 
+/* ------------------ ORBIT RING (white nucleus) ------------------ */
+
+function NucleusRing({
+  center = new THREE.Vector3(0, 0, 0),
+  radius,
+  count = 120,
+  speedMin = 0.35,
+  speedMax = 0.7,
+  thickness = 0.06, // small radial jitter so it shimmers a bit
+}: {
+  center?: THREE.Vector3;
+  radius: number;
+  count?: number;
+  speedMin?: number;
+  speedMax?: number;
+  thickness?: number;
+}) {
+  const geomRef = useRef<THREE.BufferGeometry>(null!);
+
+  // seeds for each orbiter
+  const seeds = useMemo(() => {
+    return Array.from({ length: count }, (_, i) => ({
+      phase: Math.random() * Math.PI * 2,
+      speed: speedMin + Math.random() * (speedMax - speedMin),
+      rJitter: (Math.random() - 0.5) * thickness,
+      zJitterAmp: 0.05 + Math.random() * 0.05,
+      zPhase: Math.random() * Math.PI * 2,
+    }));
+  }, [count, speedMin, speedMax, thickness]);
+
+  // initial positions on the ring
+  const startPositions = useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const ang = (i / count) * Math.PI * 2;
+      arr[i * 3] = center.x + Math.cos(ang) * radius;
+      arr[i * 3 + 1] = center.y + Math.sin(ang) * radius;
+      arr[i * 3 + 2] = center.z;
+    }
+    return arr;
+  }, [count, center, radius]);
+
+  const whiteLinear = useMemo(() => new THREE.Color("#ffffff").convertSRGBToLinear(), []);
+
+  useEffect(() => {
+    geomRef.current.setAttribute("position", new THREE.BufferAttribute(startPositions.slice(), 3));
+  }, [startPositions]);
+
+  const tRef = useRef(0);
+  useFrame((_, delta) => {
+    tRef.current += delta;
+    const a = geomRef.current.attributes.position.array as Float32Array;
+
+    for (let i = 0; i < count; i++) {
+      const s = seeds[i];
+      const ang = s.phase + tRef.current * s.speed;
+
+      const r = radius + s.rJitter * Math.sin(tRef.current * (0.8 + s.speed));
+      a[i * 3] = center.x + Math.cos(ang) * r;
+      a[i * 3 + 1] = center.y + Math.sin(ang) * r;
+      a[i * 3 + 2] = center.z + Math.sin(tRef.current * 1.2 + s.zPhase) * s.zJitterAmp; // tiny 3D wobble
+    }
+    geomRef.current.attributes.position.needsUpdate = true;
+  });
+
+  return (
+    <points>
+      <bufferGeometry ref={geomRef} />
+      <pointsMaterial
+        size={0.02}
+        sizeAttenuation
+        transparent
+        opacity={0.95}
+        color={whiteLinear}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
+  );
+}
+
 /* ------------------ MORPH POINTS (ring spawn + additive glow + idle hover) ------------------ */
 
 function MorphPoints({
@@ -84,12 +165,14 @@ function MorphPoints({
   onComplete,
   idleAmp = 0.06, // idle amplitude (world units)
   idleSpeed = 0.9, // idle speed multiplier
+  onBounds, // reports center & radius for the ring
 }: {
   targetPositions: Float32Array;
   color?: string;
   onComplete?: () => void;
   idleAmp?: number;
   idleSpeed?: number;
+  onBounds?: (center: THREE.Vector3, radius: number) => void;
 }) {
   const geomRef = useRef<THREE.BufferGeometry>(null!);
   const count = targetPositions.length / 3;
@@ -113,7 +196,6 @@ function MorphPoints({
 
   // base (rest) positions to hover around after morph
   const baseRef = useRef<Float32Array | null>(null);
-  const idleRef = useRef(false);
 
   useEffect(() => {
     const geom = geomRef.current;
@@ -135,7 +217,27 @@ function MorphPoints({
       onComplete: () => {
         // lock in a clean base to hover around
         baseRef.current = new Float32Array(targetPositions);
-        idleRef.current = true;
+
+        // compute center & radius for the orbiting ring
+        let minX = Infinity,
+          maxX = -Infinity,
+          minY = Infinity,
+          maxY = -Infinity;
+        for (let i = 0; i < targetPositions.length; i += 3) {
+          const x = targetPositions[i];
+          const y = targetPositions[i + 1];
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+        }
+        const cx = (minX + maxX) / 2;
+        const cy = (minY + maxY) / 2;
+        const halfW = (maxX - minX) / 2;
+        const halfH = (maxY - minY) / 2;
+        const radius = Math.max(halfW, halfH) * 1.25; // ring just outside the logo
+
+        onBounds?.(new THREE.Vector3(cx, cy, 0), radius);
         onComplete?.();
       },
     });
@@ -143,7 +245,7 @@ function MorphPoints({
     return () => {
       tween.kill(); // cleanup (void)
     };
-  }, [targetPositions, onComplete, startPositions]);
+  }, [targetPositions, onComplete, startPositions, onBounds]);
 
   // small deterministic seeds per point (no extra lib)
   const seeds = useMemo(() => {
@@ -208,7 +310,7 @@ export default function LogoMorph({
   src,
   color = "#ef1f2b",
   height = 120,
-  showMaskFill = false, // keep off to avoid any flash
+  showMaskFill = false, // keep off to avoid any flash/blur over the logo
 }: {
   src: string; // REQUIRED
   color?: string;
@@ -217,6 +319,10 @@ export default function LogoMorph({
 }) {
   const [positions, setPositions] = useState<Float32Array | null>(null);
   const [showFill, setShowFill] = useState(false);
+
+  // for the orbit ring
+  const [ringCenter, setRingCenter] = useState<THREE.Vector3 | null>(null);
+  const [ringRadius, setRingRadius] = useState<number | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -267,10 +373,23 @@ export default function LogoMorph({
         >
           <ambientLight intensity={0.9} />
           <directionalLight position={[2, 2, 4]} intensity={0.5} />
-          <MorphPoints targetPositions={positions} color={color} onComplete={finish} />
+
+          <MorphPoints
+            targetPositions={positions}
+            color={color}
+            onComplete={finish}
+            onBounds={(c, r) => {
+              setRingCenter(c);
+              setRingRadius(r);
+            }}
+          />
+
+          {/* White orbiting nucleus — rendered AFTER the logo so it stays crisp underneath */}
+          {ringCenter && ringRadius && <NucleusRing center={ringCenter} radius={ringRadius} count={140} />}
         </Canvas>
       )}
 
+      {/* Optional mask fill (kept off by default to avoid blur/flash) */}
       {showFill && (
         <div
           style={{

@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import * as flubber from "flubber";
+
+// --- resolve flubber interpolate safely across ESM/CJS builds ---
+let _interpolate: ((a: string, b: string, o?: { maxSegmentLength?: number }) => (t: number) => string) | null = null;
+async function loadInterpolate() {
+  if (_interpolate) return _interpolate;
+  const m: any = await import("flubber");
+  // handle: { interpolate }, default.export, or default.interpolate
+  _interpolate = m.interpolate ?? m.default?.interpolate ?? null;
+  return _interpolate;
+}
 
 type Props = {
   src: string;
@@ -27,40 +36,47 @@ export default function LogoMorph({
   reducedMotion = false,
 }: Props) {
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [ready, setReady] = useState(false);
+  const [interpReady, setInterpReady] = useState(false);
   const [t, setT] = useState(0);
   const raf = useRef<number | null>(null);
 
-  const segs = useMemo(() => {
-    const out: ((u: number) => string)[] = [];
-    for (let i = 0; i < PATHS.length - 1; i++) {
-      out.push(flubber.interpolate(PATHS[i], PATHS[i + 1], { maxSegmentLength: 2 }));
-    }
-    return out;
+  // Load flubber's interpolate at runtime; avoid build/import inconsistencies
+  useEffect(() => {
+    loadInterpolate().then((fn) => setInterpReady(!!fn));
   }, []);
 
+  // Build segment interpolators once interpolate is available
+  const segs = useMemo(() => {
+    const makeFallback = (from: string, to: string) => (u: number) => (u < 1 ? from : to);
+    if (!interpReady || !_interpolate || PATHS.length < 2) {
+      // fallback: static jump (still clipped, no square)
+      return PATHS.slice(0, -1).map((_, i) => makeFallback(PATHS[i], PATHS[i + 1]));
+    }
+    return PATHS.slice(0, -1).map((_, i) => _interpolate!(PATHS[i], PATHS[i + 1], { maxSegmentLength: 2 }));
+  }, [interpReady]);
+
+  // Animate t
   useEffect(() => {
     if (reducedMotion) {
-      setReady(true);
       setT(1);
       return;
     }
     if (!imgLoaded) return;
-    setReady(true);
+
+    const easeOutExpo = (x: number) => 1 - Math.pow(2, -10 * x);
+    const easeInExpo = (x: number) => Math.pow(2, 10 * (x - 1));
 
     const start = performance.now();
     const fwd = (now: number) => {
       let p = Math.min(1, (now - start) / durationMs);
-      // easeOutExpo
-      p = 1 - Math.pow(2, -10 * p);
+      p = easeOutExpo(p);
       setT(p);
       if (p < 1) raf.current = requestAnimationFrame(fwd);
       else if (loop) {
         const backStart = performance.now();
         const back = (ts: number) => {
           let q = Math.min(1, (ts - backStart) / durationMs);
-          // easeInExpo
-          q = Math.pow(2, 10 * (q - 1));
+          q = easeInExpo(q);
           setT(1 - q);
           if (q < 1) raf.current = requestAnimationFrame(back);
           else raf.current = requestAnimationFrame(fwd);
@@ -75,12 +91,17 @@ export default function LogoMorph({
     };
   }, [imgLoaded, durationMs, loop, reducedMotion]);
 
+  // Current path from t (works even if segs are fallbacks)
   const d = useMemo(() => {
-    if (!segs.length) return PATHS[0];
-    const segLen = 1 / segs.length;
-    const i = Math.min(segs.length - 1, Math.floor(t / segLen));
-    const local = (t - i * segLen) / segLen;
-    return segs[i](local);
+    if (PATHS.length === 0) return "";
+    if (PATHS.length === 1) return PATHS[0];
+    const n = segs.length;
+    const segLen = 1 / n;
+    const i = Math.min(n - 1, Math.floor(t / segLen));
+    const local = n === 0 ? 0 : (t - i * segLen) / segLen;
+    const fn = segs[i];
+    // final guard
+    return typeof fn === "function" ? fn(local) : PATHS[Math.min(i + 1, PATHS.length - 1)];
   }, [t, segs]);
 
   return (
@@ -89,8 +110,7 @@ export default function LogoMorph({
       style={{
         height,
         aspectRatio: "3/2",
-        // Hide until image + clip are ready to avoid the square flash
-        opacity: ready ? 1 : 0,
+        opacity: imgLoaded ? 1 : 0, // hide until image is ready – no square flash
         transition: "opacity 200ms ease",
       }}
     >

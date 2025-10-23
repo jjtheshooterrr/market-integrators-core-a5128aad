@@ -1,216 +1,150 @@
 // src/components/effects/LogoMorph.tsx
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
-import { gsap } from "gsap";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-/* ------------------ POINT SAMPLING ------------------ */
-
-async function rasterToPoints(
-  src: string,
-  { density = 4, threshold = 0.55, maxPoints = 10000 } = {},
-): Promise<Float32Array> {
-  const img = new Image();
-  img.crossOrigin = "anonymous";
-  img.decoding = "async";
-  img.src = src;
-  await img.decode();
-
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
-  ctx.imageSmoothingEnabled = false;
-
-  const scale = 520 / Math.max(img.naturalWidth, img.naturalHeight);
-  canvas.width = Math.round(img.naturalWidth * scale);
-  canvas.height = Math.round(img.naturalHeight * scale);
-  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-  const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const points: number[] = [];
-
-  for (let y = 0; y < height; y += density) {
-    for (let x = 0; x < width; x += density) {
-      const i = (y * width + x) * 4;
-      const r = data[i] / 255,
-        g = data[i + 1] / 255,
-        b = data[i + 2] / 255,
-        a = data[i + 3] / 255;
-      const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-      const s = a > 0.05 ? a : 1 - l;
-      if (s > threshold) points.push(x, y);
-    }
-  }
-
-  // downsample if needed
-  if (points.length / 2 > maxPoints) {
-    const stride = Math.ceil(points.length / 2 / maxPoints);
-    const slim: number[] = [];
-    for (let i = 0; i < points.length; i += stride * 2) {
-      slim.push(points[i], points[i + 1]);
-    }
-    return normalize(slim, width, height);
-  }
-
-  return normalize(points, width, height);
+// --- resolve flubber interpolate safely across ESM/CJS builds ---
+let _interpolate: ((a: string, b: string, o?: { maxSegmentLength?: number }) => (t: number) => string) | null = null;
+async function loadInterpolate() {
+  if (_interpolate) return _interpolate;
+  const m: any = await import("flubber");
+  // handle: { interpolate }, default.export, or default.interpolate
+  _interpolate = m.interpolate ?? m.default?.interpolate ?? null;
+  return _interpolate;
 }
 
-function normalize(rawXY: number[], width: number, height: number): Float32Array {
-  const out: number[] = [];
-  const cx = width / 2;
-  const cy = height / 2;
-  const maxSide = Math.max(width, height);
-  const S = 3.2;
-
-  for (let i = 0; i < rawXY.length; i += 2) {
-    const x = (rawXY[i] - cx) / maxSide;
-    const y = (cy - rawXY[i + 1]) / maxSide;
-    out.push(x * S, y * S, 0);
-  }
-  return new Float32Array(out);
-}
-
-/* ------------------ MORPH POINTS ------------------ */
-
-function MorphPoints({
-  targetPositions,
-  color = "#ef1f2b",
-  onComplete,
-}: {
-  targetPositions: Float32Array;
+type Props = {
+  src: string;
+  height?: number;
   color?: string;
-  onComplete?: () => void;
-}) {
-  const geomRef = useRef<THREE.BufferGeometry>(null!);
-  const count = targetPositions.length / 3;
+  durationMs?: number;
+  loop?: boolean;
+  reducedMotion?: boolean;
+};
 
-  const startPositions = useMemo(() => {
-    const arr = new Float32Array(targetPositions.length);
-    for (let i = 0; i < count; i++) {
-      const phi = Math.acos(2 * Math.random() - 1);
-      const theta = Math.random() * Math.PI * 2;
-      const r = 2 + Math.random() * 2.5;
-      arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      arr[i * 3 + 2] = r * Math.cos(phi);
-    }
-    return arr;
-  }, [count]);
-
-  useEffect(() => {
-    const geom = geomRef.current;
-    geom.setAttribute("position", new THREE.BufferAttribute(startPositions.slice(), 3));
-
-    const pos = geom.attributes.position.array as Float32Array;
-    const tween = gsap.to(pos, {
-      duration: 1.4,
-      ease: "power3.inOut",
-      // @ts-ignore endArray supported for typed arrays
-      endArray: targetPositions,
-      onUpdate: () => {
-        geom.attributes.position.needsUpdate = true;
-      },
-      onComplete: () => {
-        setTimeout(() => onComplete?.(), 200);
-      },
-    });
-
-    return () => {
-      tween.kill(); // <-- return void cleanup, fixes TS2345
-    };
-  }, [targetPositions, onComplete, startPositions]);
-
-  // subtle z shimmer for depth
-  const tRef = useRef(0);
-  useFrame((_, delta) => {
-    tRef.current += delta;
-    const a = geomRef.current.attributes.position.array as Float32Array;
-    for (let i = 0; i < a.length; i += 3) {
-      a[i + 2] = 0.04 * Math.sin(tRef.current * 1.5 + (i / 3) * 0.17);
-    }
-    geomRef.current.attributes.position.needsUpdate = true;
-  });
-
-  return (
-    <points>
-      <bufferGeometry ref={geomRef} />
-      <pointsMaterial size={0.035} sizeAttenuation transparent opacity={0.95} color={color} />
-    </points>
-  );
-}
-
-/* ------------------ PUBLIC COMPONENT ------------------ */
+const P1 =
+  "M60,10 C78,12 90,26 94,44 C98,63 92,84 78,94 C64,104 42,104 28,95 C13,86 6,67 8,49 C10,32 22,17 38,12 C46,10 52,9 60,10 Z";
+const P2 =
+  "M61,10 C76,12 89,22 96,36 C103,51 104,71 92,84 C80,97 56,102 39,97 C22,92 11,78 8,61 C5,44 9,26 22,17 C35,9 46,8 61,10 Z";
+const P3 =
+  "M60,12 C75,14 88,23 97,38 C106,53 105,72 94,85 C83,98 62,105 44,101 C25,96 12,82 9,63 C6,44 13,26 28,17 C42,9 48,10 60,12 Z";
+const PATHS = [P1, P2, P3];
 
 export default function LogoMorph({
   src,
-  color = "#ef1f2b",
-  height = 120,
-}: {
-  src: string; // REQUIRED
-  color?: string;
-  height?: number;
-}) {
-  const [positions, setPositions] = useState<Float32Array | null>(null);
-  const [showFill, setShowFill] = useState(false);
+  height = 160,
+  color = "hsl(0 90% 53%)",
+  durationMs = 2200,
+  loop = true,
+  reducedMotion = false,
+}: Props) {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [interpReady, setInterpReady] = useState(false);
+  const [t, setT] = useState(0);
+  const raf = useRef<number | null>(null);
 
+  // Load flubber’s interpolate at runtime; avoid build/import inconsistencies
   useEffect(() => {
-    let mounted = true;
-    rasterToPoints(src, { density: 3.5, threshold: 0.4, maxPoints: 12000 }).then((p) => {
-      if (mounted) setPositions(p);
-    });
-    return () => {
-      mounted = false;
-    };
-  }, [src]);
+    loadInterpolate().then((fn) => setInterpReady(!!fn));
+  }, []);
 
-  const finish = () => {
-    setShowFill(true);
-    // fade the solid mask after a moment; keep the morph result visible beneath
-    setTimeout(() => setShowFill(false), 1000);
-  };
+  // Build segment interpolators once interpolate is available
+  const segs = useMemo(() => {
+    const makeFallback = (from: string, to: string) => (u: number) => (u < 1 ? from : to);
+    if (!interpReady || !_interpolate || PATHS.length < 2) {
+      // fallback: static jump (still clipped, no square)
+      return PATHS.slice(0, -1).map((_, i) => makeFallback(PATHS[i], PATHS[i + 1]));
+    }
+    return PATHS.slice(0, -1).map((_, i) => _interpolate!(PATHS[i], PATHS[i + 1], { maxSegmentLength: 2 }));
+  }, [interpReady]);
+
+  // Animate t
+  useEffect(() => {
+    if (reducedMotion) {
+      setT(1);
+      return;
+    }
+    if (!imgLoaded) return;
+
+    const easeOutExpo = (x: number) => 1 - Math.pow(2, -10 * x);
+    const easeInExpo = (x: number) => Math.pow(2, 10 * (x - 1));
+
+    const start = performance.now();
+    const fwd = (now: number) => {
+      let p = Math.min(1, (now - start) / durationMs);
+      p = easeOutExpo(p);
+      setT(p);
+      if (p < 1) raf.current = requestAnimationFrame(fwd);
+      else if (loop) {
+        const backStart = performance.now();
+        const back = (ts: number) => {
+          let q = Math.min(1, (ts - backStart) / durationMs);
+          q = easeInExpo(q);
+          setT(1 - q);
+          if (q < 1) raf.current = requestAnimationFrame(back);
+          else raf.current = requestAnimationFrame(fwd);
+        };
+        raf.current = requestAnimationFrame(back);
+      }
+    };
+    raf.current = requestAnimationFrame(fwd);
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
+  }, [imgLoaded, durationMs, loop, reducedMotion]);
+
+  // Current path from t (works even if segs are fallbacks)
+  const d = useMemo(() => {
+    if (PATHS.length === 0) return "";
+    if (PATHS.length === 1) return PATHS[0];
+    const n = segs.length;
+    const segLen = 1 / n;
+    const i = Math.min(n - 1, Math.floor(t / segLen));
+    const local = n === 0 ? 0 : (t - i * segLen) / segLen;
+    const fn = segs[i];
+    // final guard
+    return typeof fn === "function" ? fn(local) : PATHS[Math.min(i + 1, PATHS.length - 1)];
+  }, [t, segs]);
 
   return (
     <div
+      className="relative mx-auto"
       style={{
-        position: "relative",
-        width: "100%",
         height,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        pointerEvents: "none",
+        aspectRatio: "3/2",
+        opacity: imgLoaded ? 1 : 0, // hide until image is ready – no square flash
+        transition: "opacity 200ms ease",
       }}
     >
-      {positions && (
-        <Canvas
-          dpr={[1, 2]}
-          camera={{ position: [0, 0, 6], fov: 55 }}
-          style={{ position: "absolute", inset: 0 }}
-          gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
-        >
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[2, 2, 4]} intensity={0.6} />
-          <MorphPoints targetPositions={positions} color={color} onComplete={finish} />
-        </Canvas>
-      )}
-
-      {showFill && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: color,
-            WebkitMaskImage: `url(${src})`,
-            maskImage: `url(${src})`,
-            WebkitMaskRepeat: "no-repeat",
-            maskRepeat: "no-repeat",
-            WebkitMaskPosition: "center",
-            maskPosition: "center",
-            WebkitMaskSize: "auto 100%",
-            maskSize: "auto 100%",
-            transition: "opacity .4s ease",
-          }}
+      {/* subtle glow */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `radial-gradient(60% 60% at 50% 50%, hsla(0,90%,53%,0.25) 0%, transparent 70%)`,
+          pointerEvents: "none",
+        }}
+      />
+      <svg
+        viewBox="0 0 100 66.6667"
+        preserveAspectRatio="xMidYMid meet"
+        style={{ width: "100%", height: "100%", display: "block" }}
+      >
+        <defs>
+          <clipPath id="logo-clip" clipPathUnits="objectBoundingBox">
+            <g transform="scale(0.01, 0.015)">
+              <path d={reducedMotion ? PATHS[PATHS.length - 1] : d} />
+            </g>
+          </clipPath>
+        </defs>
+        <image
+          href={src}
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid meet"
+          clipPath="url(#logo-clip)"
+          onLoad={() => setImgLoaded(true)}
         />
-      )}
+      </svg>
     </div>
   );
 }

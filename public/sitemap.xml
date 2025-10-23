@@ -66,6 +66,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.marketintegrators.com/services/post-production-editing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.marketintegrators.com/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

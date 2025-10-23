@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search } from "lucide-react";
+import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +33,8 @@ const Header = () => {
       category: "MARKETING & GROWTH",
       services: [
         { name: "PPC & Paid Media", href: "/services/ppc-services", icon: Megaphone, description: "Paid advertising campaigns" },
-        { name: "SEO & Organic Growth", href: "/services/search-engine-optimization-and-organic-growth", icon: Search, description: "Search engine optimization" }
+        { name: "SEO & Organic Growth", href: "/services/search-engine-optimization-and-organic-growth", icon: Search, description: "Search engine optimization" },
+        { name: "Social Media Marketing", href: "/services/social-media-marketing", icon: Share2, description: "Social media strategy & management" }
       ]
     },
     {

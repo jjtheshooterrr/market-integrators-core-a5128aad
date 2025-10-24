@@ -34,6 +34,7 @@ const Header = () => {
       services: [
         { name: "PPC & Paid Media", href: "/services/ppc-services", icon: Megaphone, description: "Paid advertising campaigns" },
         { name: "Google Ads Management", href: "/services/google-ads-management", icon: Target, description: "Expert Google Ads campaign management" },
+        { name: "Meta Ads Management", href: "/services/meta-ads-management", icon: Share2, description: "Facebook & Instagram advertising" },
         { name: "SEO & Organic Growth", href: "/services/search-engine-optimization-and-organic-growth", icon: Search, description: "Search engine optimization" },
         { name: "Social Media Marketing", href: "/services/social-media-marketing", icon: Share2, description: "Social media strategy & management" }
       ]

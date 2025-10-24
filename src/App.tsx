@@ -28,6 +28,7 @@ import ServicePostProduction from "./pages/ServicePostProduction";
 import ServiceAnimation from "./pages/ServiceAnimation";
 import Service3DVisualEffects from "./pages/Service3DVisualEffects";
 import ServiceAudioProduction from "./pages/ServiceAudioProduction";
+import ServicePhotography from "./pages/ServicePhotography";
 import Industries from "./pages/Industries";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/services/animation-and-motion-graphics" element={<ServiceAnimation />} />
             <Route path="/services/3d-and-visual-effects" element={<Service3DVisualEffects />} />
             <Route path="/services/audio-production" element={<ServiceAudioProduction />} />
+            <Route path="/services/photography-and-product-shoots" element={<ServicePhotography />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/contact-us" element={<ContactUs />} />

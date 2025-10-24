@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2, Video, Edit3, Sparkles, Box, Headphones } from "lucide-react";
+import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2, Video, Edit3, Sparkles, Box, Headphones, Camera } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,7 +44,8 @@ const Header = () => {
         { name: "Post-Production & Editing", href: "/services/post-production-editing", icon: Edit3, description: "Expert video editing & effects" },
         { name: "Animation & Motion Graphics", href: "/services/animation-and-motion-graphics", icon: Sparkles, description: "Dynamic animations & graphics" },
         { name: "3D & Visual Effects", href: "/services/3d-and-visual-effects", icon: Box, description: "Stunning 3D renders & VFX" },
-        { name: "Audio Production", href: "/services/audio-production", icon: Headphones, description: "Professional audio & sound design" }
+        { name: "Audio Production", href: "/services/audio-production", icon: Headphones, description: "Professional audio & sound design" },
+        { name: "Photography & Product Shoots", href: "/services/photography-and-product-shoots", icon: Camera, description: "Professional photography services" }
       ]
     }
   ];

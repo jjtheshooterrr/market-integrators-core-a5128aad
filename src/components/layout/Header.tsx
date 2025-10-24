@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2, Video, Edit3, Sparkles, Box, Headphones, Camera, Target } from "lucide-react";
+import { Menu, X, ChevronDown, Megaphone, Shield, BarChart3, Layers, Brain, Cloud, Globe, Smartphone, Lightbulb, Search, Share2, Video, Edit3, Sparkles, Box, Headphones, Camera, Target, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +26,8 @@ const Header = () => {
         { name: "Data Analytics", href: "/services/data-analytics", icon: BarChart3, description: "Insights from your data" },
         { name: "App Development", href: "/services/app-development", icon: Smartphone, description: "Native & cross-platform apps" },
         { name: "Website Development", href: "/services/website-development", icon: Globe, description: "Custom web solutions" },
-        { name: "Digital Strategy Consulting", href: "/services/digital-strategy-consulting", icon: Lightbulb, description: "Strategic digital transformation" }
+        { name: "Digital Strategy Consulting", href: "/services/digital-strategy-consulting", icon: Lightbulb, description: "Strategic digital transformation" },
+        { name: "Automation & Integrations", href: "/services/automation-and-integrations", icon: Zap, description: "Workflow automation & system integration" }
       ]
     },
     {

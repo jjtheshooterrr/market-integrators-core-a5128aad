@@ -25,6 +25,7 @@ import ServiceSEO from "./pages/ServiceSEO";
 import ServiceSocialMedia from "./pages/ServiceSocialMedia";
 import ServiceGoogleAds from "./pages/ServiceGoogleAds";
 import ServiceMetaAds from "./pages/ServiceMetaAds";
+import ServiceAutomation from "./pages/ServiceAutomation";
 import ServiceVideoProduction from "./pages/ServiceVideoProduction";
 import ServicePostProduction from "./pages/ServicePostProduction";
 import ServiceAnimation from "./pages/ServiceAnimation";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/services/website-development" element={<ServiceWebDevelopment />} />
             <Route path="/services/app-development" element={<ServiceAppDevelopment />} />
             <Route path="/services/digital-strategy-consulting" element={<ServiceDigitalStrategy />} />
+            <Route path="/services/automation-and-integrations" element={<ServiceAutomation />} />
             <Route path="/services/search-engine-optimization-and-organic-growth" element={<ServiceSEO />} />
             <Route path="/services/social-media-marketing" element={<ServiceSocialMedia />} />
             <Route path="/services/google-ads-management" element={<ServiceGoogleAds />} />

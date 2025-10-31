@@ -2,41 +2,16 @@ import { Brain, GitBranch, Rocket, TrendingUp, BarChart3 } from "lucide-react";
 import { useRef } from "react";
 import { motion, useReducedMotion, Variants, useInView, useScroll } from "framer-motion";
 
-// Completely rebuilt: no GSAP, pure Framer Motion + CSS.
+// Completely rebuilt: no GSAP, pure Framer Motion + CSS. 
 // Mobile-first single column with center rail & dots; md+ alternates left/right.
 // Icons live inside the card header (no overlap with rail). Dots live between cards.
 
 const STEPS = [
-  {
-    icon: Brain,
-    number: "01",
-    title: "Intelligence & Insight",
-    description: "Deep-dive analysis into your data, market trends, and customer signals.",
-  },
-  {
-    icon: GitBranch,
-    number: "02",
-    title: "Strategic Architecture",
-    description: "Build your marketing system like an engineer: structure, flow, and performance built in.",
-  },
-  {
-    icon: Rocket,
-    number: "03",
-    title: "Launch & Learn",
-    description: "Deploy, test, and iterate — every week, every channel, every audience.",
-  },
-  {
-    icon: TrendingUp,
-    number: "04",
-    title: "Optimize & Scale",
-    description: "Continuous performance tuning powered by machine learning and predictive modeling.",
-  },
-  {
-    icon: BarChart3,
-    number: "05",
-    title: "Transparency & Reporting",
-    description: "Access real metrics in real time through your analytics dashboard.",
-  },
+  { icon: Brain, number: "01", title: "Intelligence & Insight", description: "Deep-dive analysis into your data, market trends, and customer signals." },
+  { icon: GitBranch, number: "02", title: "Strategic Architecture", description: "Build your marketing system like an engineer: structure, flow, and performance built in." },
+  { icon: Rocket, number: "03", title: "Launch & Learn", description: "Deploy, test, and iterate — every week, every channel, every audience." },
+  { icon: TrendingUp, number: "04", title: "Optimize & Scale", description: "Continuous performance tuning powered by machine learning and predictive modeling." },
+  { icon: BarChart3, number: "05", title: "Transparency & Reporting", description: "Access real metrics in real time through your analytics dashboard." },
 ] as const;
 
 const cardVariants: Variants = {
@@ -60,12 +35,9 @@ export default function ProcessStepsAnimated() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8 md:mb-14"
         >
-          <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight">
-            Our Methodology: From Intelligence to Impact
-          </h2>
+          <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight">Our Methodology: From Intelligence to Impact</h2>
           <p className="mt-3 text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto">
-            We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth
-            systems.
+            We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth systems.
           </p>
         </motion.div>
 
@@ -90,7 +62,7 @@ export default function ProcessStepsAnimated() {
   );
 }
 
-function StepItem({ step, index }: { step: (typeof STEPS)[number]; index: number }) {
+function StepItem({ step, index }: { step: typeof STEPS[number]; index: number }) {
   const ref = useRef<HTMLLIElement | null>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const Icon = step.icon;

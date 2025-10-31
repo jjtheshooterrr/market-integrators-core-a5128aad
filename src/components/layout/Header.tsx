@@ -8,7 +8,6 @@ import {
   Megaphone,
   Shield,
   BarChart3,
-  Layers,
   Brain,
   Cloud,
   Globe,
@@ -41,7 +40,130 @@ const Header = () => {
   }, []);
 
   const serviceCategories = [
-    // ... your data unchanged ...
+    {
+      category: "TECHNOLOGY & INNOVATION",
+      services: [
+        {
+          name: "AI & Machine Learning",
+          href: "/services/ai-and-machine-learning",
+          icon: Brain,
+          description: "Intelligent automation solutions",
+        },
+        { name: "Cloud Services", href: "/services/cloud", icon: Cloud, description: "Scalable cloud infrastructure" },
+        {
+          name: "Cybersecurity",
+          href: "/services/cybersecurity",
+          icon: Shield,
+          description: "Advanced security solutions",
+        },
+        {
+          name: "Data Analytics",
+          href: "/services/data-analytics",
+          icon: BarChart3,
+          description: "Insights from your data",
+        },
+        {
+          name: "App Development",
+          href: "/services/app-development",
+          icon: Smartphone,
+          description: "Native & cross-platform apps",
+        },
+        {
+          name: "Website Development",
+          href: "/services/website-development",
+          icon: Globe,
+          description: "Custom web solutions",
+        },
+        {
+          name: "Digital Strategy Consulting",
+          href: "/services/digital-strategy-consulting",
+          icon: Lightbulb,
+          description: "Strategic digital transformation",
+        },
+        {
+          name: "Automation & Integrations",
+          href: "/services/automation-and-integrations",
+          icon: Zap,
+          description: "Workflow automation & system integration",
+        },
+      ],
+    },
+    {
+      category: "MARKETING & GROWTH",
+      services: [
+        {
+          name: "PPC & Paid Media",
+          href: "/services/ppc-services",
+          icon: Megaphone,
+          description: "Paid advertising campaigns",
+        },
+        {
+          name: "Google Ads Management",
+          href: "/services/google-ads-management",
+          icon: Target,
+          description: "Expert Google Ads campaign management",
+        },
+        {
+          name: "Meta Ads Management",
+          href: "/services/meta-ads-management",
+          icon: Share2,
+          description: "Facebook & Instagram advertising",
+        },
+        {
+          name: "SEO & Organic Growth",
+          href: "/services/search-engine-optimization-and-organic-growth",
+          icon: Search,
+          description: "Search engine optimization",
+        },
+        {
+          name: "Social Media Marketing",
+          href: "/services/social-media-marketing",
+          icon: Share2,
+          description: "Social media strategy & management",
+        },
+      ],
+    },
+    {
+      category: "CREATIVE MEDIA STUDIO",
+      services: [
+        {
+          name: "Video Production",
+          href: "/services/video-production",
+          icon: Video,
+          description: "Professional video content creation",
+        },
+        {
+          name: "Post-Production & Editing",
+          href: "/services/post-production-editing",
+          icon: Edit3,
+          description: "Expert video editing & effects",
+        },
+        {
+          name: "Animation & Motion Graphics",
+          href: "/services/animation-and-motion-graphics",
+          icon: Sparkles,
+          description: "Dynamic animations & graphics",
+        },
+        {
+          name: "3D & Visual Effects",
+          href: "/services/3d-and-visual-effects",
+          icon: Box,
+          description: "Stunning 3D renders & VFX",
+        },
+        {
+          name: "Audio Production",
+          href: "/services/audio-production",
+          icon: Headphones,
+          description: "Professional audio & sound design",
+        },
+        {
+          name: "Photography & Product Shoots",
+          href: "/services/photography-and-product-shoots",
+          icon: Camera,
+          description: "Professional photography services",
+        },
+      ],
+    },
   ];
 
   const navigation = [
@@ -54,14 +176,12 @@ const Header = () => {
 
   return (
     <header
-      className={
-        // Make header the actual white layer so nothing bleeds through
-        `fixed top-0 left-0 right-0 z-50 transition-all duration-300
-         ${isScrolled ? "bg-white shadow-md" : "bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75"}
-         border-b border-border/50`
-      }
+      className={`
+        fixed top-0 left-0 right-0 z-50 transition-all duration-300
+        bg-white ${isScrolled ? "shadow-md" : ""}
+        border-b border-border/50
+      `}
     >
-      {/* Match backgrounds: remove bg-white from nav/container */}
       <nav className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -97,9 +217,59 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-lg border border-border rounded-xl shadow-2xl overflow-hidden z-50"
+                    className="absolute top-full left-0 mt-2 w-80 bg-white border border-border rounded-xl shadow-2xl overflow-hidden z-50"
                   >
-                    <div className="p-2 max-h-[80vh] overflow-y-auto">{/* ... menu content unchanged ... */}</div>
+                    <div className="p-2 max-h-[80vh] overflow-y-auto">
+                      {serviceCategories.map((category, categoryIndex) => (
+                        <div
+                          key={category.category}
+                          className={categoryIndex > 0 ? "mt-4 pt-4 border-t border-border" : ""}
+                        >
+                          <div className="px-4 py-2">
+                            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                              {category.category}
+                            </h3>
+                          </div>
+                          {category.services.map((service, index) => {
+                            const Icon = service.icon;
+                            return (
+                              <Link key={service.name} to={service.href} className="group">
+                                <motion.div
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: categoryIndex * 0.1 + index * 0.05 }}
+                                  className={`flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${
+                                    location.pathname === service.href ? "bg-primary/10" : ""
+                                  }`}
+                                >
+                                  <div
+                                    className={`p-2 rounded-lg transition-colors ${
+                                      location.pathname === service.href
+                                        ? "bg-primary text-primary-foreground"
+                                        : "bg-muted group-hover:bg-primary/20"
+                                    }`}
+                                  >
+                                    <Icon className="w-5 h-5" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div
+                                      className={`font-body font-semibold transition-colors ${
+                                        location.pathname === service.href
+                                          ? "text-primary"
+                                          : "text-foreground group-hover:text-primary"
+                                      }`}
+                                    >
+                                      {service.name}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground mt-0.5">{service.description}</div>
+                                  </div>
+                                </motion.div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -118,11 +288,13 @@ const Header = () => {
             ))}
           </div>
 
-          {/* CTA + Mobile Toggle */}
+          {/* CTA Button */}
           <div className="flex items-center space-x-4">
             <Button asChild className="btn-text hidden sm:inline-flex">
               <Link to="/contact-us">Request Proposal</Link>
             </Button>
+
+            {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-2 text-foreground"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -135,8 +307,67 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border bg-white/95 backdrop-blur max-h-[calc(100vh-5rem)] overflow-y-auto">
-            {/* ... mobile menu unchanged ... */}
+          <div className="lg:hidden py-4 border-t border-border bg-white max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div className="flex flex-col space-y-4">
+              <div>
+                <button
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                  className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 w-full ${
+                    location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  Services
+                  <ChevronDown className={`w-4 h-4 transition-transform ${isMobileServicesOpen ? "rotate-180" : ""}`} />
+                </button>
+                {isMobileServicesOpen && (
+                  <div className="ml-4 mt-2 space-y-4">
+                    {serviceCategories.map((category) => (
+                      <div key={category.category}>
+                        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
+                          {category.category}
+                        </h3>
+                        <div className="space-y-2">
+                          {category.services.map((service) => (
+                            <Link
+                              key={service.name}
+                              to={service.href}
+                              className={`block font-body font-medium transition-colors hover:text-primary ${
+                                location.pathname === service.href ? "text-primary" : "text-foreground"
+                              }`}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setIsMobileServicesOpen(false);
+                              }}
+                            >
+                              {service.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`font-body font-medium transition-colors hover:text-primary ${
+                    location.pathname === item.href ? "text-primary" : "text-foreground"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+
+              <Button asChild className="btn-text w-full">
+                <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
+                  Request Proposal
+                </Link>
+              </Button>
+            </div>
           </div>
         )}
       </nav>

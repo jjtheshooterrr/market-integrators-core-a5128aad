@@ -2,10 +2,9 @@ import { Brain, GitBranch, Rocket, TrendingUp, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 
 /**
- * MethodologyInfinityStrip — ultra-compact marquee
- * - Just the strip (no manual scroll or arrows)
- * - Seamless infinite loop
- * - Titles + numbers + icons preserved
+ * MethodologyInfinityStripWithHeader — compact marquee with title
+ * - Adds back the section header (“Our Process”)
+ * - Keeps infinite looping strip
  */
 
 const STEPS = [
@@ -16,9 +15,32 @@ const STEPS = [
   { icon: BarChart3, title: "Transparency & Reporting" },
 ] as const;
 
-export default function MethodologyInfinityStrip() {
+export default function MethodologyInfinityStripWithHeader() {
   return (
-    <section className="relative w-full py-6 md:py-8 overflow-hidden">
+    <section className="relative w-full py-10 md:py-14 overflow-hidden">
+      {/* Header */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 text-center mb-6 md:mb-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          className="text-2xl md:text-5xl font-extrabold tracking-tight"
+        >
+          Our Process
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-2 text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto"
+        >
+          A seamless, repeatable cycle — from intelligence to impact.
+        </motion.p>
+      </div>
+
+      {/* Fading edges */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
 
@@ -28,9 +50,8 @@ export default function MethodologyInfinityStrip() {
 }
 
 function Strip() {
-  // duplicate the content twice for a seamless loop
   const items = [...STEPS, ...STEPS, ...STEPS];
-  const DURATION = 28; // seconds per full cycle
+  const DURATION = 30;
 
   return (
     <div className="relative">
@@ -39,11 +60,10 @@ function Strip() {
         aria-label="Methodology steps infinite strip"
         animate={{ x: [0, -1000] }}
         transition={{ duration: DURATION, ease: "linear", repeat: Infinity }}
-        style={{ translateX: 0 }}
       >
         {items.map((s, i) => (
-          <Pill key={`${s.title}-${i}`} index={i % STEPS.length} icon={s.icon} title={s.title} />)
-        )}
+          <Pill key={`${s.title}-${i}`} index={i % STEPS.length} icon={s.icon} title={s.title} />
+        ))}
       </motion.div>
     </div>
   );
@@ -52,9 +72,7 @@ function Strip() {
 function Pill({ index, icon: Icon, title }: { index: number; icon: any; title: string }) {
   const number = (index + 1).toString().padStart(2, "0");
   return (
-    <div
-      className="shrink-0 inline-flex items-center gap-2 md:gap-2.5 rounded-xl border px-3 md:px-4 py-2 text-xs md:text-sm bg-card/70 backdrop-blur border-border hover:shadow-sm"
-    >
+    <div className="shrink-0 inline-flex items-center gap-2 md:gap-2.5 rounded-xl border px-3 md:px-4 py-2 text-xs md:text-sm bg-card/70 backdrop-blur border-border hover:shadow-sm">
       <span className="inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full border border-destructive/60 text-[10px] md:text-[11px] font-semibold text-destructive bg-white/70">
         {number}
       </span>

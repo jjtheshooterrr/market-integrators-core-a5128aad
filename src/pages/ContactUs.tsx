@@ -11,19 +11,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import SphereLoader from "@/components/effects/SphereLoader";
-
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [service, setService] = useState("");
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
     const formData = new FormData(e.currentTarget);
-    
     try {
-      const { error } = await supabase.from('contact_leads').insert({
+      const {
+        error
+      } = await supabase.from('contact_leads').insert({
         first_name: formData.get('firstName') as string,
         last_name: formData.get('lastName') as string,
         email: formData.get('email') as string,
@@ -34,11 +32,12 @@ const ContactUs = () => {
         message: formData.get('message') as string,
         consent: true
       });
-
       if (error) throw error;
 
       // Send confirmation emails
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+      const {
+        error: emailError
+      } = await supabase.functions.invoke('send-contact-email', {
         body: {
           firstName: formData.get('firstName') as string,
           lastName: formData.get('lastName') as string,
@@ -47,15 +46,13 @@ const ContactUs = () => {
           company: formData.get('company') as string || undefined,
           website: formData.get('website') as string || undefined,
           service: service,
-          message: formData.get('message') as string,
+          message: formData.get('message') as string
         }
       });
-
       if (emailError) {
         console.error('Error sending emails:', emailError);
         // Don't fail the whole submission if email fails
       }
-      
       toast.success("Thank you! We'll be in touch within 24 hours.");
       (e.target as HTMLFormElement).reset();
       setService("");
@@ -66,18 +63,14 @@ const ContactUs = () => {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="section-padding bg-secondary">
           <div className="container-custom text-center">
             <h1 className="mb-6">Let's Grow Your Business Together</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
-              Get a free, no-obligation proposal customized to your business goals. We're here to answer your questions and help you succeed.
-            </p>
+            <p className="text-muted-foreground max-w-3xl mx-auto mb-12 text-base">Get a free proposal customized to your business goals. We're here to answer your questions and help you succeed.</p>
             <div className="flex justify-center">
               <SphereLoader />
             </div>
@@ -143,13 +136,7 @@ const ContactUs = () => {
 
                   <div>
                     <Label htmlFor="message">Tell Us About Your Goals *</Label>
-                    <Textarea 
-                      id="message"
-                      name="message"
-                      required 
-                      className="mt-2 min-h-32" 
-                      placeholder="What are you hoping to achieve with digital marketing?"
-                    />
+                    <Textarea id="message" name="message" required className="mt-2 min-h-32" placeholder="What are you hoping to achieve with digital marketing?" />
                   </div>
 
                   <div className="flex items-start space-x-2">
@@ -238,8 +225,6 @@ const ContactUs = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default ContactUs;

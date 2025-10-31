@@ -24,12 +24,7 @@ const IndustryCarouselCard = ({ industry, index, total }: { industry: any; index
           <div className="industry-card-front">
             <div className="industry-front-content">
               <div className="badge">
-                <Icon size={32} />
-              </div>
-              <div className="description">
-                <div className="title">
-                  <p className="font-semibold">{industry.title}</p>
-                </div>
+                <Icon size={40} />
               </div>
             </div>
             <div className="circle" id="right"></div>
@@ -37,10 +32,10 @@ const IndustryCarouselCard = ({ industry, index, total }: { industry: any; index
           </div>
           <div className="industry-card-back">
             <div className="industry-back-content">
-              <h3 className="font-heading font-bold text-sm mb-2 text-center px-3">
+              <h3 className="font-heading font-bold text-base mb-3 text-center px-4">
                 {industry.title}
               </h3>
-              <p className="text-xs text-center leading-snug px-3">
+              <p className="text-xs text-center leading-relaxed px-4">
                 {industry.description}
               </p>
             </div>

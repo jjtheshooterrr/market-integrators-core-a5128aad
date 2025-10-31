@@ -131,7 +131,7 @@ export default function ProcessStepsRefined() {
       {/* Timeline */}
       <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-20">
         {/* Rail & progress */}
-        <div ref={progressWrapRef} className="pointer-events-none hidden md:block">
+        <div ref={progressWrapRef} className="pointer-events-none block">
           <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-gradient-to-b from-border via-border/70 to-border/20" />
           <div
             ref={progressLineRef}
@@ -146,7 +146,7 @@ export default function ProcessStepsRefined() {
             return (
               <li key={step.number} className="relative">
                 {/* connector dot for md+ */}
-                <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-2 z-10" aria-hidden>
+                <div className="block absolute left-1/2 -translate-x-1/2 top-2 z-10" aria-hidden>
                   <div
                     data-node="dot"
                     className="w-3 h-3 rounded-full bg-destructive shadow-[0_0_0_6px_rgba(244,63,94,0.15)]"

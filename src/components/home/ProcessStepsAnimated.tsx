@@ -139,7 +139,7 @@ export default function ProcessStepsRefined() {
           />
         </div>
 
-        <ol className="relative space-y-10 md:space-y-20">
+        <ol className="relative space-y-6 md:space-y-20">
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             const isLeft = i % 2 === 0;
@@ -159,12 +159,12 @@ export default function ProcessStepsRefined() {
                   whileInView="show"
                   viewport={{ once: true, amount: 0.4, margin: "-80px" }}
                   variants={cardVariants}
-                  className={`group relative max-w-xl ${
+                  className={`group relative max-w-[360px] md:max-w-xl ${
                     isLeft ? "md:mr-[52%] md:pr-10" : "md:ml-[52%] md:pl-10"
                   } mx-auto md:mx-0`}
                 >
                   {/* number chip */}
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:left-auto md:top-auto flex md:block">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:left-auto md:top-auto hidden md:block">
                     <div className="inline-flex items-center justify-center w-9 h-9 rounded-full border-2 border-destructive/80 bg-destructive/10 text-destructive text-[10px] font-bold shadow-sm">
                       {step.number}
                     </div>
@@ -173,20 +173,27 @@ export default function ProcessStepsRefined() {
                   {/* card */}
                   <div
                     tabIndex={0}
-                    className="mt-5 md:mt-3 outline-none focus-visible:ring-2 focus-visible:ring-destructive/40 rounded-xl p-5 md:p-8 bg-card/70 backdrop-blur border border-border/60 shadow-sm hover:shadow-md transition-shadow"
+                    className="mt-5 md:mt-3 outline-none focus-visible:ring-2 focus-visible:ring-destructive/40 rounded-lg p-4 md:p-8 bg-card/70 backdrop-blur border border-border/60 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div
                       className={`flex items-start gap-4 ${isLeft ? "md:flex-row-reverse md:text-right" : "md:flex-row"} flex-col text-center md:text-left`}
                     >
-                      <div className="relative w-12 h-12 shrink-0 self-center md:self-start">
-                        <div className="absolute inset-0 rounded-xl bg-destructive/10" />
+                      <div className="relative w-10 h-10 shrink-0 self-center md:self-start">
+                        <div className="absolute inset-0 rounded-lg bg-destructive/10" />
                         <div className="relative w-full h-full grid place-items-center">
-                          <Icon className="text-destructive" size={22} strokeWidth={1.6} />
+                          <Icon className="text-destructive" size={18} strokeWidth={1.6} />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg md:text-xl font-semibold tracking-tight">{step.title}</h3>
-                        <p className="mt-2 text-muted-foreground leading-relaxed">{step.description}</p>
+                        <h3 className="text-base md:text-xl font-semibold tracking-tight flex items-center justify-center md:justify-start gap-2">
+                          <span className="md:hidden inline-flex items-center justify-center w-6 h-6 rounded-full border border-destructive/60 text-[10px] text-destructive">
+                            {step.number}
+                          </span>
+                          {step.title}
+                        </h3>
+                        <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
                       </div>
                     </div>
                   </div>

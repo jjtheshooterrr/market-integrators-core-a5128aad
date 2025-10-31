@@ -3,6 +3,12 @@ import Footer from "@/components/layout/Footer";
 import PricingCard from "@/components/pricing/PricingCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Pricing = () => {
   const techServices = [
@@ -195,48 +201,73 @@ const Pricing = () => {
           </div>
         </section>
 
-        {/* TECHNOLOGY & INNOVATION */}
+        {/* Pricing Categories Accordion */}
         <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="mb-4 uppercase tracking-wider text-primary">Technology & Innovation</h2>
-              <p className="text-lg text-muted-foreground">Digital solutions that improve efficiency and scale your business.</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {techServices.map((service, index) => (
-                <PricingCard key={index} {...service} />
-              ))}
-            </div>
-          </div>
-        </section>
+          <div className="container-custom max-w-6xl">
+            <Accordion type="single" collapsible className="space-y-4">
+              {/* TECHNOLOGY & INNOVATION */}
+              <AccordionItem value="tech" className="border rounded-lg bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <div className="text-left">
+                    <h2 className="text-2xl font-bold uppercase tracking-wider text-primary mb-2">
+                      Technology & Innovation
+                    </h2>
+                    <p className="text-base text-muted-foreground font-normal">
+                      Digital solutions that improve efficiency and scale your business.
+                    </p>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    {techServices.map((service, index) => (
+                      <PricingCard key={index} {...service} />
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
 
-        {/* MARKETING & GROWTH */}
-        <section className="section-padding bg-secondary">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="mb-4 uppercase tracking-wider text-primary">Marketing & Growth</h2>
-              <p className="text-lg text-muted-foreground">Transparent, results-driven marketing to grow your brand.</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {marketingServices.map((service, index) => (
-                <PricingCard key={index} {...service} />
-              ))}
-            </div>
-          </div>
-        </section>
+              {/* MARKETING & GROWTH */}
+              <AccordionItem value="marketing" className="border rounded-lg bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <div className="text-left">
+                    <h2 className="text-2xl font-bold uppercase tracking-wider text-primary mb-2">
+                      Marketing & Growth
+                    </h2>
+                    <p className="text-base text-muted-foreground font-normal">
+                      Transparent, results-driven marketing to grow your brand.
+                    </p>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    {marketingServices.map((service, index) => (
+                      <PricingCard key={index} {...service} />
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
 
-        {/* CREATIVE MEDIA STUDIO */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="mb-4 uppercase tracking-wider text-primary">Creative Media Studio</h2>
-              <p className="text-lg text-muted-foreground">High-impact visuals and storytelling for modern brands.</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {creativeServices.map((service, index) => (
-                <PricingCard key={index} {...service} />
-              ))}
-            </div>
+              {/* CREATIVE MEDIA STUDIO */}
+              <AccordionItem value="creative" className="border rounded-lg bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <div className="text-left">
+                    <h2 className="text-2xl font-bold uppercase tracking-wider text-primary mb-2">
+                      Creative Media Studio
+                    </h2>
+                    <p className="text-base text-muted-foreground font-normal">
+                      High-impact visuals and storytelling for modern brands.
+                    </p>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    {creativeServices.map((service, index) => (
+                      <PricingCard key={index} {...service} />
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </section>
 

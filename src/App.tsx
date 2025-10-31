@@ -15,6 +15,7 @@ import Pricing from "./pages/Pricing";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import CaseStudies from "./pages/CaseStudies";
+import CaseStudyAPRenovations from "./pages/CaseStudyAPRenovations";
 import ServicePPC from "./pages/ServicePPC";
 import ServiceCybersecurity from "./pages/ServiceCybersecurity";
 import ServiceDataAnalytics from "./pages/ServiceDataAnalytics";
@@ -80,6 +81,7 @@ const App = () => (
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/aprenovations" element={<CaseStudyAPRenovations />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

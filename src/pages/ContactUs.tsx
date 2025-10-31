@@ -78,6 +78,9 @@ const ContactUs = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Get a free, no-obligation proposal customized to your business goals. We're here to answer your questions and help you succeed.
             </p>
+            <div className="flex justify-center mt-8">
+              <SphereLoader />
+            </div>
           </div>
         </section>
 
@@ -87,10 +90,7 @@ const ContactUs = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div>
-                <div className="flex items-center gap-6 mb-8">
-                  <h2 className="mb-0">Request Your Free Proposal</h2>
-                  <SphereLoader />
-                </div>
+                <h2 className="mb-8">Request Your Free Proposal</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                   <div>

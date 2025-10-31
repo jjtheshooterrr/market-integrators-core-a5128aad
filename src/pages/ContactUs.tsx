@@ -67,11 +67,11 @@ const ContactUs = () => {
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="section-padding bg-secondary">
+        <section className="section-padding bg-secondary pb-32">
           <div className="container-custom text-center">
             <h1 className="mb-6">Let's Grow Your Business Together</h1>
-            <p className="text-muted-foreground max-w-3xl mx-auto mb-12 text-base">Get a free proposal customized to your business goals. We're here to answer your questions and help you succeed.</p>
-            <div className="flex justify-center">
+            <p className="text-muted-foreground max-w-3xl mx-auto mb-20 text-base">Get a free proposal customized to your business goals. We're here to answer your questions and help you succeed.</p>
+            <div className="flex justify-center mb-[-8rem]">
               <SphereLoader />
             </div>
           </div>

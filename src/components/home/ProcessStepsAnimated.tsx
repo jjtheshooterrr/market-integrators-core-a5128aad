@@ -59,7 +59,12 @@ const STEPS = [
 
 const cardVariants = {
   hidden: (i: number) => ({ opacity: 0, y: 24, x: i % 2 ? 28 : -28 }),
-  show: { opacity: 1, y: 0, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  show: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }, // cubic-bezier for type-safe ease
+  },
 };
 
 export default function ProcessStepsRefined() {

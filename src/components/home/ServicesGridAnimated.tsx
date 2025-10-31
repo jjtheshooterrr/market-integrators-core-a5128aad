@@ -1,156 +1,98 @@
 import { Link } from "react-router-dom";
 import { 
-  MousePointerClick, Search, Globe, Video, Camera, Music, Film, Palette, 
-  Box, Share2, Lightbulb, BarChart3, Brain, Smartphone, Cloud, Shield, 
-  Target, Zap
+  Building2, Code2, Wrench, Heart, Scale, TrendingUp, 
+  GraduationCap, Home, Bot
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const CarouselCard = ({ service, index, total }: { service: any; index: number; total: number }) => {
-  const Icon = service.icon;
-  const angle = (360 / total) * index;
-  const radius = 400;
-  const animationDelay = -(40 / total) * index;
+const IndustryCard = ({ industry, index }: { industry: any; index: number }) => {
+  const Icon = industry.icon;
 
   return (
-    <div
-      className="carousel-3d-card"
-      style={{
-        transform: `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`,
-        animationDelay: `${animationDelay}s`,
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="industry-flip-card"
     >
-      <Link to={service.href} className="block h-full">
-        <div className="card-premium p-6 h-full flex flex-col group cursor-pointer hover:scale-105 transition-transform">
-          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
-            <Icon className="text-primary group-hover:text-primary-foreground transition-colors" size={24} />
+      <div className="industry-card-content">
+        <div className="industry-card-front">
+          <div className="industry-front-content">
+            <div className="badge">
+              <Icon size={32} />
+            </div>
+            <div className="description">
+              <div className="title">
+                <p className="font-semibold">{industry.title}</p>
+              </div>
+            </div>
           </div>
-          <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-            {service.description}
-          </p>
+          <div className="circle" id="right"></div>
+          <div className="circle" id="bottom"></div>
         </div>
-      </Link>
-    </div>
+        <div className="industry-card-back">
+          <div className="industry-back-content">
+            <h3 className="font-heading font-bold text-lg mb-3 text-center">
+              {industry.title}
+            </h3>
+            <p className="text-sm text-center leading-relaxed px-4">
+              {industry.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
 const ServicesGridAnimated = () => {
-  const services = [
+  const industries = [
     {
-      icon: MousePointerClick,
-      title: "PPC Management",
-      description: "Drive instant qualified traffic with expertly managed campaigns.",
-      href: "/services/ppc-services",
+      icon: Building2,
+      title: "E-Commerce & Retail",
+      description: "From DTC brands to large-scale online stores, we build and optimize omni-channel campaigns that drive consistent ROI."
     },
     {
-      icon: Search,
-      title: "SEO Services",
-      description: "Dominate search rankings with comprehensive SEO strategies.",
-      href: "/services/search-engine-optimization",
+      icon: Code2,
+      title: "SaaS & Technology",
+      description: "High-performance acquisition strategies for subscription and B2B SaaS companies."
     },
     {
-      icon: Globe,
-      title: "Web Development",
-      description: "High-performance, mobile-optimized websites that convert.",
-      href: "/services/web-development",
+      icon: Wrench,
+      title: "Home Services & Franchises",
+      description: "Scalable local lead generation and AI-enhanced visibility in search and map results."
     },
     {
-      icon: Video,
-      title: "Video Production",
-      description: "Professional video content that tells your brand story.",
-      href: "/services/high-converting-video-production",
+      icon: Heart,
+      title: "Healthcare & Medical",
+      description: "HIPAA-compliant, precision-targeted digital campaigns that build trust and drive appointment growth."
     },
     {
-      icon: Music,
-      title: "Audio Production",
-      description: "Studio-quality audio production for all your content needs.",
-      href: "/services/audio-production",
+      icon: Scale,
+      title: "Legal & Professional Services",
+      description: "Tailored PPC and SEO systems for law firms, accounting, and consulting practices."
     },
     {
-      icon: Camera,
-      title: "Photography",
-      description: "Professional photography that captures your brand essence.",
-      href: "/services/photography",
+      icon: TrendingUp,
+      title: "Finance & Banking",
+      description: "Data-driven performance marketing for financial products and fintech."
     },
     {
-      icon: Film,
-      title: "Post Production",
-      description: "Expert editing and post-production for polished results.",
-      href: "/services/post-production",
+      icon: GraduationCap,
+      title: "Education & eLearning",
+      description: "Enrollment-focused campaigns and funnel optimization for universities and edtech platforms."
     },
     {
-      icon: Palette,
-      title: "Animation",
-      description: "Engaging animated content that brings ideas to life.",
-      href: "/services/animation",
+      icon: Home,
+      title: "Real Estate & Property",
+      description: "Intelligent ad delivery and local visibility strategies for agents, brokerages, and property firms."
     },
     {
-      icon: Box,
-      title: "3D Visual Effects",
-      description: "Stunning 3D visuals and effects for immersive experiences.",
-      href: "/services/3d-visual-effects",
-    },
-    {
-      icon: Share2,
-      title: "Social Media Marketing",
-      description: "Strategic social media campaigns that drive engagement.",
-      href: "/services/social-media-marketing",
-    },
-    {
-      icon: Lightbulb,
-      title: "Digital Strategy",
-      description: "Comprehensive digital strategies for business growth.",
-      href: "/services/digital-strategy",
-    },
-    {
-      icon: BarChart3,
-      title: "Data Analytics",
-      description: "Data-driven insights to optimize your marketing performance.",
-      href: "/services/data-analytics",
-    },
-    {
-      icon: Brain,
-      title: "AI/ML Services",
-      description: "Leverage AI and machine learning for competitive advantage.",
-      href: "/services/ai-ml",
-    },
-    {
-      icon: Smartphone,
-      title: "App Development",
-      description: "Custom mobile and web applications for modern businesses.",
-      href: "/services/app-development",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Services",
-      description: "Scalable cloud infrastructure and migration solutions.",
-      href: "/services/cloud-services",
-    },
-    {
-      icon: Shield,
-      title: "Cybersecurity",
-      description: "Protect your digital assets with enterprise-grade security.",
-      href: "/services/cybersecurity",
-    },
-    {
-      icon: Target,
-      title: "Google Ads Management",
-      description: "Maximize ROI with expert Google Ads campaign management.",
-      href: "/services/google-ads-management",
-    },
-    {
-      icon: Share2,
-      title: "Meta Ads Management",
-      description: "Drive results with Facebook and Instagram advertising.",
-      href: "/services/meta-ads-management",
-    },
-    {
-      icon: Zap,
-      title: "Automation & Integrations",
-      description: "Streamline operations with smart automation solutions.",
-      href: "/services/automation-and-integrations",
-    },
+      icon: Bot,
+      title: "AI & Emerging Tech",
+      description: "Helping tech and AI companies build brand presence and scale inbound through AI-assisted marketing."
+    }
   ];
 
   return (
@@ -163,19 +105,18 @@ const ServicesGridAnimated = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Our Services</h2>
+          <h2 className="mb-4">Industries We Serve</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Full-service digital marketing and technology solutions to accelerate your business growth
+            Specialized digital marketing solutions tailored to the unique challenges and opportunities of your industry
           </p>
         </motion.div>
 
-        <div className="carousel-3d">
-          {services.map((service, index) => (
-            <CarouselCard 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {industries.map((industry, index) => (
+            <IndustryCard 
               key={index} 
-              service={service} 
+              industry={industry}
               index={index}
-              total={services.length}
             />
           ))}
         </div>
@@ -188,10 +129,10 @@ const ServicesGridAnimated = () => {
           className="text-center mt-16"
         >
           <Link
-            to="/services"
+            to="/industries"
             className="inline-flex items-center text-primary font-semibold hover:underline"
           >
-            View All Services →
+            View All Industries →
           </Link>
         </motion.div>
       </div>

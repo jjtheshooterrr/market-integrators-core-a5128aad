@@ -4,7 +4,7 @@ import PricingCard from "@/components/pricing/PricingCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CurrencyDollar, ArrowsClockwise, UserCircleGear, ChartBar, Medal, RocketLaunch } from "phosphor-react";
+import { CurrencyDollar, ArrowsClockwise, UserCircleGear, ChartBar, Medal, RocketLaunch } from "@phosphor-icons/react";
 
 const Pricing = () => {
   const techServices = [

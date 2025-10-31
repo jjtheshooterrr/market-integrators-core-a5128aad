@@ -409,12 +409,12 @@
     width: 100px;
     height: 100px;
     padding: 20px;
-    background: linear-gradient(230deg, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.05));
+    background: transparent;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: hsl(var(--primary));
+    color: hsl(var(--foreground));
   }
   
   .industry-front-content .badge svg {

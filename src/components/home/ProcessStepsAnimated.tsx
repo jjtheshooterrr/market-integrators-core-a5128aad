@@ -2,7 +2,7 @@ import { Brain, GitBranch, Rocket, TrendingUp, BarChart3 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, cubicBezier, Variants } from "framer-motion";
 
 // Register GSAP plugin once
 if (typeof window !== "undefined" && (gsap as any).plugins.ScrollTrigger !== ScrollTrigger) {
@@ -24,46 +24,41 @@ const STEPS = [
     icon: Brain,
     number: "01",
     title: "Intelligence & Insight",
-    description:
-      "Deep-dive analysis into your data, market trends, and customer signals.",
+    description: "Deep-dive analysis into your data, market trends, and customer signals.",
   },
   {
     icon: GitBranch,
     number: "02",
     title: "Strategic Architecture",
-    description:
-      "Build your marketing system like an engineer: structure, flow, and performance built in.",
+    description: "Build your marketing system like an engineer: structure, flow, and performance built in.",
   },
   {
     icon: Rocket,
     number: "03",
     title: "Launch & Learn",
-    description:
-      "Deploy, test, and iterate — every week, every channel, every audience.",
+    description: "Deploy, test, and iterate — every week, every channel, every audience.",
   },
   {
     icon: TrendingUp,
     number: "04",
     title: "Optimize & Scale",
-    description:
-      "Continuous performance tuning powered by machine learning and predictive modeling.",
+    description: "Continuous performance tuning powered by machine learning and predictive modeling.",
   },
   {
     icon: BarChart3,
     number: "05",
     title: "Transparency & Reporting",
-    description:
-      "Access real metrics in real time through your analytics dashboard.",
+    description: "Access real metrics in real time through your analytics dashboard.",
   },
 ] as const;
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: (i: number) => ({ opacity: 0, y: 24, x: i % 2 ? 28 : -28 }),
   show: {
     opacity: 1,
     y: 0,
     x: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }, // cubic-bezier for type-safe ease
+    transition: { duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) },
   },
 };
 
@@ -88,11 +83,7 @@ export default function ProcessStepsRefined() {
         defaults: { ease: "none" },
       });
 
-      tl.fromTo(
-        progressLineRef.current,
-        { scaleY: 0 },
-        { scaleY: 1 }
-      );
+      tl.fromTo(progressLineRef.current, { scaleY: 0 }, { scaleY: 1 });
 
       // pulse markers slightly as they cross the viewport center
       const markers = progressWrapRef.current!.querySelectorAll('[data-node="dot"]');
@@ -109,7 +100,7 @@ export default function ProcessStepsRefined() {
               start: "top center+=40",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -122,9 +113,12 @@ export default function ProcessStepsRefined() {
       {/* Sticky header for context while scrolling */}
       <div className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/90 border-b border-border/40">
         <div className="max-w-6xl mx-auto px-6 py-8">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground text-center">Our Methodology: From Intelligence to Impact</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground text-center">
+            Our Methodology: From Intelligence to Impact
+          </h2>
           <p className="mt-3 text-base md:text-lg text-muted-foreground text-center max-w-3xl mx-auto">
-            We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth systems.
+            We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth
+            systems.
           </p>
         </div>
       </div>
@@ -148,7 +142,10 @@ export default function ProcessStepsRefined() {
               <li key={step.number} className="relative">
                 {/* connector dot for md+ */}
                 <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-2 z-10" aria-hidden>
-                  <div data-node="dot" className="w-3 h-3 rounded-full bg-destructive shadow-[0_0_0_6px_rgba(244,63,94,0.15)]" />
+                  <div
+                    data-node="dot"
+                    className="w-3 h-3 rounded-full bg-destructive shadow-[0_0_0_6px_rgba(244,63,94,0.15)]"
+                  />
                 </div>
 
                 <motion.article
@@ -173,7 +170,9 @@ export default function ProcessStepsRefined() {
                     tabIndex={0}
                     className="mt-6 md:mt-3 outline-none focus-visible:ring-2 focus-visible:ring-destructive/40 rounded-2xl p-6 md:p-8 bg-card/60 backdrop-blur border border-border/60 shadow-sm hover:shadow-lg transition-shadow"
                   >
-                    <div className={`flex items-start gap-4 ${isLeft ? "md:flex-row-reverse md:text-right" : "md:flex-row"} flex-col text-center md:text-left`}>
+                    <div
+                      className={`flex items-start gap-4 ${isLeft ? "md:flex-row-reverse md:text-right" : "md:flex-row"} flex-col text-center md:text-left`}
+                    >
                       <div className="relative w-14 h-14 shrink-0 self-center md:self-start">
                         <div className="absolute inset-0 rounded-xl bg-destructive/10" />
                         <div className="relative w-full h-full grid place-items-center">

@@ -8,8 +8,9 @@
 }
 
 .sphere-loader {
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: girar 8s linear infinite;
   width: 400px;
   height: 400px;
@@ -77,9 +78,9 @@
 
 @keyframes girar {
   0% {
-    transform: rotateX(0deg) rotateY(0deg);
+    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
   }
   100% {
-    transform: rotateX(360deg) rotateY(360deg);
+    transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg);
   }
 }

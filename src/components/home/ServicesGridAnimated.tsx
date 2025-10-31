@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const IndustryCarouselCard = ({ industry, index, total }: { industry: any; index: number; total: number }) => {
   const Icon = industry.icon;
   const angle = (360 / total) * index;
-  const radius = 450;
+  const radius = 350;
   const animationDelay = -(40 / total) * index;
 
   return (
@@ -37,10 +37,10 @@ const IndustryCarouselCard = ({ industry, index, total }: { industry: any; index
           </div>
           <div className="industry-card-back">
             <div className="industry-back-content">
-              <h3 className="font-heading font-bold text-base mb-2 text-center px-2">
+              <h3 className="font-heading font-bold text-sm mb-2 text-center px-3">
                 {industry.title}
               </h3>
-              <p className="text-xs text-center leading-relaxed px-4">
+              <p className="text-xs text-center leading-snug px-3">
                 {industry.description}
               </p>
             </div>

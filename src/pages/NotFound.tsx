@@ -7,7 +7,6 @@ const NotFound: React.FC = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="flex w-full max-w-4xl flex-col items-center gap-8 px-4 py-12">
-        {/* Logo (kept from your original) */}
         <img
           src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-transparent.webp"
           alt="Market Integrators Logo"
@@ -15,10 +14,8 @@ const NotFound: React.FC = () => {
           loading="lazy"
         />
 
-        {/* TV 404 Card */}
         <Tv404Card />
 
-        {/* Headline + CTA */}
         <div className="text-center space-y-4">
           <h1 className="font-heading text-5xl md:text-6xl font-bold text-foreground">404</h1>
           <p className="font-body text-lg md:text-xl text-muted-foreground">Page not found</p>
@@ -65,9 +62,11 @@ const Tv404Card: React.FC = () => {
             <div className="display_div">
               <div className="screen_out">
                 <div className="screen_out1">
+                  {/* Only use the animated screen; mobile shows this too */}
                   <div className="screen">
                     <span className="notfound_text"> NOT FOUND</span>
                   </div>
+                  {/* Keep DOM but always hidden */}
                   <div className="screenM">
                     <span className="notfound_text"> NOT FOUND</span>
                   </div>
@@ -258,6 +257,7 @@ const StyledWrapper = styled.div`
     border-radius: 5px;
     z-index: 10;
   }
+
   .tv {
     width: 17em;
     height: 9em;
@@ -283,6 +283,7 @@ const StyledWrapper = styled.div`
     background-blend-mode: difference;
     opacity: 0.09;
   }
+
   .curve_svg {
     position: absolute;
     margin-top: 0.25em;
@@ -290,6 +291,7 @@ const StyledWrapper = styled.div`
     height: 12px;
     width: 12px;
   }
+
   .display_div {
     display: flex;
     align-items: center;
@@ -298,11 +300,13 @@ const StyledWrapper = styled.div`
     border-radius: 15px;
     box-shadow: 3.5px 3.5px 0px #e69635;
   }
+
   .screen_out {
     width: auto;
     height: auto;
     border-radius: 10px;
   }
+
   .screen_out1 {
     width: 11em;
     height: 7.75em;
@@ -311,16 +315,17 @@ const StyledWrapper = styled.div`
     justify-content: center;
     border-radius: 10px;
   }
-  .screen {
+
+  /* ✅ The animated CRT screen — used on ALL breakpoints (desktop + mobile) */
+  .screen,
+  .screenM {
     width: 13em;
     height: 7.85em;
     font-family: Montserrat, ui-sans-serif, system-ui;
     border: 2px solid #1d0e01;
     background:
-      repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px
-        2500px,
-      repeating-conic-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 60% 60%/2500px
-        2500px;
+      repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px 2500px,
+      repeating-conic-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 60% 60%/2500px 2500px;
     background-blend-mode: difference;
     animation: b 0.2s infinite alternate;
     border-radius: 10px;
@@ -332,89 +337,15 @@ const StyledWrapper = styled.div`
     color: #252525;
     letter-spacing: 0.15em;
     text-align: center;
+    will-change: background-position;
   }
 
-  .screenM {
-    width: 13em;
-    height: 7.85em;
-    position: relative;
-    font-family: Montserrat, ui-sans-serif, system-ui;
-    background: linear-gradient(
-      to right,
-      #002fc6 0%,
-      #002bb2 14.2857142857%,
-      #3a3a3a 14.2857142857%,
-      #303030 28.5714285714%,
-      #ff0afe 28.5714285714%,
-      #f500f4 42.8571428571%,
-      #6c6c6c 42.8571428571%,
-      #626262 57.1428571429%,
-      #0affd9 57.1428571429%,
-      #00f5ce 71.4285714286%,
-      #3a3a3a 71.4285714286%,
-      #303030 85.7142857143%,
-      white 85.7142857143%,
-      #fafafa 100%
-    );
-    border-radius: 10px;
-    border: 2px solid black;
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #252525;
-    letter-spacing: 0.15em;
-    text-align: center;
-    overflow: hidden;
-  }
-  .screenM:before,
-  .screenM:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-  }
-  .screenM:before {
-    top: 0;
-    height: 68.4782608696%;
-    background: linear-gradient(
-      to right,
-      white 0%,
-      #fafafa 14.2857142857%,
-      #ffe60a 14.2857142857%,
-      #f5dc00 28.5714285714%,
-      #0affd9 28.5714285714%,
-      #00f5ce 42.8571428571%,
-      #10ea00 42.8571428571%,
-      #0ed600 57.1428571429%,
-      #ff0afe 57.1428571429%,
-      #f500f4 71.4285714286%,
-      #ed0014 71.4285714286%,
-      #d90012 85.7142857143%,
-      #002fc6 85.7142857143%,
-      #002bb2 100%
-    );
-  }
-  .screenM:after {
-    bottom: 0;
-    height: 21.7391304348%;
-    background: linear-gradient(
-      to right,
-      #006c6b 0%,
-      #005857 16.6666666667%,
-      white 16.6666666667%,
-      #fafafa 33.3333333333%,
-      #001b75 33.3333333333%,
-      #001761 50%,
-      #6c6c6c 50%,
-      #626262 66.6666666667%,
-      #929292 66.6666666667%,
-      #888888 83.3333333333%,
-      #3a3a3a 83.3333333333%,
-      #303030 100%
-    );
+  /* Never pause on interaction */
+  .screen:hover,
+  .screen:active,
+  .screenM:hover,
+  .screenM:active {
+    animation-play-state: running !important;
   }
 
   @keyframes b {
@@ -605,54 +536,26 @@ const StyledWrapper = styled.div`
     opacity: 0.5;
     font-family: Montserrat, ui-sans-serif, system-ui;
   }
-  .text_4041 {
-    transform: scaleY(24.5) scaleX(9);
-  }
-  .text_4042 {
-    transform: scaleY(24.5) scaleX(9);
-  }
+  .text_4041,
+  .text_4042,
   .text_4043 {
     transform: scaleY(24.5) scaleX(9);
   }
 
   @media only screen and (max-width: 495px) {
-    .text_404 {
-      column-gap: 6em;
-    }
+    .text_404 { column-gap: 6em; }
   }
   @media only screen and (max-width: 395px) {
-    .text_404 {
-      column-gap: 4em;
-    }
-    .text_4041,
-    .text_4042,
-    .text_4043 {
-      transform: scaleY(25) scaleX(8);
-    }
+    .text_404 { column-gap: 4em; }
+    .text_4041, .text_4042, .text_4043 { transform: scaleY(25) scaleX(8); }
   }
 
   @media (max-width: 275px), (max-height: 520px) {
-    .main {
-      position: relative;
-    }
+    .main { position: relative; }
   }
 
-  @media only screen and (max-width: 1024px) {
-    .screenM {
-      display: flex;
-    }
-    .screen {
-      display: none;
-    }
-  }
-  @media only screen and (min-width: 1025px) {
-    .screen {
-      display: flex;
-    }
-    .screenM {
-      display: none;
-    }
-  }
+  /* ⛔ Remove the old mobile/desktop swap; screen is always visible */
+  .screenM { display: none !important; }
 `;
 
 export default NotFound;

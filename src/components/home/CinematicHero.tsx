@@ -130,7 +130,7 @@ const CinematicHero = () => {
         }} transition={{
           delay: 0.6,
           duration: 0.5
-        }} className="font-body text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">Full-funnel, data-driven growth strategies that turn insights into action and campaigns into revenue. we engineer digital solutions that deliver measurable impact across every customer touchpoint.</motion.p>
+        }} className="font-body text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">Full-funnel, data-driven growth strategies that turn insights into action and campaigns into revenue. We engineer digital solutions that deliver measurable impact across every customer touchpoint.</motion.p>
 
           {/* CTAs */}
           <motion.div variants={prefersReducedMotion ? {} : ctaVariants} initial={prefersReducedMotion ? "visible" : "hidden"} animate="visible" className="flex flex-col sm:flex-row gap-4 justify-center mb-16">

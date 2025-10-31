@@ -24,7 +24,12 @@ const IndustryCarouselCard = ({ industry, index, total }: { industry: any; index
           <div className="industry-card-front">
             <div className="industry-front-content">
               <div className="badge">
-                <Icon size={40} />
+                <Icon size={32} />
+              </div>
+              <div className="description">
+                <div className="title">
+                  <p className="font-semibold">{industry.title}</p>
+                </div>
               </div>
             </div>
           </div>

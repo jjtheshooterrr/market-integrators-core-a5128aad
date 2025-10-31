@@ -396,10 +396,22 @@
     color: hsl(var(--card-foreground));
   }
 
+  .industry-card-front::before {
+    position: absolute;
+    content: ' ';
+    display: block;
+    width: 160px;
+    height: 160%;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), hsl(var(--primary)), hsl(var(--primary)), hsl(var(--primary)), transparent);
+    animation: rotation_481 5000ms infinite linear;
+  }
+
   .industry-card-front .industry-front-content {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 99%;
+    height: 99%;
+    background-color: hsl(var(--card));
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;

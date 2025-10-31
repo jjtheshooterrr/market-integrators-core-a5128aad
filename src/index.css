@@ -352,6 +352,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    transform: rotateY(180deg);
   }
 
   .industry-card-back::before {
@@ -392,7 +393,6 @@
   }
 
   .industry-card-front {
-    transform: rotateY(180deg);
     color: hsl(var(--card-foreground));
   }
 
@@ -406,11 +406,11 @@
   }
 
   .industry-front-content .badge {
-    width: 80px;
-    height: 80px;
-    padding: 16px;
+    width: 100px;
+    height: 100px;
+    padding: 20px;
     background: linear-gradient(230deg, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.05));
-    border-radius: 16px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -418,8 +418,8 @@
   }
   
   .industry-front-content .badge svg {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
   }
 
   .circle {

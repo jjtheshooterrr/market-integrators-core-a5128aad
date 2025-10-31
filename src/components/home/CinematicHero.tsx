@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
+import Lottie from "lottie-react";
 const LogoMorph = lazy(() => import("@/components/effects/LogoMorph"));
 const CinematicHero = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const [stitchAnimation, setStitchAnimation] = useState(null);
 
   // Safe prefers-reduced-motion (avoids SSR/window issues)
   const [prefersReducedMotion, setPRM] = useState(false);
@@ -25,6 +27,15 @@ const CinematicHero = () => {
     const t = setTimeout(() => setShowLogoMorph(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  // Load Lottie animation
+  useEffect(() => {
+    fetch("https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/Sew%20Stitch%20Doodle%20(1).lottie")
+      .then(res => res.json())
+      .then(data => setStitchAnimation(data))
+      .catch(err => console.error("Failed to load animation:", err));
+  }, []);
+
   const {
     scrollYProgress
   } = useScroll({
@@ -117,6 +128,18 @@ const CinematicHero = () => {
                 {word}
               </motion.span>)}
           </h1>
+
+          {/* Lottie Animation */}
+          {stitchAnimation && (
+            <motion.div 
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="mx-auto mb-8 w-48 h-48 md:w-64 md:h-64"
+            >
+              <Lottie animationData={stitchAnimation} loop={true} />
+            </motion.div>
+          )}
 
           {/* Subtext */}
           <motion.p initial={prefersReducedMotion ? {

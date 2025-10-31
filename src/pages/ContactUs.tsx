@@ -10,6 +10,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import SphereLoader from "@/components/effects/SphereLoader";
 
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,7 +87,10 @@ const ContactUs = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div>
-                <h2 className="mb-8">Request Your Free Proposal</h2>
+                <div className="flex items-center gap-6 mb-8">
+                  <h2 className="mb-0">Request Your Free Proposal</h2>
+                  <SphereLoader />
+                </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                   <div>

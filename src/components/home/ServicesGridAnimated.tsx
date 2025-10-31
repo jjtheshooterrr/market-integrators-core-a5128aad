@@ -5,44 +5,49 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const IndustryCard = ({ industry, index }: { industry: any; index: number }) => {
+const IndustryCarouselCard = ({ industry, index, total }: { industry: any; index: number; total: number }) => {
   const Icon = industry.icon;
+  const angle = (360 / total) * index;
+  const radius = 450;
+  const animationDelay = -(40 / total) * index;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="industry-flip-card"
+    <div
+      className="carousel-3d-card"
+      style={{
+        transform: `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`,
+        animationDelay: `${animationDelay}s`,
+      }}
     >
-      <div className="industry-card-content">
-        <div className="industry-card-front">
-          <div className="industry-front-content">
-            <div className="badge">
-              <Icon size={32} />
-            </div>
-            <div className="description">
-              <div className="title">
-                <p className="font-semibold">{industry.title}</p>
+      <div className="industry-flip-card h-full">
+        <div className="industry-card-content">
+          <div className="industry-card-front">
+            <div className="industry-front-content">
+              <div className="badge">
+                <Icon size={32} />
+              </div>
+              <div className="description">
+                <div className="title">
+                  <p className="font-semibold">{industry.title}</p>
+                </div>
               </div>
             </div>
+            <div className="circle" id="right"></div>
+            <div className="circle" id="bottom"></div>
           </div>
-          <div className="circle" id="right"></div>
-          <div className="circle" id="bottom"></div>
-        </div>
-        <div className="industry-card-back">
-          <div className="industry-back-content">
-            <h3 className="font-heading font-bold text-lg mb-3 text-center">
-              {industry.title}
-            </h3>
-            <p className="text-sm text-center leading-relaxed px-4">
-              {industry.description}
-            </p>
+          <div className="industry-card-back">
+            <div className="industry-back-content">
+              <h3 className="font-heading font-bold text-base mb-2 text-center px-2">
+                {industry.title}
+              </h3>
+              <p className="text-xs text-center leading-relaxed px-4">
+                {industry.description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -111,12 +116,13 @@ const ServicesGridAnimated = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="carousel-3d">
           {industries.map((industry, index) => (
-            <IndustryCard 
+            <IndustryCarouselCard 
               key={index} 
               industry={industry}
               index={index}
+              total={industries.length}
             />
           ))}
         </div>

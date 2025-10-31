@@ -33,7 +33,7 @@ export default function MethodologyFlowPro() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="text-center mb-6 md:mb-10"
+          className="text-center mb-4 md:mb-6"
         >
           <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight">Our Methodology</h2>
           <p className="mt-2 md:mt-3 text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -74,36 +74,36 @@ function FlowRail({ steps, progress }: { steps: typeof STEPS; progress: any }) {
   const cols = useMemo(() => `grid-cols-${steps.length}`, [steps.length]);
 
   return (
-    <div className="relative max-w-7xl mx-auto px-6 pb-24">
+    <div className="relative max-w-7xl mx-auto px-6 pb-12">
       {/* rail */}
       <div className="relative">
         {/* glow that travels along the rail */}
         <motion.div
           aria-hidden
           style={{ left: glowX }}
-          className="pointer-events-none absolute top-[46px] md:top-[52px] h-[6px] w-[30%] -translate-x-1/2 rounded-full blur-md bg-gradient-to-r from-destructive/40 via-pink-500/30 to-rose-500/30"
+          className="pointer-events-none absolute top-[34px] md:top-[40px] h-[4px] w-[30%] -translate-x-1/2 rounded-full blur-md bg-gradient-to-r from-destructive/40 via-pink-500/30 to-rose-500/30"
         />
 
         {/* rail line */}
-        <div className="absolute left-0 right-0 top-[52px] h-[2px] bg-gradient-to-r from-border via-border/70 to-border rounded-full" />
+        <div className="absolute left-0 right-0 top-[40px] h-[1.5px] bg-gradient-to-r from-border via-border/70 to-border rounded-full" />
 
         {/* progress mask */}
         <motion.div
-          className="absolute left-0 top-[52px] h-[2px] bg-gradient-to-r from-destructive via-pink-500 to-rose-500 rounded-full"
+          className="absolute left-0 top-[40px] h-[1.5px] bg-gradient-to-r from-destructive via-pink-500 to-rose-500 rounded-full"
           style={{ width: useTransform(progress, [0, 1], ["0%", "100%"]) }}
         />
 
         {/* connected cards */}
-        <div ref={railRef} className={`relative grid ${cols} gap-6`}>
+        <div ref={railRef} className={`relative grid ${cols} gap-4`}>
           {steps.map((s, i) => (
-            <div key={s.title} className="relative pt-16">
+            <div key={s.title} className="relative pt-10">
               {/* connector dot */}
-              <div className="absolute left-1/2 top-10 -translate-x-1/2 z-10">
+              <div className="absolute left-1/2 top-6 -translate-x-1/2 z-10">
                 <motion.span
-                  className="grid place-items-center w-6 h-6 rounded-full border border-destructive/50 bg-background"
+                  className="grid place-items-center w-5 h-5 rounded-full border border-destructive/50 bg-background"
                   whileHover={{ scale: 1.1 }}
                 >
-                  <span className="block w-2 h-2 rounded-full bg-destructive" />
+                  <span className="block w-[6px] h-[6px] rounded-full bg-destructive" />
                 </motion.span>
               </div>
 
@@ -124,9 +124,9 @@ function Card({ index, icon: Icon, title, desc, mobile = false }:{ index: number
       initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: mobile ? "-25%" : "-10%" }}
-      whileHover={{ y: -6 }}
+      whileHover={{ y: -4 }}
       transition={{ duration: 0.45 }}
-      className="group relative rounded-2xl border bg-card/80 backdrop-blur p-5 md:p-6 shadow-sm hover:shadow-lg transition-all"
+      className="group relative rounded-2xl border bg-card/80 backdrop-blur p-4 md:p-5 shadow-sm hover:shadow-lg transition-all"
       style={{
         borderColor: "transparent",
         backgroundImage:
@@ -138,22 +138,22 @@ function Card({ index, icon: Icon, title, desc, mobile = false }:{ index: number
       <span className="pointer-events-none absolute -top-16 left-0 right-0 h-24 bg-gradient-to-b from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
       <div className="flex items-center gap-3">
-        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-destructive/70 text-[11px] font-semibold text-destructive bg-white/60 backdrop-blur-sm">
+        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full border border-destructive/70 text-[10px] font-semibold text-destructive bg-white/60 backdrop-blur-sm">
           {number}
         </span>
         <motion.span
           whileHover={{ rotate: 10, scale: 1.05 }}
           transition={{ type: "spring", stiffness: 250, damping: 12 }}
-          className="grid place-items-center w-8 h-8 rounded-md bg-destructive/10"
+          className="grid place-items-center w-7 h-7 rounded-md bg-destructive/10"
         >
-          <Icon className="text-destructive" size={18} strokeWidth={1.6} />
+          <Icon className="text-destructive" size={16} strokeWidth={1.6} />
         </motion.span>
-        <h3 className={`${mobile ? "text-base" : "text-lg md:text-xl"} font-semibold tracking-tight flex items-center gap-2`}>
+        <h3 className={`${mobile ? "text-base" : "text-base md:text-lg"} font-semibold tracking-tight flex items-center gap-2`}>
           {title}
           <Sparkles className="hidden md:inline-block w-4 h-4 text-destructive/70" />
         </h3>
       </div>
-      <p className={`text-muted-foreground leading-relaxed ${mobile ? "mt-3 text-sm" : "mt-3"}`}>{desc}</p>
+      <p className={`text-muted-foreground leading-relaxed ${mobile ? "mt-3 text-sm" : "mt-3 text-[15px]"}`}>{desc}</p>
     </motion.article>
   );
 }

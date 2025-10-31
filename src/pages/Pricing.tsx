@@ -5,106 +5,178 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Pricing = () => {
-  const ppcPlans = [
+  const techServices = [
     {
-      name: "PPC Management",
-      price: "$975",
-      unit: "/month",
-      description: "Expert Google Ads and Meta Ads management for growing businesses",
+      name: "AI & Machine Learning",
+      price: "Starting at $2,500",
+      unit: "/project",
+      description: "Smart automations and predictive tools for everyday operations.",
       features: [
-        "Google Ads & Meta Ads campaigns",
-        "Keyword research & optimization",
-        "Ad copywriting & creative",
-        "Landing page recommendations",
-        "Monthly performance reports",
-        "Dedicated account manager",
+        "Model setup & training",
+        "Automation integration",
+        "Dashboard reporting",
+      ],
+    },
+    {
+      name: "Cloud & Cybersecurity",
+      price: "From $1,500",
+      unit: "/month",
+      description: "Secure, scalable infrastructure for modern teams.",
+      features: [
+        "Migration & setup",
+        "Monitoring & threat protection",
+        "Compliance management",
+      ],
+    },
+    {
+      name: "Data Analytics & Automation",
+      price: "From $1,200",
+      unit: "/month",
+      description: "Turn your data into insight and automation.",
+      features: [
+        "KPI dashboards",
+        "Workflow automation",
+        "API & system integrations",
+      ],
+    },
+    {
+      name: "App & Web Development",
+      price: "Websites from $3,500+",
+      unit: "Apps from $6,500+",
+      description: "Fast, responsive digital experiences built for conversions.",
+      features: [
+        "Custom design & development",
+        "CMS integration",
+        "Mobile optimization",
+      ],
+    },
+    {
+      name: "Digital Strategy Consulting",
+      price: "$150",
+      unit: "/hr or packages from $1,500+",
+      description: "Technical and growth strategy for scaling brands.",
+      features: [
+        "Strategic planning",
+        "Growth roadmaps",
+        "Implementation support",
       ],
     },
   ];
 
-  const seoPlans = [
+  const marketingServices = [
     {
-      name: "SEO Standard",
-      price: "$1,800",
+      name: "PPC & Paid Media",
+      price: "From $900",
       unit: "/month",
-      description: "Comprehensive SEO to increase organic traffic and rankings",
+      description: "Drive qualified leads through Google & Meta campaigns.",
+      features: [
+        "Ad setup & management",
+        "Keyword optimization",
+        "Monthly reporting",
+      ],
+    },
+    {
+      name: "Google Ads Management",
+      price: "From $600",
+      unit: "/month",
+      description: "Increase conversions and lower CPCs.",
+      features: [
+        "Campaign optimization",
+        "Ad copy & tracking",
+        "Ongoing A/B testing",
+      ],
+    },
+    {
+      name: "Meta Ads Management",
+      price: "From $600",
+      unit: "/month",
+      description: "Facebook & Instagram growth campaigns.",
+      features: [
+        "Creative strategy",
+        "Retargeting",
+        "Weekly performance updates",
+      ],
+    },
+    {
+      name: "SEO & Organic Growth",
+      price: "$950–$2,500",
+      unit: "/month",
+      description: "Improve rankings and long-term visibility.",
       popular: true,
       badge: "Most Popular",
       features: [
-        "Technical SEO audit & fixes",
-        "On-page optimization",
-        "Content strategy & creation",
-        "Link building campaign",
-        "Local SEO (if applicable)",
-        "Monthly ranking reports",
-        "Conversion tracking setup",
+        "Technical audit",
+        "Content optimization",
+        "Backlink outreach",
+      ],
+    },
+    {
+      name: "Social Media Marketing",
+      price: "From $750",
+      unit: "/month",
+      description: "Grow your audience and engagement.",
+      features: [
+        "Content calendar",
+        "Daily posting & engagement",
+        "Analytics reporting",
       ],
     },
   ];
 
-  const ecommercePlans = [
+  const creativeServices = [
     {
-      name: "eCommerce PPC Growth",
-      price: "$1,500",
-      unit: "flat (first 3 months)",
-      description: "Specialized PPC for online stores and eCommerce businesses",
+      name: "Video Production",
+      price: "From $1,800",
+      unit: "/project",
+      description: "Professional videos that engage your audience.",
       features: [
-        "Google Shopping campaigns",
-        "Product feed optimization",
-        "Remarketing strategies",
-        "Dynamic ad creation",
-        "ROI tracking & analytics",
-        "Performance optimization",
-      ],
-    },
-  ];
-
-  const landingPagePricing = [
-    {
-      name: "Landing Page Design",
-      price: "$900",
-      unit: "/page",
-      description: "High-converting landing pages designed for your campaigns",
-      features: [
-        "Custom responsive design",
-        "Conversion-focused layout",
-        "Mobile optimization",
-        "Fast loading speed",
-        "A/B testing ready",
-        "Analytics integration",
-      ],
-    },
-  ];
-
-  const webDesignPricing = [
-    {
-      name: "Website Design",
-      price: "$7,500+",
-      unit: "",
-      description: "Professional websites built for performance and conversions",
-      features: [
-        "Custom design & development",
-        "Fully responsive",
-        "SEO-optimized structure",
-        "Content management system",
-        "Performance optimization",
-        "Training & support",
-        "Ongoing maintenance available",
+        "Script & direction",
+        "On-site filming",
+        "Editing & delivery",
       ],
     },
     {
-      name: "Enterprise Web",
-      price: "$25,000+",
-      unit: "",
-      description: "Large-scale websites with advanced functionality",
+      name: "Post-Production & Editing",
+      price: "From $400",
+      unit: "/project",
+      description: "Fast, clean, professional editing.",
       features: [
-        "Complex integrations",
-        "Custom applications",
-        "Multi-language support",
-        "Advanced analytics",
-        "Security features",
-        "Dedicated support team",
-        "SLA agreements",
+        "Color correction",
+        "Sound design",
+        "Motion titles",
+      ],
+    },
+    {
+      name: "Animation & Motion Graphics",
+      price: "From $1,200",
+      unit: "/minute",
+      description: "Explainer & brand animation.",
+      features: [
+        "2D & 3D graphics",
+        "Logo animation",
+        "Brand story videos",
+      ],
+    },
+    {
+      name: "Photography & Product Shoots",
+      price: "From $650",
+      unit: "/session",
+      description: "Stunning imagery for products or branding.",
+      features: [
+        "Studio or on-location",
+        "Retouching included",
+        "20–30 final images",
+      ],
+    },
+    {
+      name: "Audio Production",
+      price: "From $75",
+      unit: "/hour",
+      description: "Clean, professional sound for video or podcast.",
+      features: [
+        "Mixing & mastering",
+        "Voiceovers",
+        "Sound branding",
       ],
     },
   ];
@@ -118,82 +190,104 @@ const Pricing = () => {
           <div className="container-custom text-center">
             <h1 className="mb-6">Transparent Pricing</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Choose the plan that fits your business goals. All packages include expert management, detailed reporting, and dedicated support.
+              Professional pricing and clear deliverables. Choose the services that fit your business goals.
             </p>
           </div>
         </section>
 
-        {/* PPC Pricing */}
+        {/* TECHNOLOGY & INNOVATION */}
         <section className="section-padding">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="mb-4">PPC Management</h2>
-              <p className="text-lg text-muted-foreground">Drive instant traffic and qualified leads</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {ppcPlans.map((plan, index) => (
-                <PricingCard key={index} {...plan} />
-              ))}
-              {ecommercePlans.map((plan, index) => (
-                <PricingCard key={index} {...plan} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SEO Pricing */}
-        <section className="section-padding bg-secondary">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="mb-4">SEO Services</h2>
-              <p className="text-lg text-muted-foreground">Dominate search rankings and increase organic traffic</p>
-            </div>
-            <div className="max-w-md mx-auto">
-              {seoPlans.map((plan, index) => (
-                <PricingCard key={index} {...plan} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Landing Pages & Web Design */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="mb-4">Web Design & Landing Pages</h2>
-              <p className="text-lg text-muted-foreground">Professional design that converts visitors into customers</p>
+              <h2 className="mb-4 uppercase tracking-wider text-primary">Technology & Innovation</h2>
+              <p className="text-lg text-muted-foreground">Digital solutions that improve efficiency and scale your business.</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {landingPagePricing.map((plan, index) => (
-                <PricingCard key={index} {...plan} />
-              ))}
-              {webDesignPricing.map((plan, index) => (
-                <PricingCard key={index} {...plan} />
+              {techServices.map((service, index) => (
+                <PricingCard key={index} {...service} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* MARKETING & GROWTH */}
         <section className="section-padding bg-secondary">
-          <div className="container-custom max-w-3xl">
-            <h2 className="text-center mb-12">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl mb-2">Is there a setup fee?</h3>
-                <p className="text-muted-foreground">No hidden fees. The prices listed are what you pay monthly. Some services may require one-time setup costs, which we'll discuss upfront.</p>
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="mb-4 uppercase tracking-wider text-primary">Marketing & Growth</h2>
+              <p className="text-lg text-muted-foreground">Transparent, results-driven marketing to grow your brand.</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {marketingServices.map((service, index) => (
+                <PricingCard key={index} {...service} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CREATIVE MEDIA STUDIO */}
+        <section className="section-padding">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="mb-4 uppercase tracking-wider text-primary">Creative Media Studio</h2>
+              <p className="text-lg text-muted-foreground">High-impact visuals and storytelling for modern brands.</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {creativeServices.map((service, index) => (
+                <PricingCard key={index} {...service} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CUSTOM PROJECTS */}
+        <section className="section-padding bg-secondary">
+          <div className="container-custom text-center max-w-3xl mx-auto">
+            <h2 className="mb-4 uppercase tracking-wider text-primary">Custom Projects</h2>
+            <p className="text-xl text-muted-foreground mb-6">
+              Need a mix of technology, marketing, and creative? We build integrated packages for your exact needs.
+            </p>
+            <p className="text-2xl font-bold mb-8">Custom quotes starting at $3,000.</p>
+            <Button asChild size="lg" className="btn-text">
+              <Link to="/contact-us">Book a Free Strategy Call</Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* WHY CLIENTS CHOOSE US */}
+        <section className="section-padding">
+          <div className="container-custom">
+            <h2 className="text-center mb-12 uppercase tracking-wider text-primary">Why Clients Choose Us</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="card-premium p-6 text-center">
+                <div className="text-4xl mb-4">💎</div>
+                <h3 className="text-lg font-bold mb-2">Transparent Pricing</h3>
+                <p className="text-muted-foreground">Clear deliverables and no hidden fees</p>
               </div>
-              <div>
-                <h3 className="text-xl mb-2">What's the minimum contract length?</h3>
-                <p className="text-muted-foreground">Most services require a 3-month minimum commitment to see meaningful results. We offer month-to-month options after the initial period.</p>
+              <div className="card-premium p-6 text-center">
+                <div className="text-4xl mb-4">🔄</div>
+                <h3 className="text-lg font-bold mb-2">Flexible Options</h3>
+                <p className="text-muted-foreground">Month-to-month plans available</p>
               </div>
-              <div>
-                <h3 className="text-xl mb-2">How fast can I see results?</h3>
-                <p className="text-muted-foreground">PPC campaigns can generate traffic immediately. SEO typically takes 3-6 months for significant ranking improvements. We provide regular progress reports.</p>
+              <div className="card-premium p-6 text-center">
+                <div className="text-4xl mb-4">👤</div>
+                <h3 className="text-lg font-bold mb-2">Dedicated Manager</h3>
+                <p className="text-muted-foreground">Your project, one point of contact</p>
               </div>
-              <div>
-                <h3 className="text-xl mb-2">Do you offer custom packages?</h3>
-                <p className="text-muted-foreground">Absolutely! We can create a customized plan combining multiple services tailored to your specific needs and budget.</p>
+              <div className="card-premium p-6 text-center">
+                <div className="text-4xl mb-4">📊</div>
+                <h3 className="text-lg font-bold mb-2">24/7 Dashboard</h3>
+                <p className="text-muted-foreground">Real-time reporting and analytics</p>
+              </div>
+              <div className="card-premium p-6 text-center">
+                <div className="text-4xl mb-4">✅</div>
+                <h3 className="text-lg font-bold mb-2">Proven Results</h3>
+                <p className="text-muted-foreground">Success across industries</p>
+              </div>
+              <div className="card-premium p-6 text-center">
+                <div className="text-4xl mb-4">🚀</div>
+                <h3 className="text-lg font-bold mb-2">Fast Delivery</h3>
+                <p className="text-muted-foreground">Quick turnarounds without compromise</p>
               </div>
             </div>
           </div>
@@ -202,13 +296,18 @@ const Pricing = () => {
         {/* CTA Section */}
         <section className="section-padding bg-foreground text-primary-foreground">
           <div className="container-custom text-center">
-            <h2 className="text-primary-foreground mb-6">Ready to Get Started?</h2>
+            <h2 className="text-primary-foreground mb-6">Ready to get started? Let's create something exceptional.</h2>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Request a free proposal and we'll create a customized plan for your business.
+              Get a quote or explore our proven case studies to see how we deliver results.
             </p>
-            <Button asChild size="lg" variant="secondary" className="btn-text">
-              <Link to="/contact-us">Request Free Proposal</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" variant="secondary" className="btn-text">
+                <Link to="/contact-us">Get a Quote</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="btn-text border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
+                <Link to="/case-studies">View Case Studies</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>

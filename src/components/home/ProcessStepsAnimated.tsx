@@ -4,20 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useReducedMotion, cubicBezier, Variants } from "framer-motion";
 
-// Register GSAP plugin once
-if (typeof window !== "undefined" && (gsap as any).plugins.ScrollTrigger !== ScrollTrigger) {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-/**
- * Improved, accessible, and smoother version of the vertical timeline.
- * Key upgrades:
- * - Crisper layout & spacing, better contrast, subtle glass card effect
- * - Sticky headline, progress line with gradient glow & markers
- * - Reduced-motion support (no GSAP when user prefers reduced motion)
- * - Small-viewport first (stacked), elegant alternating layout on md+
- * - Keyboard focus ring & semantic markup
- */
+gsap.registerPlugin(ScrollTrigger);
 
 const STEPS = [
   {
@@ -50,27 +37,21 @@ const STEPS = [
     title: "Transparency & Reporting",
     description: "Access real metrics in real time through your analytics dashboard.",
   },
-] as const;
+];
 
 const cardVariants: Variants = {
   hidden: (i: number) => ({ opacity: 0, y: 24, x: i % 2 ? 28 : -28 }),
-  show: {
-    opacity: 1,
-    y: 0,
-    x: 0,
-    transition: { duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) },
-  },
+  show: { opacity: 1, y: 0, x: 0, transition: { duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) } },
 };
 
 export default function ProcessStepsRefined() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const progressWrapRef = useRef<HTMLDivElement | null>(null);
   const progressLineRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) return; // Respect user preference
-    if (!sectionRef.current || !progressWrapRef.current || !progressLineRef.current) return;
+    if (prefersReducedMotion) return;
+    if (!sectionRef.current || !progressLineRef.current) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -84,124 +65,80 @@ export default function ProcessStepsRefined() {
       });
 
       tl.fromTo(progressLineRef.current, { scaleY: 0 }, { scaleY: 1 });
-
-      // pulse markers slightly as they cross the viewport center
-      const markers = progressWrapRef.current!.querySelectorAll('[data-node="dot"]');
-      markers.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { scale: 0.8, opacity: 0.6 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.3,
-            scrollTrigger: {
-              trigger: el as Element,
-              start: "top center+=40",
-              toggleActions: "play none none reverse",
-            },
-          },
-        );
-      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, [prefersReducedMotion]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="methodology"
-      aria-label="Our methodology timeline"
-      className="relative w-full overflow-x-clip"
-    >
-      {/* Sticky header for context while scrolling */}
-      <div className="md:sticky md:top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/90 border-b border-border/40">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8">
-          <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight text-foreground text-center">
+    <section ref={sectionRef} className="relative w-full overflow-x-clip">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 md:mb-16"
+        >
+          <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight text-foreground">
             Our Methodology: From Intelligence to Impact
           </h2>
-          <p className="mt-2 text-sm md:text-lg text-muted-foreground text-center max-w-3xl mx-auto">
+          <p className="mt-2 text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto">
             We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth
             systems.
           </p>
-        </div>
-      </div>
+        </motion.div>
 
-      {/* Timeline */}
-      <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-20">
-        {/* Rail & progress */}
-        <div ref={progressWrapRef} className="pointer-events-none block">
-          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-gradient-to-b from-border via-border/70 to-border/20" />
+        {/* Center Line Visible on All Screens */}
+        <div className="relative max-w-6xl mx-auto">
+          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-border/30" />
           <div
             ref={progressLineRef}
-            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[3px] origin-top scale-y-0 rounded-full bg-gradient-to-b from-destructive via-destructive/80 to-transparent shadow-[0_0_18px_2px_rgba(244,63,94,0.35)]"
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[3px] bg-gradient-to-b from-destructive via-destructive/80 to-transparent origin-top rounded-full shadow-[0_0_12px_rgba(244,63,94,0.4)]"
           />
-        </div>
 
-        <ol className="relative space-y-6 md:space-y-20">
-          {STEPS.map((step, i) => {
-            const Icon = step.icon;
-            const isLeft = i % 2 === 0;
-            return (
-              <li key={step.number} className="relative">
-                {/* connector dot for md+ */}
-                <div className="block absolute left-1/2 -translate-x-1/2 top-2 z-10" aria-hidden>
-                  <div
-                    data-node="dot"
-                    className="w-3 h-3 rounded-full bg-destructive shadow-[0_0_0_6px_rgba(244,63,94,0.15)]"
-                  />
-                </div>
-
-                <motion.article
+          <ol className="relative space-y-8 md:space-y-20">
+            {STEPS.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.li
+                  key={i}
                   custom={i}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: true, amount: 0.4, margin: "-80px" }}
+                  viewport={{ once: true, amount: 0.3 }}
                   variants={cardVariants}
-                  className={`group relative max-w-[360px] md:max-w-xl ${
-                    isLeft ? "md:mr-[52%] md:pr-10" : "md:ml-[52%] md:pl-10"
-                  } mx-auto md:mx-0`}
+                  className="relative flex flex-col items-center text-center"
                 >
-                  {/* number chip */}
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:left-auto md:top-auto hidden md:block">
-                    <div className="inline-flex items-center justify-center w-9 h-9 rounded-full border-2 border-destructive/80 bg-destructive/10 text-destructive text-[10px] font-bold shadow-sm">
-                      {step.number}
-                    </div>
+                  {/* Animated Dot */}
+                  <div className="absolute left-1/2 -translate-x-1/2 -top-4 z-10">
+                    <div className="w-4 h-4 rounded-full bg-destructive shadow-[0_0_0_5px_rgba(244,63,94,0.2)]" />
                   </div>
 
-                  {/* card */}
-                  <div
-                    tabIndex={0}
-                    className="mt-5 md:mt-3 outline-none focus-visible:ring-2 focus-visible:ring-destructive/40 rounded-lg p-4 md:p-8 bg-card/70 backdrop-blur border border-border/60 shadow-sm hover:shadow-md transition-shadow"
-                  >
-                    <div
-                      className={`flex items-start gap-4 ${isLeft ? "md:flex-row-reverse md:text-right" : "md:flex-row"} flex-col text-center md:text-left`}
-                    >
-                      <div className="relative w-10 h-10 shrink-0 self-center md:self-start">
-                        <div className="absolute inset-0 rounded-lg bg-destructive/10" />
-                        <div className="relative w-full h-full grid place-items-center">
-                          <Icon className="text-destructive" size={18} strokeWidth={1.6} />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-base md:text-xl font-semibold tracking-tight flex items-center justify-center md:justify-start gap-2">
-                          <span className="md:hidden inline-flex items-center justify-center w-6 h-6 rounded-full border border-destructive/60 text-[10px] text-destructive">
-                            {step.number}
-                          </span>
-                          {step.title}
-                        </h3>
-                        <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                          {step.description}
-                        </p>
+                  {/* Card */}
+                  <div className="relative bg-card/80 backdrop-blur border border-border/60 rounded-lg p-5 md:p-8 max-w-[360px] md:max-w-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="absolute -top-5 left-1/2 -translate-x-1/2">
+                      <div className="w-10 h-10 bg-destructive/10 rounded-xl flex items-center justify-center">
+                        <Icon className="text-destructive" size={20} strokeWidth={1.5} />
                       </div>
                     </div>
+                    <div className="mt-8">
+                      <h3 className="text-base md:text-xl font-semibold tracking-tight flex items-center justify-center gap-2">
+                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-destructive/60 text-[10px] text-destructive">
+                          {step.number}
+                        </span>
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                </motion.article>
-              </li>
-            );
-          })}
-        </ol>
+                </motion.li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

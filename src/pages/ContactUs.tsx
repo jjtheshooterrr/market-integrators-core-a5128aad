@@ -75,10 +75,10 @@ const ContactUs = () => {
         <section className="section-padding bg-secondary">
           <div className="container-custom text-center">
             <h1 className="mb-6">Let's Grow Your Business Together</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
               Get a free, no-obligation proposal customized to your business goals. We're here to answer your questions and help you succeed.
             </p>
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center">
               <SphereLoader />
             </div>
           </div>

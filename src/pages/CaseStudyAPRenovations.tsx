@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrendingUp, FileText, Award, Target } from "lucide-react";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
-import aprenovationsmacview from "@/assets/aprenovationsmacview.webp";
+import aprenovationsmacview from "@/assets/aprenovations-macview.webp";
 
 const CaseStudyAPRenovations = () => {
   const stats = [

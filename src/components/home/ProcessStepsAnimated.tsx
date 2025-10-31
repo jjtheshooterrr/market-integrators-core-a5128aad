@@ -109,14 +109,19 @@ export default function ProcessStepsRefined() {
   }, [prefersReducedMotion]);
 
   return (
-    <section ref={sectionRef} id="methodology" aria-label="Our methodology timeline" className="relative w-full">
+    <section
+      ref={sectionRef}
+      id="methodology"
+      aria-label="Our methodology timeline"
+      className="relative w-full overflow-x-clip"
+    >
       {/* Sticky header for context while scrolling */}
-      <div className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/90 border-b border-border/40">
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground text-center">
+      <div className="md:sticky md:top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/90 border-b border-border/40">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8">
+          <h2 className="text-2xl md:text-5xl font-extrabold tracking-tight text-foreground text-center">
             Our Methodology: From Intelligence to Impact
           </h2>
-          <p className="mt-3 text-base md:text-lg text-muted-foreground text-center max-w-3xl mx-auto">
+          <p className="mt-2 text-sm md:text-lg text-muted-foreground text-center max-w-3xl mx-auto">
             We combine market analysis, creative precision, and adaptive optimization to engineer scalable growth
             systems.
           </p>

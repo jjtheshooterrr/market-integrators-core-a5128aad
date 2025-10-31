@@ -111,15 +111,15 @@ export default function ProcessStepsRefined() {
                   className="relative flex flex-col items-center text-center"
                 >
                   {/* Animated Dot */}
-                  <div className="absolute left-1/2 -translate-x-1/2 -top-4 z-10">
+                  <div className="absolute left-1/2 -translate-x-1/2 -top-3 z-10 pointer-events-none">
                     <div className="w-4 h-4 rounded-full bg-destructive shadow-[0_0_0_5px_rgba(244,63,94,0.2)]" />
                   </div>
 
                   {/* Card */}
                   <div className="relative bg-card/80 backdrop-blur border border-border/60 rounded-lg p-5 md:p-8 max-w-[360px] md:max-w-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div className="absolute -top-5 left-1/2 -translate-x-1/2">
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 ml-6 md:ml-0 z-20">
                       <div className="w-10 h-10 bg-destructive/10 rounded-xl flex items-center justify-center">
-                        <Icon className="text-destructive" size={20} strokeWidth={1.5} />
+                        <Icon className="text-destructive" size={18} strokeWidth={1.5} />
                       </div>
                     </div>
                     <div className="mt-8">

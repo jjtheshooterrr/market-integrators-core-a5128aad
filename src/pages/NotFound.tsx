@@ -49,6 +49,7 @@ const Tv404Card: React.FC = () => {
                 className="curve_svg"
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 189.929 189.929"
                 xmlSpace="preserve"
               >
@@ -61,8 +62,13 @@ const Tv404Card: React.FC = () => {
             <div className="display_div">
               <div className="screen_out">
                 <div className="screen_out1">
+                  {/* Only use the animated screen; mobile shows this too */}
                   <div className="screen">
-                    <span className="notfound_text">NOT FOUND</span>
+                    <span className="notfound_text"> NOT FOUND</span>
+                  </div>
+                  {/* Keep DOM but always hidden */}
+                  <div className="screenM">
+                    <span className="notfound_text"> NOT FOUND</span>
                   </div>
                 </div>
               </div>
@@ -105,6 +111,8 @@ const Tv404Card: React.FC = () => {
 };
 
 const StyledWrapper = styled.div`
+  /* Design Inspired by one of Stefan Devai's Design on Dribble */
+
   .main_wrapper {
     display: flex;
     align-items: center;
@@ -122,85 +130,133 @@ const StyledWrapper = styled.div`
     margin-top: 5em;
   }
 
-  /* ====================== */
-  /* ✅ iPhone-safe TV Screen */
-  /* ====================== */
-  .screen {
-    position: relative;
-    width: 13em;
-    height: 7.85em;
-    font-family: Montserrat, ui-sans-serif, system-ui;
-    border: 2px solid #1d0e01;
-    background:
-      repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0 / 2500px 2500px,
-      repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 60% 60% / 2500px 2500px;
-    background-blend-mode: difference;
-    border-radius: 10px;
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #252525;
-    letter-spacing: 0.15em;
-    text-align: center;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    transform: translateZ(0);
+  .antenna {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: #f27405;
+    margin-bottom: -6em;
+    margin-left: 0em;
+    z-index: -1;
   }
-
-  .screen::after {
+  .antenna_shadow {
+    position: absolute;
+    background-color: transparent;
+    width: 50px;
+    height: 56px;
+    margin-left: 1.68em;
+    border-radius: 45%;
+    transform: rotate(140deg);
+    border: 4px solid transparent;
+    box-shadow:
+      inset 0px 16px #a85103,
+      inset 0px 16px 1px 1px #a85103;
+    -moz-box-shadow:
+      inset 0px 16px #a85103,
+      inset 0px 16px 1px 1px #a85103;
+  }
+  .antenna::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    top: -120%;
-    bottom: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)) 0 0 / 100% 3px repeat-y,
-      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0)) 0 0 / 100% 100% no-repeat;
-    will-change: transform;
-    transform: translate3d(0, -100%, 0);
-    animation: scan 4s linear infinite;
+    margin-top: -9.4em;
+    margin-left: 0.4em;
+    transform: rotate(-25deg);
+    width: 1em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: #f69e50;
   }
-
-  @keyframes scan {
-    0% {
-      transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      transform: translate3d(0, 100%, 0);
-    }
+  .antenna::before {
+    content: "";
+    position: absolute;
+    margin-top: 0.2em;
+    margin-left: 1.25em;
+    transform: rotate(-20deg);
+    width: 1.5em;
+    height: 0.8em;
+    border-radius: 50%;
+    background-color: #f69e50;
   }
-
-  @-webkit-keyframes scan {
-    0% {
-      -webkit-transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(0, 100%, 0);
-    }
+  .a1 {
+    position: relative;
+    top: -102%;
+    left: -130%;
+    width: 12em;
+    height: 5.5em;
+    border-radius: 50px;
+    background-image: linear-gradient(
+      #171717,
+      #171717,
+      #353535,
+      #353535,
+      #171717
+    );
+    transform: rotate(-29deg);
+    clip-path: polygon(50% 0%, 49% 100%, 52% 100%);
   }
-
-  .screen:hover,
-  .screen:active,
-  .screen::after:hover,
-  .screen::after:active {
-    animation-play-state: running !important;
+  .a1d {
+    position: relative;
+    top: -211%;
+    left: -35%;
+    transform: rotate(45deg);
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: #979797;
+    z-index: 99;
+  }
+  .a2 {
+    position: relative;
+    top: -210%;
+    left: -10%;
+    width: 12em;
+    height: 4em;
+    border-radius: 50px;
+    background-color: #171717;
+    background-image: linear-gradient(
+      #171717,
+      #171717,
+      #353535,
+      #353535,
+      #171717
+    );
+    margin-right: 5em;
+    clip-path: polygon(
+      47% 0,
+      47% 0,
+      34% 34%,
+      54% 25%,
+      32% 100%,
+      29% 96%,
+      49% 32%,
+      30% 38%
+    );
+    transform: rotate(-8deg);
+  }
+  .a2d {
+    position: relative;
+    top: -294%;
+    left: 94%;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: #979797;
+    z-index: 99;
   }
 
   .notfound_text {
     background-color: black;
-    padding: 0.3em 0.3em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
     font-size: 0.75em;
     color: white;
+    letter-spacing: 0;
     border-radius: 5px;
+    z-index: 10;
   }
-
-  /* ====================== */
-  /* Original TV frame and styling */
-  /* ====================== */
 
   .tv {
     width: 17em;
@@ -213,7 +269,6 @@ const StyledWrapper = styled.div`
     border: 2px solid #1d0e01;
     box-shadow: inset 0.2em 0.2em #e69635;
   }
-
   .tv::after {
     content: "";
     position: absolute;
@@ -221,9 +276,84 @@ const StyledWrapper = styled.div`
     height: 9em;
     border-radius: 15px;
     background:
-      repeating-radial-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 50% 0/2500px 2500px,
-      repeating-conic-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 60% 60%/2500px 2500px;
+      repeating-radial-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 50% 0/2500px
+        2500px,
+      repeating-conic-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 60% 60%/2500px
+        2500px;
+    background-blend-mode: difference;
     opacity: 0.09;
+  }
+
+  .curve_svg {
+    position: absolute;
+    margin-top: 0.25em;
+    margin-left: -0.25em;
+    height: 12px;
+    width: 12px;
+  }
+
+  .display_div {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 3.5px 3.5px 0px #e69635;
+  }
+
+  .screen_out {
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .screen_out1 {
+    width: 11em;
+    height: 7.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  /* ✅ The animated CRT screen — used on ALL breakpoints (desktop + mobile) */
+  .screen,
+  .screenM {
+    width: 13em;
+    height: 7.85em;
+    font-family: Montserrat, ui-sans-serif, system-ui;
+    border: 2px solid #1d0e01;
+    background:
+      repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px 2500px,
+      repeating-conic-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 60% 60%/2500px 2500px;
+    background-blend-mode: difference;
+    animation: b 0.2s infinite alternate;
+    border-radius: 10px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #252525;
+    letter-spacing: 0.15em;
+    text-align: center;
+    will-change: background-position;
+  }
+
+  /* Never pause on interaction */
+  .screen:hover,
+  .screen:active,
+  .screenM:hover,
+  .screenM:active {
+    animation-play-state: running !important;
+  }
+
+  @keyframes b {
+    100% {
+      background-position:
+        50% 0,
+        60% 50%;
+    }
   }
 
   .lines {
@@ -231,22 +361,20 @@ const StyledWrapper = styled.div`
     column-gap: 0.1em;
     align-self: flex-end;
   }
-
   .line1,
   .line3 {
     width: 2px;
     height: 0.5em;
     background-color: black;
-    border-radius: 25px 25px 0 0;
+    border-radius: 25px 25px 0px 0px;
     margin-top: 0.5em;
   }
-
   .line2 {
     flex-grow: 1;
     width: 2px;
     height: 1em;
     background-color: black;
-    border-radius: 25px 25px 0 0;
+    border-radius: 25px 25px 0px 0px;
   }
 
   .buttons_div {
@@ -262,9 +390,51 @@ const StyledWrapper = styled.div`
     justify-content: center;
     flex-direction: column;
     row-gap: 0.75em;
+    box-shadow: 3px 3px 0px #e69635;
   }
-
-  .b1,
+  .b1 {
+    width: 1.65em;
+    height: 1.65em;
+    border-radius: 50%;
+    background-color: #7f5934;
+    border: 2px solid black;
+    box-shadow:
+      inset 2px 2px 1px #b49577,
+      -2px 0px #513721,
+      -2px 0px 0px 1px black;
+  }
+  .b1::before {
+    content: "";
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 0.5em;
+    transform: rotate(47deg);
+    border-radius: 5px;
+    width: 0.1em;
+    height: 0.4em;
+    background-color: #000000;
+  }
+  .b1::after {
+    content: "";
+    position: absolute;
+    margin-top: 0.9em;
+    margin-left: 0.8em;
+    transform: rotate(47deg);
+    border-radius: 5px;
+    width: 0.1em;
+    height: 0.55em;
+    background-color: #000000;
+  }
+  .b1 div {
+    content: "";
+    position: absolute;
+    margin-top: -0.1em;
+    margin-left: 0.65em;
+    transform: rotate(45deg);
+    width: 0.15em;
+    height: 1.5em;
+    background-color: #000000;
+  }
   .b2 {
     width: 1.65em;
     height: 1.65em;
@@ -276,18 +446,36 @@ const StyledWrapper = styled.div`
       -2px 0px #513721,
       -2px 0px 0px 1px black;
   }
-
+  .b2::before {
+    content: "";
+    position: absolute;
+    margin-top: 1.05em;
+    margin-left: 0.8em;
+    transform: rotate(-45deg);
+    border-radius: 5px;
+    width: 0.15em;
+    height: 0.4em;
+    background-color: #000000;
+  }
+  .b2::after {
+    content: "";
+    position: absolute;
+    margin-top: -0.1em;
+    margin-left: 0.65em;
+    transform: rotate(-45deg);
+    width: 0.15em;
+    height: 1.5em;
+    background-color: #000000;
+  }
   .speakers {
     display: flex;
     flex-direction: column;
     row-gap: 0.5em;
   }
-
   .speakers .g1 {
     display: flex;
     column-gap: 0.25em;
   }
-
   .speakers .g1 .g11,
   .g12,
   .g13 {
@@ -298,7 +486,6 @@ const StyledWrapper = styled.div`
     border: 2px solid black;
     box-shadow: inset 1.25px 1.25px 1px #b49577;
   }
-
   .speakers .g {
     width: auto;
     height: 2px;
@@ -306,20 +493,29 @@ const StyledWrapper = styled.div`
   }
 
   .bottom {
+    width: 100%;
+    height: auto;
     display: flex;
+    align-items: center;
     justify-content: center;
     column-gap: 8.7em;
   }
-
-  .base1,
+  .base1 {
+    height: 1em;
+    width: 2em;
+    border: 2px solid #171717;
+    background-color: #4d4d4d;
+    margin-top: -0.15em;
+    z-index: -1;
+  }
   .base2 {
     height: 1em;
     width: 2em;
     border: 2px solid #171717;
     background-color: #4d4d4d;
     margin-top: -0.15em;
+    z-index: -1;
   }
-
   .base3 {
     position: absolute;
     height: 0.15em;
@@ -335,15 +531,31 @@ const StyledWrapper = styled.div`
     column-gap: 6em;
     z-index: -5;
     margin-bottom: 2em;
+    align-items: center;
+    justify-content: center;
     opacity: 0.5;
     font-family: Montserrat, ui-sans-serif, system-ui;
   }
-
   .text_4041,
   .text_4042,
   .text_4043 {
     transform: scaleY(24.5) scaleX(9);
   }
+
+  @media only screen and (max-width: 495px) {
+    .text_404 { column-gap: 6em; }
+  }
+  @media only screen and (max-width: 395px) {
+    .text_404 { column-gap: 4em; }
+    .text_4041, .text_4042, .text_4043 { transform: scaleY(25) scaleX(8); }
+  }
+
+  @media (max-width: 275px), (max-height: 520px) {
+    .main { position: relative; }
+  }
+
+  /* ⛔ Remove the old mobile/desktop swap; screen is always visible */
+  .screenM { display: none !important; }
 `;
 
 export default NotFound;

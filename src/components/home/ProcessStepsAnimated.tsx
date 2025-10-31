@@ -129,7 +129,7 @@ export default function ProcessStepsRefined() {
       </div>
 
       {/* Timeline */}
-      <div className="relative max-w-6xl mx-auto px-6 py-20">
+      <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-20">
         {/* Rail & progress */}
         <div ref={progressWrapRef} className="pointer-events-none hidden md:block">
           <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-gradient-to-b from-border via-border/70 to-border/20" />
@@ -139,7 +139,7 @@ export default function ProcessStepsRefined() {
           />
         </div>
 
-        <ol className="relative space-y-16 md:space-y-24">
+        <ol className="relative space-y-10 md:space-y-20">
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             const isLeft = i % 2 === 0;
@@ -164,8 +164,8 @@ export default function ProcessStepsRefined() {
                   } mx-auto md:mx-0`}
                 >
                   {/* number chip */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:left-auto md:top-auto flex md:block">
-                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-destructive/80 bg-destructive/10 text-destructive text-xs font-bold shadow-sm">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:left-auto md:top-auto flex md:block">
+                    <div className="inline-flex items-center justify-center w-9 h-9 rounded-full border-2 border-destructive/80 bg-destructive/10 text-destructive text-[10px] font-bold shadow-sm">
                       {step.number}
                     </div>
                   </div>
@@ -173,15 +173,15 @@ export default function ProcessStepsRefined() {
                   {/* card */}
                   <div
                     tabIndex={0}
-                    className="mt-6 md:mt-3 outline-none focus-visible:ring-2 focus-visible:ring-destructive/40 rounded-2xl p-6 md:p-8 bg-card/60 backdrop-blur border border-border/60 shadow-sm hover:shadow-lg transition-shadow"
+                    className="mt-5 md:mt-3 outline-none focus-visible:ring-2 focus-visible:ring-destructive/40 rounded-xl p-5 md:p-8 bg-card/70 backdrop-blur border border-border/60 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div
                       className={`flex items-start gap-4 ${isLeft ? "md:flex-row-reverse md:text-right" : "md:flex-row"} flex-col text-center md:text-left`}
                     >
-                      <div className="relative w-14 h-14 shrink-0 self-center md:self-start">
+                      <div className="relative w-12 h-12 shrink-0 self-center md:self-start">
                         <div className="absolute inset-0 rounded-xl bg-destructive/10" />
                         <div className="relative w-full h-full grid place-items-center">
-                          <Icon className="text-destructive" size={26} strokeWidth={1.6} />
+                          <Icon className="text-destructive" size={22} strokeWidth={1.6} />
                         </div>
                       </div>
                       <div className="flex-1">

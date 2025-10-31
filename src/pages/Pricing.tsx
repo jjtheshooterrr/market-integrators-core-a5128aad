@@ -3,12 +3,8 @@ import Footer from "@/components/layout/Footer";
 import PricingCard from "@/components/pricing/PricingCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CurrencyDollar, ArrowsClockwise, UserCircleGear, ChartBar, Medal, RocketLaunch } from "phosphor-react";
 
 const Pricing = () => {
   const techServices = [
@@ -17,55 +13,35 @@ const Pricing = () => {
       price: "Starting at $2,500",
       unit: "/project",
       description: "Smart automations and predictive tools for everyday operations.",
-      features: [
-        "Model setup & training",
-        "Automation integration",
-        "Dashboard reporting",
-      ],
+      features: ["Model setup & training", "Automation integration", "Dashboard reporting"],
     },
     {
       name: "Cloud & Cybersecurity",
       price: "From $1,500",
       unit: "/month",
       description: "Secure, scalable infrastructure for modern teams.",
-      features: [
-        "Migration & setup",
-        "Monitoring & threat protection",
-        "Compliance management",
-      ],
+      features: ["Migration & setup", "Monitoring & threat protection", "Compliance management"],
     },
     {
       name: "Data Analytics & Automation",
       price: "From $1,200",
       unit: "/month",
       description: "Turn your data into insight and automation.",
-      features: [
-        "KPI dashboards",
-        "Workflow automation",
-        "API & system integrations",
-      ],
+      features: ["KPI dashboards", "Workflow automation", "API & system integrations"],
     },
     {
       name: "App & Web Development",
       price: "Websites from $3,500+",
       unit: "Apps from $6,500+",
       description: "Fast, responsive digital experiences built for conversions.",
-      features: [
-        "Custom design & development",
-        "CMS integration",
-        "Mobile optimization",
-      ],
+      features: ["Custom design & development", "CMS integration", "Mobile optimization"],
     },
     {
       name: "Digital Strategy Consulting",
       price: "$150",
       unit: "/hr or packages from $1,500+",
       description: "Technical and growth strategy for scaling brands.",
-      features: [
-        "Strategic planning",
-        "Growth roadmaps",
-        "Implementation support",
-      ],
+      features: ["Strategic planning", "Growth roadmaps", "Implementation support"],
     },
   ];
 
@@ -75,33 +51,21 @@ const Pricing = () => {
       price: "From $900",
       unit: "/month",
       description: "Drive qualified leads through Google & Meta campaigns.",
-      features: [
-        "Ad setup & management",
-        "Keyword optimization",
-        "Monthly reporting",
-      ],
+      features: ["Ad setup & management", "Keyword optimization", "Monthly reporting"],
     },
     {
       name: "Google Ads Management",
       price: "From $600",
       unit: "/month",
       description: "Increase conversions and lower CPCs.",
-      features: [
-        "Campaign optimization",
-        "Ad copy & tracking",
-        "Ongoing A/B testing",
-      ],
+      features: ["Campaign optimization", "Ad copy & tracking", "Ongoing A/B testing"],
     },
     {
       name: "Meta Ads Management",
       price: "From $600",
       unit: "/month",
       description: "Facebook & Instagram growth campaigns.",
-      features: [
-        "Creative strategy",
-        "Retargeting",
-        "Weekly performance updates",
-      ],
+      features: ["Creative strategy", "Retargeting", "Weekly performance updates"],
     },
     {
       name: "SEO & Organic Growth",
@@ -110,22 +74,14 @@ const Pricing = () => {
       description: "Improve rankings and long-term visibility.",
       popular: true,
       badge: "Most Popular",
-      features: [
-        "Technical audit",
-        "Content optimization",
-        "Backlink outreach",
-      ],
+      features: ["Technical audit", "Content optimization", "Backlink outreach"],
     },
     {
       name: "Social Media Marketing",
       price: "From $750",
       unit: "/month",
       description: "Grow your audience and engagement.",
-      features: [
-        "Content calendar",
-        "Daily posting & engagement",
-        "Analytics reporting",
-      ],
+      features: ["Content calendar", "Daily posting & engagement", "Analytics reporting"],
     },
   ];
 
@@ -135,55 +91,35 @@ const Pricing = () => {
       price: "From $1,800",
       unit: "/project",
       description: "Professional videos that engage your audience.",
-      features: [
-        "Script & direction",
-        "On-site filming",
-        "Editing & delivery",
-      ],
+      features: ["Script & direction", "On-site filming", "Editing & delivery"],
     },
     {
       name: "Post-Production & Editing",
       price: "From $400",
       unit: "/project",
       description: "Fast, clean, professional editing.",
-      features: [
-        "Color correction",
-        "Sound design",
-        "Motion titles",
-      ],
+      features: ["Color correction", "Sound design", "Motion titles"],
     },
     {
       name: "Animation & Motion Graphics",
       price: "From $1,200",
       unit: "/minute",
       description: "Explainer & brand animation.",
-      features: [
-        "2D & 3D graphics",
-        "Logo animation",
-        "Brand story videos",
-      ],
+      features: ["2D & 3D graphics", "Logo animation", "Brand story videos"],
     },
     {
       name: "Photography & Product Shoots",
       price: "From $650",
       unit: "/session",
       description: "Stunning imagery for products or branding.",
-      features: [
-        "Studio or on-location",
-        "Retouching included",
-        "20–30 final images",
-      ],
+      features: ["Studio or on-location", "Retouching included", "20–30 final images"],
     },
     {
       name: "Audio Production",
       price: "From $75",
       unit: "/hour",
       description: "Clean, professional sound for video or podcast.",
-      features: [
-        "Mixing & mastering",
-        "Voiceovers",
-        "Sound branding",
-      ],
+      features: ["Mixing & mastering", "Voiceovers", "Sound branding"],
     },
   ];
 
@@ -291,32 +227,32 @@ const Pricing = () => {
             <h2 className="text-center mb-12 uppercase tracking-wider text-primary">Why Clients Choose Us</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="card-premium p-6 text-center">
-                <div className="text-4xl mb-4">💎</div>
+                <CurrencyDollar size={44} weight="duotone" className="mx-auto mb-4 text-primary" />
                 <h3 className="text-lg font-bold mb-2">Transparent Pricing</h3>
                 <p className="text-muted-foreground">Clear deliverables and no hidden fees</p>
               </div>
               <div className="card-premium p-6 text-center">
-                <div className="text-4xl mb-4">🔄</div>
+                <ArrowsClockwise size={44} weight="duotone" className="mx-auto mb-4 text-primary" />
                 <h3 className="text-lg font-bold mb-2">Flexible Options</h3>
                 <p className="text-muted-foreground">Month-to-month plans available</p>
               </div>
               <div className="card-premium p-6 text-center">
-                <div className="text-4xl mb-4">👤</div>
+                <UserCircleGear size={44} weight="duotone" className="mx-auto mb-4 text-primary" />
                 <h3 className="text-lg font-bold mb-2">Dedicated Manager</h3>
                 <p className="text-muted-foreground">Your project, one point of contact</p>
               </div>
               <div className="card-premium p-6 text-center">
-                <div className="text-4xl mb-4">📊</div>
+                <ChartBar size={44} weight="duotone" className="mx-auto mb-4 text-primary" />
                 <h3 className="text-lg font-bold mb-2">24/7 Dashboard</h3>
                 <p className="text-muted-foreground">Real-time reporting and analytics</p>
               </div>
               <div className="card-premium p-6 text-center">
-                <div className="text-4xl mb-4">✅</div>
+                <Medal size={44} weight="duotone" className="mx-auto mb-4 text-primary" />
                 <h3 className="text-lg font-bold mb-2">Proven Results</h3>
                 <p className="text-muted-foreground">Success across industries</p>
               </div>
               <div className="card-premium p-6 text-center">
-                <div className="text-4xl mb-4">🚀</div>
+                <RocketLaunch size={44} weight="duotone" className="mx-auto mb-4 text-primary" />
                 <h3 className="text-lg font-bold mb-2">Fast Delivery</h3>
                 <p className="text-muted-foreground">Quick turnarounds without compromise</p>
               </div>
@@ -335,7 +271,12 @@ const Pricing = () => {
               <Button asChild size="lg" variant="secondary" className="btn-text">
                 <Link to="/contact-us">Get a Quote</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="btn-text border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="btn-text border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+              >
                 <Link to="/case-studies">View Case Studies</Link>
               </Button>
             </div>

@@ -2,36 +2,36 @@ import { Link } from "react-router-dom";
 import { 
   MousePointerClick, Search, Globe, Video, Camera, Music, Film, Palette, 
   Box, Share2, Lightbulb, BarChart3, Brain, Smartphone, Cloud, Shield, 
-  Target, Zap, ChevronLeft, ChevronRight
+  Target, Zap
 } from "lucide-react";
 import { motion } from "framer-motion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
-const ServiceCard = ({ service }: { service: any }) => {
+const CarouselCard = ({ service, index, total }: { service: any; index: number; total: number }) => {
   const Icon = service.icon;
+  const angle = (360 / total) * index;
+  const radius = 400;
+  const animationDelay = -(40 / total) * index;
 
   return (
-    <Link to={service.href} className="block h-full">
-      <motion.div
-        whileHover={{ y: -8 }}
-        transition={{ duration: 0.3 }}
-        className="card-premium p-6 h-full flex flex-col group cursor-pointer"
-      >
-        <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
-          <Icon className="text-primary group-hover:text-primary-foreground transition-colors" size={28} />
+    <div
+      className="carousel-3d-card"
+      style={{
+        transform: `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`,
+        animationDelay: `${animationDelay}s`,
+      }}
+    >
+      <Link to={service.href} className="block h-full">
+        <div className="card-premium p-6 h-full flex flex-col group cursor-pointer hover:scale-105 transition-transform">
+          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+            <Icon className="text-primary group-hover:text-primary-foreground transition-colors" size={24} />
+          </div>
+          <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
+          <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
+            {service.description}
+          </p>
         </div>
-        <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-        <p className="text-muted-foreground leading-relaxed">
-          {service.description}
-        </p>
-      </motion.div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
@@ -154,7 +154,7 @@ const ServicesGridAnimated = () => {
   ];
 
   return (
-    <section className="section-padding bg-secondary">
+    <section className="section-padding bg-secondary overflow-hidden">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -169,30 +169,23 @@ const ServicesGridAnimated = () => {
           </p>
         </motion.div>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-4">
-            {services.map((service, index) => (
-              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <ServiceCard service={service} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-12" />
-          <CarouselNext className="hidden md:flex -right-12" />
-        </Carousel>
+        <div className="carousel-3d">
+          {services.map((service, index) => (
+            <CarouselCard 
+              key={index} 
+              service={service} 
+              index={index}
+              total={services.length}
+            />
+          ))}
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
           <Link
             to="/services"

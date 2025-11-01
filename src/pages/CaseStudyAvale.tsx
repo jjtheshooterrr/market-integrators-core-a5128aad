@@ -4,60 +4,56 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import avaleLogo from "@/assets/avale-logo.webp";
-import avaleMacview from "@/assets/avale-macview.webp";
+import avalemusicview from "@/assets/avalemusicview.webp";
 
 const CaseStudyAvale = () => {
   const keyHighlights = [
     "Dark, atmospheric design with subtle glow accents",
     "Streamlined fan journey: discover → listen → follow",
     "Mobile-first performance and clean typography",
-    "Easy to update with future releases"
+    "Easy to update with future releases",
   ];
 
   const solutions = [
     "Sleek, single-page experience with clear sections for releases and visuals",
     "Dark, neon-accented aesthetic to match the sound and brand mark",
     "Central 'Listen Now' actions routing to Spotify, Apple, TikTok, and YouTube",
-    "Fast, responsive layout for mobile and EPK use"
+    "Fast, responsive layout for mobile and EPK use",
   ];
 
   const results = [
     "Unified brand hub that strengthens first impressions",
     "Higher click-through to streaming platforms from a single 'home base'",
     "More time on page vs. previous link aggregators",
-    "Polished, professional presence for collaborations and media"
+    "Polished, professional presence for collaborations and media",
   ];
 
   return (
     <div className="min-h-screen">
       <Helmet>
         <title>AVALE Case Study | Artist Website Redesign & Branding</title>
-        <meta 
-          name="description" 
-          content="We designed a dark, immersive website for AVALE that unifies music, visuals, and streaming into one branded hub." 
+        <meta
+          name="description"
+          content="We designed a dark, immersive website for AVALE that unifies music, visuals, and streaming into one branded hub."
         />
         <meta property="og:title" content="AVALE Case Study | Artist Website Redesign & Branding" />
-        <meta 
-          property="og:description" 
-          content="We designed a dark, immersive website for AVALE that unifies music, visuals, and streaming into one branded hub." 
+        <meta
+          property="og:description"
+          content="We designed a dark, immersive website for AVALE that unifies music, visuals, and streaming into one branded hub."
         />
-        <meta property="og:image" content={avaleMacview} />
+        <meta property="og:image" content={avalemusicview} />
         <meta property="og:type" content="article" />
       </Helmet>
 
       <Header />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-5xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img 
-                src={avaleLogo} 
-                alt="AVALE logo" 
-                className="h-32 md:h-40 w-auto object-contain"
-              />
+              <img src={avaleLogo} alt="AVALE logo" className="h-32 md:h-40 w-auto object-contain" />
             </div>
 
             {/* Title & Subhead */}
@@ -72,11 +68,7 @@ const CaseStudyAvale = () => {
         <section className="section-padding bg-muted/30">
           <div className="container-custom max-w-6xl">
             <div className="rounded-xl overflow-hidden shadow-2xl animate-fade-in">
-              <img 
-                src={avaleMacview} 
-                alt="MacBook mockup of AVALE website homepage"
-                className="w-full h-auto"
-              />
+              <img src={avalemusicview} alt="MacBook mockup of AVALE website homepage" className="w-full h-auto" />
             </div>
             <p className="text-center text-sm text-muted-foreground mt-6">
               Immersive, performance-optimized redesign for officialavale.com
@@ -89,7 +81,9 @@ const CaseStudyAvale = () => {
           <div className="container-custom max-w-4xl">
             <h2 className="mb-6">Overview</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              AVALE is an independent electronic artist and producer known for cinematic sound design and high-impact visuals. He needed a cohesive web presence that looked and felt like his music—minimal, futuristic, and unmistakably AVALE.
+              AVALE is an independent electronic artist and producer known for cinematic sound design and high-impact
+              visuals. He needed a cohesive web presence that looked and felt like his music—minimal, futuristic, and
+              unmistakably AVALE.
             </p>
           </div>
         </section>
@@ -99,7 +93,8 @@ const CaseStudyAvale = () => {
           <div className="container-custom max-w-4xl">
             <h2 className="mb-6">The Challenge</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              AVALE relied on fragmented links and inconsistent branding across platforms. There wasn't a unified place for fans and industry to experience the music, see new releases, and connect across channels.
+              AVALE relied on fragmented links and inconsistent branding across platforms. There wasn't a unified place
+              for fans and industry to experience the music, see new releases, and connect across channels.
             </p>
           </div>
         </section>
@@ -140,10 +135,7 @@ const CaseStudyAvale = () => {
             <h2 className="mb-8 text-center">Key Highlights</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {keyHighlights.map((highlight, index) => (
-                <div 
-                  key={index}
-                  className="card-premium p-6 text-center hover:shadow-lg transition-shadow"
-                >
+                <div key={index} className="card-premium p-6 text-center hover:shadow-lg transition-shadow">
                   <p className="text-muted-foreground">{highlight}</p>
                 </div>
               ))}
@@ -154,9 +146,7 @@ const CaseStudyAvale = () => {
         {/* CTA Footer */}
         <section className="section-padding bg-foreground text-primary-foreground">
           <div className="container-custom text-center max-w-3xl">
-            <h2 className="text-primary-foreground mb-8">
-              Want an artist site that feels like your sound?
-            </h2>
+            <h2 className="text-primary-foreground mb-8">Want an artist site that feels like your sound?</h2>
             <Button asChild size="lg" variant="secondary" className="btn-text">
               <Link to="/contact-us">Request Proposal</Link>
             </Button>

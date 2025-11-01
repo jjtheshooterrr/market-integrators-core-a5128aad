@@ -7,6 +7,7 @@ import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
 import avaleLogo from "@/assets/avale-logo.webp";
 import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
+import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -32,9 +33,9 @@ const CaseStudies = () => {
       link: "/case-studies/testmypools",
     },
     {
-      name: "ControllerRepairs",
-      logo: aprenovationsLogo, // Placeholder - replace with actual logo
-      link: "#",
+      name: "Kranz Contractors",
+      logo: kranzcontractorsLogo,
+      link: "/case-studies/kranz-contractors",
     },
   ];
 
@@ -64,6 +65,12 @@ const CaseStudies = () => {
       title: "TestMyPools — Full AI SaaS Creation & Product Launch",
       description: "Complete AI SaaS platform built from concept to launch — integrating Google Vision, LLM APIs, and full subscription automation.",
       link: "/case-studies/testmypools",
+    },
+    {
+      logo: kranzcontractorsLogo,
+      title: "Kranz Contractors — Home Improvement Web Design & SEO",
+      description: "Modern website + local SEO that increased leads by 210% and cut ad costs in half through strategic optimization.",
+      link: "/case-studies/kranz-contractors",
     },
   ];
 

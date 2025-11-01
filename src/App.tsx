@@ -19,6 +19,7 @@ import CaseStudyAPRenovations from "./pages/CaseStudyAPRenovations";
 import CaseStudyAvaleMusic from "./pages/CaseStudyAvaleMusic";
 import CaseStudyPathway2Peace from "./pages/CaseStudyPathway2Peace";
 import CaseStudyTestMyPools from "./pages/CaseStudyTestMyPools";
+import CaseStudyKranzContractors from "./pages/CaseStudyKranzContractors";
 import ServicePPC from "./pages/ServicePPC";
 import ServiceCybersecurity from "./pages/ServiceCybersecurity";
 import ServiceDataAnalytics from "./pages/ServiceDataAnalytics";
@@ -88,6 +89,7 @@ const App = () => (
             <Route path="/case-studies/avalemusic" element={<CaseStudyAvaleMusic />} />
             <Route path="/case-studies/pathway-to-peace" element={<CaseStudyPathway2Peace />} />
             <Route path="/case-studies/testmypools" element={<CaseStudyTestMyPools />} />
+            <Route path="/case-studies/kranz-contractors" element={<CaseStudyKranzContractors />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

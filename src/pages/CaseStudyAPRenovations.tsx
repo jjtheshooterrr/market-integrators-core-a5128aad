@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrendingUp, FileText, Award, Target } from "lucide-react";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
-import aprenovationsmacview from "@/assets/aprenovationsmacview.webp";
+import aprenovationsMacview from "@/assets/aprenovationsmacview.webp";
 
 const CaseStudyAPRenovations = () => {
   const stats = [
@@ -43,7 +43,7 @@ const CaseStudyAPRenovations = () => {
           property="og:description"
           content="Website redesign + local SEO → Top-3 rankings and 3× quote requests in 60 days."
         />
-        <meta property="og:image" content={aprenovationsMacbook} />
+        <meta property="og:image" content={aprenovationsMacview} />
       </Helmet>
 
       <Header />
@@ -109,7 +109,7 @@ const CaseStudyAPRenovations = () => {
           <div className="container-custom max-w-6xl">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src={aprenovationsMacbook}
+                src={aprenovationsMacview}
                 alt="MacBook mockup showing the A&P Renovations website homepage with a modern kitchen remodel"
                 className="w-full h-auto"
               />

@@ -3,7 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
-import imperialjewelryLogo from "@/assets/imperialjewelry-logo.webp";
+import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 import imperialjewelryMacview from "@/assets/imperialjewelry-macview.webp";
 
 const CaseStudyImperialJewelry = () => {
@@ -29,9 +29,7 @@ const CaseStudyImperialJewelry = () => {
             />
 
             <h1 className="mb-6">Imperial Jewelry</h1>
-            <p className="text-xl text-muted-foreground mb-4">
-              Luxury eCommerce Web Design & Brand Identity
-            </p>
+            <p className="text-xl text-muted-foreground mb-4">Luxury eCommerce Web Design & Brand Identity</p>
             <div className="flex flex-wrap justify-center gap-2 text-sm text-muted-foreground">
               <span className="px-3 py-1 bg-muted rounded-full">eCommerce Design</span>
               <span className="px-3 py-1 bg-muted rounded-full">Brand Identity</span>
@@ -61,10 +59,14 @@ const CaseStudyImperialJewelry = () => {
           <div className="container-custom max-w-4xl">
             <h2 className="mb-6">Overview</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Imperial Jewelry is a boutique jeweler offering custom pieces, engagement rings, and fine accessories both online and in-store. Their craftsmanship and designs were premium — but their website didn't reflect that level of quality.
+              Imperial Jewelry is a boutique jeweler offering custom pieces, engagement rings, and fine accessories both
+              online and in-store. Their craftsmanship and designs were premium — but their website didn't reflect that
+              level of quality.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-              We rebuilt the brand's digital presence from the ground up with a modern, luxurious eCommerce design, strong product storytelling, and a fully optimized SEO and conversion strategy that drives both local and national sales.
+              We rebuilt the brand's digital presence from the ground up with a modern, luxurious eCommerce design,
+              strong product storytelling, and a fully optimized SEO and conversion strategy that drives both local and
+              national sales.
             </p>
           </div>
         </section>
@@ -103,7 +105,8 @@ const CaseStudyImperialJewelry = () => {
               </li>
             </ul>
             <p className="text-lg text-muted-foreground leading-relaxed mt-6">
-              They needed a high-end shopping experience that matched the quality of their jewelry — sleek, fast, and designed to convert.
+              They needed a high-end shopping experience that matched the quality of their jewelry — sleek, fast, and
+              designed to convert.
             </p>
           </div>
         </section>
@@ -120,7 +123,8 @@ const CaseStudyImperialJewelry = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Website Redesign</h3>
                 <p className="text-muted-foreground">
-                  Built a modern, elegant site with large product imagery, minimal typography, and clean navigation to reflect a luxury aesthetic.
+                  Built a modern, elegant site with large product imagery, minimal typography, and clean navigation to
+                  reflect a luxury aesthetic.
                 </p>
               </div>
               <div>
@@ -132,13 +136,15 @@ const CaseStudyImperialJewelry = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Conversion Optimization</h3>
                 <p className="text-muted-foreground">
-                  Simplified checkout, added trust elements (secure payment, warranty info, verified reviews), and clear CTAs.
+                  Simplified checkout, added trust elements (secure payment, warranty info, verified reviews), and clear
+                  CTAs.
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Local + Organic SEO</h3>
                 <p className="text-muted-foreground">
-                  Targeted "custom jewelry," "engagement rings," and "fine jewelry near me" keywords to boost visibility.
+                  Targeted "custom jewelry," "engagement rings," and "fine jewelry near me" keywords to boost
+                  visibility.
                 </p>
               </div>
               <div>
@@ -155,9 +161,7 @@ const CaseStudyImperialJewelry = () => {
         <section className="section-padding">
           <div className="container-custom max-w-4xl">
             <h2 className="mb-6">Results</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Within 60 days of launch:
-            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">Within 60 days of launch:</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="card-premium p-6">
                 <div className="text-4xl font-bold text-primary mb-2">+210%</div>
@@ -219,7 +223,9 @@ const CaseStudyImperialJewelry = () => {
         {/* CTA Section */}
         <section className="section-padding bg-foreground text-primary-foreground">
           <div className="container-custom text-center max-w-3xl">
-            <h2 className="text-primary-foreground mb-6">Want your online store to look as premium as your products?</h2>
+            <h2 className="text-primary-foreground mb-6">
+              Want your online store to look as premium as your products?
+            </h2>
             <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
               We design luxury-grade eCommerce experiences that boost trust, SEO visibility, and conversions.
             </p>

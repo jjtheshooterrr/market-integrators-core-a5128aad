@@ -9,25 +9,25 @@ import avaleLogo from "@/assets/avale-logo.webp";
 const CaseStudies = () => {
   // Client logos data
   const clientLogos = [
-    { 
-      name: "A&P Renovations", 
-      logo: aprenovationsLogo, 
-      link: "/case-studies/aprenovations" 
+    {
+      name: "A&P Renovations",
+      logo: aprenovationsLogo,
+      link: "/case-studies/aprenovations",
     },
-    { 
-      name: "AVALE", 
+    {
+      name: "AVALE",
       logo: avaleLogo,
-      link: "/case-studies/avale" 
+      link: "/case-studies/avalemusic",
     },
-    { 
-      name: "TestMyPools", 
+    {
+      name: "TestMyPools",
       logo: aprenovationsLogo, // Placeholder - replace with actual logo
-      link: "#" 
+      link: "#",
     },
-    { 
-      name: "ControllerRepairs", 
+    {
+      name: "ControllerRepairs",
       logo: aprenovationsLogo, // Placeholder - replace with actual logo
-      link: "#" 
+      link: "#",
     },
   ];
 
@@ -36,20 +36,21 @@ const CaseStudies = () => {
     {
       logo: aprenovationsLogo,
       title: "A&P Renovations — Ogden, Utah",
-      description: "A full digital refresh with web design and local SEO that tripled quote requests and earned Top-3 rankings.",
-      link: "/case-studies/aprenovations"
+      description:
+        "A full digital refresh with web design and local SEO that tripled quote requests and earned Top-3 rankings.",
+      link: "/case-studies/aprenovations",
     },
     {
       logo: avaleLogo,
       title: "AVALE — Official Artist Website",
       description: "A dark, immersive artist site that unifies music, visuals, and streaming into one branded hub.",
-      link: "/case-studies/avale"
-    }
+      link: "/case-studies/avale",
+    },
   ];
 
   const scrollToLogos = () => {
-    const element = document.getElementById('logo-showcase');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById("logo-showcase");
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -61,10 +62,10 @@ const CaseStudies = () => {
           <div className="container-custom text-center max-w-4xl">
             <h1 className="mb-6">Real Results. Real Businesses.</h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              We help brands grow through strategic digital marketing, clean design, and measurable results.
-              Explore some of the success stories from companies we've partnered with.
+              We help brands grow through strategic digital marketing, clean design, and measurable results. Explore
+              some of the success stories from companies we've partnered with.
             </p>
-            
+
             {/* Small client name list */}
             <div className="text-sm text-muted-foreground mb-8 flex items-center justify-center gap-2 flex-wrap">
               {clientLogos.map((client, index) => (
@@ -75,12 +76,7 @@ const CaseStudies = () => {
               ))}
             </div>
 
-            <Button 
-              onClick={scrollToLogos}
-              size="lg" 
-              variant="outline"
-              className="group"
-            >
+            <Button onClick={scrollToLogos} size="lg" variant="outline" className="group">
               View Our Client Success Stories
               <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
             </Button>
@@ -114,8 +110,8 @@ const CaseStudies = () => {
           <div className="container-custom max-w-4xl text-center">
             <h2 className="mb-6">Behind every project is a measurable win.</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Whether it's helping a contractor dominate local search, an eCommerce store boost conversions, 
-              or a SaaS platform launch with traction — each partnership tells a story of growth.
+              Whether it's helping a contractor dominate local search, an eCommerce store boost conversions, or a SaaS
+              platform launch with traction — each partnership tells a story of growth.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed mt-4">
               Our case studies highlight real outcomes across industries like construction, wellness, retail, and tech.
@@ -129,23 +125,14 @@ const CaseStudies = () => {
             <h2 className="text-center mb-12">Featured Success Stories</h2>
             <div className="grid md:grid-cols-1 gap-8">
               {featuredCaseStudies.map((caseStudy, index) => (
-                <div 
-                  key={index}
-                  className="card-premium p-10 hover:shadow-xl transition-all duration-300"
-                >
+                <div key={index} className="card-premium p-10 hover:shadow-xl transition-all duration-300">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                     <div className="flex-shrink-0">
-                      <img 
-                        src={caseStudy.logo} 
-                        alt={caseStudy.title}
-                        className="h-20 w-auto object-contain"
-                      />
+                      <img src={caseStudy.logo} alt={caseStudy.title} className="h-20 w-auto object-contain" />
                     </div>
                     <div className="flex-grow text-center md:text-left">
                       <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {caseStudy.description}
-                      </p>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">{caseStudy.description}</p>
                       <Button asChild variant="default">
                         <Link to={caseStudy.link}>Read Case Study →</Link>
                       </Button>

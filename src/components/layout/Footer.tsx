@@ -8,6 +8,10 @@ const Footer = () => {
       href: "/services/website-development",
     },
     {
+      name: "App Development",
+      href: "/services/app-development",
+    },
+    {
       name: "SEO & Organic Growth",
       href: "/services/search-engine-optimization-and-organic-growth",
     },
@@ -16,16 +20,20 @@ const Footer = () => {
       href: "/services/ppc-services",
     },
     {
-      name: "App Development",
-      href: "/services/app-development",
+      name: "Google Ads",
+      href: "/services/google-ads-management",
     },
     {
-      name: "Video Production",
-      href: "/services/video-production",
+      name: "Meta Ads",
+      href: "/services/meta-ads-management",
     },
     {
       name: "Social Media Marketing",
       href: "/services/social-media-marketing",
+    },
+    {
+      name: "Digital Strategy",
+      href: "/services/digital-strategy-consulting",
     },
     {
       name: "Automation & Integrations",
@@ -35,10 +43,78 @@ const Footer = () => {
       name: "AI & Machine Learning",
       href: "/services/ai-and-machine-learning",
     },
+    {
+      name: "Cloud Services",
+      href: "/services/cloud",
+    },
+    {
+      name: "Data Analytics",
+      href: "/services/data-analytics",
+    },
+    {
+      name: "Cybersecurity",
+      href: "/services/cybersecurity",
+    },
+    {
+      name: "Video Production",
+      href: "/services/video-production",
+    },
+    {
+      name: "Post Production",
+      href: "/services/post-production-editing",
+    },
+    {
+      name: "Animation & Motion Graphics",
+      href: "/services/animation-and-motion-graphics",
+    },
+    {
+      name: "3D & Visual Effects",
+      href: "/services/3d-and-visual-effects",
+    },
+    {
+      name: "Audio Production",
+      href: "/services/audio-production",
+    },
+    {
+      name: "Photography",
+      href: "/services/photography-and-product-shoots",
+    },
   ];
   const industries = [
     {
-      name: "View All Industries",
+      name: "E-Commerce & Retail",
+      href: "/industries",
+    },
+    {
+      name: "SaaS & Technology",
+      href: "/industries",
+    },
+    {
+      name: "Home Services",
+      href: "/industries",
+    },
+    {
+      name: "Healthcare & Medical",
+      href: "/industries",
+    },
+    {
+      name: "Legal Services",
+      href: "/industries",
+    },
+    {
+      name: "Finance & Banking",
+      href: "/industries",
+    },
+    {
+      name: "Education & eLearning",
+      href: "/industries",
+    },
+    {
+      name: "Real Estate",
+      href: "/industries",
+    },
+    {
+      name: "AI & Emerging Tech",
       href: "/industries",
     },
   ];
@@ -67,7 +143,7 @@ const Footer = () => {
   return (
     <footer className="bg-dark-bg text-dark-foreground">
       <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-6">

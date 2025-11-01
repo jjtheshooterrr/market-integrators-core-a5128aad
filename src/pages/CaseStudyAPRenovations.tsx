@@ -287,7 +287,7 @@ const CaseStudyAPRenovations = () => {
                 <Link to="/contact-us">Request a Proposal</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="btn-text border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
-                <Link to="/pricing">See Pricing</Link>
+                
               </Button>
             </div>
           </div>

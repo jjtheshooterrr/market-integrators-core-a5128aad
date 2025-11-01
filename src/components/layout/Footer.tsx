@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaTiktok, FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaLinkedin } from "react-icons/fa6";
 
+/* ---------- DATA ---------- */
+
 const serviceGroups = [
   {
     heading: "TECHNOLOGY & INNOVATION",
@@ -99,14 +101,19 @@ const company = [
   { name: "Locations", href: "/locations" },
 ];
 
+/* ---------- COMPONENT ---------- */
+
 const Footer = () => {
   return (
     <footer className="bg-dark-bg text-dark-foreground" role="contentinfo">
       <div className="container-custom section-padding">
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          {/* Company Info */}
-          <div className="col-span-1">
+        {/* 
+          Wider layout: 4 columns on lg screens.
+          We'll let Services span 2–3 columns so it never gets cramped.
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Company */}
+          <div>
             <div className="flex items-center gap-3 mb-6">
               <img
                 src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-black.webp"
@@ -145,7 +152,7 @@ const Footer = () => {
               <ul className="flex items-center gap-4">
                 <li>
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
@@ -156,7 +163,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
@@ -178,7 +185,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://youtube.com"
+                    href="https://youtube.com/@marketintegrators?si=M3nF8RksMx1m6kuI"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="YouTube"
@@ -189,7 +196,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://tiktok.com"
+                    href="https://www.tiktok.com/@marketintegrators"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="TikTok"
@@ -200,7 +207,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://linkedin.com/company/marketintegrators"
+                    href="https://www.linkedin.com/company/109536557"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
@@ -213,23 +220,26 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Services (grouped) */}
-          <nav className="col-span-1" aria-label="Services">
+          {/* Services (span extra columns so it never gets cramped) */}
+          <nav className="lg:col-span-2 xl:col-span-3" aria-label="Services">
             <h3 className="font-heading font-bold text-lg mb-6">Services</h3>
+
+            {/* Inner grid: 1 → 2 → 3 columns; each gets a minimum width */}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
               {serviceGroups.map((group) => (
-                <div key={group.heading}>
+                <div key={group.heading} className="min-w-[14rem]">
                   <h4 className="text-sm tracking-wide font-semibold text-dark-foreground/70 mb-3">{group.heading}</h4>
                   <ul className="space-y-3">
                     {group.items.map((item) => (
-                      <li key={item.title} className="leading-tight">
+                      <li key={item.title} className="leading-snug">
                         <Link
                           to={item.href}
                           className="block text-dark-foreground/90 hover:text-primary transition-colors"
                         >
                           {item.title}
                         </Link>
-                        <span className="block text-xs text-dark-foreground/60">{item.blurb}</span>
+                        {/* Hide taglines on small screens to reduce wrapping */}
+                        <span className="hidden md:block text-xs text-dark-foreground/60">{item.blurb}</span>
                       </li>
                     ))}
                   </ul>
@@ -239,7 +249,7 @@ const Footer = () => {
           </nav>
 
           {/* Industries */}
-          <nav className="col-span-1" aria-label="Industries">
+          <nav aria-label="Industries">
             <h3 className="font-heading font-bold text-lg mb-6">Industries</h3>
             <ul className="space-y-3">
               {industries.map((item) => (
@@ -253,7 +263,7 @@ const Footer = () => {
           </nav>
 
           {/* Company */}
-          <nav className="col-span-1" aria-label="Company">
+          <nav aria-label="Company">
             <h3 className="font-heading font-bold text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {company.map((item) => (

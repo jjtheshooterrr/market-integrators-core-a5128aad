@@ -6,43 +6,28 @@ import { Link } from "react-router-dom";
 import { TrendingUp, FileText, Award, Target } from "lucide-react";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
 import aprenovationsMacview from "@/assets/aprenovationsmacview.webp";
-
 const CaseStudyAPRenovations = () => {
-  const stats = [
-    { label: "+220% Organic Traffic", sublabel: "60 days" },
-    { label: "3× Quote Requests", sublabel: "" },
-    { label: "Top-3 Rankings", sublabel: "in Ogden" },
-    { label: "Higher Lead Quality", sublabel: "" },
-  ];
-
-  const keyHighlights = [
-    "Modern site that tells the project story with proof (photos, reviews, before/after)",
-    "Local SEO foundation that compounds over time",
-    "Clear, simple inquiry flow that increased conversion rate",
-    "Analytics to tie leads back to channels and keywords",
-  ];
-
-  const services = [
-    "Website Design & Build",
-    "Local SEO (On-Page + Google Business Profile)",
-    "Conversion Rate Optimization (CRO)",
-    "Analytics & Conversion Tracking",
-    "Ongoing Reporting & Optimization",
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const stats = [{
+    label: "+220% Organic Traffic",
+    sublabel: "60 days"
+  }, {
+    label: "3× Quote Requests",
+    sublabel: ""
+  }, {
+    label: "Top-3 Rankings",
+    sublabel: "in Ogden"
+  }, {
+    label: "Higher Lead Quality",
+    sublabel: ""
+  }];
+  const keyHighlights = ["Modern site that tells the project story with proof (photos, reviews, before/after)", "Local SEO foundation that compounds over time", "Clear, simple inquiry flow that increased conversion rate", "Analytics to tie leads back to channels and keywords"];
+  const services = ["Website Design & Build", "Local SEO (On-Page + Google Business Profile)", "Conversion Rate Optimization (CRO)", "Analytics & Conversion Tracking", "Ongoing Reporting & Optimization"];
+  return <div className="min-h-screen">
       <Helmet>
         <title>A&P Renovations Case Study | Web Design & Local SEO (Ogden)</title>
-        <meta
-          name="description"
-          content="How we tripled quote requests for A&P Renovations in Ogden with a modern website, local SEO, and conversion tracking."
-        />
+        <meta name="description" content="How we tripled quote requests for A&P Renovations in Ogden with a modern website, local SEO, and conversion tracking." />
         <meta property="og:title" content="A&P Renovations — Case Study (Ogden, UT)" />
-        <meta
-          property="og:description"
-          content="Website redesign + local SEO → Top-3 rankings and 3× quote requests in 60 days."
-        />
+        <meta property="og:description" content="Website redesign + local SEO → Top-3 rankings and 3× quote requests in 60 days." />
         <meta property="og:image" content={aprenovationsMacview} />
       </Helmet>
 
@@ -74,7 +59,7 @@ const CaseStudyAPRenovations = () => {
             </div>
 
             {/* Title */}
-            <h1 className="mb-4">A&P Renovations — Ogden, Utah</h1>
+            <h1 className="mb-4">A&P Renovations General Contractor and Home Renovation Expert</h1>
 
             {/* Subhead */}
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
@@ -84,12 +69,10 @@ const CaseStudyAPRenovations = () => {
 
             {/* Stats Pills */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {stats.map((stat, index) => (
-                <div key={index} className="card-premium p-6 text-center">
+              {stats.map((stat, index) => <div key={index} className="card-premium p-6 text-center">
                   <div className="font-bold text-lg text-primary mb-1">{stat.label}</div>
                   {stat.sublabel && <div className="text-sm text-muted-foreground">{stat.sublabel}</div>}
-                </div>
-              ))}
+                </div>)}
             </div>
 
             {/* CTA Buttons */}
@@ -108,11 +91,7 @@ const CaseStudyAPRenovations = () => {
         <section className="section-padding bg-secondary/30">
           <div className="container-custom max-w-6xl">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={aprenovationsMacview}
-                alt="MacBook mockup showing the A&P Renovations website homepage with a modern kitchen remodel"
-                className="w-full h-auto"
-              />
+              <img src={aprenovationsMacview} alt="MacBook mockup showing the A&P Renovations website homepage with a modern kitchen remodel" className="w-full h-auto" />
             </div>
             <p className="text-center text-sm text-muted-foreground mt-6 italic">
               Modern, responsive website design highlighting A&P Renovations' craftsmanship and services.
@@ -237,12 +216,10 @@ const CaseStudyAPRenovations = () => {
           <div className="container-custom max-w-4xl">
             <h2 className="mb-8">Key Highlights</h2>
             <div className="grid md:grid-cols-2 gap-4">
-              {keyHighlights.map((highlight, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 rounded-lg bg-secondary/50">
+              {keyHighlights.map((highlight, index) => <div key={index} className="flex items-start gap-3 p-4 rounded-lg bg-secondary/50">
                   <span className="text-primary text-xl">✓</span>
                   <span className="text-muted-foreground">{highlight}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -252,12 +229,10 @@ const CaseStudyAPRenovations = () => {
           <div className="container-custom max-w-4xl">
             <h2 className="mb-8">Services Delivered</h2>
             <div className="space-y-3">
-              {services.map((service, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 rounded-lg bg-background border border-border">
+              {services.map((service, index) => <div key={index} className="flex items-center gap-3 p-4 rounded-lg bg-background border border-border">
                   <span className="text-primary">→</span>
                   <span className="font-medium">{service}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -314,12 +289,7 @@ const CaseStudyAPRenovations = () => {
               <Button asChild size="lg" variant="secondary" className="btn-text">
                 <Link to="/contact-us">Request a Proposal</Link>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="btn-text border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10"
-              >
+              <Button asChild size="lg" variant="outline" className="btn-text border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
                 <Link to="/pricing">See Pricing</Link>
               </Button>
             </div>
@@ -327,8 +297,6 @@ const CaseStudyAPRenovations = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default CaseStudyAPRenovations;

@@ -24,6 +24,7 @@ import CaseStudyControllerRepairs from "./pages/CaseStudyControllerRepairs";
 import CaseStudyLoneStarzEntertainment from "./pages/CaseStudyLoneStarzEntertainment";
 import CaseStudyNorthernUtahWindowWells from "./pages/CaseStudyNorthernUtahWindowWells";
 import CaseStudyImperialJewelry from "./pages/CaseStudyImperialJewelry";
+import CaseStudyLylaGray from "./pages/CaseStudyLylaGray";
 import ServicePPC from "./pages/ServicePPC";
 import ServiceCybersecurity from "./pages/ServiceCybersecurity";
 import ServiceDataAnalytics from "./pages/ServiceDataAnalytics";
@@ -98,6 +99,7 @@ const App = () => (
             <Route path="/case-studies/lonestarzentertainment" element={<CaseStudyLoneStarzEntertainment />} />
             <Route path="/case-studies/northern-utah-window-wells" element={<CaseStudyNorthernUtahWindowWells />} />
             <Route path="/case-studies/imperial-jewelry" element={<CaseStudyImperialJewelry />} />
+            <Route path="/case-studies/lylagray" element={<CaseStudyLylaGray />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

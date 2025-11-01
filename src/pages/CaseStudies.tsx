@@ -12,6 +12,7 @@ import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
+import lylagrayLogo from "@/assets/lylagray-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -60,6 +61,11 @@ const CaseStudies = () => {
       name: "Imperial Jewelry",
       logo: imperialjewelryLogo,
       link: "/case-studies/imperial-jewelry",
+    },
+    {
+      name: "Lyla Gray",
+      logo: lylagrayLogo,
+      link: "/case-studies/lylagray",
     },
   ];
 
@@ -126,6 +132,13 @@ const CaseStudies = () => {
       description:
         "Luxury-grade eCommerce redesign that doubled online sales through elegant design, conversion optimization, and strategic SEO.",
       link: "/case-studies/imperial-jewelry",
+    },
+    {
+      logo: lylagrayLogo,
+      title: "Lyla Gray — Adult Model Brand Website & Subscription System",
+      description:
+        "Private, professional creator platform with subscription access, privacy protections, and direct monetization that boosted direct traffic 190%.",
+      link: "/case-studies/lylagray",
     },
   ];
 

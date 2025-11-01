@@ -11,6 +11,7 @@ import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
+import imperialjewelryLogo from "@/assets/imperialjewelry-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -54,6 +55,11 @@ const CaseStudies = () => {
       name: "Northern Utah Window Wells",
       logo: northernutahwindowwellsLogo,
       link: "/case-studies/northern-utah-window-wells",
+    },
+    {
+      name: "Imperial Jewelry",
+      logo: imperialjewelryLogo,
+      link: "/case-studies/imperial-jewelry",
     },
   ];
 
@@ -107,6 +113,12 @@ const CaseStudies = () => {
       title: "Northern Utah Window Wells — Local SEO & Seasonal Campaigns",
       description: "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
       link: "/case-studies/northern-utah-window-wells",
+    },
+    {
+      logo: imperialjewelryLogo,
+      title: "Imperial Jewelry — Luxury eCommerce Web Design & Brand Identity",
+      description: "Luxury-grade eCommerce redesign that doubled online sales through elegant design, conversion optimization, and strategic SEO.",
+      link: "/case-studies/imperial-jewelry",
     },
   ];
 

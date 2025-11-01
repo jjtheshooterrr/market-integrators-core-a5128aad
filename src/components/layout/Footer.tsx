@@ -152,7 +152,7 @@ const Footer = () => {
               <ul className="flex items-center gap-4">
                 <li>
                   <a
-                    href="https://www.facebook.com"
+                    href="https://www.facebook.com/marketintegrators"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
@@ -163,7 +163,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://www.instagram.com"
+                    href="https://www.instagram.com/marketintegrators"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
@@ -174,7 +174,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://twitter.com"
+                    href="https://x.com/Mktintegrators"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="X (Twitter)"

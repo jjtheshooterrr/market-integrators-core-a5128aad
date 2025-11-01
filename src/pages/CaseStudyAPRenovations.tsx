@@ -62,10 +62,7 @@ const CaseStudyAPRenovations = () => {
             <h1 className="mb-4">A&P Renovations General Contractor and Home Renovation Expert</h1>
 
             {/* Subhead */}
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-              A full digital refresh—modern web design, local SEO, and lead capture systems that tripled quote requests
-              and pushed A&P Renovations into Ogden's top local search results.
-            </p>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">A full digital refresh—modern web design, local SEO, and lead capture systems that tripled quote requests and pushed A&P Renovations into top local search results.</p>
 
             {/* Stats Pills */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

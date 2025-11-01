@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
 import avaleLogo from "@/assets/avale-logo.webp";
+import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -18,6 +19,11 @@ const CaseStudies = () => {
       name: "AVALE",
       logo: avaleLogo,
       link: "/case-studies/avalemusic",
+    },
+    {
+      name: "Pathway2Peace",
+      logo: pathway2peaceLogo,
+      link: "/case-studies/pathway-to-peace",
     },
     {
       name: "TestMyPools",
@@ -45,6 +51,12 @@ const CaseStudies = () => {
       title: "AVALE — Official Artist Website",
       description: "A dark, immersive artist site that unifies music, visuals, and streaming into one branded hub.",
       link: "/case-studies/avalemusic",
+    },
+    {
+      logo: pathway2peaceLogo,
+      title: "Pathway2Peace — Mental Health Website & HR Automation",
+      description: "Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.",
+      link: "/case-studies/pathway-to-peace",
     },
   ];
 

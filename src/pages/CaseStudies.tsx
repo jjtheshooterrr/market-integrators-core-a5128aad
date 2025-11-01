@@ -9,7 +9,7 @@ import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
-import lonestarzentMacview from "@/assets/lonestarzent-macview.webp";
+import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -46,7 +46,7 @@ const CaseStudies = () => {
     },
     {
       name: "LoneStarz Entertainment",
-      logo: lonestarzentMacview,
+      logo: lonestarzentLogo,
       link: "/case-studies/lonestarzentertainment",
     },
   ];
@@ -91,7 +91,7 @@ const CaseStudies = () => {
       link: "/case-studies/controllerrepairs",
     },
     {
-      logo: lonestarzentMacview,
+      logo: lonestarzentLogo,
       title: "LoneStarz Entertainment — Web Design & Booking Automation",
       description: "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
       link: "/case-studies/lonestarzentertainment",

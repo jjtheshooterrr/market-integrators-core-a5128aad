@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import lonestarzentMacview from "@/assets/lonestarzent-macview.webp";
 
 const CaseStudyLoneStarzEntertainment = () => {
@@ -29,7 +30,7 @@ const CaseStudyLoneStarzEntertainment = () => {
           <div className="container-custom max-w-5xl">
             <div className="text-center mb-12">
               <img
-                src={lonestarzentMacview}
+                src={lonestarzentLogo}
                 alt="LoneStarz Entertainment logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
               />

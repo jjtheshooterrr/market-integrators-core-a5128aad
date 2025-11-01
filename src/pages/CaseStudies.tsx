@@ -10,6 +10,7 @@ import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
+import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -48,6 +49,11 @@ const CaseStudies = () => {
       name: "LoneStarz Entertainment",
       logo: lonestarzentLogo,
       link: "/case-studies/lonestarzentertainment",
+    },
+    {
+      name: "Northern Utah Window Wells",
+      logo: northernutahwindowwellsLogo,
+      link: "/case-studies/northern-utah-window-wells",
     },
   ];
 
@@ -95,6 +101,12 @@ const CaseStudies = () => {
       title: "LoneStarz Entertainment — Web Design & Booking Automation",
       description: "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
       link: "/case-studies/lonestarzentertainment",
+    },
+    {
+      logo: northernutahwindowwellsLogo,
+      title: "Northern Utah Window Wells — Local SEO & Seasonal Campaigns",
+      description: "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
+      link: "/case-studies/northern-utah-window-wells",
     },
   ];
 

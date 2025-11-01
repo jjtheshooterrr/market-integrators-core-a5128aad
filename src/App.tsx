@@ -16,7 +16,7 @@ import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyAPRenovations from "./pages/CaseStudyAPRenovations";
-import CaseStudyAvale from "./pages/CaseStudyAvale";
+import CaseStudyAvaleMusic from "./pages/CaseStudyAvaleMusic";
 import ServicePPC from "./pages/ServicePPC";
 import ServiceCybersecurity from "./pages/ServiceCybersecurity";
 import ServiceDataAnalytics from "./pages/ServiceDataAnalytics";
@@ -83,7 +83,7 @@ const App = () => (
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/aprenovations" element={<CaseStudyAPRenovations />} />
-            <Route path="/case-studies/avale" element={<CaseStudyAvale />} />
+            <Route path="/case-studies/avalemusic" element={<CaseStudyAvaleMusic />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

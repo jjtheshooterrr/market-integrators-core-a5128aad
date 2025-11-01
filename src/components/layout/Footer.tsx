@@ -98,7 +98,6 @@ const company = [
   { name: "Case Studies", href: "/case-studies" },
   { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact-us" },
-  { name: "Locations", href: "/locations" },
 ];
 
 /* ---------- COMPONENT ---------- */

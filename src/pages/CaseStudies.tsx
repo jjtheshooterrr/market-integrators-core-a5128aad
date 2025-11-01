@@ -6,6 +6,7 @@ import { ArrowDown } from "lucide-react";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
 import avaleLogo from "@/assets/avale-logo.webp";
 import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
+import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -27,8 +28,8 @@ const CaseStudies = () => {
     },
     {
       name: "TestMyPools",
-      logo: aprenovationsLogo, // Placeholder - replace with actual logo
-      link: "#",
+      logo: testmypoolsLogo,
+      link: "/case-studies/testmypools",
     },
     {
       name: "ControllerRepairs",
@@ -57,6 +58,12 @@ const CaseStudies = () => {
       title: "Pathway2Peace — Mental Health Website & HR Automation",
       description: "Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.",
       link: "/case-studies/pathway-to-peace",
+    },
+    {
+      logo: testmypoolsLogo,
+      title: "TestMyPools — Full AI SaaS Creation & Product Launch",
+      description: "Complete AI SaaS platform built from concept to launch — integrating Google Vision, LLM APIs, and full subscription automation.",
+      link: "/case-studies/testmypools",
     },
   ];
 

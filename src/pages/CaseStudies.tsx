@@ -44,7 +44,7 @@ const CaseStudies = () => {
       logo: avaleLogo,
       title: "AVALE — Official Artist Website",
       description: "A dark, immersive artist site that unifies music, visuals, and streaming into one branded hub.",
-      link: "/case-studies/avale",
+      link: "/case-studies/avalemusic",
     },
   ];
 

@@ -1,19 +1,79 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { TrendingUp, Users, DollarSign } from "lucide-react";
-import caseStudyImage from "@/assets/case-study-health.jpg";
-import CountUp from "react-countup";
 import { motion } from "framer-motion";
+import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
+import aprenovationsMac from "@/assets/aprenovationsmacview.webp";
+import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
+import controllerrepairsMac from "@/assets/controllerrepairs-macview.webp";
+import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
+import pathway2peaceMac from "@/assets/pathway2peace-macview.webp";
+import testmypoolsLogo from "@/assets/testmypools-logo.webp";
+import testmypoolsMac from "@/assets/testmypools-macview.webp";
+import lylagrayLogo from "@/assets/lylagray-logo.webp";
+import lylagrayMac from "@/assets/lylagray-macview.webp";
+import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
+import kranzcontractorsMac from "@/assets/kranzcontractors-macview.webp";
 
 const FeaturedCaseStudy = () => {
-  const metrics = [
-    { icon: TrendingUp, label: "PPC Conversions", value: 990, suffix: "%", prefix: "+", color: "text-primary" },
-    { icon: Users, label: "Website Traffic", value: 2000, suffix: "%", prefix: "+", color: "text-primary" },
-    { icon: DollarSign, label: "Lower CPA", value: 50, suffix: "%", color: "text-primary" },
+  const caseStudies = [
+    {
+      logo: aprenovationsLogo,
+      bgImage: aprenovationsMac,
+      industry: "Construction",
+      name: "A&P Renovations",
+      highlight: "+180% lead growth",
+      stats: ["3× quote requests", "Top-3 local SEO", "Full digital refresh"],
+      link: "/case-studies/aprenovations",
+    },
+    {
+      logo: controllerrepairsLogo,
+      bgImage: controllerrepairsMac,
+      industry: "eCommerce",
+      name: "ControllerRepairs.com",
+      highlight: "+240% sales growth",
+      stats: ["Automated workflows", "Smart dashboards", "50% less manual work"],
+      link: "/case-studies/controllerrepairs",
+    },
+    {
+      logo: pathway2peaceLogo,
+      bgImage: pathway2peaceMac,
+      industry: "Healthcare",
+      name: "Pathway 2 Peace",
+      highlight: "10+ hours saved weekly",
+      stats: ["+125% workflow efficiency", "Custom HR automation", "Calming web redesign"],
+      link: "/case-studies/pathway-to-peace",
+    },
+    {
+      logo: testmypoolsLogo,
+      bgImage: testmypoolsMac,
+      industry: "SaaS / AI",
+      name: "TestMyPools.com",
+      highlight: "Full AI software creation",
+      stats: ["Google Vision integration", "Subscription automation", "Complete product launch"],
+      link: "/case-studies/testmypools",
+    },
+    {
+      logo: lylagrayLogo,
+      bgImage: lylagrayMac,
+      industry: "Creator Brand",
+      name: "Lyla Gray",
+      highlight: "+190% direct traffic",
+      stats: ["Subscription system", "Privacy protections", "Independent monetization"],
+      link: "/case-studies/lylagray",
+    },
+    {
+      logo: kranzcontractorsLogo,
+      bgImage: kranzcontractorsMac,
+      industry: "Home Services",
+      name: "Kranz Contractors",
+      highlight: "+210% inbound leads",
+      stats: ["50% lower ad costs", "Modern web design", "Local SEO dominance"],
+      link: "/case-studies/kranz-contractors",
+    },
   ];
 
   return (
-    <section className="section-padding bg-secondary">
+    <section className="section-padding bg-muted/30">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -24,88 +84,75 @@ const FeaturedCaseStudy = () => {
         >
           <h2 className="mb-4">Proven Results</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Real success stories from businesses we've helped grow
+            Real growth stories from businesses we've helped scale through strategy, design, and automation.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
-          >
-            <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              Healthcare Industry
-            </div>
-            <h3 className="text-3xl mb-6">Internal Healing & Wellness MD</h3>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              A medical wellness center struggling with low online visibility and high patient acquisition costs. Through our integrated PPC and SEO strategy, we transformed their digital presence and dramatically increased patient bookings.
-            </p>
-
-            <div className="grid grid-cols-3 gap-6 mb-8">
-              {metrics.map((metric, index) => {
-                const Icon = metric.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="flex justify-center mb-2">
-                      <Icon className={metric.color} size={28} />
-                    </div>
-                    <div className={`text-3xl font-bold ${metric.color} mb-1`}>
-                      <CountUp
-                        end={metric.value}
-                        duration={2.5}
-                        prefix={metric.prefix}
-                        suffix={metric.suffix}
-                        enableScrollSpy
-                        scrollSpyOnce
-                      />
-                    </div>
-                    <div className="text-sm text-muted-foreground">{metric.label}</div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {caseStudies.map((study, index) => (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              key={study.name}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Button asChild size="lg" className="btn-text">
-                <Link to="/case-studies">
-                  View All Case Studies →
-                </Link>
-              </Button>
-            </motion.div>
-          </motion.div>
+              <Link
+                to={study.link}
+                className="group block relative h-[400px] rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${study.bgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/80 to-foreground/40" />
+                
+                <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
+                  <div>
+                    <img src={study.logo} alt={`${study.name} logo`} className="h-12 w-auto object-contain mb-4" />
+                    <div className="inline-block bg-primary/20 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                      {study.industry}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-primary-foreground">{study.name}</h3>
+                    <p className="text-lg font-semibold text-primary mb-4">{study.highlight}</p>
+                  </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="order-1 lg:order-2"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src={caseStudyImage}
-                alt="Internal Healing & Wellness MD"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-            </div>
-          </motion.div>
+                  <div>
+                    <ul className="space-y-2 mb-6">
+                      {study.stats.map((stat, idx) => (
+                        <li key={idx} className="text-sm text-primary-foreground/90 flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          {stat}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="inline-flex items-center text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform">
+                      View Case Study →
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center"
+        >
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Want results like these?</h3>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            We help businesses turn strategy and technology into measurable growth.
+          </p>
+          <Button asChild size="lg" className="btn-text">
+            <Link to="/case-studies">
+              View All Case Studies →
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

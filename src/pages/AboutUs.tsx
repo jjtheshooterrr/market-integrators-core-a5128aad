@@ -39,7 +39,8 @@ const AboutUs = () => {
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="mb-6">We're Market Integrators</h1>
               <p className="text-xl text-muted-foreground">
-                A full-service digital marketing agency dedicated to accelerating business growth through data-driven strategies and measurable results.
+                A full-service digital marketing agency dedicated to accelerating business growth through data-driven
+                strategies and measurable results.
               </p>
             </div>
           </div>
@@ -52,10 +53,14 @@ const AboutUs = () => {
               <div>
                 <h2 className="mb-6">Our Mission: Your Growth</h2>
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  Since our founding, we've been on a mission to help businesses of all sizes achieve their full potential through strategic digital marketing. We believe every business deserves access to enterprise-level marketing expertise.
+                  Since our founding, we've been on a mission to help businesses of all sizes achieve their full
+                  potential through strategic digital marketing. We believe every business deserves access to
+                  enterprise-level marketing expertise.
                 </p>
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  Our team of certified specialists combines creativity with data science to deliver campaigns that don't just look good—they perform. From startups to established enterprises, we've helped hundreds of businesses generate millions in revenue.
+                  Our team of certified specialists combines creativity with data science to deliver campaigns that
+                  don't just look good—they perform. From startups to established enterprises, we've helped hundreds of
+                  businesses generate millions in revenue.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We're not just marketers. We're growth partners committed to your long-term success.
@@ -87,9 +92,7 @@ const AboutUs = () => {
                       <Icon className="text-primary" size={32} />
                     </div>
                     <h3 className="text-xl mb-3">{value.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {value.description}
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">{value.description}</p>
                   </div>
                 );
               })}
@@ -102,19 +105,19 @@ const AboutUs = () => {
           <div className="container-custom">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">10+</div>
+                <div className="text-5xl font-bold text-primary mb-2">1+</div>
                 <div className="text-lg text-muted-foreground">Years in Business</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">500+</div>
+                <div className="text-5xl font-bold text-primary mb-2">100+</div>
                 <div className="text-lg text-muted-foreground">Happy Clients</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">$50M+</div>
+                <div className="text-5xl font-bold text-primary mb-2">$1M+</div>
                 <div className="text-lg text-muted-foreground">Revenue Generated</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">95%</div>
+                <div className="text-5xl font-bold text-primary mb-2">87%</div>
                 <div className="text-lg text-muted-foreground">Client Retention</div>
               </div>
             </div>

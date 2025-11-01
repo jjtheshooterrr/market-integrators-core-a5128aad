@@ -17,7 +17,7 @@ const STEPS = [
 
 export default function MethodologyInfinityStripWithHeader() {
   return (
-    <section className="relative w-full py-10 md:py-14 overflow-hidden">
+    <section className="relative w-full py-10 md:py-14 overflow-hidden backdrop-blur-0">
       {/* Header */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 text-center mb-6 md:mb-10">
         <motion.h2
@@ -72,8 +72,8 @@ function Strip() {
 function Pill({ index, icon: Icon, title }: { index: number; icon: any; title: string }) {
   const number = (index + 1).toString().padStart(2, "0");
   return (
-    <div className="shrink-0 inline-flex items-center gap-2 md:gap-2.5 rounded-xl border px-3 md:px-4 py-2 text-xs md:text-sm bg-card/70 border-border hover:shadow-sm">
-      <span className="inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full border border-destructive/60 text-[10px] md:text-[11px] font-semibold text-destructive bg-white/70">
+    <div className="shrink-0 inline-flex items-center gap-2 md:gap-2.5 rounded-xl border px-3 md:px-4 py-2 text-xs md:text-sm bg-card border-border hover:shadow-sm backdrop-blur-0 isolate">
+      <span className="inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full border border-destructive/60 text-[10px] md:text-[11px] font-semibold text-destructive bg-white">
         {number}
       </span>
       <span className="grid place-items-center w-6 h-6 md:w-7 md:h-7 rounded-md bg-destructive/10">

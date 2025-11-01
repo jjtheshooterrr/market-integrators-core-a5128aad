@@ -16,7 +16,10 @@ const CaseStudyControllerRepairs = () => {
           name="description"
           content="How we built a fast, automated eCommerce and repair system for ControllerRepairs.com — boosting sales by 240% and cutting manual work in half."
         />
-        <meta property="og:title" content="ControllerRepairs.com Case Study | eCommerce, Automation & Dashboard System" />
+        <meta
+          property="og:title"
+          content="ControllerRepairs.com Case Study | eCommerce, Automation & Dashboard System"
+        />
         <meta
           property="og:description"
           content="How we built a fast, automated eCommerce and repair system for ControllerRepairs.com — boosting sales by 240% and cutting manual work in half."
@@ -36,12 +39,11 @@ const CaseStudyControllerRepairs = () => {
                 alt="ControllerRepairs.com logo"
                 className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
               />
-              <h1 className="mb-6">ControllerRepairs.com</h1>
-              <p className="text-xl text-muted-foreground mb-4">
-                eCommerce / Electronics Repair
-              </p>
+              <h1 className="mb-6">Controller Repairs</h1>
+              <p className="text-xl text-muted-foreground mb-4">eCommerce / Electronics Repair</p>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Full eCommerce Website Design, Custom Dashboard Development, SEO, Conversion Optimization, Shipping Automation
+                Full eCommerce Website Design, Custom Dashboard Development, SEO, Conversion Optimization, Shipping
+                Automation
               </p>
             </div>
           </section>
@@ -65,13 +67,15 @@ const CaseStudyControllerRepairs = () => {
             <div className="container-custom max-w-4xl">
               <h2 className="mb-6">Overview</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                ControllerRepairs.com is an online retailer and service center specializing in custom gaming controller 
-                modifications and console repairs. Despite a strong following, their previous online store couldn't handle 
-                high repair volumes efficiently — orders were managed manually, and users had limited visibility into repair status.
+                ControllerRepairs.com is an online retailer and service center specializing in custom gaming controller
+                modifications and console repairs. Despite a strong following, their previous online store couldn't
+                handle high repair volumes efficiently — orders were managed manually, and users had limited visibility
+                into repair status.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We were brought in to completely rebuild the business digitally — from storefront to backend systems — 
-                delivering a faster site, automated fulfillment, and a powerful internal dashboard to streamline operations.
+                We were brought in to completely rebuild the business digitally — from storefront to backend systems —
+                delivering a faster site, automated fulfillment, and a powerful internal dashboard to streamline
+                operations.
               </p>
             </div>
           </section>
@@ -102,8 +106,8 @@ const CaseStudyControllerRepairs = () => {
                 </li>
               </ul>
               <p className="text-lg text-muted-foreground leading-relaxed mt-6">
-                They needed a professional eCommerce experience and a backend system that could automate the 
-                entire repair and shipping process.
+                They needed a professional eCommerce experience and a backend system that could automate the entire
+                repair and shipping process.
               </p>
             </div>
           </section>
@@ -122,7 +126,8 @@ const CaseStudyControllerRepairs = () => {
                   <div>
                     <p className="font-semibold text-lg">Full Website Redesign</p>
                     <p className="text-muted-foreground">
-                      A high-performance, responsive eCommerce site with modern product presentation and quick checkout flow.
+                      A high-performance, responsive eCommerce site with modern product presentation and quick checkout
+                      flow.
                     </p>
                   </div>
                 </div>
@@ -131,8 +136,8 @@ const CaseStudyControllerRepairs = () => {
                   <div>
                     <p className="font-semibold text-lg">Custom Dashboard System</p>
                     <p className="text-muted-foreground">
-                      Developed an internal dashboard allowing the team to manage repairs, update order status, 
-                      and track fulfillment in real time.
+                      Developed an internal dashboard allowing the team to manage repairs, update order status, and
+                      track fulfillment in real time.
                     </p>
                   </div>
                 </div>
@@ -141,8 +146,8 @@ const CaseStudyControllerRepairs = () => {
                   <div>
                     <p className="font-semibold text-lg">Shipping Automation</p>
                     <p className="text-muted-foreground">
-                      Integrated with carrier APIs to generate labels automatically, track packages, and send 
-                      real-time updates to customers.
+                      Integrated with carrier APIs to generate labels automatically, track packages, and send real-time
+                      updates to customers.
                     </p>
                   </div>
                 </div>
@@ -160,8 +165,8 @@ const CaseStudyControllerRepairs = () => {
                   <div>
                     <p className="font-semibold text-lg">Conversion Optimization</p>
                     <p className="text-muted-foreground">
-                      Redesigned key flows with trust signals, streamlined forms, and call-to-action placement 
-                      to increase order completion.
+                      Redesigned key flows with trust signals, streamlined forms, and call-to-action placement to
+                      increase order completion.
                     </p>
                   </div>
                 </div>
@@ -182,9 +187,7 @@ const CaseStudyControllerRepairs = () => {
           <section className="section-padding">
             <div className="container-custom max-w-4xl">
               <h2 className="mb-6">Results</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Within 60 days of launch:
-              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">Within 60 days of launch:</p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="card-premium p-6">
                   <p className="text-4xl font-bold text-primary mb-2">+240%</p>
@@ -194,9 +197,7 @@ const CaseStudyControllerRepairs = () => {
                 </div>
                 <div className="card-premium p-6">
                   <p className="text-4xl font-bold text-primary mb-2">3.8×</p>
-                  <p className="text-muted-foreground">
-                    Faster load speed (1.4s average LCP)
-                  </p>
+                  <p className="text-muted-foreground">Faster load speed (1.4s average LCP)</p>
                 </div>
                 <div className="card-premium p-6">
                   <p className="text-4xl font-bold text-primary mb-2">-52%</p>
@@ -253,8 +254,8 @@ const CaseStudyControllerRepairs = () => {
           <section className="section-padding bg-secondary">
             <div className="container-custom max-w-3xl text-center">
               <blockquote className="text-2xl font-light italic text-muted-foreground mb-6">
-                "We finally have a system that runs itself — from repair orders to shipping labels. 
-                It's faster, cleaner, and has completely changed how we operate."
+                "We finally have a system that runs itself — from repair orders to shipping labels. It's faster,
+                cleaner, and has completely changed how we operate."
               </blockquote>
               <p className="text-lg font-semibold">— ControllerRepairs.com Team</p>
             </div>
@@ -265,8 +266,8 @@ const CaseStudyControllerRepairs = () => {
             <div className="container-custom text-center max-w-3xl">
               <h2 className="text-primary-foreground mb-6">Ready to automate your online business?</h2>
               <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
-                From eCommerce to logistics — we design systems that convert customers and save hours 
-                through automation and smart dashboards.
+                From eCommerce to logistics — we design systems that convert customers and save hours through automation
+                and smart dashboards.
               </p>
               <Button asChild size="lg" variant="secondary" className="btn-text">
                 <Link to="/contact-us">Request Proposal</Link>

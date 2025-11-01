@@ -4,38 +4,42 @@ import { FaTiktok, FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaLinkedin } 
 const Footer = () => {
   const services = [
     {
+      name: "Web Development",
+      href: "/services/website-development",
+    },
+    {
+      name: "SEO & Organic Growth",
+      href: "/services/search-engine-optimization-and-organic-growth",
+    },
+    {
       name: "PPC Management",
       href: "/services/ppc-services",
     },
     {
-      name: "SEO Services",
-      href: "/services/search-engine-optimization",
+      name: "App Development",
+      href: "/services/app-development",
     },
     {
-      name: "Web Development",
-      href: "/services/web-development",
+      name: "Video Production",
+      href: "/services/video-production",
     },
     {
-      name: "Social Media Ads",
-      href: "/services/paid-social-media-advertising-services",
+      name: "Social Media Marketing",
+      href: "/services/social-media-marketing",
+    },
+    {
+      name: "Automation & Integrations",
+      href: "/services/automation-and-integrations",
+    },
+    {
+      name: "AI & Machine Learning",
+      href: "/services/ai-and-machine-learning",
     },
   ];
   const industries = [
     {
-      name: "HVAC Marketing",
-      href: "/who-we-serve/home-services-marketing/hvac",
-    },
-    {
-      name: "Legal Marketing",
-      href: "/who-we-serve/law-firms-legal-digital-marketing",
-    },
-    {
-      name: "Medical Marketing",
-      href: "/who-we-serve/medical-digital-marketing",
-    },
-    {
-      name: "Automotive",
-      href: "/who-we-serve/automotive-digital-marketing",
+      name: "View All Industries",
+      href: "/industries",
     },
   ];
   const company = [

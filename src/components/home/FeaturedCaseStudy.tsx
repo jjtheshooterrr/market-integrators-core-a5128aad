@@ -9,8 +9,8 @@ import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import pathway2peaceMac from "@/assets/pathway2peace-macview.webp";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import testmypoolsMac from "@/assets/testmypools-macview.webp";
-import lylagrayLogo from "@/assets/lylagray-logo.webp";
-import lylagrayMac from "@/assets/lylagray-macview.webp";
+import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
+import imperialjewelryMac from "@/assets/imperialjewelry-macview.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import kranzcontractorsMac from "@/assets/kranzcontractors-macview.webp";
 
@@ -53,13 +53,13 @@ const FeaturedCaseStudy = () => {
       link: "/case-studies/testmypools",
     },
     {
-      logo: lylagrayLogo,
-      bgImage: lylagrayMac,
-      industry: "Creator Brand",
-      name: "Lyla Gray",
-      highlight: "+190% direct traffic",
-      stats: ["Subscription system", "Privacy protections", "Independent monetization"],
-      link: "/case-studies/lylagray",
+      logo: imperialjewelryLogo,
+      bgImage: imperialjewelryMac,
+      industry: "Luxury eCommerce",
+      name: "Imperial Jewelry",
+      highlight: "Complete brand transformation",
+      stats: ["Custom eCommerce design", "Premium brand identity", "Mobile-first experience"],
+      link: "/case-studies/imperial-jewelry",
     },
     {
       logo: kranzcontractorsLogo,

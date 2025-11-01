@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
+import avaleLogo from "@/assets/avale-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -14,17 +15,17 @@ const CaseStudies = () => {
       link: "/case-studies/aprenovations" 
     },
     { 
+      name: "AVALE", 
+      logo: avaleLogo,
+      link: "/case-studies/avale" 
+    },
+    { 
       name: "TestMyPools", 
       logo: aprenovationsLogo, // Placeholder - replace with actual logo
       link: "#" 
     },
     { 
       name: "ControllerRepairs", 
-      logo: aprenovationsLogo, // Placeholder - replace with actual logo
-      link: "#" 
-    },
-    { 
-      name: "Imperial Jewelry", 
       logo: aprenovationsLogo, // Placeholder - replace with actual logo
       link: "#" 
     },
@@ -37,6 +38,12 @@ const CaseStudies = () => {
       title: "A&P Renovations — Ogden, Utah",
       description: "A full digital refresh with web design and local SEO that tripled quote requests and earned Top-3 rankings.",
       link: "/case-studies/aprenovations"
+    },
+    {
+      logo: avaleLogo,
+      title: "AVALE — Official Artist Website",
+      description: "A dark, immersive artist site that unifies music, visuals, and streaming into one branded hub.",
+      link: "/case-studies/avale"
     }
   ];
 

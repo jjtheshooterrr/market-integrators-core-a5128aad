@@ -8,6 +8,7 @@ import avaleLogo from "@/assets/avale-logo.webp";
 import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
+import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -36,6 +37,11 @@ const CaseStudies = () => {
       name: "Kranz Contractors",
       logo: kranzcontractorsLogo,
       link: "/case-studies/kranz-contractors",
+    },
+    {
+      name: "ControllerRepairs",
+      logo: controllerrepairsLogo,
+      link: "/case-studies/controllerrepairs",
     },
   ];
 
@@ -71,6 +77,12 @@ const CaseStudies = () => {
       title: "Kranz Contractors — Home Improvement Web Design & SEO",
       description: "Modern website + local SEO that increased leads by 210% and cut ad costs in half through strategic optimization.",
       link: "/case-studies/kranz-contractors",
+    },
+    {
+      logo: controllerrepairsLogo,
+      title: "ControllerRepairs.com — eCommerce, Automation & Dashboard System",
+      description: "Fast, automated eCommerce and repair platform — boosting sales by 240% and cutting manual work in half through automation and smart dashboards.",
+      link: "/case-studies/controllerrepairs",
     },
   ];
 

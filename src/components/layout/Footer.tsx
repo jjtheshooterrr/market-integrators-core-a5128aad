@@ -132,14 +132,14 @@ const Footer = () => {
             <address className="not-italic space-y-3 text-dark-foreground/80">
               <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Phone size={18} aria-hidden="true" />
-                <span>(123) 456-7890</span>
+                <span>(435) 695-3550</span>
               </a>
               <a
-                href="mailto:info@marketintegrators.com"
+                href="mailto:marketintegrator@gmail.com"
                 className="flex items-center gap-2 hover:text-primary transition-colors"
               >
                 <Mail size={18} aria-hidden="true" />
-                <span>info@marketintegrators.com</span>
+                <span>marketintegrator@gmail.com</span>
               </a>
               <div className="flex items-center gap-2">
                 <MapPin size={18} aria-hidden="true" />

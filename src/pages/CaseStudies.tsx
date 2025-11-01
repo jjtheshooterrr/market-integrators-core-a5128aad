@@ -9,6 +9,7 @@ import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
+import lonestarzentMacview from "@/assets/lonestarzent-macview.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -42,6 +43,11 @@ const CaseStudies = () => {
       name: "ControllerRepairs",
       logo: controllerrepairsLogo,
       link: "/case-studies/controllerrepairs",
+    },
+    {
+      name: "LoneStarz Entertainment",
+      logo: lonestarzentMacview,
+      link: "/case-studies/lonestarzentertainment",
     },
   ];
 
@@ -83,6 +89,12 @@ const CaseStudies = () => {
       title: "ControllerRepairs.com — eCommerce, Automation & Dashboard System",
       description: "Fast, automated eCommerce and repair platform — boosting sales by 240% and cutting manual work in half through automation and smart dashboards.",
       link: "/case-studies/controllerrepairs",
+    },
+    {
+      logo: lonestarzentMacview,
+      title: "LoneStarz Entertainment — Web Design & Booking Automation",
+      description: "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
+      link: "/case-studies/lonestarzentertainment",
     },
   ];
 

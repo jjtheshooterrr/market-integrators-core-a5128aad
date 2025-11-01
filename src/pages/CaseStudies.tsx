@@ -11,7 +11,7 @@ import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
-import imperialjewelryLogo from "@/assets/imperialjewelry-logo.webp";
+import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -81,43 +81,50 @@ const CaseStudies = () => {
     {
       logo: pathway2peaceLogo,
       title: "Pathway2Peace — Mental Health Website & HR Automation",
-      description: "Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.",
+      description:
+        "Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.",
       link: "/case-studies/pathway-to-peace",
     },
     {
       logo: testmypoolsLogo,
       title: "TestMyPools — Full AI SaaS Creation & Product Launch",
-      description: "Complete AI SaaS platform built from concept to launch — integrating Google Vision, LLM APIs, and full subscription automation.",
+      description:
+        "Complete AI SaaS platform built from concept to launch — integrating Google Vision, LLM APIs, and full subscription automation.",
       link: "/case-studies/testmypools",
     },
     {
       logo: kranzcontractorsLogo,
       title: "Kranz Contractors — Home Improvement Web Design & SEO",
-      description: "Modern website + local SEO that increased leads by 210% and cut ad costs in half through strategic optimization.",
+      description:
+        "Modern website + local SEO that increased leads by 210% and cut ad costs in half through strategic optimization.",
       link: "/case-studies/kranz-contractors",
     },
     {
       logo: controllerrepairsLogo,
       title: "ControllerRepairs.com — eCommerce, Automation & Dashboard System",
-      description: "Fast, automated eCommerce and repair platform — boosting sales by 240% and cutting manual work in half through automation and smart dashboards.",
+      description:
+        "Fast, automated eCommerce and repair platform — boosting sales by 240% and cutting manual work in half through automation and smart dashboards.",
       link: "/case-studies/controllerrepairs",
     },
     {
       logo: lonestarzentLogo,
       title: "LoneStarz Entertainment — Web Design & Booking Automation",
-      description: "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
+      description:
+        "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
       link: "/case-studies/lonestarzentertainment",
     },
     {
       logo: northernutahwindowwellsLogo,
       title: "Northern Utah Window Wells — Local SEO & Seasonal Campaigns",
-      description: "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
+      description:
+        "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
       link: "/case-studies/northern-utah-window-wells",
     },
     {
       logo: imperialjewelryLogo,
       title: "Imperial Jewelry — Luxury eCommerce Web Design & Brand Identity",
-      description: "Luxury-grade eCommerce redesign that doubled online sales through elegant design, conversion optimization, and strategic SEO.",
+      description:
+        "Luxury-grade eCommerce redesign that doubled online sales through elegant design, conversion optimization, and strategic SEO.",
       link: "/case-studies/imperial-jewelry",
     },
   ];

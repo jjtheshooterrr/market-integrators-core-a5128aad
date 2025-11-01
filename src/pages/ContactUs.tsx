@@ -19,58 +19,58 @@ const ContactUs = () => {
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
     try {
-      const {
-        error
-      } = await supabase.from('contact_leads').insert({
-        first_name: formData.get('firstName') as string,
-        last_name: formData.get('lastName') as string,
-        email: formData.get('email') as string,
-        phone: formData.get('phone') as string,
-        company: formData.get('company') as string || null,
-        website: formData.get('website') as string || null,
+      const { error } = await supabase.from("contact_leads").insert({
+        first_name: formData.get("firstName") as string,
+        last_name: formData.get("lastName") as string,
+        email: formData.get("email") as string,
+        phone: formData.get("phone") as string,
+        company: (formData.get("company") as string) || null,
+        website: (formData.get("website") as string) || null,
         service: service,
-        message: formData.get('message') as string,
-        consent: true
+        message: formData.get("message") as string,
+        consent: true,
       });
       if (error) throw error;
 
       // Send confirmation emails
-      const {
-        error: emailError
-      } = await supabase.functions.invoke('send-contact-email', {
+      const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
         body: {
-          firstName: formData.get('firstName') as string,
-          lastName: formData.get('lastName') as string,
-          email: formData.get('email') as string,
-          phone: formData.get('phone') as string,
-          company: formData.get('company') as string || undefined,
-          website: formData.get('website') as string || undefined,
+          firstName: formData.get("firstName") as string,
+          lastName: formData.get("lastName") as string,
+          email: formData.get("email") as string,
+          phone: formData.get("phone") as string,
+          company: (formData.get("company") as string) || undefined,
+          website: (formData.get("website") as string) || undefined,
           service: service,
-          message: formData.get('message') as string
-        }
+          message: formData.get("message") as string,
+        },
       });
       if (emailError) {
-        console.error('Error sending emails:', emailError);
+        console.error("Error sending emails:", emailError);
         // Don't fail the whole submission if email fails
       }
       toast.success("Thank you! We'll be in touch within 24 hours.");
       (e.target as HTMLFormElement).reset();
       setService("");
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="section-padding bg-secondary pb-32">
           <div className="container-custom text-center">
             <h1 className="mb-6">Let's Grow Your Business Together</h1>
-            <p className="text-muted-foreground max-w-3xl mx-auto mb-20 text-base">Get a free proposal customized to your business goals. We're here to answer your questions and help you succeed.</p>
+            <p className="text-muted-foreground max-w-3xl mx-auto mb-20 text-base">
+              Get a free proposal customized to your business goals. We're here to answer your questions and help you
+              succeed.
+            </p>
             <div className="flex justify-center mb-[-8rem]">
               <SphereLoader />
             </div>
@@ -86,14 +86,14 @@ const ContactUs = () => {
                 <h2 className="mb-8">Request Your Free Proposal</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="firstName">First Name *</Label>
-                    <Input id="firstName" name="firstName" required className="mt-2" />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName">Last Name *</Label>
-                    <Input id="lastName" name="lastName" required className="mt-2" />
-                  </div>
+                    <div>
+                      <Label htmlFor="firstName">First Name *</Label>
+                      <Input id="firstName" name="firstName" required className="mt-2" />
+                    </div>
+                    <div>
+                      <Label htmlFor="lastName">Last Name *</Label>
+                      <Input id="lastName" name="lastName" required className="mt-2" />
+                    </div>
                   </div>
 
                   <div>
@@ -136,13 +136,20 @@ const ContactUs = () => {
 
                   <div>
                     <Label htmlFor="message">Tell Us About Your Goals *</Label>
-                    <Textarea id="message" name="message" required className="mt-2 min-h-32" placeholder="What are you hoping to achieve with digital marketing?" />
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      className="mt-2 min-h-32"
+                      placeholder="What are you hoping to achieve with digital marketing?"
+                    />
                   </div>
 
                   <div className="flex items-start space-x-2">
                     <Checkbox id="consent" required />
                     <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                      I agree to receive communications from Market Integrators about my inquiry. I understand I can unsubscribe at any time.
+                      I agree to receive communications from Market Integrators about my inquiry. I understand I can
+                      unsubscribe at any time.
                     </Label>
                   </div>
 
@@ -167,8 +174,11 @@ const ContactUs = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-1">Phone</h4>
-                        <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                          (123) 456-7890
+                        <a
+                          href="tel:+1234567890"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          (435) 695-3550
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">Mon-Fri, 9am-6pm CST</p>
                       </div>
@@ -180,8 +190,11 @@ const ContactUs = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-1">Email</h4>
-                        <a href="mailto:info@marketintegrators.com" className="text-muted-foreground hover:text-primary transition-colors">
-                          info@marketintegrators.com
+                        <a
+                          href="mailto:marketintegrator@gmail.com"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          marketintegrator@gmail.com
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">We respond within 24 hours</p>
                       </div>
@@ -194,7 +207,8 @@ const ContactUs = () => {
                       <div>
                         <h4 className="font-semibold mb-1">Office</h4>
                         <p className="text-muted-foreground">
-                          Houston, TX<br />
+                          Houston, TX
+                          <br />
                           Serving clients nationwide
                         </p>
                       </div>
@@ -205,15 +219,21 @@ const ContactUs = () => {
                     <h4 className="font-semibold mb-3">What Happens Next?</h4>
                     <ul className="space-y-3 text-sm text-muted-foreground">
                       <li className="flex items-start">
-                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 mt-0.5 text-primary font-bold">1</span>
+                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 mt-0.5 text-primary font-bold">
+                          1
+                        </span>
                         <span>We'll review your information and goals</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 mt-0.5 text-primary font-bold">2</span>
+                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 mt-0.5 text-primary font-bold">
+                          2
+                        </span>
                         <span>Schedule a discovery call to learn more about your business</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 mt-0.5 text-primary font-bold">3</span>
+                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 mt-0.5 text-primary font-bold">
+                          3
+                        </span>
                         <span>Deliver a customized proposal with strategies and pricing</span>
                       </li>
                     </ul>
@@ -225,6 +245,7 @@ const ContactUs = () => {
         </section>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
 export default ContactUs;

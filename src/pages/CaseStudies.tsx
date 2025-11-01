@@ -73,7 +73,7 @@ const CaseStudies = () => {
   const featuredCaseStudies = [
     {
       logo: aprenovationsLogo,
-      title: "A&P Renovations — Ogden, Utah",
+      title: "A&P Renovations — General Contractor and Home Renovation Expert",
       description:
         "A full digital refresh with web design and local SEO that tripled quote requests and earned Top-3 rankings.",
       link: "/case-studies/aprenovations",

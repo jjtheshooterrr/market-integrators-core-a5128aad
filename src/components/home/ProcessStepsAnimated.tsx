@@ -49,9 +49,8 @@ export default function MethodologyInfinityStripWithHeader() {
       }} transition={{
         duration: 0.5,
         delay: 0.1
-      }} className="mt-2 text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto">
-          A seamless, repeatable cycle — from intelligence to impact.
-        </motion.p>
+      }} className="mt-2 text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto">A seamless, repeatable cycle 
+from intelligence to impact.</motion.p>
       </div>
 
       {/* Fading edges */}

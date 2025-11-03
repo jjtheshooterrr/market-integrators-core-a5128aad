@@ -294,7 +294,7 @@ const CinematicHero = () => {
                 repeat: Infinity,
               }
         }
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 inset-x-0 z-10 flex justify-center"
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
           <motion.div

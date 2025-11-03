@@ -101,18 +101,16 @@ const FeaturedCaseStudy = () => {
                 to={study.link}
                 className="group block relative h-[400px] rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl"
               >
-                {/* Background image only, no blur/overlay */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                   style={{ backgroundImage: `url(${study.bgImage})` }}
                 />
-
-                {/* Content */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/80 to-foreground/40" />
+                
                 <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
                   <div>
                     <img src={study.logo} alt={`${study.name} logo`} className="h-12 w-auto object-contain mb-4" />
-                    {/* Removed backdrop blur completely */}
-                    <div className="inline-block bg-primary/20 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                    <div className="inline-block bg-primary/20 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold mb-3">
                       {study.industry}
                     </div>
                     <h3 className="text-2xl font-bold mb-2 text-primary-foreground">{study.name}</h3>
@@ -150,7 +148,9 @@ const FeaturedCaseStudy = () => {
             We help businesses turn strategy and technology into measurable growth.
           </p>
           <Button asChild size="lg" className="btn-text">
-            <Link to="/case-studies">View All Case Studies →</Link>
+            <Link to="/case-studies">
+              View All Case Studies →
+            </Link>
           </Button>
         </motion.div>
       </div>

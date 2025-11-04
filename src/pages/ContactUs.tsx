@@ -416,10 +416,10 @@ const ContactUs = () => {
                       <div>
                         <h4 className="font-semibold mb-1">Phone</h4>
                         <a
-                          href="tel:+1234567890"
+                          href="tel:+18325104920"
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          (435) 695-3550
+                          (832) 510-4920
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">Mon-Fri, 9am-6pm CST</p>
                       </div>

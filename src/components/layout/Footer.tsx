@@ -129,9 +129,9 @@ const Footer = () => {
             </p>
 
             <address className="not-italic space-y-3 text-dark-foreground/80">
-              <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <a href="tel:+18325104920" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Phone size={18} aria-hidden="true" />
-                <span>(435) 695-3550</span>
+                <span>(832) 510-4920</span>
               </a>
               <a
                 href="mailto:marketintegrator@gmail.com"

@@ -25,13 +25,6 @@ interface JobCardProps {
 export const JobCard = ({ job, onApply }: JobCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const formatSalary = () => {
-    if (!job.salary_min && !job.salary_max) return null;
-    const currency = job.currency || "USD";
-    const min = job.salary_min ? `${currency} ${job.salary_min.toLocaleString()}` : "";
-    const max = job.salary_max ? `${currency} ${job.salary_max.toLocaleString()}` : "";
-    return min && max ? `${min} - ${max}` : min || max;
-  };
 
   return (
     <div className="bg-background rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-border">
@@ -54,7 +47,6 @@ export const JobCard = ({ job, onApply }: JobCardProps) => {
           <div className="flex flex-wrap gap-2 mb-3">
             <Badge variant="secondary">{job.employment}</Badge>
             <Badge variant="secondary">{job.seniority}</Badge>
-            {formatSalary() && <Badge variant="outline">{formatSalary()}</Badge>}
           </div>
           {job.tags && job.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-3">

@@ -9,14 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { JobCard } from "@/components/careers/JobCard";
 import { ApplicationModal } from "@/components/careers/ApplicationModal";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 interface Job {
   slug: string;
   title: string;
@@ -32,94 +25,87 @@ interface Job {
   tags?: string[];
   brief?: string;
 }
-
 const Careers = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedJob, setSelectedJob] = useState<{ slug: string; title: string } | null>(null);
+  const [selectedJob, setSelectedJob] = useState<{
+    slug: string;
+    title: string;
+  } | null>(null);
   const [filters, setFilters] = useState({
     department: "all",
     employment: "all",
-    seniority: "all",
+    seniority: "all"
   });
-  const { toast } = useToast();
-
-  const benefits = [
-    {
-      icon: TrendingUp,
-      title: "Growth Opportunities",
-      description: "Continuous learning and career advancement paths tailored to your goals.",
-    },
-    {
-      icon: Users,
-      title: "Collaborative Culture",
-      description: "Work with talented professionals in a supportive, team-oriented environment.",
-    },
-    {
-      icon: Clock,
-      title: "Work-Life Balance",
-      description: "Flexible schedules and remote work options to help you thrive.",
-    },
-    {
-      icon: Heart,
-      title: "Competitive Benefits",
-      description: "Comprehensive health coverage, 401(k), and generous PTO.",
-    },
-  ];
-
+  const {
+    toast
+  } = useToast();
+  const benefits = [{
+    icon: TrendingUp,
+    title: "Growth Opportunities",
+    description: "Continuous learning and career advancement paths tailored to your goals."
+  }, {
+    icon: Users,
+    title: "Collaborative Culture",
+    description: "Work with talented professionals in a supportive, team-oriented environment."
+  }, {
+    icon: Clock,
+    title: "Work-Life Balance",
+    description: "Flexible schedules and remote work options to help you thrive."
+  }, {
+    icon: Heart,
+    title: "Competitive Benefits",
+    description: "Comprehensive health coverage, 401(k), and generous PTO."
+  }];
   useEffect(() => {
     fetchJobs();
   }, []);
-
   useEffect(() => {
     applyFilters();
   }, [jobs, filters]);
-
   const fetchJobs = async () => {
     try {
-      const { data, error } = await supabase
-        .from("careers_open_roles" as any)
-        .select("*")
-        .order("salary_max", { ascending: false });
-
+      const {
+        data,
+        error
+      } = await supabase.from("careers_open_roles" as any).select("*").order("salary_max", {
+        ascending: false
+      });
       if (error) throw error;
-      setJobs((data as any) || []);
+      setJobs(data as any || []);
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to load job openings. Please try again later.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsLoading(false);
     }
   };
-
   const applyFilters = () => {
     let filtered = jobs;
-
     if (filters.department !== "all") {
-      filtered = filtered.filter((job) => job.department === filters.department);
+      filtered = filtered.filter(job => job.department === filters.department);
     }
     if (filters.employment !== "all") {
-      filtered = filtered.filter((job) => job.employment === filters.employment);
+      filtered = filtered.filter(job => job.employment === filters.employment);
     }
     if (filters.seniority !== "all") {
-      filtered = filtered.filter((job) => job.seniority === filters.seniority);
+      filtered = filtered.filter(job => job.seniority === filters.seniority);
     }
-
     setFilteredJobs(filtered);
   };
-
-  const uniqueDepartments = Array.from(new Set(jobs.map((j) => j.department).filter(Boolean)));
-  const uniqueEmployment = Array.from(new Set(jobs.map((j) => j.employment).filter(Boolean)));
-  const uniqueSeniority = Array.from(new Set(jobs.map((j) => j.seniority).filter(Boolean)));
-
+  const uniqueDepartments = Array.from(new Set(jobs.map(j => j.department).filter(Boolean)));
+  const uniqueEmployment = Array.from(new Set(jobs.map(j => j.employment).filter(Boolean)));
+  const uniqueSeniority = Array.from(new Set(jobs.map(j => j.seniority).filter(Boolean)));
   const handleApply = (slug: string, title: string) => {
-    setSelectedJob({ slug, title });
+    setSelectedJob({
+      slug,
+      title
+    });
   };
-
   const jobPostingsSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -135,14 +121,14 @@ const Careers = () => {
         hiringOrganization: {
           "@type": "Organization",
           name: "Market Integrators",
-          sameAs: "https://www.marketintegrators.com",
+          sameAs: "https://www.marketintegrators.com"
         },
         jobLocation: {
           "@type": "Place",
           address: {
             "@type": "PostalAddress",
-            addressLocality: job.location,
-          },
+            addressLocality: job.location
+          }
         },
         baseSalary: job.salary_min && job.salary_max ? {
           "@type": "MonetaryAmount",
@@ -151,21 +137,16 @@ const Careers = () => {
             "@type": "QuantitativeValue",
             minValue: job.salary_min,
             maxValue: job.salary_max,
-            unitText: "YEAR",
-          },
-        } : undefined,
-      },
-    })),
+            unitText: "YEAR"
+          }
+        } : undefined
+      }
+    }))
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Careers at Market Integrators | Join Our Digital Marketing Team</title>
-        <meta
-          name="description"
-          content="Explore career opportunities at Market Integrators. Join our team of digital marketing professionals and grow your career in PPC, SEO, web development, and more."
-        />
+        <meta name="description" content="Explore career opportunities at Market Integrators. Join our team of digital marketing professionals and grow your career in PPC, SEO, web development, and more." />
         <script type="application/ld+json">{JSON.stringify(jobPostingsSchema)}</script>
       </Helmet>
 
@@ -185,33 +166,7 @@ const Careers = () => {
         </section>
 
         {/* Why Work With Us */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="mb-4">Why Market Integrators?</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                We invest in our people because they're the key to our success
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <div key={index} className="text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                      <Icon className="text-primary" size={32} />
-                    </div>
-                    <h3 className="text-xl mb-3">{benefit.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        
 
         {/* Open Positions */}
         <section className="section-padding">
@@ -224,68 +179,63 @@ const Careers = () => {
 
               {/* Filters */}
               <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-                <Select value={filters.department} onValueChange={(value) => setFilters({ ...filters, department: value })}>
+                <Select value={filters.department} onValueChange={value => setFilters({
+                ...filters,
+                department: value
+              })}>
                   <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Department" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Departments</SelectItem>
-                    {uniqueDepartments.map((dept) => (
-                      <SelectItem key={dept} value={dept}>
+                    {uniqueDepartments.map(dept => <SelectItem key={dept} value={dept}>
                         {dept}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
 
-                <Select value={filters.employment} onValueChange={(value) => setFilters({ ...filters, employment: value })}>
+                <Select value={filters.employment} onValueChange={value => setFilters({
+                ...filters,
+                employment: value
+              })}>
                   <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Employment Type" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Types</SelectItem>
-                    {uniqueEmployment.map((emp) => (
-                      <SelectItem key={emp} value={emp}>
+                    {uniqueEmployment.map(emp => <SelectItem key={emp} value={emp}>
                         {emp}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
 
-                <Select value={filters.seniority} onValueChange={(value) => setFilters({ ...filters, seniority: value })}>
+                <Select value={filters.seniority} onValueChange={value => setFilters({
+                ...filters,
+                seniority: value
+              })}>
                   <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Seniority" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Levels</SelectItem>
-                    {uniqueSeniority.map((sen) => (
-                      <SelectItem key={sen} value={sen}>
+                    {uniqueSeniority.map(sen => <SelectItem key={sen} value={sen}>
                         {sen}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
             <div className="max-w-4xl mx-auto">
-              {isLoading ? (
-                <div className="text-center py-12">
+              {isLoading ? <div className="text-center py-12">
                   <p className="text-muted-foreground">Loading positions...</p>
-                </div>
-              ) : filteredJobs.length === 0 ? (
-                <div className="text-center py-12">
+                </div> : filteredJobs.length === 0 ? <div className="text-center py-12">
                   <p className="text-muted-foreground">
                     {jobs.length === 0 ? "No open positions at the moment. Check back soon!" : "No positions match your filters."}
                   </p>
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  {filteredJobs.map((job) => (
-                    <JobCard key={job.slug} job={job} onApply={handleApply} />
-                  ))}
-                </div>
-              )}
+                </div> : <div className="space-y-6">
+                  {filteredJobs.map(job => <JobCard key={job.slug} job={job} onApply={handleApply} />)}
+                </div>}
             </div>
           </div>
         </section>
@@ -308,16 +258,7 @@ const Careers = () => {
       </main>
       <Footer />
 
-      {selectedJob && (
-        <ApplicationModal
-          isOpen={!!selectedJob}
-          onClose={() => setSelectedJob(null)}
-          jobSlug={selectedJob.slug}
-          jobTitle={selectedJob.title}
-        />
-      )}
-    </div>
-  );
+      {selectedJob && <ApplicationModal isOpen={!!selectedJob} onClose={() => setSelectedJob(null)} jobSlug={selectedJob.slug} jobTitle={selectedJob.title} />}
+    </div>;
 };
-
 export default Careers;

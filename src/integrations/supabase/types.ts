@@ -56,6 +56,135 @@ export type Database = {
         }
         Relationships: []
       }
+      job_applications: {
+        Row: {
+          answers: Json
+          cover_letter: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          job_ref: string | null
+          linkedin_url: string | null
+          location: string | null
+          phone: string | null
+          portfolio_url: string | null
+          resume_url: string | null
+          source: string | null
+          status: string
+        }
+        Insert: {
+          answers?: Json
+          cover_letter?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          job_ref?: string | null
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          resume_url?: string | null
+          source?: string | null
+          status?: string
+        }
+        Update: {
+          answers?: Json
+          cover_letter?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          job_ref?: string | null
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          resume_url?: string | null
+          source?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      jobs: {
+        Row: {
+          application_email: string | null
+          application_url: string | null
+          benefits: string | null
+          created_at: string
+          currency: string | null
+          department_id: number | null
+          description: string
+          employment: Database["public"]["Enums"]["employment_type"]
+          equity: string | null
+          id: string
+          location: string | null
+          onsite_requirement: string | null
+          requirements: string | null
+          responsibilities: string | null
+          salary_max: number | null
+          salary_min: number | null
+          seniority: Database["public"]["Enums"]["seniority_level"]
+          slug: string | null
+          status: Database["public"]["Enums"]["job_status"]
+          tags: string[] | null
+          team: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          application_email?: string | null
+          application_url?: string | null
+          benefits?: string | null
+          created_at?: string
+          currency?: string | null
+          department_id?: number | null
+          description: string
+          employment?: Database["public"]["Enums"]["employment_type"]
+          equity?: string | null
+          id?: string
+          location?: string | null
+          onsite_requirement?: string | null
+          requirements?: string | null
+          responsibilities?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          seniority?: Database["public"]["Enums"]["seniority_level"]
+          slug?: string | null
+          status?: Database["public"]["Enums"]["job_status"]
+          tags?: string[] | null
+          team?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          application_email?: string | null
+          application_url?: string | null
+          benefits?: string | null
+          created_at?: string
+          currency?: string | null
+          department_id?: number | null
+          description?: string
+          employment?: Database["public"]["Enums"]["employment_type"]
+          equity?: string | null
+          id?: string
+          location?: string | null
+          onsite_requirement?: string | null
+          requirements?: string | null
+          responsibilities?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          seniority?: Database["public"]["Enums"]["seniority_level"]
+          slug?: string | null
+          status?: Database["public"]["Enums"]["job_status"]
+          tags?: string[] | null
+          team?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       mi_home_metrics: {
         Row: {
           created_at: string | null
@@ -91,13 +220,46 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      careers_open_roles: {
+        Row: {
+          brief: string | null
+          currency: string | null
+          department: string | null
+          employment: string | null
+          location: string | null
+          onsite_requirement: string | null
+          salary_max: number | null
+          salary_min: number | null
+          seniority: string | null
+          slug: string | null
+          tags: string[] | null
+          team: string | null
+          title: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      employment_type:
+        | "full_time"
+        | "part_time"
+        | "contract"
+        | "internship"
+        | "temporary"
+      job_status: "draft" | "open" | "paused" | "closed"
+      seniority_level:
+        | "intern"
+        | "junior"
+        | "mid"
+        | "senior"
+        | "lead"
+        | "manager"
+        | "director"
+        | "vp"
+        | "cxo"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -224,6 +386,26 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      employment_type: [
+        "full_time",
+        "part_time",
+        "contract",
+        "internship",
+        "temporary",
+      ],
+      job_status: ["draft", "open", "paused", "closed"],
+      seniority_level: [
+        "intern",
+        "junior",
+        "mid",
+        "senior",
+        "lead",
+        "manager",
+        "director",
+        "vp",
+        "cxo",
+      ],
+    },
   },
 } as const

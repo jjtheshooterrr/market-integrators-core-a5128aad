@@ -11,6 +11,7 @@ interface CreativeProject {
   description: string;
   category: string;
   image?: string;
+  videoId?: string;
   credits: {
     role: string;
     name: string;
@@ -47,6 +48,7 @@ const CreativePortfolio = () => {
       title: "Radio Station Logo Stings",
       description: "Animated logo reveals and transitions for Audacy Houston stations including The Bull, Mega 101, and SportsRadio 610.",
       category: "Animated Videos & Motion Graphics",
+      videoId: "42199c78495b788ffdaee9a341d01c23",
       credits: [
         { role: "Motion Designer", name: "Market Integrators Team" },
         { role: "Animation Director", name: "Studio Team" },
@@ -56,6 +58,44 @@ const CreativePortfolio = () => {
       title: "Lower Thirds & Motion Titles",
       description: "Broadcast-quality animated graphics for video content and live streams.",
       category: "Animated Videos & Motion Graphics",
+      videoId: "b0a6799c890d34169781027f8a503474",
+      credits: [
+        { role: "Motion Graphics Artist", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Broadcast Graphics Package",
+      description: "Complete motion graphics suite for digital broadcast content.",
+      category: "Animated Videos & Motion Graphics",
+      videoId: "48d7b689a7411cf82770ef69022ddd73",
+      credits: [
+        { role: "Motion Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Social Media Animations",
+      description: "Dynamic animated content optimized for social media platforms.",
+      category: "Animated Videos & Motion Graphics",
+      videoId: "3e77bd4ada463b6a39c5e7978c377e28",
+      credits: [
+        { role: "Animation Artist", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Brand Story Animations",
+      description: "Narrative-driven motion graphics for brand storytelling.",
+      category: "Animated Videos & Motion Graphics",
+      videoId: "c0e27ea609903709c29feb83e931503e",
+      credits: [
+        { role: "Creative Director", name: "Market Integrators Team" },
+        { role: "Motion Designer", name: "Studio Team" },
+      ],
+    },
+    {
+      title: "Event Graphics & Transitions",
+      description: "Dynamic motion graphics for live events and streaming content.",
+      category: "Animated Videos & Motion Graphics",
+      videoId: "15e013844bdd96b947a347b11851bdca",
       credits: [
         { role: "Motion Graphics Artist", name: "Market Integrators Team" },
       ],
@@ -218,6 +258,16 @@ const CreativePortfolio = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     {animatedVideosProjects.map((project, index) => (
                       <Card key={index} className="hover:shadow-lg transition-shadow">
+                        {project.videoId && (
+                          <div className="aspect-video w-full">
+                            <iframe
+                              src={`https://customer-m033z5x00fn3md4b.cloudflarestream.com/${project.videoId}/iframe?autoplay=true&loop=true&muted=true`}
+                              className="w-full h-full rounded-t-lg"
+                              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
                         <CardHeader>
                           <CardTitle>{project.title}</CardTitle>
                           <CardDescription>{project.description}</CardDescription>

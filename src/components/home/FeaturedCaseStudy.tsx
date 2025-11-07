@@ -13,6 +13,8 @@ import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 import imperialjewelryMac from "@/assets/imperialjewelry-macview.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import kranzcontractorsMac from "@/assets/kranzcontractors-macview.webp";
+import crewcoLogo from "@/assets/crewco-logo.webp";
+import crewcoMac from "@/assets/crewco-macview.webp";
 
 const FeaturedCaseStudy = () => {
   const caseStudies = [
@@ -69,6 +71,15 @@ const FeaturedCaseStudy = () => {
       highlight: "+210% inbound leads",
       stats: ["50% lower ad costs", "Modern web design", "Local SEO dominance"],
       link: "/case-studies/kranz-contractors",
+    },
+    {
+      logo: crewcoLogo,
+      bgImage: crewcoMac,
+      industry: "Event Production",
+      name: "Crewco Events",
+      highlight: "+132% organic traffic",
+      stats: ["Top 3 Houston rankings", "+76% form submissions", "Complete web redesign"],
+      link: "/case-studies/crewco-events",
     },
   ];
 

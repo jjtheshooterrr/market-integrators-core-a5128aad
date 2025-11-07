@@ -3,49 +3,29 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
-import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
+import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 import avaleLogo from "@/assets/avale-logo.webp";
-import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
-import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
+import audacyLogo from "@/assets/audacy-logo.webp";
+import mega101Logo from "@/assets/mega101-logo.webp";
+import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
+import thebullLogo from "@/assets/thebull-logo.webp";
+import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
+import crewcoLogo from "@/assets/crewco-logo.webp";
+import sportsradio610Logo from "@/assets/sportsradio610-logo.webp";
+import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
-import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
-import crewcoLogo from "@/assets/crewco-logo.webp";
-import audacyLogo from "@/assets/audacy-logo.webp";
-import sportsradio610Logo from "@/assets/sportsradio610-logo.webp";
-import mega101Logo from "@/assets/mega101-logo.webp";
-import thebullLogo from "@/assets/thebull-logo.webp";
 
 const CaseStudies = () => {
-  // Client logos data
+  // Client logos data (scrambled)
   const clientLogos = [
     {
-      name: "A&P Renovations",
-      logo: aprenovationsLogo,
-      link: "/case-studies/aprenovations",
-    },
-    {
-      name: "AVALE",
-      logo: avaleLogo,
-      link: "/case-studies/avalemusic",
-    },
-    {
-      name: "Pathway2Peace",
-      logo: pathway2peaceLogo,
-      link: "/case-studies/pathway-to-peace",
-    },
-    {
-      name: "TestMyPools",
-      logo: testmypoolsLogo,
-      link: "/case-studies/testmypools",
-    },
-    {
-      name: "Kranz Contractors",
-      logo: kranzcontractorsLogo,
-      link: "/case-studies/kranz-contractors",
+      name: "Audacy Houston",
+      logo: audacyLogo,
+      link: "/case-studies/audacy-houston",
     },
     {
       name: "ControllerRepairs",
@@ -53,39 +33,19 @@ const CaseStudies = () => {
       link: "/case-studies/controllerrepairs",
     },
     {
-      name: "LoneStarz Entertainment",
-      logo: lonestarzentLogo,
-      link: "/case-studies/lonestarzentertainment",
-    },
-    {
-      name: "Northern Utah Window Wells",
-      logo: northernutahwindowwellsLogo,
-      link: "/case-studies/northern-utah-window-wells",
-    },
-    {
-      name: "Imperial Jewelry",
-      logo: imperialjewelryLogo,
-      link: "/case-studies/imperial-jewelry",
-    },
-    {
       name: "Lyla Gray",
       logo: lylagrayLogo,
       link: "/case-studies/lylagray",
     },
     {
-      name: "Crewco Events",
-      logo: crewcoLogo,
-      link: "/case-studies/crewco-events",
+      name: "A&P Renovations",
+      logo: aprenovationsLogo,
+      link: "/case-studies/aprenovations",
     },
     {
-      name: "Audacy Houston",
-      logo: audacyLogo,
-      link: "/case-studies/audacy-houston",
-    },
-    {
-      name: "SportsRadio 610",
-      logo: sportsradio610Logo,
-      link: "/case-studies/sportsradio-610",
+      name: "TestMyPools",
+      logo: testmypoolsLogo,
+      link: "/case-studies/testmypools",
     },
     {
       name: "Mega 101",
@@ -93,40 +53,67 @@ const CaseStudies = () => {
       link: "/case-studies/mega-101",
     },
     {
+      name: "Northern Utah Window Wells",
+      logo: northernutahwindowwellsLogo,
+      link: "/case-studies/northern-utah-window-wells",
+    },
+    {
+      name: "Crewco Events",
+      logo: crewcoLogo,
+      link: "/case-studies/crewco-events",
+    },
+    {
+      name: "Pathway2Peace",
+      logo: pathway2peaceLogo,
+      link: "/case-studies/pathway-to-peace",
+    },
+    {
       name: "The Bull Houston",
       logo: thebullLogo,
       link: "/case-studies/the-bull-houston",
     },
-  ];
-
-  // Featured case studies
-  const featuredCaseStudies = [
     {
-      logo: aprenovationsLogo,
-      title: "A&P Renovations — General Contractor and Home Renovation Expert",
-      description:
-        "A full digital refresh with web design and local SEO that tripled quote requests and earned Top-3 rankings.",
-      link: "/case-studies/aprenovations",
+      name: "Imperial Jewelry",
+      logo: imperialjewelryLogo,
+      link: "/case-studies/imperial-jewelry",
     },
     {
+      name: "LoneStarz Entertainment",
+      logo: lonestarzentLogo,
+      link: "/case-studies/lonestarzentertainment",
+    },
+    {
+      name: "SportsRadio 610",
+      logo: sportsradio610Logo,
+      link: "/case-studies/sportsradio-610",
+    },
+    {
+      name: "Kranz Contractors",
+      logo: kranzcontractorsLogo,
+      link: "/case-studies/kranz-contractors",
+    },
+    {
+      name: "AVALE",
       logo: avaleLogo,
-      title: "AVALE — Official Artist Website",
-      description: "A dark, immersive artist site that unifies music, visuals, and streaming into one branded hub.",
       link: "/case-studies/avalemusic",
     },
+  ];
+
+  // Featured case studies (scrambled)
+  const featuredCaseStudies = [
     {
-      logo: pathway2peaceLogo,
-      title: "Pathway2Peace — Mental Health Website & HR Automation",
+      logo: controllerrepairsLogo,
+      title: "ControllerRepairs.com — eCommerce, Automation & Dashboard System",
       description:
-        "Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.",
-      link: "/case-studies/pathway-to-peace",
+        "Fast, automated eCommerce and repair platform — boosting sales by 240% and cutting manual work in half through automation and smart dashboards.",
+      link: "/case-studies/controllerrepairs",
     },
     {
-      logo: testmypoolsLogo,
-      title: "TestMyPools — Full AI SaaS Creation & Product Launch",
+      logo: thebullLogo,
+      title: "The Bull Houston — Country Brand Modernization",
       description:
-        "Complete AI SaaS platform built from concept to launch — integrating Google Vision, LLM APIs, and full subscription automation.",
-      link: "/case-studies/testmypools",
+        "Transforming a heritage radio brand into a digital engagement leader. Achieved 20,000 new followers and 1.2M+ video views.",
+      link: "/case-studies/the-bull-houston",
     },
     {
       logo: kranzcontractorsLogo,
@@ -136,32 +123,24 @@ const CaseStudies = () => {
       link: "/case-studies/kranz-contractors",
     },
     {
-      logo: controllerrepairsLogo,
-      title: "ControllerRepairs.com — eCommerce, Automation & Dashboard System",
-      description:
-        "Fast, automated eCommerce and repair platform — boosting sales by 240% and cutting manual work in half through automation and smart dashboards.",
-      link: "/case-studies/controllerrepairs",
+      logo: avaleLogo,
+      title: "AVALE — Official Artist Website",
+      description: "A dark, immersive artist site that unifies music, visuals, and streaming into one branded hub.",
+      link: "/case-studies/avalemusic",
     },
     {
-      logo: lonestarzentLogo,
-      title: "LoneStarz Entertainment — Web Design & Booking Automation",
+      logo: testmypoolsLogo,
+      title: "TestMyPools — Full AI SaaS Creation & Product Launch",
       description:
-        "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
-      link: "/case-studies/lonestarzentertainment",
+        "Complete AI SaaS platform built from concept to launch — integrating Google Vision, LLM APIs, and full subscription automation.",
+      link: "/case-studies/testmypools",
     },
     {
-      logo: northernutahwindowwellsLogo,
-      title: "Northern Utah Window Wells — Local SEO & Seasonal Campaigns",
+      logo: audacyLogo,
+      title: "Audacy Houston — Digital Media Transformation",
       description:
-        "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
-      link: "/case-studies/northern-utah-window-wells",
-    },
-    {
-      logo: imperialjewelryLogo,
-      title: "Imperial Jewelry — Luxury eCommerce Web Design & Brand Identity",
-      description:
-        "Luxury-grade eCommerce redesign that doubled online sales through elegant design, conversion optimization, and strategic SEO.",
-      link: "/case-studies/imperial-jewelry",
+        "Transforming Houston's top radio stations into modern, social-first digital powerhouses. Achieved 3.5M+ video views and 400%+ increase in average watch time.",
+      link: "/case-studies/audacy-houston",
     },
     {
       logo: lylagrayLogo,
@@ -178,18 +157,18 @@ const CaseStudies = () => {
       link: "/case-studies/crewco-events",
     },
     {
-      logo: audacyLogo,
-      title: "Audacy Houston — Digital Media Transformation",
+      logo: imperialjewelryLogo,
+      title: "Imperial Jewelry — Luxury eCommerce Web Design & Brand Identity",
       description:
-        "Transforming Houston's top radio stations into modern, social-first digital powerhouses. Achieved 3.5M+ video views and 400%+ increase in average watch time.",
-      link: "/case-studies/audacy-houston",
+        "Luxury-grade eCommerce redesign that doubled online sales through elegant design, conversion optimization, and strategic SEO.",
+      link: "/case-studies/imperial-jewelry",
     },
     {
-      logo: sportsradio610Logo,
-      title: "SportsRadio 610 — YouTube & Social Growth Strategy",
+      logo: aprenovationsLogo,
+      title: "A&P Renovations — General Contractor and Home Renovation Expert",
       description:
-        "Turning broadcast moments into viral short-form sports content. Achieved 1.43M+ YouTube views and 100% engagement growth in under 8 months.",
-      link: "/case-studies/sportsradio-610",
+        "A full digital refresh with web design and local SEO that tripled quote requests and earned Top-3 rankings.",
+      link: "/case-studies/aprenovations",
     },
     {
       logo: mega101Logo,
@@ -199,11 +178,32 @@ const CaseStudies = () => {
       link: "/case-studies/mega-101",
     },
     {
-      logo: thebullLogo,
-      title: "The Bull Houston — Country Brand Modernization",
+      logo: pathway2peaceLogo,
+      title: "Pathway2Peace — Mental Health Website & HR Automation",
       description:
-        "Transforming a heritage radio brand into a digital engagement leader. Achieved 20,000 new followers and 1.2M+ video views.",
-      link: "/case-studies/the-bull-houston",
+        "Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.",
+      link: "/case-studies/pathway-to-peace",
+    },
+    {
+      logo: lonestarzentLogo,
+      title: "LoneStarz Entertainment — Web Design & Booking Automation",
+      description:
+        "Visually dynamic entertainment website with automated booking system that tripled inquiries and improved brand consistency.",
+      link: "/case-studies/lonestarzentertainment",
+    },
+    {
+      logo: sportsradio610Logo,
+      title: "SportsRadio 610 — YouTube & Social Growth Strategy",
+      description:
+        "Turning broadcast moments into viral short-form sports content. Achieved 1.43M+ YouTube views and 100% engagement growth in under 8 months.",
+      link: "/case-studies/sportsradio-610",
+    },
+    {
+      logo: northernutahwindowwellsLogo,
+      title: "Northern Utah Window Wells — Local SEO & Seasonal Campaigns",
+      description:
+        "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
+      link: "/case-studies/northern-utah-window-wells",
     },
   ];
 

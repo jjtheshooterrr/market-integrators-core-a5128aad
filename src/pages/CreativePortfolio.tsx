@@ -4,7 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Palette, Video, Film, Camera, Sparkles } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Palette, Video, Film, Camera, Sparkles, X } from "lucide-react";
 
 interface CreativeProject {
   title: string;
@@ -21,6 +22,7 @@ interface CreativeProject {
 
 const CreativePortfolio = () => {
   const [selectedProject, setSelectedProject] = useState<CreativeProject | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Sample projects data - can be expanded with real projects
   const graphicDesignProjects: CreativeProject[] = [
@@ -469,7 +471,11 @@ const CreativePortfolio = () => {
                   </div>
                   <div className="grid md:grid-cols-3 gap-6">
                     {graphicDesignProjects.map((project, index) => (
-                      <div key={index} className="relative overflow-hidden rounded-lg group cursor-pointer">
+                      <div 
+                        key={index} 
+                        className="relative overflow-hidden rounded-lg group cursor-pointer"
+                        onClick={() => setSelectedImage(project.image || null)}
+                      >
                         {project.image && (
                           <img
                             src={project.image}
@@ -579,12 +585,16 @@ const CreativePortfolio = () => {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {photographyProjects.map((project, index) => (
-                      <div key={index} className="overflow-hidden rounded-lg">
+                      <div 
+                        key={index} 
+                        className="overflow-hidden rounded-lg cursor-pointer group"
+                        onClick={() => setSelectedImage(project.image || null)}
+                      >
                         {project.image && (
                           <img
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-auto object-contain md:aspect-square md:object-cover"
+                            className="w-full h-auto object-contain md:aspect-square md:object-cover transition-transform duration-300 group-hover:scale-105"
                             loading="lazy"
                           />
                         )}
@@ -613,6 +623,27 @@ const CreativePortfolio = () => {
         </section>
       </main>
       <Footer />
+
+      {/* Image Lightbox Dialog */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95 border-none">
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <X className="w-6 h-6 text-white" />
+          </button>
+          {selectedImage && (
+            <div className="w-full h-full flex items-center justify-center p-4">
+              <img
+                src={selectedImage}
+                alt="Full size preview"
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import CinematicHero from "@/components/home/CinematicHero";
 import ServicesGridAnimated from "@/components/home/ServicesGridAnimated";
 import ProcessStepsAnimated from "@/components/home/ProcessStepsAnimated";
 import FeaturedCaseStudy from "@/components/home/FeaturedCaseStudy";
+import CreativePortfolioPreview from "@/components/home/CreativePortfolioPreview";
 import MetricsSection from "@/components/home/MetricsSection";
 import CTASection from "@/components/home/CTASection";
 import ParallaxSection from "@/components/effects/ParallaxSection";
@@ -22,6 +23,9 @@ const Index = () => {
         </ParallaxSection>
         <ParallaxSection speed={0.4}>
           <FeaturedCaseStudy />
+        </ParallaxSection>
+        <ParallaxSection speed={0.35}>
+          <CreativePortfolioPreview />
         </ParallaxSection>
         <ParallaxSection speed={0.3}>
           <MetricsSection />

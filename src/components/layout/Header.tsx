@@ -31,6 +31,8 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isCaseStudiesOpen, setIsCaseStudiesOpen] = useState(false);
+  const [isMobileCaseStudiesOpen, setIsMobileCaseStudiesOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -169,9 +171,13 @@ const Header = () => {
   const navigation = [
     { name: "Pricing", href: "/pricing" },
     { name: "Industries", href: "/industries" },
-    { name: "Case Studies", href: "/case-studies" },
     { name: "About", href: "/about-us" },
     { name: "Contact", href: "/contact-us" },
+  ];
+
+  const caseStudiesItems = [
+    { name: "Case Studies", href: "/case-studies" },
+    { name: "Creative Portfolio", href: "/creative-portfolio" },
   ];
 
   return (
@@ -275,6 +281,56 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
+            {/* Case Studies Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsCaseStudiesOpen(true)}
+              onMouseLeave={() => setIsCaseStudiesOpen(false)}
+            >
+              <button
+                className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 ${
+                  location.pathname.startsWith("/case-studies") || location.pathname === "/creative-portfolio" ? "text-primary" : "text-foreground"
+                }`}
+              >
+                Case Studies
+                <ChevronDown className={`w-4 h-4 transition-transform ${isCaseStudiesOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              <AnimatePresence>
+                {isCaseStudiesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-white border border-border rounded-xl shadow-2xl overflow-hidden z-50"
+                  >
+                    <div className="p-2">
+                      {caseStudiesItems.map((item) => (
+                        <Link key={item.name} to={item.href} className="group">
+                          <motion.div
+                            className={`px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${
+                              location.pathname === item.href ? "bg-primary/10" : ""
+                            }`}
+                          >
+                            <div
+                              className={`font-body font-semibold transition-colors ${
+                                location.pathname === item.href
+                                  ? "text-primary"
+                                  : "text-foreground group-hover:text-primary"
+                              }`}
+                            >
+                              {item.name}
+                            </div>
+                          </motion.div>
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -344,6 +400,38 @@ const Header = () => {
                           ))}
                         </div>
                       </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Case Studies Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setIsMobileCaseStudiesOpen(!isMobileCaseStudiesOpen)}
+                  className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 w-full ${
+                    location.pathname.startsWith("/case-studies") || location.pathname === "/creative-portfolio" ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  Case Studies
+                  <ChevronDown className={`w-4 h-4 transition-transform ${isMobileCaseStudiesOpen ? "rotate-180" : ""}`} />
+                </button>
+                {isMobileCaseStudiesOpen && (
+                  <div className="ml-4 mt-2 space-y-2">
+                    {caseStudiesItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className={`block font-body font-medium transition-colors hover:text-primary ${
+                          location.pathname === item.href ? "text-primary" : "text-foreground"
+                        }`}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          setIsMobileCaseStudiesOpen(false);
+                        }}
+                      >
+                        {item.name}
+                      </Link>
                     ))}
                   </div>
                 )}

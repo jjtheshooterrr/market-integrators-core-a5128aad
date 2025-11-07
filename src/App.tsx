@@ -53,6 +53,7 @@ import Industries from "./pages/Industries";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Careers from "./pages/Careers";
+import CreativePortfolio from "./pages/CreativePortfolio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -110,6 +111,7 @@ const App = () => (
             <Route path="/case-studies/sportsradio-610" element={<CaseStudySportsRadio610 />} />
             <Route path="/case-studies/mega-101" element={<CaseStudyMega101 />} />
             <Route path="/case-studies/the-bull-houston" element={<CaseStudyTheBullHouston />} />
+            <Route path="/creative-portfolio" element={<CreativePortfolio />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

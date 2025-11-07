@@ -20,7 +20,7 @@ import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.w
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
 
 const CaseStudies = () => {
-  // Client logos data (scrambled)
+  // Client logos data (Lyla Gray moved to last)
   const clientLogos = [
     {
       name: "Audacy Houston",
@@ -31,11 +31,6 @@ const CaseStudies = () => {
       name: "ControllerRepairs",
       logo: controllerrepairsLogo,
       link: "/case-studies/controllerrepairs",
-    },
-    {
-      name: "Lyla Gray",
-      logo: lylagrayLogo,
-      link: "/case-studies/lylagray",
     },
     {
       name: "A&P Renovations",
@@ -97,9 +92,14 @@ const CaseStudies = () => {
       logo: avaleLogo,
       link: "/case-studies/avalemusic",
     },
+    {
+      name: "Lyla Gray",
+      logo: lylagrayLogo,
+      link: "/case-studies/lylagray",
+    },
   ];
 
-  // Featured case studies (scrambled)
+  // Featured case studies (Lyla Gray moved to last)
   const featuredCaseStudies = [
     {
       logo: controllerrepairsLogo,
@@ -141,13 +141,6 @@ const CaseStudies = () => {
       description:
         "Transforming Houston's top radio stations into modern, social-first digital powerhouses. Achieved 3.5M+ video views and 400%+ increase in average watch time.",
       link: "/case-studies/audacy-houston",
-    },
-    {
-      logo: lylagrayLogo,
-      title: "Lyla Gray — Adult Model Brand Website & Subscription System",
-      description:
-        "Private, professional creator platform with subscription access, privacy protections, and direct monetization that boosted direct traffic 190%.",
-      link: "/case-studies/lylagray",
     },
     {
       logo: crewcoLogo,
@@ -204,6 +197,13 @@ const CaseStudies = () => {
       description:
         "High-converting local website that boosted organic traffic 260% and stabilized seasonal lead flow through automated campaigns.",
       link: "/case-studies/northern-utah-window-wells",
+    },
+    {
+      logo: lylagrayLogo,
+      title: "Lyla Gray — Adult Model Brand Website & Subscription System",
+      description:
+        "Private, professional creator platform with subscription access, privacy protections, and direct monetization that boosted direct traffic 190%.",
+      link: "/case-studies/lylagray",
     },
   ];
 

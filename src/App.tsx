@@ -26,6 +26,10 @@ import CaseStudyNorthernUtahWindowWells from "./pages/CaseStudyNorthernUtahWindo
 import CaseStudyImperialJewelry from "./pages/CaseStudyImperialJewelry";
 import CaseStudyLylaGray from "./pages/CaseStudyLylaGray";
 import CaseStudyCrewcoEvents from "./pages/CaseStudyCrewcoEvents";
+import CaseStudyAudacyHouston from "./pages/CaseStudyAudacyHouston";
+import CaseStudySportsRadio610 from "./pages/CaseStudySportsRadio610";
+import CaseStudyMega101 from "./pages/CaseStudyMega101";
+import CaseStudyTheBullHouston from "./pages/CaseStudyTheBullHouston";
 import ServicePPC from "./pages/ServicePPC";
 import ServiceCybersecurity from "./pages/ServiceCybersecurity";
 import ServiceDataAnalytics from "./pages/ServiceDataAnalytics";
@@ -102,6 +106,10 @@ const App = () => (
             <Route path="/case-studies/imperial-jewelry" element={<CaseStudyImperialJewelry />} />
             <Route path="/case-studies/lylagray" element={<CaseStudyLylaGray />} />
             <Route path="/case-studies/crewco-events" element={<CaseStudyCrewcoEvents />} />
+            <Route path="/case-studies/audacy-houston" element={<CaseStudyAudacyHouston />} />
+            <Route path="/case-studies/sportsradio-610" element={<CaseStudySportsRadio610 />} />
+            <Route path="/case-studies/mega-101" element={<CaseStudyMega101 />} />
+            <Route path="/case-studies/the-bull-houston" element={<CaseStudyTheBullHouston />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

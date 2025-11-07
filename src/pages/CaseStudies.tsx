@@ -14,6 +14,10 @@ import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.w
 import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
 import crewcoLogo from "@/assets/crewco-logo.webp";
+import audacyLogo from "@/assets/audacy-logo.webp";
+import sportsradio610Logo from "@/assets/sportsradio610-logo.webp";
+import mega101Logo from "@/assets/mega101-logo.webp";
+import thebullLogo from "@/assets/thebull-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -72,6 +76,26 @@ const CaseStudies = () => {
       name: "Crewco Events",
       logo: crewcoLogo,
       link: "/case-studies/crewco-events",
+    },
+    {
+      name: "Audacy Houston",
+      logo: audacyLogo,
+      link: "/case-studies/audacy-houston",
+    },
+    {
+      name: "SportsRadio 610",
+      logo: sportsradio610Logo,
+      link: "/case-studies/sportsradio-610",
+    },
+    {
+      name: "Mega 101",
+      logo: mega101Logo,
+      link: "/case-studies/mega-101",
+    },
+    {
+      name: "The Bull Houston",
+      logo: thebullLogo,
+      link: "/case-studies/the-bull-houston",
     },
   ];
 
@@ -152,6 +176,34 @@ const CaseStudies = () => {
       description:
         "Complete website redesign and local SEO strategy that increased organic traffic 132% and earned top 3 rankings for key Houston event production keywords.",
       link: "/case-studies/crewco-events",
+    },
+    {
+      logo: audacyLogo,
+      title: "Audacy Houston — Digital Media Transformation",
+      description:
+        "Transforming Houston's top radio stations into modern, social-first digital powerhouses. Achieved 3.5M+ video views and 400%+ increase in average watch time.",
+      link: "/case-studies/audacy-houston",
+    },
+    {
+      logo: sportsradio610Logo,
+      title: "SportsRadio 610 — YouTube & Social Growth Strategy",
+      description:
+        "Turning broadcast moments into viral short-form sports content. Achieved 1.43M+ YouTube views and 100% engagement growth in under 8 months.",
+      link: "/case-studies/sportsradio-610",
+    },
+    {
+      logo: mega101Logo,
+      title: "Mega 101 — Digital Acceleration & Crisis Coverage",
+      description:
+        "Bilingual engagement and cultural relevance at scale. Achieved 807% follower lift in one week and 717% increase in weekly impressions.",
+      link: "/case-studies/mega-101",
+    },
+    {
+      logo: thebullLogo,
+      title: "The Bull Houston — Country Brand Modernization",
+      description:
+        "Transforming a heritage radio brand into a digital engagement leader. Achieved 20,000 new followers and 1.2M+ video views.",
+      link: "/case-studies/the-bull-houston",
     },
   ];
 

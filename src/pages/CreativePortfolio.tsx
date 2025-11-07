@@ -201,21 +201,85 @@ const CreativePortfolio = () => {
 
   const editedVideoProjects: CreativeProject[] = [
     {
-      title: "Sports Highlight Reels",
+      title: "Sports Highlight Reel",
       description: "Fast-paced sports content for SportsRadio 610, generating 1.43M+ YouTube views.",
       category: "Edited Video & Short-Form Content",
+      videoId: "fd991b7ed702db5864500647e26ba401",
+      aspectRatio: "177.77777777777777%",
       credits: [
         { role: "Video Editor", name: "Market Integrators Team" },
         { role: "Content Strategy", name: "Studio Team" },
       ],
     },
     {
-      title: "Social Media Shorts",
-      description: "Viral short-form content for Instagram Reels, TikTok, and YouTube Shorts across multiple brands.",
+      title: "Social Media Short",
+      description: "Viral short-form content for Instagram Reels, TikTok, and YouTube Shorts.",
       category: "Edited Video & Short-Form Content",
+      videoId: "f59a1eb26ed98ddc8b131a270c37b207",
+      aspectRatio: "177.77777777777777%",
       credits: [
         { role: "Editor", name: "Market Integrators Team" },
         { role: "Social Media Strategy", name: "Studio Team" },
+      ],
+    },
+    {
+      title: "Vertical Content Edit",
+      description: "Mobile-first edited content optimized for social platforms.",
+      category: "Edited Video & Short-Form Content",
+      videoId: "015bdcadf43c88641bbf6fde94f65d2a",
+      aspectRatio: "177.77777777777777%",
+      credits: [
+        { role: "Editor", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Sports Content Short",
+      description: "Dynamic sports content edited for maximum engagement.",
+      category: "Edited Video & Short-Form Content",
+      videoId: "7f3a5d4685de8817af726d02b44b2af6",
+      aspectRatio: "177.77777777777777%",
+      credits: [
+        { role: "Video Editor", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Social Media Reel",
+      description: "High-impact vertical video content for social media platforms.",
+      category: "Edited Video & Short-Form Content",
+      videoId: "b913a10aa230631eee93be4b453d898c",
+      aspectRatio: "177.77777777777777%",
+      credits: [
+        { role: "Editor", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Vertical Video Edit",
+      description: "Engaging vertical format content for TikTok and Instagram Reels.",
+      category: "Edited Video & Short-Form Content",
+      videoId: "449715068d7587f30fc864a266f44964",
+      aspectRatio: "177.77777777777777%",
+      credits: [
+        { role: "Editor", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Short-Form Content",
+      description: "Rapid-fire edited content designed for viral social media distribution.",
+      category: "Edited Video & Short-Form Content",
+      videoId: "b7cea73544f6471f780f0c6a0505758a",
+      aspectRatio: "177.77777777777777%",
+      credits: [
+        { role: "Editor", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Highlight Compilation",
+      description: "Multi-cam edited highlights showcasing key moments and action.",
+      category: "Edited Video & Short-Form Content",
+      videoId: "3d52c610e483369e635bc8f39d2bdc80",
+      aspectRatio: "56.25%",
+      credits: [
+        { role: "Video Editor", name: "Market Integrators Team" },
       ],
     },
   ];
@@ -426,8 +490,20 @@ const CreativePortfolio = () => {
                       multi-cam edits, highlight reels, and promotional content.
                     </p>
                   </div>
-                  <div className="text-center text-muted-foreground py-12">
-                    <p>Edited video showcase coming soon</p>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {editedVideoProjects.map((project, index) => (
+                      <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
+                        {project.videoId && (
+                          <iframe
+                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                            loading="lazy"
+                            className="absolute top-0 left-0 w-full h-full border-none"
+                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allowFullScreen
+                          />
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </TabsContent>

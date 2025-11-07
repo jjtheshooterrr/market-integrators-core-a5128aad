@@ -22,80 +22,79 @@ import thebullLogo from "@/assets/thebull-logo.webp";
 
 const FeaturedCaseStudy = () => {
   const caseStudies = [
-    [
-  {
-    logo: audacyLogo,
-    bgImage: audacyLogo,
-    industry: "Media / Enterprise",
-    name: "Audacy Houston",
-    highlight: "3.5M+ video views",
-    stats: ["+400% watch time", "3 major brands", "Digital transformation"],
-    link: "/case-studies/audacy-houston",
-  },
-  {
-    logo: imperialjewelryLogo,
-    bgImage: imperialjewelryMac,
-    industry: "Luxury eCommerce",
-    name: "Imperial Jewelry",
-    highlight: "Complete brand transformation",
-    stats: ["Custom eCommerce design", "Premium brand identity", "Mobile-first experience"],
-    link: "/case-studies/imperial-jewelry",
-  },
-  {
-    logo: pathway2peaceLogo,
-    bgImage: pathway2peaceMac,
-    industry: "Healthcare",
-    name: "Pathway 2 Peace",
-    highlight: "10+ hours saved weekly",
-    stats: ["+125% workflow efficiency", "Custom HR automation", "Calming web redesign"],
-    link: "/case-studies/pathway-to-peace",
-  },
-  {
-    logo: kranzcontractorsLogo,
-    bgImage: kranzcontractorsMac,
-    industry: "Home Services",
-    name: "Kranz Contractors",
-    highlight: "+210% inbound leads",
-    stats: ["50% lower ad costs", "Modern web design", "Local SEO dominance"],
-    link: "/case-studies/kranz-contractors",
-  },
-  {
-    logo: controllerrepairsLogo,
-    bgImage: controllerrepairsMac,
-    industry: "eCommerce",
-    name: "ControllerRepairs.com",
-    highlight: "+240% sales growth",
-    stats: ["Automated workflows", "Smart dashboards", "50% less manual work"],
-    link: "/case-studies/controllerrepairs",
-  },
-  {
-    logo: thebullLogo,
-    bgImage: thebullLogo,
-    industry: "Media / Country",
-    name: "The Bull Houston",
-    highlight: "+20K followers",
-    stats: ["1.2M+ video views", "Country lifestyle brand", "Digital modernization"],
-    link: "/case-studies/the-bull-houston",
-  },
-  {
-    logo: testmypoolsLogo,
-    bgImage: testmypoolsMac,
-    industry: "SaaS / AI",
-    name: "TestMyPools.com",
-    highlight: "Full AI software creation",
-    stats: ["Google Vision integration", "Subscription automation", "Complete product launch"],
-    link: "/case-studies/testmypools",
-  },
-  {
-    logo: mega101Logo,
-    bgImage: mega101Logo,
-    industry: "Media / Latin",
-    name: "Mega 101",
-    highlight: "+807% follower lift",
-    stats: ["+717% weekly impressions", "Crisis-moment coverage", "Bilingual engagement"],
-    link: "/case-studies/mega-101",
-  },
-];
+    {
+      logo: audacyLogo,
+      bgImage: audacyLogo,
+      industry: "Media / Enterprise",
+      name: "Audacy Houston",
+      highlight: "3.5M+ video views",
+      stats: ["+400% watch time", "3 major brands", "Digital transformation"],
+      link: "/case-studies/audacy-houston",
+    },
+    {
+      logo: imperialjewelryLogo,
+      bgImage: imperialjewelryMac,
+      industry: "Luxury eCommerce",
+      name: "Imperial Jewelry",
+      highlight: "Complete brand transformation",
+      stats: ["Custom eCommerce design", "Premium brand identity", "Mobile-first experience"],
+      link: "/case-studies/imperial-jewelry",
+    },
+    {
+      logo: pathway2peaceLogo,
+      bgImage: pathway2peaceMac,
+      industry: "Healthcare",
+      name: "Pathway 2 Peace",
+      highlight: "10+ hours saved weekly",
+      stats: ["+125% workflow efficiency", "Custom HR automation", "Calming web redesign"],
+      link: "/case-studies/pathway-to-peace",
+    },
+    {
+      logo: kranzcontractorsLogo,
+      bgImage: kranzcontractorsMac,
+      industry: "Home Services",
+      name: "Kranz Contractors",
+      highlight: "+210% inbound leads",
+      stats: ["50% lower ad costs", "Modern web design", "Local SEO dominance"],
+      link: "/case-studies/kranz-contractors",
+    },
+    {
+      logo: controllerrepairsLogo,
+      bgImage: controllerrepairsMac,
+      industry: "eCommerce",
+      name: "ControllerRepairs.com",
+      highlight: "+240% sales growth",
+      stats: ["Automated workflows", "Smart dashboards", "50% less manual work"],
+      link: "/case-studies/controllerrepairs",
+    },
+    {
+      logo: thebullLogo,
+      bgImage: thebullLogo,
+      industry: "Media / Country",
+      name: "The Bull Houston",
+      highlight: "+20K followers",
+      stats: ["1.2M+ video views", "Country lifestyle brand", "Digital modernization"],
+      link: "/case-studies/the-bull-houston",
+    },
+    {
+      logo: testmypoolsLogo,
+      bgImage: testmypoolsMac,
+      industry: "SaaS / AI",
+      name: "TestMyPools.com",
+      highlight: "Full AI software creation",
+      stats: ["Google Vision integration", "Subscription automation", "Complete product launch"],
+      link: "/case-studies/testmypools",
+    },
+    {
+      logo: mega101Logo,
+      bgImage: mega101Logo,
+      industry: "Media / Latin",
+      name: "Mega 101",
+      highlight: "+807% follower lift",
+      stats: ["+717% weekly impressions", "Crisis-moment coverage", "Bilingual engagement"],
+      link: "/case-studies/mega-101",
+    },
+  ];
 
   return (
     <section className="section-padding bg-muted/30">
@@ -131,7 +130,7 @@ const FeaturedCaseStudy = () => {
                   style={{ backgroundImage: `url(${study.bgImage})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/80 to-foreground/40" />
-                
+
                 <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
                   <div>
                     <img src={study.logo} alt={`${study.name} logo`} className="h-12 w-auto object-contain mb-4" />
@@ -173,9 +172,7 @@ const FeaturedCaseStudy = () => {
             We help businesses turn strategy and technology into measurable growth.
           </p>
           <Button asChild size="lg" className="btn-text">
-            <Link to="/case-studies">
-              View All Case Studies →
-            </Link>
+            <Link to="/case-studies">View All Case Studies →</Link>
           </Button>
         </motion.div>
       </div>

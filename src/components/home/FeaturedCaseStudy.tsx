@@ -15,6 +15,10 @@ import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import kranzcontractorsMac from "@/assets/kranzcontractors-macview.webp";
 import crewcoLogo from "@/assets/crewco-logo.webp";
 import crewcoMac from "@/assets/crewco-macview.webp";
+import audacyLogo from "@/assets/audacy-logo.webp";
+import sportsradio610Logo from "@/assets/sportsradio610-logo.webp";
+import mega101Logo from "@/assets/mega101-logo.webp";
+import thebullLogo from "@/assets/thebull-logo.webp";
 
 const FeaturedCaseStudy = () => {
   const caseStudies = [
@@ -28,6 +32,15 @@ const FeaturedCaseStudy = () => {
       link: "/case-studies/aprenovations",
     },
     {
+      logo: sportsradio610Logo,
+      bgImage: sportsradio610Logo,
+      industry: "Media / Sports",
+      name: "SportsRadio 610",
+      highlight: "100% engagement growth",
+      stats: ["1.43M+ YouTube views", "+4,200 subscribers", "+406% watch time"],
+      link: "/case-studies/sportsradio-610",
+    },
+    {
       logo: controllerrepairsLogo,
       bgImage: controllerrepairsMac,
       industry: "eCommerce",
@@ -35,6 +48,15 @@ const FeaturedCaseStudy = () => {
       highlight: "+240% sales growth",
       stats: ["Automated workflows", "Smart dashboards", "50% less manual work"],
       link: "/case-studies/controllerrepairs",
+    },
+    {
+      logo: mega101Logo,
+      bgImage: mega101Logo,
+      industry: "Media / Latin",
+      name: "Mega 101",
+      highlight: "+807% follower lift",
+      stats: ["+717% weekly impressions", "Crisis-moment coverage", "Bilingual engagement"],
+      link: "/case-studies/mega-101",
     },
     {
       logo: pathway2peaceLogo,
@@ -55,6 +77,15 @@ const FeaturedCaseStudy = () => {
       link: "/case-studies/testmypools",
     },
     {
+      logo: audacyLogo,
+      bgImage: audacyLogo,
+      industry: "Media / Enterprise",
+      name: "Audacy Houston",
+      highlight: "3.5M+ video views",
+      stats: ["+400% watch time", "3 major brands", "Digital transformation"],
+      link: "/case-studies/audacy-houston",
+    },
+    {
       logo: imperialjewelryLogo,
       bgImage: imperialjewelryMac,
       industry: "Luxury eCommerce",
@@ -71,6 +102,15 @@ const FeaturedCaseStudy = () => {
       highlight: "+210% inbound leads",
       stats: ["50% lower ad costs", "Modern web design", "Local SEO dominance"],
       link: "/case-studies/kranz-contractors",
+    },
+    {
+      logo: thebullLogo,
+      bgImage: thebullLogo,
+      industry: "Media / Country",
+      name: "The Bull Houston",
+      highlight: "+20K followers",
+      stats: ["1.2M+ video views", "Country lifestyle brand", "Digital modernization"],
+      link: "/case-studies/the-bull-houston",
     },
     {
       logo: crewcoLogo,

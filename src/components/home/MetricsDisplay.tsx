@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client/react';
 import { GET_HOME_METRICS } from '@/lib/graphql/queries';
-import CountUp from 'react-countup';
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+import gsap from 'gsap';
 import * as Icons from 'lucide-react';
 
 interface MetricNode {
@@ -22,6 +24,10 @@ interface MetricsData {
 
 const MetricsDisplay = () => {
   const { loading, error, data } = useQuery<MetricsData>(GET_HOME_METRICS);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   if (loading) {
     console.log('MetricsDisplay: Loading...');
@@ -50,8 +56,31 @@ const MetricsDisplay = () => {
 
   const metrics = data?.mi_home_metricsCollection?.edges || [];
 
+  const CountUpMetric = ({ value, suffix }: { value: number; suffix: string | null }) => {
+    const numberRef = useRef<HTMLSpanElement>(null);
+
+    useEffect(() => {
+      if (inView && numberRef.current) {
+        gsap.from(numberRef.current, {
+          textContent: 0,
+          duration: 0.8,
+          ease: "power1.out",
+          snap: { textContent: 1 },
+          onUpdate: function() {
+            if (numberRef.current) {
+              const val = Math.ceil(Number(this.targets()[0].textContent));
+              numberRef.current.textContent = val.toLocaleString();
+            }
+          }
+        });
+      }
+    }, [inView, value]);
+
+    return <span ref={numberRef}>0</span>;
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {metrics.map(({ node }, index) => {
         const IconComponent = node.icon
           ? (Icons as any)[
@@ -76,7 +105,7 @@ const MetricsDisplay = () => {
               {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
               <div className="text-4xl font-bold">
                 {node.suffix === '$' && <span className="text-primary">{node.suffix}</span>}
-                <CountUp end={node.value} duration={2} separator="," />
+                <CountUpMetric value={node.value} suffix={node.suffix} />
                 {node.suffix && node.suffix !== '$' && (
                   <span className="text-primary">{node.suffix}</span>
                 )}

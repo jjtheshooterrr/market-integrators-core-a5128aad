@@ -498,10 +498,10 @@ const CreativePortfolio = () => {
                       <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
                         {project.videoId && (
                           <iframe
-                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
                             loading="lazy"
                             className="absolute top-0 left-0 w-full h-full border-none"
-                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
                             allowFullScreen
                           />
                         )}
@@ -526,10 +526,10 @@ const CreativePortfolio = () => {
                       <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
                         {project.videoId && (
                           <iframe
-                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
                             loading="lazy"
                             className="absolute top-0 left-0 w-full h-full border-none"
-                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
                             allowFullScreen
                           />
                         )}
@@ -554,10 +554,10 @@ const CreativePortfolio = () => {
                       <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
                         {project.videoId && (
                           <iframe
-                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
                             loading="lazy"
                             className="absolute top-0 left-0 w-full h-full border-none"
-                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
                             allowFullScreen
                           />
                         )}

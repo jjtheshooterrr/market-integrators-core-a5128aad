@@ -13,6 +13,7 @@ import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
+import crewcoLogo from "@/assets/crewco-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data
@@ -66,6 +67,11 @@ const CaseStudies = () => {
       name: "Lyla Gray",
       logo: lylagrayLogo,
       link: "/case-studies/lylagray",
+    },
+    {
+      name: "Crewco Events",
+      logo: crewcoLogo,
+      link: "/case-studies/crewco-events",
     },
   ];
 
@@ -139,6 +145,13 @@ const CaseStudies = () => {
       description:
         "Private, professional creator platform with subscription access, privacy protections, and direct monetization that boosted direct traffic 190%.",
       link: "/case-studies/lylagray",
+    },
+    {
+      logo: crewcoLogo,
+      title: "Crewco Events — Website Redesign & Local SEO",
+      description:
+        "Complete website redesign and local SEO strategy that increased organic traffic 132% and earned top 3 rankings for key Houston event production keywords.",
+      link: "/case-studies/crewco-events",
     },
   ];
 

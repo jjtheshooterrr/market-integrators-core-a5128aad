@@ -19,6 +19,8 @@ import audacyLogo from "@/assets/audacy-logo.webp";
 import sportsradio610Logo from "@/assets/sportsradio610-logo.webp";
 import mega101Logo from "@/assets/mega101-logo.webp";
 import thebullLogo from "@/assets/thebull-logo.webp";
+import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
+import northernutahwindowwellsMac from "@/assets/northernutahwindowwells-macview.webp";
 
 const FeaturedCaseStudy = () => {
   const caseStudies = [
@@ -93,6 +95,15 @@ const FeaturedCaseStudy = () => {
       highlight: "+807% follower lift",
       stats: ["+717% weekly impressions", "Crisis-moment coverage", "Bilingual engagement"],
       link: "/case-studies/mega-101",
+    },
+    {
+      logo: northernutahwindowwellsLogo,
+      bgImage: northernutahwindowwellsMac,
+      industry: "Home Services",
+      name: "Northern Utah Window Wells",
+      highlight: "Digital transformation success",
+      stats: ["Increased web traffic", "Improved lead generation", "Seasonal demand stability"],
+      link: "/case-studies/northern-utah-window-wells",
     },
   ];
 

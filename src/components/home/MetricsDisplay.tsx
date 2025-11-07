@@ -61,10 +61,11 @@ const MetricsDisplay = () => {
 
     useEffect(() => {
       if (inView && numberRef.current) {
-        gsap.from(numberRef.current, {
-          textContent: 0,
-          duration: 0.8,
-          ease: "power1.out",
+        const targetValue = Number(value);
+        gsap.to(numberRef.current, {
+          textContent: targetValue,
+          duration: 0.5,
+          ease: "power2.out",
           snap: { textContent: 1 },
           onUpdate: function() {
             if (numberRef.current) {
@@ -105,7 +106,7 @@ const MetricsDisplay = () => {
               {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
               <div className="text-4xl font-bold">
                 {node.suffix === '$' && <span className="text-primary">{node.suffix}</span>}
-                <CountUpMetric value={node.value} suffix={node.suffix} />
+                <CountUpMetric value={Number(node.value)} suffix={node.suffix} />
                 {node.suffix && node.suffix !== '$' && (
                   <span className="text-primary">{node.suffix}</span>
                 )}

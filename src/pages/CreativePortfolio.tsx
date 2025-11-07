@@ -372,14 +372,14 @@ const CreativePortfolio = () => {
                       social post designs, digital ads, brand identity, and website mockups.
                     </p>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <div className="grid md:grid-cols-3 gap-6">
                     {graphicDesignProjects.map((project, index) => (
                       <div key={index} className="relative overflow-hidden rounded-lg group cursor-pointer">
                         {project.image && (
                           <img
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                           />
                         )}
                       </div>

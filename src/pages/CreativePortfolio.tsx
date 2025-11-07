@@ -363,20 +363,51 @@ const CreativePortfolio = () => {
 
   const photographyProjects: CreativeProject[] = [
     {
-      title: "Product Photography",
-      description: "High-quality product shots for eCommerce and marketing materials.",
+      title: "Automotive Brand Visuals",
+      description: "Professional automotive photography showcasing vehicle design and branding.",
       category: "Photography & Media",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/automotive-brand-visuals-market-integrators.webp",
       credits: [
         { role: "Photographer", name: "Market Integrators Team" },
         { role: "Photo Editor", name: "Studio Team" },
       ],
     },
     {
-      title: "Event & Portrait Photography",
-      description: "Professional lifestyle, portrait, and event photography for various clients and activations.",
+      title: "Automotive Media Production",
+      description: "High-end automotive photography and media content for marketing campaigns.",
       category: "Photography & Media",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/automotive-media-production-market-integrators.webp",
       credits: [
-        { role: "Lead Photographer", name: "Market Integrators Team" },
+        { role: "Automotive Photographer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Mexican Cuisine Dish Presentation",
+      description: "Food photography capturing authentic Mexican culinary artistry and presentation.",
+      category: "Photography & Media",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/mexican-cuisine-dish-presentation-market-integrators.webp",
+      credits: [
+        { role: "Food Photographer", name: "Market Integrators Team" },
+        { role: "Photo Editor", name: "Studio Team" },
+      ],
+    },
+    {
+      title: "Restaurant Food Display",
+      description: "Professional restaurant photography highlighting menu items and culinary excellence.",
+      category: "Photography & Media",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/restaurant-food-display-market-integrators.webp",
+      credits: [
+        { role: "Food Photographer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Dessert Plating Design",
+      description: "Elegant dessert photography showcasing plating techniques and presentation.",
+      category: "Photography & Media",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/dessert-plating-design-market-integrators.webp",
+      credits: [
+        { role: "Food Photographer", name: "Market Integrators Team" },
+        { role: "Photo Editor", name: "Studio Team" },
       ],
     },
   ];
@@ -546,8 +577,19 @@ const CreativePortfolio = () => {
                       event photography, artist portraits, and editorial imagery.
                     </p>
                   </div>
-                  <div className="text-center text-muted-foreground py-12">
-                    <p>Photography showcase coming soon</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {photographyProjects.map((project, index) => (
+                      <div key={index} className="overflow-hidden rounded-lg">
+                        {project.image && (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-auto object-contain md:aspect-square md:object-cover"
+                            loading="lazy"
+                          />
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </TabsContent>

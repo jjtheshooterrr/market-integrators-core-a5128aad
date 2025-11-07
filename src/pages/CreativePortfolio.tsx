@@ -12,6 +12,7 @@ interface CreativeProject {
   category: string;
   image?: string;
   videoId?: string;
+  aspectRatio?: string;
   credits: {
     role: string;
     name: string;
@@ -49,6 +50,7 @@ const CreativePortfolio = () => {
       description: "Animated logo reveals and transitions for Audacy Houston stations including The Bull, Mega 101, and SportsRadio 610.",
       category: "Animated Videos & Motion Graphics",
       videoId: "42199c78495b788ffdaee9a341d01c23",
+      aspectRatio: "75%",
       credits: [
         { role: "Motion Designer", name: "Market Integrators Team" },
         { role: "Animation Director", name: "Studio Team" },
@@ -59,17 +61,19 @@ const CreativePortfolio = () => {
       description: "Broadcast-quality animated graphics for video content and live streams.",
       category: "Animated Videos & Motion Graphics",
       videoId: "b0a6799c890d34169781027f8a503474",
+      aspectRatio: "56.25%",
       credits: [
         { role: "Motion Graphics Artist", name: "Market Integrators Team" },
       ],
     },
     {
-      title: "Broadcast Graphics Package",
-      description: "Complete motion graphics suite for digital broadcast content.",
+      title: "Event Graphics & Transitions",
+      description: "Dynamic motion graphics for live events and streaming content.",
       category: "Animated Videos & Motion Graphics",
-      videoId: "48d7b689a7411cf82770ef69022ddd73",
+      videoId: "15e013844bdd96b947a347b11851bdca",
+      aspectRatio: "56.25%",
       credits: [
-        { role: "Motion Designer", name: "Market Integrators Team" },
+        { role: "Motion Graphics Artist", name: "Market Integrators Team" },
       ],
     },
     {
@@ -77,6 +81,7 @@ const CreativePortfolio = () => {
       description: "Dynamic animated content optimized for social media platforms.",
       category: "Animated Videos & Motion Graphics",
       videoId: "3e77bd4ada463b6a39c5e7978c377e28",
+      aspectRatio: "56.25%",
       credits: [
         { role: "Animation Artist", name: "Market Integrators Team" },
       ],
@@ -86,18 +91,20 @@ const CreativePortfolio = () => {
       description: "Narrative-driven motion graphics for brand storytelling.",
       category: "Animated Videos & Motion Graphics",
       videoId: "c0e27ea609903709c29feb83e931503e",
+      aspectRatio: "75%",
       credits: [
         { role: "Creative Director", name: "Market Integrators Team" },
         { role: "Motion Designer", name: "Studio Team" },
       ],
     },
     {
-      title: "Event Graphics & Transitions",
-      description: "Dynamic motion graphics for live events and streaming content.",
+      title: "Broadcast Graphics Package",
+      description: "Complete motion graphics suite for digital broadcast content.",
       category: "Animated Videos & Motion Graphics",
-      videoId: "15e013844bdd96b947a347b11851bdca",
+      videoId: "48d7b689a7411cf82770ef69022ddd73",
+      aspectRatio: "56.25%",
       credits: [
-        { role: "Motion Graphics Artist", name: "Market Integrators Team" },
+        { role: "Motion Designer", name: "Market Integrators Team" },
       ],
     },
   ];
@@ -257,12 +264,13 @@ const CreativePortfolio = () => {
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     {animatedVideosProjects.map((project, index) => (
-                      <Card key={index} className="hover:shadow-lg transition-shadow">
+                      <Card key={index} className="hover:shadow-lg transition-shadow overflow-hidden">
                         {project.videoId && (
-                          <div className="aspect-video w-full">
+                          <div className="relative w-full" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
                             <iframe
-                              src={`https://customer-m033z5x00fn3md4b.cloudflarestream.com/${project.videoId}/iframe?autoplay=true&loop=true&muted=true`}
-                              className="w-full h-full rounded-t-lg"
+                              src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                              loading="lazy"
+                              className="absolute top-0 left-0 w-full h-full border-none"
                               allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                               allowFullScreen
                             />

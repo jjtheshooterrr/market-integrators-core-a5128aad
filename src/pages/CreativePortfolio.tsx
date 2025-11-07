@@ -25,21 +25,111 @@ const CreativePortfolio = () => {
   // Sample projects data - can be expanded with real projects
   const graphicDesignProjects: CreativeProject[] = [
     {
-      title: "Social Media Campaign - Houston Radio",
-      description: "Complete visual identity system including YouTube thumbnails, Instagram stories, and display ads for multiple Houston radio stations.",
+      title: "Creative Gaming Poster",
+      description: "Dynamic gaming poster design with bold typography and vibrant colors.",
       category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/creative-gaming-poster-design-market-integrators.webp",
       credits: [
-        { role: "Creative Director", name: "Market Integrators Team" },
-        { role: "Graphic Designer", name: "Studio Team" },
+        { role: "Graphic Designer", name: "Market Integrators Team" },
       ],
     },
     {
-      title: "Brand Identity System",
-      description: "Logo design, color palette development, and typography system for multiple client brands.",
+      title: "Digital Art Design",
+      description: "Contemporary digital art showcasing modern design techniques.",
       category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/digital-art-design-market-integrators.webp",
       credits: [
-        { role: "Brand Designer", name: "Market Integrators Team" },
-        { role: "Art Direction", name: "Studio Team" },
+        { role: "Digital Artist", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Esports Event Poster",
+      description: "High-energy promotional design for competitive gaming events.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/esports-event-poster-design-market-integrators.webp",
+      credits: [
+        { role: "Creative Director", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Experimental Graphic Design",
+      description: "Cutting-edge experimental design pushing creative boundaries.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/experimental-graphic-design-market-integrators.webp",
+      credits: [
+        { role: "Art Director", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Fine Art Portrait Design",
+      description: "Artistic portrait design with sophisticated visual elements.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/fine-art-portrait-design-market-integrators.webp",
+      credits: [
+        { role: "Graphic Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Gaming Illustration",
+      description: "Custom gaming character illustration and concept art.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/gaming-illustration-design-market-integrators.webp",
+      credits: [
+        { role: "Illustrator", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Gaming Promo Poster",
+      description: "Eye-catching promotional poster for gaming campaigns.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/gaming-promo-poster-design-market-integrators.webp",
+      credits: [
+        { role: "Graphic Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Gaming Thumbnail Design",
+      description: "Engaging thumbnail design optimized for gaming content.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/gaming-thumbnail-design-market-integrators.webp",
+      credits: [
+        { role: "Thumbnail Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Gaming YouTube Thumbnail",
+      description: "High-impact YouTube thumbnail designed for maximum click-through.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/gaming-youtube-thumbnail-design-market-integrators.webp",
+      credits: [
+        { role: "Thumbnail Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Music Cover Art",
+      description: "Professional album cover art and music branding design.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/music-cover-art-design-market-integrators.webp",
+      credits: [
+        { role: "Cover Art Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Sports Graphic Design",
+      description: "Dynamic sports graphics for digital and broadcast media.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/sports-graphic-design-market-integrators.webp",
+      credits: [
+        { role: "Sports Designer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Sports Promo Design",
+      description: "Bold promotional design for sports events and campaigns.",
+      category: "Graphic & Visual Design",
+      image: "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/creativestudiobuck/sports-promo-design-market-integrators.webp",
+      credits: [
+        { role: "Graphic Designer", name: "Market Integrators Team" },
       ],
     },
   ];
@@ -282,8 +372,18 @@ const CreativePortfolio = () => {
                       social post designs, digital ads, brand identity, and website mockups.
                     </p>
                   </div>
-                  <div className="text-center text-muted-foreground py-12">
-                    <p>Visual design showcase coming soon</p>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {graphicDesignProjects.map((project, index) => (
+                      <div key={index} className="relative overflow-hidden rounded-lg group cursor-pointer">
+                        {project.image && (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover aspect-square transition-transform duration-300 group-hover:scale-105"
+                          />
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </TabsContent>

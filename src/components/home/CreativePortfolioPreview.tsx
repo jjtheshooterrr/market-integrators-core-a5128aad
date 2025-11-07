@@ -20,6 +20,14 @@ const CreativePortfolioPreview = () => {
       src: "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/dbd847725cb709f96558328d99e693d5/iframe?poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2Fdbd847725cb709f96558328d99e693d5%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600",
       aspectRatio: "75%", // 4:3
     },
+    {
+      src: "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/461e0fe711b173a62ca8d1c887188752/iframe?poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F461e0fe711b173a62ca8d1c887188752%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600",
+      aspectRatio: "56.25%", // 16:9
+    },
+    {
+      src: "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/e2b23a09186c200c738e82e1ef4770c1/iframe?poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2Fe2b23a09186c200c738e82e1ef4770c1%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600",
+      aspectRatio: "177.78%", // 9:16 vertical
+    },
   ];
 
   return (

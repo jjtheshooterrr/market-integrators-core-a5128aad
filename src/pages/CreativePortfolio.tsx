@@ -135,6 +135,8 @@ const CreativePortfolio = () => {
       title: "Commercial Production",
       description: "Full-scale commercial shoots for various clients including lighting, multi-cam setups, and on-location filming.",
       category: "Film & On-Site Production",
+      videoId: "d1028ac45fdc88113137d83b09edb039",
+      aspectRatio: "75%",
       credits: [
         { role: "Director", name: "Market Integrators Team" },
         { role: "Cinematographer", name: "Studio Team" },
@@ -145,8 +147,61 @@ const CreativePortfolio = () => {
       title: "Event Coverage",
       description: "Professional event documentation including sports events, concerts, and corporate activations.",
       category: "Film & On-Site Production",
+      videoId: "0513b4f6894f874c68ccf40801eaae78",
+      aspectRatio: "56.25%",
       credits: [
         { role: "Director of Photography", name: "Market Integrators Team" },
+        { role: "Camera Operator", name: "Studio Team" },
+      ],
+    },
+    {
+      title: "Brand Film Production",
+      description: "Cinematic brand storytelling with professional production quality.",
+      category: "Film & On-Site Production",
+      videoId: "3cf53f433691ac59dd2b4afdca7b249e",
+      aspectRatio: "75%",
+      credits: [
+        { role: "Director", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Studio Production",
+      description: "Professional studio shoots with controlled lighting and multi-camera setups.",
+      category: "Film & On-Site Production",
+      videoId: "dbd847725cb709f96558328d99e693d5",
+      aspectRatio: "75%",
+      credits: [
+        { role: "Director of Photography", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "On-Location Filming",
+      description: "Dynamic on-location shoots capturing authentic moments and environments.",
+      category: "Film & On-Site Production",
+      videoId: "6ead83892a5b04a0ed29f6fee1e4561a",
+      aspectRatio: "75%",
+      credits: [
+        { role: "Cinematographer", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Vertical Content Production",
+      description: "Mobile-first vertical video content for social media platforms.",
+      category: "Film & On-Site Production",
+      videoId: "ecddc3e3fcfd5b213c9b116c64c7e580",
+      aspectRatio: "177.77777777777777%",
+      credits: [
+        { role: "Director", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "Documentary Style Production",
+      description: "Documentary-style filming capturing real stories and authentic moments.",
+      category: "Film & On-Site Production",
+      videoId: "c83d19a2d04bb161d7c0007a4e2298c2",
+      aspectRatio: "75%",
+      credits: [
+        { role: "Director", name: "Market Integrators Team" },
         { role: "Camera Operator", name: "Studio Team" },
       ],
     },
@@ -287,8 +342,20 @@ const CreativePortfolio = () => {
                       interviews, and B-roll footage.
                     </p>
                   </div>
-                  <div className="text-center text-muted-foreground py-12">
-                    <p>Film production showcase coming soon</p>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {filmProductionProjects.map((project, index) => (
+                      <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
+                        {project.videoId && (
+                          <iframe
+                            src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                            loading="lazy"
+                            className="absolute top-0 left-0 w-full h-full border-none"
+                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allowFullScreen
+                          />
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </TabsContent>

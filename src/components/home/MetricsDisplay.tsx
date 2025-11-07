@@ -1,5 +1,5 @@
 // src/components/home/MetricsDisplay.tsx
-import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client/react";
 import { GET_HOME_METRICS } from "@/lib/graphql/queries";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef } from "react";
@@ -11,15 +11,13 @@ interface MetricNode {
   id: string;
   label: string;
   value: number;
-  suffix: string | null; // e.g. "$", "+", "%", "k"
-  icon: string | null; // e.g. "arrow-up-right", "users"
+  suffix: string | null;
+  icon: string | null;
 }
 
 interface MetricsData {
   mi_home_metricsCollection: {
-    edges: Array<{
-      node: MetricNode;
-    }>;
+    edges: Array<{ node: MetricNode }>;
   };
 }
 
@@ -51,12 +49,6 @@ const MetricsDisplay = () => {
 
   const metrics = useMemo(() => data?.mi_home_metricsCollection?.edges ?? [], [data]);
 
-  /**
-   * CountUpMetric
-   * - Animates from current displayed value (or 0) to target using a proxy object.
-   * - Avoids TextPlugin dependency.
-   * - Guards against StrictMode double-runs and cleans up on unmount.
-   */
   const CountUpMetric = ({ value }: { value: number }) => {
     const numberRef = useRef<HTMLSpanElement>(null);
     const hasAnimated = useRef(false);
@@ -71,7 +63,7 @@ const MetricsDisplay = () => {
       const counter = { val: startVal };
       const tween = gsap.to(counter, {
         val: value,
-        duration: 1.0, // speed for “fast moving” feel
+        duration: 1.0,
         ease: "power1.out",
         onUpdate: () => {
           if (!numberRef.current) return;
@@ -85,7 +77,6 @@ const MetricsDisplay = () => {
     return <span ref={numberRef}>0</span>;
   };
 
-  // Turn "arrow-up-right" -> "ArrowUpRight", "users" -> "Users"
   const toPascalCase = (name: string) =>
     name
       .split(/[-_ ]+/g)

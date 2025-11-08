@@ -30,7 +30,6 @@ const MetricsDisplay = () => {
   });
 
   if (loading) {
-    console.log('MetricsDisplay: Loading...');
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[1, 2, 3].map((i) => (
@@ -44,15 +43,12 @@ const MetricsDisplay = () => {
   }
 
   if (error) {
-    console.error('MetricsDisplay Error:', error);
     return (
       <div className="text-center text-destructive p-4">
         <p>Unable to load metrics. Please try again later.</p>
       </div>
     );
   }
-
-  console.log('MetricsDisplay Data:', data);
 
   const metrics = data?.mi_home_metricsCollection?.edges || [];
 

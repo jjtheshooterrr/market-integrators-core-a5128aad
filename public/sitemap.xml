@@ -43,6 +43,11 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.marketintegrators.com/creative-portfolio</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   
   <!-- Service Pages -->
   <url>
@@ -189,6 +194,31 @@
   </url>
   <url>
     <loc>https://www.marketintegrators.com/case-studies/lylagray</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/case-studies/crewco-events</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/case-studies/audacy-houston</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/case-studies/sportsradio-610</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/case-studies/mega-101</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/case-studies/the-bull-houston</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

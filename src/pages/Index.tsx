@@ -21,12 +21,8 @@ const Index = () => {
         <ParallaxSection speed={0.5}>
           <ProcessStepsAnimated />
         </ParallaxSection>
-        <ParallaxSection speed={0.4}>
-          <FeaturedCaseStudy />
-        </ParallaxSection>
-        <ParallaxSection speed={0.35}>
-          <CreativePortfolioPreview />
-        </ParallaxSection>
+        <FeaturedCaseStudy />
+        <CreativePortfolioPreview />
         <ParallaxSection speed={0.3}>
           <MetricsSection />
         </ParallaxSection>

@@ -626,7 +626,7 @@ const CreativePortfolio = () => {
 
       {/* Image Lightbox Dialog */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95 border-none">
+        <DialogContent className="max-w-7xl w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none overflow-hidden">
           <button
             onClick={() => setSelectedImage(null)}
             className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -634,11 +634,11 @@ const CreativePortfolio = () => {
             <X className="w-6 h-6 text-white" />
           </button>
           {selectedImage && (
-            <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="w-full h-full flex items-center justify-center p-8">
               <img
                 src={selectedImage}
                 alt="Full size preview"
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-[calc(95vh-4rem)] object-contain"
               />
             </div>
           )}

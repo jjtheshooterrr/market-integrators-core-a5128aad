@@ -43,7 +43,6 @@ const Tv404Card: React.FC = () => {
             <div className="a2d" />
             <div className="a_base" />
           </div>
-
           <div className="tv">
             <div className="cruve">
               <svg
@@ -60,7 +59,6 @@ const Tv404Card: React.FC = () => {
                 />
               </svg>
             </div>
-
             <div className="display_div">
               <div className="screen_out">
                 <div className="screen_out1">
@@ -69,7 +67,6 @@ const Tv404Card: React.FC = () => {
                     <CanvasStatic />
                     <span className="notfound_text"> NOT FOUND</span>
                   </div>
-
                   {/* Keep DOM but always hidden */}
                   <div className="screenM">
                     <span className="notfound_text"> NOT FOUND</span>
@@ -77,13 +74,11 @@ const Tv404Card: React.FC = () => {
                 </div>
               </div>
             </div>
-
             <div className="lines">
               <div className="line1" />
               <div className="line2" />
               <div className="line3" />
             </div>
-
             <div className="buttons_div">
               <div className="b1">
                 <div />
@@ -100,14 +95,12 @@ const Tv404Card: React.FC = () => {
               </div>
             </div>
           </div>
-
           <div className="bottom">
             <div className="base1" />
             <div className="base2" />
             <div className="base3" />
           </div>
         </div>
-
         <div className="text_404">
           <div className="text_4041">4</div>
           <div className="text_4042">0</div>
@@ -165,6 +158,7 @@ const CanvasStatic: React.FC = () => {
     const loop = (ts: number) => {
       if (!running) return;
       if (ts - last > 33) {
+        // ~30fps
         last = ts;
         drawNoise();
       }
@@ -200,6 +194,9 @@ const StyledWrapper = styled.div`
     width: 30em;
     height: 30em;
     max-width: 100%;
+
+    /* 🔥 Single responsive scaler: scales all em-based sizes uniformly */
+    font-size: clamp(12px, 3.4vw, 30px);
   }
 
   .main {
@@ -320,11 +317,10 @@ const StyledWrapper = styled.div`
     border-radius: 5px;
   }
 
-  /* === Responsive TV sizing (keeps aspect) === */
+  /* ⤴️ Back to your exact original sizes */
   .tv {
-    width: clamp(280px, 60vw, 560px);
-    /* ~ 16:9ish exterior; inner screen will be inset */
-    height: clamp(170px, 34vw, 320px);
+    width: 17em;
+    height: 9em;
     margin-top: 3em;
     border-radius: 15px;
     background-color: #d36604;
@@ -332,12 +328,12 @@ const StyledWrapper = styled.div`
     justify-content: center;
     border: 2px solid #1d0e01;
     box-shadow: inset 0.2em 0.2em #e69635;
-    position: relative;
   }
   .tv::after {
     content: "";
     position: absolute;
-    inset: 0;
+    width: 17em;
+    height: 9em;
     border-radius: 15px;
     opacity: 0.09;
   }
@@ -359,29 +355,22 @@ const StyledWrapper = styled.div`
     box-shadow: 3.5px 3.5px 0px #e69635;
   }
 
-  .screen_out {
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-  }
+  .screen_out { width: auto; height: auto; border-radius: 10px; }
+
   .screen_out1 {
-    /* fill the TV interior */
-    width: calc(100% - 3.5rem);
-    height: calc(100% - 2rem);
+    width: 11em;
+    height: 7.75em;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
   }
 
-  /* === CRT SCREEN (Canvas + overlays) === */
+  /* ✅ Same size as your original animated gradient version */
   .screen,
   .screenM {
-    position: relative;
-    width: 62%;
-    /* interior screen closer to 4:3 feel */
-    aspect-ratio: 4 / 3;
-    height: auto;
+    width: 13em;
+    height: 7.85em;
     font-family: Montserrat, ui-sans-serif, system-ui;
     border: 2px solid #1d0e01;
     border-radius: 10px;
@@ -395,8 +384,10 @@ const StyledWrapper = styled.div`
     text-align: center;
     overflow: hidden;
     background: #0b0b0b;
+    position: relative;
   }
 
+  /* Canvas fills the screen area */
   .crtCanvas {
     position: absolute;
     inset: 0;
@@ -408,6 +399,7 @@ const StyledWrapper = styled.div`
     will-change: contents;
   }
 
+  /* Scanlines + vignette for CRT feel */
   .screen::before {
     content: "";
     position: absolute;
@@ -427,35 +419,16 @@ const StyledWrapper = styled.div`
     inset: -15%;
     pointer-events: none;
     background:
-      radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08), transparent 60%),
+      radial-gradient(ellipse at center, rgba(255,255,255,0.08), transparent 60%),
       radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.35) 100%);
   }
-  @keyframes scanflicker {
-    0%, 100% { opacity: 0.85; }
-    50% { opacity: 1; }
-  }
+  @keyframes scanflicker { 0%,100%{opacity:.85} 50%{opacity:1} }
+
   .screenM { display: none !important; }
 
-  .lines {
-    display: flex;
-    column-gap: 0.1em;
-    align-self: flex-end;
-  }
-  .line1,
-  .line3 {
-    width: 2px;
-    height: 0.5em;
-    background-color: black;
-    border-radius: 25px 25px 0px 0px;
-    margin-top: 0.5em;
-  }
-  .line2 {
-    flex-grow: 1;
-    width: 2px;
-    height: 1em;
-    background-color: black;
-    border-radius: 25px 25px 0px 0px;
-  }
+  .lines { display: flex; column-gap: 0.1em; align-self: flex-end; }
+  .line1, .line3 { width: 2px; height: 0.5em; background-color: black; border-radius: 25px 25px 0 0; margin-top: 0.5em; }
+  .line2 { flex-grow: 1; width: 2px; height: 1em; background-color: black; border-radius: 25px 25px 0 0; }
 
   .buttons_div {
     width: 4.25em;
@@ -472,161 +445,49 @@ const StyledWrapper = styled.div`
     row-gap: 0.75em;
     box-shadow: 3px 3px 0px #e69635;
   }
-  .b1 {
+  .b1, .b2 {
     width: 1.65em;
     height: 1.65em;
     border-radius: 50%;
     background-color: #7f5934;
     border: 2px solid black;
-    box-shadow: inset 2px 2px 1px #b49577, -2px 0px #513721,
-      -2px 0px 0px 1px black;
+    box-shadow: inset 2px 2px 1px #b49577, -2px 0px #513721, -2px 0px 0px 1px black;
   }
-  .b1::before {
-    content: "";
-    position: absolute;
-    margin-top: 1em;
-    margin-left: 0.5em;
-    transform: rotate(47deg);
-    border-radius: 5px;
-    width: 0.1em;
-    height: 0.4em;
-    background-color: #000000;
-  }
-  .b1::after {
-    content: "";
-    position: absolute;
-    margin-top: 0.9em;
-    margin-left: 0.8em;
-    transform: rotate(47deg);
-    border-radius: 5px;
-    width: 0.1em;
-    height: 0.55em;
-    background-color: #000000;
-  }
-  .b1 div {
-    content: "";
-    position: absolute;
-    margin-top: -0.1em;
-    margin-left: 0.65em;
-    transform: rotate(45deg);
-    width: 0.15em;
-    height: 1.5em;
-    background-color: #000000;
-  }
-  .b2 {
-    width: 1.65em;
-    height: 1.65em;
-    border-radius: 50%;
-    background-color: #7f5934;
-    border: 2px solid black;
-    box-shadow: inset 2px 2px 1px #b49577, -2px 0px #513721,
-      -2px 0px 0px 1px black;
-  }
-  .b2::before {
-    content: "";
-    position: absolute;
-    margin-top: 1.05em;
-    margin-left: 0.8em;
-    transform: rotate(-45deg);
-    border-radius: 5px;
-    width: 0.15em;
-    height: 0.4em;
-    background-color: #000000;
-  }
-  .b2::after {
-    content: "";
-    position: absolute;
-    margin-top: -0.1em;
-    margin-left: 0.65em;
-    transform: rotate(-45deg);
-    width: 0.15em;
-    height: 1.5em;
-    background-color: #000000;
-  }
+  .b1::before { content:""; position:absolute; margin-top:1em; margin-left:0.5em; transform:rotate(47deg); border-radius:5px; width:0.1em; height:0.4em; background:#000; }
+  .b1::after  { content:""; position:absolute; margin-top:0.9em; margin-left:0.8em; transform:rotate(47deg); border-radius:5px; width:0.1em; height:0.55em; background:#000; }
+  .b1 div     { content:""; position:absolute; margin-top:-0.1em; margin-left:0.65em; transform:rotate(45deg); width:0.15em; height:1.5em; background:#000; }
+  .b2::before { content:""; position:absolute; margin-top:1.05em; margin-left:0.8em; transform:rotate(-45deg); border-radius:5px; width:0.15em; height:0.4em; background:#000; }
+  .b2::after  { content:""; position:absolute; margin-top:-0.1em; margin-left:0.65em; transform:rotate(-45deg); width:0.15em; height:1.5em; background:#000; }
 
-  .speakers {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5em;
+  .speakers { display:flex; flex-direction:column; row-gap:0.5em; }
+  .speakers .g1 { display:flex; column-gap:0.25em; }
+  .speakers .g1 .g11, .g12, .g13 {
+    width: 0.65em; height: 0.65em; border-radius: 50%;
+    background-color: #7f5934; border: 2px solid black; box-shadow: inset 1.25px 1.25px 1px #b49577;
   }
-  .speakers .g1 {
-    display: flex;
-    column-gap: 0.25em;
-  }
-  .speakers .g1 .g11,
-  .g12,
-  .g13 {
-    width: 0.65em;
-    height: 0.65em;
-    border-radius: 50%;
-    background-color: #7f5934;
-    border: 2px solid black;
-    box-shadow: inset 1.25px 1.25px 1px #b49577;
-  }
-  .speakers .g {
-    width: auto;
-    height: 2px;
-    background-color: #171717;
-  }
+  .speakers .g { width: auto; height: 2px; background-color: #171717; }
 
   .bottom {
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 8.7em;
+    width: 100%; height: auto; display: flex; align-items: center; justify-content: center; column-gap: 8.7em;
   }
-  .base1,
-  .base2 {
-    height: 1em;
-    width: 2em;
-    border: 2px solid #171717;
-    background-color: #4d4d4d;
-    margin-top: -0.15em;
-    z-index: -1;
-  }
-  .base3 {
-    position: absolute;
-    height: 0.15em;
-    width: 17.5em;
-    background-color: #171717;
-    margin-top: 0.8em;
-  }
+  .base1, .base2 { height: 1em; width: 2em; border: 2px solid #171717; background-color: #4d4d4d; margin-top: -0.15em; z-index: -1; }
+  .base3 { position: absolute; height: 0.15em; width: 17.5em; background-color: #171717; margin-top: 0.8em; }
 
   .text_404 {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    column-gap: 6em;
-    z-index: -5;
-    margin-bottom: 2em;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.5;
-    font-family: Montserrat, ui-sans-serif, system-ui;
+    position: absolute; display: flex; flex-direction: row; column-gap: 6em; z-index: -5; margin-bottom: 2em;
+    align-items: center; justify-content: center; opacity: 0.5; font-family: Montserrat, ui-sans-serif, system-ui;
   }
-  .text_4041,
-  .text_4042,
-  .text_4043 {
-    transform: scaleY(24.5) scaleX(9);
-  }
+  .text_4041, .text_4042, .text_4043 { transform: scaleY(24.5) scaleX(9); }
 
-  @media only screen and (max-width: 495px) {
-    .text_404 { column-gap: 6em; }
-  }
+  @media only screen and (max-width: 495px) { .text_404 { column-gap: 6em; } }
   @media only screen and (max-width: 395px) {
     .text_404 { column-gap: 4em; }
     .text_4041, .text_4042, .text_4043 { transform: scaleY(25) scaleX(8); }
   }
 
-  @media (max-width: 275px), (max-height: 520px) {
-    .main { position: relative; }
-  }
+  @media (max-width: 275px), (max-height: 520px) { .main { position: relative; } }
 
-  @media (prefers-reduced-motion: reduce) {
-    .screen::before { animation: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .screen::before { animation: none; } }
 `;
 
 export default NotFound;

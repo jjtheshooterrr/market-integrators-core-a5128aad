@@ -75,10 +75,10 @@ const CaseStudyAPRenovations = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="btn-text">
-                <Link to="/contact-us">Request Proposal</Link>
+                
               </Button>
               <Button asChild size="lg" variant="outline" className="btn-text">
-                <Link to="/case-studies">View More Case Studies</Link>
+                
               </Button>
             </div>
           </div>
@@ -235,29 +235,7 @@ const CaseStudyAPRenovations = () => {
         </section>
 
         {/* Timeline */}
-        <section className="section-padding">
-          <div className="container-custom max-w-4xl">
-            <h2 className="mb-8">Timeline</h2>
-            <div className="space-y-4">
-              <div className="flex gap-4 items-start">
-                <div className="font-bold text-primary min-w-[180px]">Discovery & Strategy:</div>
-                <div className="text-muted-foreground">1–2 weeks</div>
-              </div>
-              <div className="flex gap-4 items-start">
-                <div className="font-bold text-primary min-w-[180px]">Design & Build:</div>
-                <div className="text-muted-foreground">3–4 weeks</div>
-              </div>
-              <div className="flex gap-4 items-start">
-                <div className="font-bold text-primary min-w-[180px]">SEO Setup & Launch:</div>
-                <div className="text-muted-foreground">1–2 weeks</div>
-              </div>
-              <div className="flex gap-4 items-start">
-                <div className="font-bold text-primary min-w-[180px]">Optimization & Reporting:</div>
-                <div className="text-muted-foreground">Ongoing</div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Testimonial */}
         <section className="section-padding bg-secondary/20">

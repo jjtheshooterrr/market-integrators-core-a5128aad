@@ -151,7 +151,6 @@ const CreativePortfolioGraphicDesign = () => {
     "52afd605-f3ff-47ea-251e-e8802fa6d800",
     "f2e1bf19-1fe0-4196-5c50-cebef8da0000",
     "aac1e039-a3b7-44bc-c3e6-ba0ee5626000",
-    "4f075f37-4248-4ea9-1a09-0819182e5500",
   ];
 
   const baseIds = new Set(baseProjects.map((p) => p.imageId));

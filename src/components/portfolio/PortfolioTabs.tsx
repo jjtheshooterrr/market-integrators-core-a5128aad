@@ -2,8 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const portfolioCategories = [
-  { name: "AI Animations", path: "/creative-portfolio/artificial-intelligence-prompted-animations" },
   { name: "All", path: "/creative-portfolio" },
+  { name: "AI Animations", path: "/creative-portfolio/artificial-intelligence-prompted-animations" },
   { name: "Graphic Design", path: "/creative-portfolio/graphic-and-visual-design" },
   { name: "Animated Videos", path: "/creative-portfolio/animated-videos-motion-graphics" },
   { name: "Edited Videos", path: "/creative-portfolio/edited-video-short-form-content" },

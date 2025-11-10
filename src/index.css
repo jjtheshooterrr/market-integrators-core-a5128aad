@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -119,44 +117,36 @@
 }
 
 @layer components {
-  /* Smooth scroll behavior */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Section spacing */
   .section-padding {
     @apply py-16 md:py-24 lg:py-32;
   }
 
-  /* Container widths */
   .container-custom {
     @apply container mx-auto px-4 md:px-6 lg:px-8;
   }
 
-  /* Gradient text */
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-brand-red-dark;
   }
 
-  /* Hover scale effect */
   .hover-scale {
     @apply transition-transform duration-300 hover:scale-105;
   }
 
-  /* Card styles */
   .card-premium {
     @apply bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300;
   }
 
-  /* Button uppercase */
   .btn-text {
     @apply uppercase font-bold tracking-wide;
   }
 }
 
 @layer utilities {
-  /* Animation utilities */
   .animate-fade-in {
     animation: fade-in 0.6s ease-out;
   }
@@ -202,9 +192,9 @@
     }
   }
 
-  /* Glitch effect */
   @keyframes glitch {
-    0% {
+    0%,
+    100% {
       transform: translate(0);
     }
     20% {
@@ -219,9 +209,6 @@
     80% {
       transform: translate(2px, -2px);
     }
-    100% {
-      transform: translate(0);
-    }
   }
 
   .glitch {
@@ -229,7 +216,6 @@
     animation: glitch 0.3s ease-in-out infinite;
   }
 
-  /* Shimmer effect */
   @keyframes shimmer {
     0% {
       background-position: -1000px 0;
@@ -245,7 +231,6 @@
     animation: shimmer 2s infinite;
   }
 
-  /* Neon glow */
   .neon-glow {
     text-shadow:
       0 0 7px hsl(var(--primary)),
@@ -254,7 +239,6 @@
       0 0 42px hsl(var(--primary));
   }
 
-  /* Smooth cursor */
   * {
     cursor: none !important;
   }
@@ -265,7 +249,6 @@
     }
   }
 
-  /* 3D Carousel */
   @keyframes autoRun3d {
     from {
       transform: perspective(1000px) rotateY(-360deg);
@@ -311,7 +294,6 @@
     overflow: hidden;
   }
 
-  /* FIXED: never stop rotating on hover or click */
   .carousel-3d,
   .carousel-3d:hover,
   .carousel-3d:active,
@@ -323,7 +305,6 @@
     animation-play-state: running !important;
   }
 
-  /* Industry Flip Cards */
   .industry-flip-card {
     overflow: visible;
     width: 100%;

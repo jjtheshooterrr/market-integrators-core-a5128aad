@@ -197,7 +197,7 @@ const CinematicHero = () => {
               size="lg"
               className="bg-brand-red hover:bg-brand-red-dark text-white font-body font-semibold px-8 py-6 text-base shadow-red transition-all duration-300 hover:shadow-[0_0_40px_hsl(var(--brand-red)/0.5)] hover:scale-105"
             >
-              <Link to="/contact-us">Request Free Proposal</Link>
+              <Link to="/contact-us">Request Proposal</Link>
             </Button>
 
             <Button

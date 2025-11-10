@@ -79,78 +79,265 @@
       href="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png"
     />
 
-    <!-- Structured Data (LocalBusiness + ProfessionalService + Organization) -->
+    <!-- Enhanced Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
-        "@id": "https://www.marketintegrators.com/#org",
-        "name": "Market Integrators",
-        "url": "https://www.marketintegrators.com/",
-        "logo": "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png",
-        "image": "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png",
-        "description": "Market Integrators delivers digital solutions across technology, marketing, and creative—web development, SEO, PPC, video, and automation to grow your business.",
-        "telephone": "+1-832-510-4920",
-        "email": "marketintegrator@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Houston",
-          "addressRegion": "TX",
-          "addressCountry": "US"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Houston" },
-          { "@type": "State", "name": "Texas" },
-          { "@type": "Country", "name": "United States" }
-        ],
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 29.7604,
-          "longitude": -95.3698
-        },
-        "openingHoursSpecification": [
+        "@graph": [
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "09:00",
-            "closes": "18:00"
-          }
-        ],
-        "contactPoint": [
+            "@type": "WebSite",
+            "@id": "https://www.marketintegrators.com/#website",
+            "url": "https://www.marketintegrators.com/",
+            "name": "Market Integrators",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://www.marketintegrators.com/#org" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.marketintegrators.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
           {
-            "@type": "ContactPoint",
-            "contactType": "customer support",
+            "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+            "@id": "https://www.marketintegrators.com/#org",
+            "name": "Market Integrators",
+            "url": "https://www.marketintegrators.com/",
+            "description": "Market Integrators delivers digital solutions across technology, marketing, and creative—web development, SEO, PPC, video, and automation to grow your business.",
             "telephone": "+1-832-510-4920",
             "email": "marketintegrator@gmail.com",
-            "areaServed": "US"
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png"
+            },
+            "image": "https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Houston",
+              "addressRegion": "TX",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 29.7604,
+              "longitude": -95.3698
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "09:00",
+                "closes": "18:00"
+              }
+            ],
+            "sameAs": [
+              "https://www.facebook.com/marketintegrators",
+              "https://www.instagram.com/marketintegrators",
+              "https://twitter.com/marketintegrators",
+              "https://www.youtube.com/@marketintegrators",
+              "https://www.linkedin.com/company/marketintegrators"
+            ],
+            "areaServed": [
+              { "@type": "City", "name": "Houston" },
+              { "@type": "State", "name": "Texas" },
+              { "@type": "Country", "name": "United States" }
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Digital Solutions",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Web Development" }
+                },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO" } },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "PPC Management" }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Video Production" }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Marketing Automation"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "@id": "https://www.marketintegrators.com/#sitenav",
+            "name": [
+              "Services",
+              "Case Studies",
+              "Contact Us",
+              "About Us",
+              "Pricing",
+              "Industries",
+              "Careers",
+              "Creative Portfolio"
+            ],
+            "url": [
+              "https://www.marketintegrators.com/services",
+              "https://www.marketintegrators.com/case-studies",
+              "https://www.marketintegrators.com/contact-us",
+              "https://www.marketintegrators.com/about-us",
+              "https://www.marketintegrators.com/pricing",
+              "https://www.marketintegrators.com/industries",
+              "https://www.marketintegrators.com/careers",
+              "https://www.marketintegrators.com/creative-portfolio"
+            ]
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.marketintegrators.com/services#page",
+            "url": "https://www.marketintegrators.com/services",
+            "name": "Services",
+            "hasPart": {
+              "@type": "ItemList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "url": "https://www.marketintegrators.com/services/ppc-services" },
+                { "@type": "ListItem", "position": 2, "url": "https://www.marketintegrators.com/services/cybersecurity" },
+                { "@type": "ListItem", "position": 3, "url": "https://www.marketintegrators.com/services/data-analytics" },
+                { "@type": "ListItem", "position": 4, "url": "https://www.marketintegrators.com/services/ai-and-machine-learning" },
+                { "@type": "ListItem", "position": 5, "url": "https://www.marketintegrators.com/services/cloud" },
+                { "@type": "ListItem", "position": 6, "url": "https://www.marketintegrators.com/services/website-development" },
+                { "@type": "ListItem", "position": 7, "url": "https://www.marketintegrators.com/services/app-development" },
+                { "@type": "ListItem", "position": 8, "url": "https://www.marketintegrators.com/services/digital-strategy-consulting" },
+                { "@type": "ListItem", "position": 9, "url": "https://www.marketintegrators.com/services/automation-and-integrations" },
+                {
+                  "@type": "ListItem",
+                  "position": 10,
+                  "url": "https://www.marketintegrators.com/services/search-engine-optimization-and-organic-growth"
+                },
+                { "@type": "ListItem", "position": 11, "url": "https://www.marketintegrators.com/services/social-media-marketing" },
+                { "@type": "ListItem", "position": 12, "url": "https://www.marketintegrators.com/services/google-ads-management" },
+                { "@type": "ListItem", "position": 13, "url": "https://www.marketintegrators.com/services/meta-ads-management" },
+                { "@type": "ListItem", "position": 14, "url": "https://www.marketintegrators.com/services/video-production" },
+                { "@type": "ListItem", "position": 15, "url": "https://www.marketintegrators.com/services/post-production-editing" },
+                { "@type": "ListItem", "position": 16, "url": "https://www.marketintegrators.com/services/animation-and-motion-graphics" },
+                { "@type": "ListItem", "position": 17, "url": "https://www.marketintegrators.com/services/3d-and-visual-effects" },
+                { "@type": "ListItem", "position": 18, "url": "https://www.marketintegrators.com/services/audio-production" },
+                { "@type": "ListItem", "position": 19, "url": "https://www.marketintegrators.com/services/photography-and-product-shoots" }
+              ]
+            }
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.marketintegrators.com/case-studies#page",
+            "url": "https://www.marketintegrators.com/case-studies",
+            "name": "Case Studies",
+            "hasPart": {
+              "@type": "ItemList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "url": "https://www.marketintegrators.com/case-studies/aprenovations" },
+                { "@type": "ListItem", "position": 2, "url": "https://www.marketintegrators.com/case-studies/avalemusic" },
+                { "@type": "ListItem", "position": 3, "url": "https://www.marketintegrators.com/case-studies/pathway-to-peace" },
+                { "@type": "ListItem", "position": 4, "url": "https://www.marketintegrators.com/case-studies/testmypools" },
+                { "@type": "ListItem", "position": 5, "url": "https://www.marketintegrators.com/case-studies/kranz-contractors" },
+                { "@type": "ListItem", "position": 6, "url": "https://www.marketintegrators.com/case-studies/controllerrepairs" },
+                { "@type": "ListItem", "position": 7, "url": "https://www.marketintegrators.com/case-studies/lonestarzentertainment" },
+                { "@type": "ListItem", "position": 8, "url": "https://www.marketintegrators.com/case-studies/northern-utah-window-wells" },
+                { "@type": "ListItem", "position": 9, "url": "https://www.marketintegrators.com/case-studies/imperial-jewelry" },
+                { "@type": "ListItem", "position": 10, "url": "https://www.marketintegrators.com/case-studies/lylagray" },
+                { "@type": "ListItem", "position": 11, "url": "https://www.marketintegrators.com/case-studies/crewco-events" },
+                { "@type": "ListItem", "position": 12, "url": "https://www.marketintegrators.com/case-studies/audacy-houston" },
+                { "@type": "ListItem", "position": 13, "url": "https://www.marketintegrators.com/case-studies/sportsradio-610" },
+                { "@type": "ListItem", "position": 14, "url": "https://www.marketintegrators.com/case-studies/mega-101" },
+                { "@type": "ListItem", "position": 15, "url": "https://www.marketintegrators.com/case-studies/the-bull-houston" }
+              ]
+            }
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.marketintegrators.com/industries#page",
+            "url": "https://www.marketintegrators.com/industries",
+            "name": "Industries",
+            "hasPart": {
+              "@type": "ItemList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "url": "https://www.marketintegrators.com/industries/ecommerce-and-retail" },
+                { "@type": "ListItem", "position": 2, "url": "https://www.marketintegrators.com/industries/saas-and-technology" },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "url": "https://www.marketintegrators.com/industries/home-services-and-franchises"
+                },
+                { "@type": "ListItem", "position": 4, "url": "https://www.marketintegrators.com/industries/healthcare-and-medical" },
+                {
+                  "@type": "ListItem",
+                  "position": 5,
+                  "url": "https://www.marketintegrators.com/industries/legal-and-professional-services"
+                },
+                { "@type": "ListItem", "position": 6, "url": "https://www.marketintegrators.com/industries/finance-and-banking" },
+                { "@type": "ListItem", "position": 7, "url": "https://www.marketintegrators.com/industries/education-and-elearning" },
+                {
+                  "@type": "ListItem",
+                  "position": 8,
+                  "url": "https://www.marketintegrators.com/industries/real-estate-and-property-management"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 9,
+                  "url": "https://www.marketintegrators.com/industries/ai-automation-and-emerging-tech"
+                }
+              ]
+            }
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.marketintegrators.com/creative-portfolio#page",
+            "url": "https://www.marketintegrators.com/creative-portfolio",
+            "name": "Creative Portfolio",
+            "hasPart": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "url": "https://www.marketintegrators.com/creative-portfolio/graphic-and-visual-design"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "url": "https://www.marketintegrators.com/creative-portfolio/animated-videos-motion-graphics"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "url": "https://www.marketintegrators.com/creative-portfolio/edited-video-short-form-content"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "url": "https://www.marketintegrators.com/creative-portfolio/film-on-site-production"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 5,
+                  "url": "https://www.marketintegrators.com/creative-portfolio/photography-media"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 6,
+                  "url": "https://www.marketintegrators.com/creative-portfolio/artificial-intelligence-prompted-animations"
+                }
+              ]
+            }
           }
-        ],
-        "sameAs": [
-          "https://www.facebook.com/marketintegrators",
-          "https://www.instagram.com/marketintegrators",
-          "https://twitter.com/marketintegrators",
-          "https://www.youtube.com/@marketintegrators",
-          "https://www.linkedin.com/company/marketintegrators"
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Digital Solutions",
-          "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPC Management" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Production" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing Automation" } }
-          ]
-        }
+        ]
       }
     </script>
 

@@ -14,7 +14,8 @@ type Props = {
   videoId: string;
   title: string;
   poster: string;
-  aspectRatio?: string;     // '56.25%' (16:9) or '177.78%' (9:16)
+  /** Uniform ratio across the grid */
+  ratio?: "16:9" | "9:16";
   rootMargin?: string;
   clickOnly?: boolean;
   autoPlayMuted?: boolean;
@@ -25,7 +26,7 @@ export default function LazyStreamHLS({
   videoId,
   title,
   poster,
-  aspectRatio = "56.25%",
+  ratio = "16:9",
   rootMargin = "200px",
   clickOnly = false,
   autoPlayMuted = true,
@@ -33,13 +34,15 @@ export default function LazyStreamHLS({
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [showVideo, setShowVideo] = useState(false); // mounted video element
-  const [ready, setReady] = useState(false);         // manifest buffered & video ready
+  const [showVideo, setShowVideo] = useState(false);
+  const [ready, setReady] = useState(false);
   const reduce = useReducedMotion();
 
   const hlsSrc = `https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${videoId}/manifest/video.m3u8`;
 
-  // Lazy show when in view (unless clickOnly)
+  // Use Tailwind aspect ratio utilities for a clean, uniform box
+  const aspectClass = ratio === "9:16" ? "aspect-[9/16]" : "aspect-video";
+
   useEffect(() => {
     if (clickOnly || showVideo) return;
     const el = containerRef.current;
@@ -56,7 +59,6 @@ export default function LazyStreamHLS({
     return () => io.disconnect();
   }, [clickOnly, showVideo, rootMargin]);
 
-  // Attach hls.js (or use native HLS)
   useEffect(() => {
     if (!showVideo || !videoRef.current) return;
 
@@ -68,10 +70,9 @@ export default function LazyStreamHLS({
       try {
         if (canPlayHLSNatively()) {
           video.src = hlsSrc;
-          const onReady = () => !cancelled && setReady(true);
-          video.addEventListener("loadedmetadata", onReady, { once: true });
+          video.addEventListener("loadedmetadata", () => !cancelled && setReady(true), { once: true });
         } else {
-          const mod = await import("hls.js"); // lazy-load
+          const mod = await import("hls.js");
           const Hls = mod.default;
           if (Hls.isSupported()) {
             hls = new Hls({ enableWorker: true, lowLatencyMode: true });
@@ -99,7 +100,6 @@ export default function LazyStreamHLS({
     };
   }, [showVideo, hlsSrc]);
 
-  // Optional autoplay when ready
   useEffect(() => {
     if (!ready || !autoPlayMuted || !videoRef.current) return;
     const v = videoRef.current;
@@ -111,10 +111,9 @@ export default function LazyStreamHLS({
   return (
     <div
       ref={containerRef}
-      className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-      style={{ paddingTop: aspectRatio }}
+      className={`relative ${aspectClass} rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300`}
     >
-      {/* Poster layer (visible until showVideo) */}
+      {/* Poster layer */}
       <AnimatePresence initial={false}>
         {!showVideo && (
           <motion.button
@@ -132,7 +131,7 @@ export default function LazyStreamHLS({
             whileInView={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: reduce ? 1 : 1.01 }}
             viewport={{ once: true, margin: "100px" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="inline-flex items-center justify-center rounded-full p-4 bg-black/60 text-white transition group-hover:bg-black/70">
               ▶
@@ -141,7 +140,7 @@ export default function LazyStreamHLS({
         )}
       </AnimatePresence>
 
-      {/* Video layer (mounts when showVideo; fades in when ready) */}
+      {/* Video layer */}
       {showVideo && (
         <motion.video
           key="video"
@@ -155,9 +154,12 @@ export default function LazyStreamHLS({
           aria-label={title}
           initial={{ opacity: 0, filter: reduce ? "none" : "blur(4px)" }}
           animate={{ opacity: ready ? 1 : 0, filter: ready || reduce ? "none" : "blur(4px)" }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         />
       )}
+      <noscript>
+        <a href={hlsSrc}>Watch: {title}</a>
+      </noscript>
     </div>
   );
 }

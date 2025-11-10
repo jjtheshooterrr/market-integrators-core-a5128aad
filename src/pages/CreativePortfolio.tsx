@@ -9,54 +9,63 @@ import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 const CreativePortfolio = () => {
   const categories = [
     {
+      title: "AI-Prompted Animations",
+      description:
+        "Innovative animations created using artificial intelligence and generative techniques, pushing the boundaries of creative expression through cutting-edge AI technology.",
+      icon: Bot,
+      link: "/creative-portfolio/artificial-intelligence-prompted-animations",
+      color: "from-violet-500 to-fuchsia-500",
+    },
+    {
       title: "Graphic & Visual Design",
-      description: "Static creative assets, design systems, and visual branding work including YouTube thumbnails, social post designs, digital ads, brand identity, and website mockups.",
+      description:
+        "Static creative assets, design systems, and visual branding work including YouTube thumbnails, social post designs, digital ads, brand identity, and website mockups.",
       icon: Palette,
       link: "/creative-portfolio/graphic-and-visual-design",
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
     },
     {
       title: "Animated Videos & Motion Graphics",
-      description: "Dynamic content designed for storytelling and brand identity including logo stings, lower thirds, animated explainers, and motion graphic ad spots.",
+      description:
+        "Dynamic content designed for storytelling and brand identity including logo stings, lower thirds, animated explainers, and motion graphic ad spots.",
       icon: Sparkles,
       link: "/creative-portfolio/animated-videos-motion-graphics",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
     },
     {
       title: "Edited Video & Short-Form Content",
-      description: "Video editing and social-first storytelling including Reels, TikToks, YouTube Shorts, multi-cam edits, highlight reels, and promotional content.",
+      description:
+        "Video editing and social-first storytelling including Reels, TikToks, YouTube Shorts, multi-cam edits, highlight reels, and promotional content.",
       icon: Video,
       link: "/creative-portfolio/edited-video-short-form-content",
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
     },
     {
       title: "Film & On-Site Production",
-      description: "Full-scale video production work including commercial and brand films, studio and on-location shoots, interviews, and B-roll footage.",
+      description:
+        "Full-scale video production work including commercial and brand films, studio and on-location shoots, interviews, and B-roll footage.",
       icon: Film,
       link: "/creative-portfolio/film-on-site-production",
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
     },
     {
       title: "Photography & Media",
-      description: "Still media and creative captures including lifestyle and product photography, event photography, artist portraits, and editorial imagery.",
+      description:
+        "Still media and creative captures including lifestyle and product photography, event photography, artist portraits, and editorial imagery.",
       icon: Camera,
       link: "/creative-portfolio/photography-media",
-      color: "from-indigo-500 to-purple-500"
+      color: "from-indigo-500 to-purple-500",
     },
-    {
-      title: "AI-Prompted Animations",
-      description: "Innovative animations created using artificial intelligence and generative techniques, pushing the boundaries of creative expression through cutting-edge AI technology.",
-      icon: Bot,
-      link: "/creative-portfolio/artificial-intelligence-prompted-animations",
-      color: "from-violet-500 to-fuchsia-500"
-    }
   ];
 
   return (
     <div className="min-h-screen">
       <Helmet>
         <title>Creative Portfolio | Market Integrators Creative Media Studio</title>
-        <meta name="description" content="Explore our creative work across design, video production, animation, and photography. Browse our portfolio categories." />
+        <meta
+          name="description"
+          content="Explore our creative work across design, video production, animation, and photography. Browse our portfolio categories."
+        />
       </Helmet>
       <Header />
       <main className="pt-20">
@@ -69,8 +78,8 @@ const CreativePortfolio = () => {
               </Badge>
               <h1 className="mb-6">Creative Portfolio</h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Explore our creative work across design, video production, animation, and photography. 
-                Every project showcases our commitment to quality storytelling and visual excellence.
+                Explore our creative work across design, video production, animation, and photography. Every project
+                showcases our commitment to quality storytelling and visual excellence.
               </p>
             </div>
           </div>
@@ -83,12 +92,14 @@ const CreativePortfolio = () => {
               {categories.map((category, index) => {
                 const IconComponent = category.icon;
                 return (
-                  <Link 
-                    key={index} 
+                  <Link
+                    key={index}
                     to={category.link}
                     className="group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                    />
                     <div className="p-6 relative z-10">
                       <div className="flex items-center gap-3 mb-4">
                         <div className={`p-3 rounded-lg bg-gradient-to-br ${category.color}`}>
@@ -96,9 +107,7 @@ const CreativePortfolio = () => {
                         </div>
                         <h3 className="text-lg font-semibold">{category.title}</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {category.description}
-                      </p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{category.description}</p>
                       <div className="mt-4 flex items-center text-sm font-medium text-primary group-hover:translate-x-1 transition-transform duration-300">
                         View Portfolio →
                       </div>

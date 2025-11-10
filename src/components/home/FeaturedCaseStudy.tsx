@@ -1,36 +1,43 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+
+/** Cloudflare Images setup */
 const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA";
+
 const VARIANTS = {
   LOGO_SMALL: "logosmall",
   LOGO_THUMB: "logothumb",
-  CARD: "card", // ← create in Cloudflare (recommended). If missing, we’ll fallback to 'public'
+  CARD: "card", // optional—enable later
   LARGE: "public",
 } as const;
 
+/** Toggle this to true AFTER you create the 'card' variant */
+const CARD_VARIANT_ENABLED = false;
+
+/** Build Cloudflare image URL */
 const cfImg = (id: string, variant: string = VARIANTS.LARGE) =>
   `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${id}/${variant}`;
 
-/** Helper: build srcset + sizes for logos */
+/** Create logo sources (with responsive image-set) */
 const cfLogoSrc = (id: string) => ({
   src: cfImg(id, VARIANTS.LOGO_THUMB),
-  srcSet: [`${cfImg(id, VARIANTS.LOGO_SMALL)} 64w`, `${cfImg(id, VARIANTS.LOGO_THUMB)} 96w`].join(", "),
+  srcSet: `${cfImg(id, VARIANTS.LOGO_SMALL)} 64w, ${cfImg(id, VARIANTS.LOGO_THUMB)} 96w`,
   sizes: "(min-width: 640px) 96px, 64px",
 });
 
-const cfBgImageSet = (id: string) => {
-  const card = cfImg(id, VARIANTS.CARD);
-  const large = cfImg(id, VARIANTS.LARGE);
-  const useCard = VARIANTS.CARD !== VARIANTS.LARGE; // basic guard
-
+/** Create background image with transform or fallback */
+const cfBgImage = (id: string) => {
+  if (!CARD_VARIANT_ENABLED) {
+    return `url('${cfImg(id, VARIANTS.LARGE)}')`;
+  }
   return `image-set(
-    url('${useCard ? card : large}') 1x,
-    url('${large}') 2x
+    url('${cfImg(id, VARIANTS.CARD)}') 1x,
+    url('${cfImg(id, VARIANTS.LARGE)}') 2x
   )`;
 };
 
-// LOGO IDs (provided)
+// LOGO IDs
 const IDS = {
   thebull: "a136ed51-e1fb-4106-f45d-4483cda16f00",
   mega101: "2db6654b-36f8-47e7-8748-b9a9ea13d200",
@@ -41,9 +48,9 @@ const IDS = {
   pathway2peace: "4ab7c48c-9e5f-4928-f6ba-ec383a628f00",
   northernutah: "7c4b595b-32a7-49a8-eff7-5514d56a3d00",
   testmypools: "3940bb47-1533-4e69-964f-6c56f95b4d00",
-} as const;
+};
 
-// OPTIONAL: dedicated background IDs
+// OPTIONAL: Background image IDs
 const BG_IDS: Partial<Record<keyof typeof IDS, string>> = {
   northernutah: "be78bebc-37d7-4ae2-6f5d-b35507946d00",
   controllerrepairs: "67cba7d3-a8d4-46f5-1dcc-231a4b899400",
@@ -53,6 +60,7 @@ const BG_IDS: Partial<Record<keyof typeof IDS, string>> = {
   imperialjewelry: "7a716a22-4763-4e2a-6b52-b57ddef1c600",
 };
 
+// CASE STUDIES DATA
 const caseStudies = [
   {
     key: "audacy",
@@ -166,7 +174,7 @@ const FeaturedCaseStudy = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {caseStudies.map((study, index) => {
             const logo = cfLogoSrc(study.logo);
-            const bgImage = cfBgImageSet(study.bg);
+            const bg = cfBgImage(study.bg);
 
             return (
               <motion.div
@@ -180,14 +188,10 @@ const FeaturedCaseStudy = () => {
                   to={study.link}
                   className="group block relative h-[400px] rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl"
                 >
-                  {/* Background image with transform-aware image-set */}
                   <div
                     className="absolute inset-0 bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
-                    style={{
-                      backgroundImage: bgImage, // image-set( card 1x , public 2x )
-                    }}
+                    style={{ backgroundImage: bg }}
                   />
-
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/80 to-foreground/40" />
 
                   <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
@@ -199,7 +203,7 @@ const FeaturedCaseStudy = () => {
                         height={96}
                         loading="lazy"
                         decoding="async"
-                        className="h-12 w-auto object-contain mb-4"
+                        className="h-12 w-auto object-contain mb-4 transform group-hover:scale-110 transition-transform duration-300"
                       />
                       <div className="inline-block bg-primary/20 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold mb-3">
                         {study.industry}

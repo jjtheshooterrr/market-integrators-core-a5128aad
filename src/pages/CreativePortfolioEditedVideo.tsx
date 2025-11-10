@@ -114,9 +114,7 @@ const CreativePortfolioEditedVideo = () => {
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-6xl">
-            <PortfolioTabs />
-            
-            <div className="text-center max-w-4xl mx-auto mt-8">
+            <div className="text-center max-w-4xl mx-auto">
               <Badge className="mb-4" variant="outline">
                 <Video className="w-4 h-4 mr-2" />
                 Edited Video & Short-Form Content
@@ -127,6 +125,8 @@ const CreativePortfolioEditedVideo = () => {
                 multi-cam edits, highlight reels, and promotional content.
               </p>
             </div>
+            
+            <PortfolioTabs />
           </div>
         </section>
 

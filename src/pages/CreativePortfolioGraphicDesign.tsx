@@ -143,9 +143,7 @@ const CreativePortfolioGraphicDesign = () => {
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-6xl">
-            <PortfolioTabs />
-            
-            <div className="text-center max-w-4xl mx-auto mt-8">
+            <div className="text-center max-w-4xl mx-auto">
               <Badge className="mb-4" variant="outline">
                 <Palette className="w-4 h-4 mr-2" />
                 Graphic & Visual Design
@@ -156,6 +154,8 @@ const CreativePortfolioGraphicDesign = () => {
                 social post designs, digital ads, brand identity, and website mockups.
               </p>
             </div>
+            
+            <PortfolioTabs />
           </div>
         </section>
 

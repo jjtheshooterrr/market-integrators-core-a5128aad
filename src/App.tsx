@@ -50,6 +50,15 @@ import Service3DVisualEffects from "./pages/Service3DVisualEffects";
 import ServiceAudioProduction from "./pages/ServiceAudioProduction";
 import ServicePhotography from "./pages/ServicePhotography";
 import Industries from "./pages/Industries";
+import IndustryEcommerce from "./pages/IndustryEcommerce";
+import IndustrySaaS from "./pages/IndustrySaaS";
+import IndustryHomeServices from "./pages/IndustryHomeServices";
+import IndustryHealthcare from "./pages/IndustryHealthcare";
+import IndustryLegal from "./pages/IndustryLegal";
+import IndustryFinance from "./pages/IndustryFinance";
+import IndustryEducation from "./pages/IndustryEducation";
+import IndustryRealEstate from "./pages/IndustryRealEstate";
+import IndustryAITech from "./pages/IndustryAITech";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Careers from "./pages/Careers";
@@ -98,6 +107,15 @@ const App = () => (
             <Route path="/services/photography-and-product-shoots" element={<ServicePhotography />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/industries" element={<Industries />} />
+            <Route path="/industries/ecommerce-and-retail" element={<IndustryEcommerce />} />
+            <Route path="/industries/saas-and-technology" element={<IndustrySaaS />} />
+            <Route path="/industries/home-services-and-franchises" element={<IndustryHomeServices />} />
+            <Route path="/industries/healthcare-and-medical" element={<IndustryHealthcare />} />
+            <Route path="/industries/legal-and-professional-services" element={<IndustryLegal />} />
+            <Route path="/industries/finance-and-banking" element={<IndustryFinance />} />
+            <Route path="/industries/education-and-elearning" element={<IndustryEducation />} />
+            <Route path="/industries/real-estate-and-property-management" element={<IndustryRealEstate />} />
+            <Route path="/industries/ai-automation-and-emerging-tech" element={<IndustryAITech />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/case-studies" element={<CaseStudies />} />

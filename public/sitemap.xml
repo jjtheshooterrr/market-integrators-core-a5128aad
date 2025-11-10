@@ -39,6 +39,51 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.marketintegrators.com/industries/ecommerce-and-retail</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/saas-and-technology</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/home-services-and-franchises</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/healthcare-and-medical</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/legal-and-professional-services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/finance-and-banking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/education-and-elearning</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/real-estate-and-property-management</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.marketintegrators.com/industries/ai-automation-and-emerging-tech</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.marketintegrators.com/careers</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

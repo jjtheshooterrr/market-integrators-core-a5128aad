@@ -32,7 +32,7 @@ const CreativePortfolioPreview = () => {
       id: "66a00ceac5d17e0c7a84a88fd9290c8c",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/66a00ceac5d17e0c7a84a88fd9290c8c/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Case Study — 16:9",
+      title: "Case Study — Reel",
     },
     {
       id: "9817d83102b37f954e97d2057d8db27e",
@@ -62,7 +62,7 @@ const CreativePortfolioPreview = () => {
 
   return (
     <section className="section-padding bg-background">
-      <div className="container-custom">
+      <div className="container-custom max-w-6xl mx-auto px-4">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,21 +77,21 @@ const CreativePortfolioPreview = () => {
           </p>
         </motion.div>
 
-        {/* Uniform 16:9 grid */}
+        {/* Uniform 9:16 Grid */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 place-items-center"
         >
           {videos.map((v, i) => (
-            <motion.div key={v.id} variants={item(i)}>
+            <motion.div key={v.id} variants={item(i)} className="w-full max-w-[420px]">
               <LazyStreamHLS
                 videoId={v.id}
                 title={v.title}
                 poster={v.poster}
-                ratio="16:9" // <-- all the same
+                ratio="9:16" // 🔥 all tall now
                 autoPlayMuted={false}
                 controls
               />

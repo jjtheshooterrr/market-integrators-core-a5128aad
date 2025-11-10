@@ -3,7 +3,7 @@
   <head>
     <!-- Basic SEO -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=5, user-scalable=yes, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, viewport-fit=cover" />
 
     <title>Market Integrators | Digital Solutions Agency</title>
     <meta
@@ -83,8 +83,7 @@
       as="image"
       href="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png"
     />
-    <!-- Fixed: Preload the built JS module (not TSX) -->
-    <link rel="modulepreload" href="/assets/main.js" />
+    <!-- Fixed: removed incorrect modulepreload of built file -->
 
     <!-- Minimal Base Styles -->
     <style>
@@ -377,7 +376,7 @@
 
   <body>
     <div id="root"></div>
-    <!-- Fixed: Load the built JS (served with application/javascript), not TSX -->
-    <script type="module" src="/assets/main.js" crossorigin></script>
+    <!-- Fixed: Load the source entry (Vite will build and emit /assets/*) -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -2,16 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-// Simplified Cloudflare delivery — no DPR variants, just single URLs
-// Logos via Cloudflare Images (imagedelivery.net)
-// MacView backgrounds remain in /assets but are served via /cdn-cgi/image
+// Simplified Cloudflare delivery — all images through Cloudflare Images (imagedelivery.net)
+// Single URL per image using the `public` variant (no 1x/2x). If you use a different variant, change VARIANT below.
 
-const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // Replace with your Cloudflare Images account hash
+const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // Cloudflare Images account hash
+const VARIANT = "public"; // change if you prefer a custom variant name
 
-const cfImg = (id: string) => `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${id}/public`;
-const cgiImg = (path: string) =>
-  `/cdn-cgi/image/width=1600,fit=cover,quality=80${path.startsWith("/") ? "" : "/"}${path}`;
+const cfImg = (id: string) => `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${id}/${VARIANT}`;
 
+// LOGO IDs (provided)
 const IDS = {
   thebull: "a136ed51-e1fb-4106-f45d-4483cda16f00",
   mega101: "2db6654b-36f8-47e7-8748-b9a9ea13d200",
@@ -22,6 +21,17 @@ const IDS = {
   pathway2peace: "4ab7c48c-9e5f-4928-f6ba-ec383a628f00",
   northernutah: "7c4b595b-32a7-49a8-eff7-5514d56a3d00",
   testmypools: "3940bb47-1533-4e69-964f-6c56f95b4d00",
+};
+
+// OPTIONAL: Mac-view/hero BACKGROUND IDs (upload those images to Cloudflare Images and paste IDs here).
+// If an entry is missing, the component will fall back to the logo image for background.
+const BG_IDS: Partial<Record<keyof typeof IDS, string>> = {
+  northernutah: "be78bebc-37d7-4ae2-6f5d-b35507946d00",
+  controllerrepairs: "67cba7d3-a8d4-46f5-1dcc-231a4b899400",
+  kranzcontractors: "fa5d0029-8251-4184-bc7c-4ae8affc5300",
+  pathway2peace: "4f075f37-4248-4ea9-1a09-0819182e5500",
+  testmypools: "685e1589-55c0-4b1a-6d5a-8168b43f8200",
+  imperialjewelry: "7a716a22-4763-4e2a-6b52-b57ddef1c600",
 };
 
 const BG_ASSETS = {
@@ -37,7 +47,7 @@ const caseStudies = [
   {
     key: "audacy",
     logo: cfImg(IDS.audacy),
-    bg: cfImg(IDS.audacy),
+    bg: cfImg(BG_IDS.audacy ?? IDS.audacy),
     industry: "Media / Enterprise",
     name: "Audacy Houston",
     highlight: "3.5M+ video views",
@@ -47,7 +57,7 @@ const caseStudies = [
   {
     key: "imperialjewelry",
     logo: cfImg(IDS.imperialjewelry),
-    bg: cgiImg(BG_ASSETS.imperialjewelry),
+    bg: cfImg(BG_IDS.imperialjewelry ?? IDS.imperialjewelry),
     industry: "Luxury eCommerce",
     name: "Imperial Jewelry",
     highlight: "Complete brand transformation",
@@ -57,7 +67,7 @@ const caseStudies = [
   {
     key: "pathway2peace",
     logo: cfImg(IDS.pathway2peace),
-    bg: cgiImg(BG_ASSETS.pathway2peace),
+    bg: cfImg(BG_IDS.pathway2peace ?? IDS.pathway2peace),
     industry: "Healthcare",
     name: "Pathway 2 Peace",
     highlight: "10+ hours saved weekly",
@@ -67,7 +77,7 @@ const caseStudies = [
   {
     key: "kranzcontractors",
     logo: cfImg(IDS.kranzcontractors),
-    bg: cgiImg(BG_ASSETS.kranzcontractors),
+    bg: cfImg(BG_IDS.kranzcontractors ?? IDS.kranzcontractors),
     industry: "Home Services",
     name: "Kranz Contractors",
     highlight: "+210% inbound leads",
@@ -77,7 +87,7 @@ const caseStudies = [
   {
     key: "controllerrepairs",
     logo: cfImg(IDS.controllerrepairs),
-    bg: cgiImg(BG_ASSETS.controllerrepairs),
+    bg: cfImg(BG_IDS.controllerrepairs ?? IDS.controllerrepairs),
     industry: "eCommerce",
     name: "ControllerRepairs.com",
     highlight: "+240% sales growth",
@@ -87,7 +97,7 @@ const caseStudies = [
   {
     key: "thebull",
     logo: cfImg(IDS.thebull),
-    bg: cfImg(IDS.thebull),
+    bg: cfImg(BG_IDS.thebull ?? IDS.thebull),
     industry: "Media / Country",
     name: "The Bull Houston",
     highlight: "+20K followers",
@@ -97,7 +107,7 @@ const caseStudies = [
   {
     key: "testmypools",
     logo: cfImg(IDS.testmypools),
-    bg: cgiImg(BG_ASSETS.testmypools),
+    bg: cfImg(BG_IDS.testmypools ?? IDS.testmypools),
     industry: "SaaS / AI",
     name: "TestMyPools.com",
     highlight: "Full AI software creation",
@@ -107,7 +117,7 @@ const caseStudies = [
   {
     key: "mega101",
     logo: cfImg(IDS.mega101),
-    bg: cfImg(IDS.mega101),
+    bg: cfImg(BG_IDS.mega101 ?? IDS.mega101),
     industry: "Media / Latin",
     name: "Mega 101",
     highlight: "+807% follower lift",
@@ -117,7 +127,7 @@ const caseStudies = [
   {
     key: "northernutah",
     logo: cfImg(IDS.northernutah),
-    bg: cgiImg(BG_ASSETS.northernutah),
+    bg: cfImg(BG_IDS.northernutah ?? IDS.northernutah),
     industry: "Home Services",
     name: "Northern Utah Window Wells",
     highlight: "Digital transformation success",

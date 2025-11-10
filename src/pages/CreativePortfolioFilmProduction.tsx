@@ -67,25 +67,6 @@ const CreativePortfolioFilmProduction = () => {
       aspectRatio: "75%",
       credits: [{ role: "Cinematographer", name: "Market Integrators Team" }],
     },
-    {
-      title: "Vertical Content Production",
-      description: "Mobile-first vertical video content for social media platforms.",
-      category: "Film & On-Site Production",
-      videoId: "ecddc3e3fcfd5b213c9b116c64c7e580",
-      aspectRatio: "177.77777777777777%",
-      credits: [{ role: "Director", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Documentary Style Production",
-      description: "Documentary-style filming capturing real stories and authentic moments.",
-      category: "Film & On-Site Production",
-      videoId: "c83d19a2d04bb161d7c0007a4e2298c2",
-      aspectRatio: "75%",
-      credits: [
-        { role: "Director", name: "Market Integrators Team" },
-        { role: "Camera Operator", name: "Studio Team" },
-      ],
-    },
   ];
 
   return (

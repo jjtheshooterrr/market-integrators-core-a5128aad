@@ -1,118 +1,13 @@
-import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
-import { FaTiktok, FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaLinkedin } from "react-icons/fa6";
-
-/* ---------- DATA ---------- */
-
-const serviceGroups = [
-  {
-    heading: "TECHNOLOGY & INNOVATION",
-    items: [
-      {
-        title: "AI & Machine Learning",
-        blurb: "Intelligent automation solutions",
-        href: "/services/ai-and-machine-learning",
-      },
-      { title: "Cloud Services", blurb: "Scalable cloud infrastructure", href: "/services/cloud" },
-      { title: "Cybersecurity", blurb: "Advanced security solutions", href: "/services/cybersecurity" },
-      { title: "Data Analytics", blurb: "Insights from your data", href: "/services/data-analytics" },
-      { title: "App Development", blurb: "Native & cross-platform apps", href: "/services/app-development" },
-      { title: "Website Development", blurb: "Custom web solutions", href: "/services/website-development" },
-      {
-        title: "Digital Strategy Consulting",
-        blurb: "Strategic digital transformation",
-        href: "/services/digital-strategy-consulting",
-      },
-      {
-        title: "Automation & Integrations",
-        blurb: "Workflow automation & system integration",
-        href: "/services/automation-and-integrations",
-      },
-    ],
-  },
-  {
-    heading: "MARKETING & GROWTH",
-    items: [
-      { title: "PPC & Paid Media", blurb: "Paid advertising campaigns", href: "/services/ppc-services" },
-      {
-        title: "Google Ads Management",
-        blurb: "Expert Google Ads campaign management",
-        href: "/services/google-ads-management",
-      },
-      {
-        title: "Meta Ads Management",
-        blurb: "Facebook & Instagram advertising",
-        href: "/services/meta-ads-management",
-      },
-      {
-        title: "SEO & Organic Growth",
-        blurb: "Search engine optimization",
-        href: "/services/search-engine-optimization-and-organic-growth",
-      },
-      {
-        title: "Social Media Marketing",
-        blurb: "Social media strategy & management",
-        href: "/services/social-media-marketing",
-      },
-    ],
-  },
-  {
-    heading: "CREATIVE MEDIA STUDIO",
-    items: [
-      { title: "Video Production", blurb: "Professional video content creation", href: "/services/video-production" },
-      {
-        title: "Post-Production & Editing",
-        blurb: "Expert video editing & effects",
-        href: "/services/post-production-editing",
-      },
-      {
-        title: "Animation & Motion Graphics",
-        blurb: "Dynamic animations & graphics",
-        href: "/services/animation-and-motion-graphics",
-      },
-      { title: "3D & Visual Effects", blurb: "Stunning 3D renders & VFX", href: "/services/3d-and-visual-effects" },
-      { title: "Audio Production", blurb: "Professional audio & sound design", href: "/services/audio-production" },
-      {
-        title: "Photography & Product Shoots",
-        blurb: "Professional photography services",
-        href: "/services/photography-and-product-shoots",
-      },
-    ],
-  },
-];
-
-const industries = [
-  { name: "E-Commerce & Retail", href: "/industries" },
-  { name: "SaaS & Technology", href: "/industries" },
-  { name: "Home Services", href: "/industries" },
-  { name: "Healthcare & Medical", href: "/industries" },
-  { name: "Legal Services", href: "/industries" },
-  { name: "Finance & Banking", href: "/industries" },
-  { name: "Education & eLearning", href: "/industries" },
-  { name: "Real Estate", href: "/industries" },
-  { name: "AI & Emerging Tech", href: "/industries" },
-];
-
-const company = [
-  { name: "About Us", href: "/about-us" },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/contact-us" },
-];
-
 /* ---------- COMPONENT ---------- */
 
 const Footer = () => {
   return (
     <footer className="bg-dark-bg text-dark-foreground" role="contentinfo">
       <div className="container-custom section-padding">
-        {/* 
-          Wider layout: 4 columns on lg screens.
-          We'll let Services span 2–3 columns so it never gets cramped.
-        */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Company */}
-          <div>
+        {/* 12-col grid keeps columns aligned at the top on large screens */}
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-10 lg:gap-12 mb-12 items-start">
+          {/* Company/Brand */}
+          <div className="md:col-span-3 lg:col-span-3 lg:order-1">
             <div className="flex items-center gap-3 mb-6">
               <img
                 src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-black.webp"
@@ -219,14 +114,14 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Services (span extra columns so it never gets cramped) */}
-          <nav className="lg:col-span-2 xl:col-span-3" aria-label="Services">
+          {/* Services (spans middle 6 cols on lg; placed second so it doesn’t push others down) */}
+          <nav className="md:col-span-6 lg:col-span-6 lg:order-2" aria-label="Services">
             <h3 className="font-heading font-bold text-lg mb-6">Services</h3>
 
-            {/* Inner grid: 1 → 2 → 3 columns; each gets a minimum width */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+            {/* Auto-fit so headings wrap nicely without creating huge height columns */}
+            <div className="grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))]">
               {serviceGroups.map((group) => (
-                <div key={group.heading} className="min-w-[14rem]">
+                <div key={group.heading}>
                   <h4 className="text-sm tracking-wide font-semibold text-dark-foreground/70 mb-3">{group.heading}</h4>
                   <ul className="space-y-3">
                     {group.items.map((item) => (
@@ -237,7 +132,6 @@ const Footer = () => {
                         >
                           {item.title}
                         </Link>
-                        {/* Hide taglines on small screens to reduce wrapping */}
                         <span className="hidden md:block text-xs text-dark-foreground/60">{item.blurb}</span>
                       </li>
                     ))}
@@ -248,7 +142,7 @@ const Footer = () => {
           </nav>
 
           {/* Industries */}
-          <nav aria-label="Industries">
+          <nav className="md:col-span-3 lg:col-span-2 lg:order-3" aria-label="Industries">
             <h3 className="font-heading font-bold text-lg mb-6">Industries</h3>
             <ul className="space-y-3">
               {industries.map((item) => (
@@ -262,7 +156,7 @@ const Footer = () => {
           </nav>
 
           {/* Company */}
-          <nav aria-label="Company">
+          <nav className="md:col-span-3 lg:col-span-1 lg:order-4" aria-label="Company">
             <h3 className="font-heading font-bold text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {company.map((item) => (

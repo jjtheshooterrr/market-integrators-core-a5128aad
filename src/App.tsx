@@ -54,6 +54,11 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Careers from "./pages/Careers";
 import CreativePortfolio from "./pages/CreativePortfolio";
+import CreativePortfolioGraphicDesign from "./pages/CreativePortfolioGraphicDesign";
+import CreativePortfolioAnimatedVideos from "./pages/CreativePortfolioAnimatedVideos";
+import CreativePortfolioEditedVideo from "./pages/CreativePortfolioEditedVideo";
+import CreativePortfolioFilmProduction from "./pages/CreativePortfolioFilmProduction";
+import CreativePortfolioPhotography from "./pages/CreativePortfolioPhotography";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -112,6 +117,11 @@ const App = () => (
             <Route path="/case-studies/mega-101" element={<CaseStudyMega101 />} />
             <Route path="/case-studies/the-bull-houston" element={<CaseStudyTheBullHouston />} />
             <Route path="/creative-portfolio" element={<CreativePortfolio />} />
+            <Route path="/creative-portfolio/graphic-and-visual-design" element={<CreativePortfolioGraphicDesign />} />
+            <Route path="/creative-portfolio/animated-videos-motion-graphics" element={<CreativePortfolioAnimatedVideos />} />
+            <Route path="/creative-portfolio/edited-video-short-form-content" element={<CreativePortfolioEditedVideo />} />
+            <Route path="/creative-portfolio/film-on-site-production" element={<CreativePortfolioFilmProduction />} />
+            <Route path="/creative-portfolio/photography-media" element={<CreativePortfolioPhotography />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

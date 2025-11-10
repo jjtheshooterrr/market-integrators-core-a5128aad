@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Camera, X } from "lucide-react";
 import { Helmet } from "react-helmet";
+import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 
 interface CreativeProject {
   title: string;
@@ -81,16 +82,20 @@ const CreativePortfolioPhotography = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
-          <div className="container-custom text-center max-w-4xl">
-            <Badge className="mb-4" variant="outline">
-              <Camera className="w-4 h-4 mr-2" />
-              Photography & Media
-            </Badge>
-            <h1 className="mb-6">Photography & Media Portfolio</h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Still media and creative captures including lifestyle and product photography, 
-              event photography, artist portraits, and editorial imagery.
-            </p>
+          <div className="container-custom max-w-6xl">
+            <PortfolioTabs />
+            
+            <div className="text-center max-w-4xl mx-auto mt-8">
+              <Badge className="mb-4" variant="outline">
+                <Camera className="w-4 h-4 mr-2" />
+                Photography & Media
+              </Badge>
+              <h1 className="mb-6">Photography & Media Portfolio</h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                Still media and creative captures including lifestyle and product photography, 
+                event photography, artist portraits, and editorial imagery.
+              </p>
+            </div>
           </div>
         </section>
 

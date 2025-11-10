@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Palette, Video, Film, Camera, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 
 const CreativePortfolio = () => {
   const categories = [
@@ -54,15 +55,19 @@ const CreativePortfolio = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
-          <div className="container-custom text-center max-w-4xl">
-            <Badge className="mb-4" variant="outline">
-              Creative Media Studio
-            </Badge>
-            <h1 className="mb-6">Creative Portfolio</h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Explore our creative work across design, video production, animation, and photography. 
-              Every project showcases our commitment to quality storytelling and visual excellence.
-            </p>
+          <div className="container-custom max-w-6xl">
+            <PortfolioTabs />
+            
+            <div className="text-center max-w-4xl mx-auto mt-8">
+              <Badge className="mb-4" variant="outline">
+                Creative Media Studio
+              </Badge>
+              <h1 className="mb-6">Creative Portfolio</h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                Explore our creative work across design, video production, animation, and photography. 
+                Every project showcases our commitment to quality storytelling and visual excellence.
+              </p>
+            </div>
           </div>
         </section>
 

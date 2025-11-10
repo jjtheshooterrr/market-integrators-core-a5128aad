@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Video } from "lucide-react";
 import { Helmet } from "react-helmet";
+import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 
 interface CreativeProject {
   title: string;
@@ -112,16 +113,20 @@ const CreativePortfolioEditedVideo = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
-          <div className="container-custom text-center max-w-4xl">
-            <Badge className="mb-4" variant="outline">
-              <Video className="w-4 h-4 mr-2" />
-              Edited Video & Short-Form Content
-            </Badge>
-            <h1 className="mb-6">Edited Video & Short-Form Content Portfolio</h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Video editing and social-first storytelling including Reels, TikToks, YouTube Shorts, 
-              multi-cam edits, highlight reels, and promotional content.
-            </p>
+          <div className="container-custom max-w-6xl">
+            <PortfolioTabs />
+            
+            <div className="text-center max-w-4xl mx-auto mt-8">
+              <Badge className="mb-4" variant="outline">
+                <Video className="w-4 h-4 mr-2" />
+                Edited Video & Short-Form Content
+              </Badge>
+              <h1 className="mb-6">Edited Video & Short-Form Content Portfolio</h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                Video editing and social-first storytelling including Reels, TikToks, YouTube Shorts, 
+                multi-cam edits, highlight reels, and promotional content.
+              </p>
+            </div>
           </div>
         </section>
 

@@ -7,22 +7,18 @@ import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 
 interface CreativeProject {
   title: string;
-  description: string;
-  category: string;
-  videoId?: string;
+  description?: string;
+  category?: string;
+  videoId: string;
   aspectRatio?: string;
-  credits: {
-    role: string;
-    name: string;
-  }[];
+  credits?: { role: string; name: string }[];
 }
 
 const CreativePortfolioAIAnimations = () => {
   const aiAnimationsProjects: CreativeProject[] = [
     {
       title: "AI-Prompted Animation Showcase",
-      description:
-        "Cutting-edge animations created using artificial intelligence prompting and generative techniques.",
+      description: "Cutting-edge animations created using artificial intelligence prompting and generative techniques.",
       category: "Artificial Intelligence Prompted Animations",
       videoId: "ecddc3e3fcfd5b213c9b116c64c7e580",
       aspectRatio: "177.77%", // 9:16 vertical
@@ -38,6 +34,42 @@ const CreativePortfolioAIAnimations = () => {
       videoId: "15e013844bdd96b947a347b11851bdca",
       aspectRatio: "56.25%", // 16:9
       credits: [{ role: "AI Motion Designer", name: "Market Integrators Team" }],
+    },
+    // --- Added videos below ---
+    {
+      title: "AI Animation – D5953A",
+      description: "AI-driven cinematic motion graphics experiment.",
+      category: "Artificial Intelligence Prompted Animations",
+      videoId: "d5953abdc3671450f5ba170883c0b8c9",
+      aspectRatio: "56.25%", // 16:9
+      credits: [{ role: "Creative Lead", name: "Market Integrators Team" }],
+    },
+    {
+      title: "Tag Heuer F1 – Carlos Arcilla",
+      description: "Luxury-inspired AI vertical animation concept featuring Tag Heuer F1.",
+      category: "Artificial Intelligence Prompted Animations",
+      videoId: "0187d5f146cf56547633cb0bbe68b6ca",
+      aspectRatio: "177.77%", // 9:16
+      credits: [
+        { role: "Director", name: "Carlos Arcilla" },
+        { role: "AI Design", name: "Market Integrators Team" },
+      ],
+    },
+    {
+      title: "AI Sample Tutorial – Carlos Arcilla",
+      description: "Educational AI-generated motion design tutorial and sample showcase.",
+      category: "Artificial Intelligence Prompted Animations",
+      videoId: "f9e2314dd84344ddbd5b324b74de88f5",
+      aspectRatio: "177.92%", // 9:16 vertical
+      credits: [{ role: "Creator", name: "Carlos Arcilla" }],
+    },
+    {
+      title: "AI Motion Study – 48D7B6",
+      description: "Exploration of AI-based animation composition and depth techniques.",
+      category: "Artificial Intelligence Prompted Animations",
+      videoId: "48d7b689a7411cf82770ef69022ddd73",
+      aspectRatio: "56.25%", // 16:9
+      credits: [{ role: "AI Artist", name: "Market Integrators Team" }],
     },
   ];
 

@@ -1,22 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
-// Helper to detect native HLS support (Safari/iOS)
 function canPlayHLSNatively() {
   if (typeof document === "undefined") return false;
   const v = document.createElement("video");
-  return v.canPlayType("application/vnd.apple.mpegURL") === "probably"
-      || v.canPlayType("application/vnd.apple.mpegURL") === "maybe";
+  return (
+    v.canPlayType("application/vnd.apple.mpegURL") === "probably" ||
+    v.canPlayType("application/vnd.apple.mpegURL") === "maybe"
+  );
 }
 
 type Props = {
-  videoId: string;            // Cloudflare Stream video UID
-  title: string;              // a11y title
-  poster: string;             // poster image URL
-  aspectRatio?: string;       // '56.25%' (16:9) or '177.78%' (9:16)
-  rootMargin?: string;        // when to start attaching the player
-  clickOnly?: boolean;        // require user click to load
-  autoPlayMuted?: boolean;    // auto play muted once visible/clicked
-  controls?: boolean;         // show default controls
+  videoId: string;
+  title: string;
+  poster: string;
+  aspectRatio?: string;     // '56.25%' (16:9) or '177.78%' (9:16)
+  rootMargin?: string;
+  clickOnly?: boolean;
+  autoPlayMuted?: boolean;
+  controls?: boolean;
 };
 
 export default function LazyStreamHLS({
@@ -31,12 +33,10 @@ export default function LazyStreamHLS({
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [ready, setReady] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
+  const [showVideo, setShowVideo] = useState(false); // mounted video element
+  const [ready, setReady] = useState(false);         // manifest buffered & video ready
+  const reduce = useReducedMotion();
 
-  // HLS manifest URL for Cloudflare Stream "customer" subdomain
-  // If your account uses videodelivery.net, swap to:
-  // `https://videodelivery.net/${videoId}/manifest/video.m3u8`
   const hlsSrc = `https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${videoId}/manifest/video.m3u8`;
 
   // Lazy show when in view (unless clickOnly)
@@ -56,7 +56,7 @@ export default function LazyStreamHLS({
     return () => io.disconnect();
   }, [clickOnly, showVideo, rootMargin]);
 
-  // Attach hls.js (or native HLS) once visible
+  // Attach hls.js (or use native HLS)
   useEffect(() => {
     if (!showVideo || !videoRef.current) return;
 
@@ -68,9 +68,10 @@ export default function LazyStreamHLS({
       try {
         if (canPlayHLSNatively()) {
           video.src = hlsSrc;
-          video.addEventListener("loadedmetadata", () => !cancelled && setReady(true), { once: true });
+          const onReady = () => !cancelled && setReady(true);
+          video.addEventListener("loadedmetadata", onReady, { once: true });
         } else {
-          const mod = await import("hls.js"); // lazy load ~60KB
+          const mod = await import("hls.js"); // lazy-load
           const Hls = mod.default;
           if (Hls.isSupported()) {
             hls = new Hls({ enableWorker: true, lowLatencyMode: true });
@@ -78,13 +79,11 @@ export default function LazyStreamHLS({
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, () => !cancelled && setReady(true));
           } else {
-            // Fallback: try native anyway
             video.src = hlsSrc;
             video.addEventListener("loadedmetadata", () => !cancelled && setReady(true), { once: true });
           }
         }
-      } catch (e) {
-        // If anything fails, still try a native src fallback
+      } catch {
         video.src = hlsSrc;
         video.addEventListener("loadedmetadata", () => !cancelled && setReady(true), { once: true });
       }
@@ -106,14 +105,8 @@ export default function LazyStreamHLS({
     const v = videoRef.current;
     v.muted = true;
     v.playsInline = true;
-    v.play().catch(() => {
-      // Autoplay might be blocked; user can tap play.
-    });
+    v.play().catch(() => {});
   }, [ready, autoPlayMuted]);
-
-  const onClickPoster = () => {
-    setShowVideo(true);
-  };
 
   return (
     <div
@@ -121,38 +114,50 @@ export default function LazyStreamHLS({
       className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
       style={{ paddingTop: aspectRatio }}
     >
-      {showVideo ? (
-        <video
+      {/* Poster layer (visible until showVideo) */}
+      <AnimatePresence initial={false}>
+        {!showVideo && (
+          <motion.button
+            key="poster"
+            type="button"
+            onClick={() => setShowVideo(true)}
+            aria-label={`Play video: ${title}`}
+            className="group absolute inset-0 grid place-items-center"
+            style={{
+              backgroundImage: `url(${poster})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            initial={{ opacity: 0, scale: reduce ? 1 : 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: reduce ? 1 : 1.01 }}
+            viewport={{ once: true, margin: "100px" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
+            <span className="inline-flex items-center justify-center rounded-full p-4 bg-black/60 text-white transition group-hover:bg-black/70">
+              ▶
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Video layer (mounts when showVideo; fades in when ready) */}
+      {showVideo && (
+        <motion.video
+          key="video"
           ref={videoRef}
           className="absolute inset-0 w-full h-full"
           poster={poster}
           preload="metadata"
           controls={controls}
           playsInline
-          // crossOrigin helps with MSE on some setups
           crossOrigin="anonymous"
           aria-label={title}
+          initial={{ opacity: 0, filter: reduce ? "none" : "blur(4px)" }}
+          animate={{ opacity: ready ? 1 : 0, filter: ready || reduce ? "none" : "blur(4px)" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         />
-      ) : (
-        <button
-          type="button"
-          onClick={onClickPoster}
-          aria-label={`Play video: ${title}`}
-          className="group absolute inset-0 grid place-items-center"
-          style={{
-            backgroundImage: `url(${poster})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <span className="inline-flex items-center justify-center rounded-full p-4 bg-black/60 text-white transition group-hover:bg-black/70">
-            ▶
-          </span>
-        </button>
       )}
-      <noscript>
-        <a href={hlsSrc}>Watch: {title}</a>
-      </noscript>
     </div>
   );
 }

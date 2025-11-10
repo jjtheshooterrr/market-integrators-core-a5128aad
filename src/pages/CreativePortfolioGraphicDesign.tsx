@@ -7,9 +7,9 @@ import { Palette, X } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 
-const ACCOUNT_HASH = "97e70b6c64c6586d386dd5997bd9c3db"; // ✅ your Cloudflare Images account hash
-const GRID_VARIANT = "public?width=900&height=900&fit=cover";
-const LIGHTBOX_VARIANT = "public?width=1920&fit=contain";
+const ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // ✅ Correct Cloudflare Images delivery token
+const GRID_VARIANT = "public"; // can append ?width=900 etc if desired
+const LIGHTBOX_VARIANT = "public";
 
 function cfImageUrl(imageId: string, variant: string) {
   return `https://imagedelivery.net/${ACCOUNT_HASH}/${imageId}/${variant}`;
@@ -149,6 +149,7 @@ const CreativePortfolioGraphicDesign = () => {
 
       <Header />
       <main className="pt-20">
+        {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-6xl text-center">
             <Badge className="mb-4" variant="outline">
@@ -164,6 +165,7 @@ const CreativePortfolioGraphicDesign = () => {
           </div>
         </section>
 
+        {/* Grid Section */}
         <section className="section-padding">
           <div className="container-custom max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6">
@@ -185,6 +187,7 @@ const CreativePortfolioGraphicDesign = () => {
           </div>
         </section>
 
+        {/* CTA Section */}
         <section className="section-padding bg-foreground text-primary-foreground">
           <div className="container-custom text-center max-w-3xl">
             <h2 className="text-primary-foreground mb-6">Need stunning design work?</h2>
@@ -202,6 +205,7 @@ const CreativePortfolioGraphicDesign = () => {
 
       <Footer />
 
+      {/* Lightbox Dialog */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-7xl w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none overflow-hidden">
           <button

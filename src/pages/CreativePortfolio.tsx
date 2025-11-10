@@ -1,7 +1,7 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/badge";
-import { Palette, Video, Film, Camera, Sparkles } from "lucide-react";
+import { Palette, Video, Film, Camera, Sparkles, Bot } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
@@ -42,6 +42,13 @@ const CreativePortfolio = () => {
       icon: Camera,
       link: "/creative-portfolio/photography-media",
       color: "from-indigo-500 to-purple-500"
+    },
+    {
+      title: "AI-Prompted Animations",
+      description: "Innovative animations created using artificial intelligence and generative techniques, pushing the boundaries of creative expression through cutting-edge AI technology.",
+      icon: Bot,
+      link: "/creative-portfolio/artificial-intelligence-prompted-animations",
+      color: "from-violet-500 to-fuchsia-500"
     }
   ];
 

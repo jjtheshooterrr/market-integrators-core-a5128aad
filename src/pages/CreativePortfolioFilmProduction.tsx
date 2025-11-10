@@ -21,7 +21,8 @@ const CreativePortfolioFilmProduction = () => {
   const filmProductionProjects: CreativeProject[] = [
     {
       title: "Commercial Production",
-      description: "Full-scale commercial shoots for various clients including lighting, multi-cam setups, and on-location filming.",
+      description:
+        "Full-scale commercial shoots for various clients including lighting, multi-cam setups, and on-location filming.",
       category: "Film & On-Site Production",
       videoId: "d1028ac45fdc88113137d83b09edb039",
       aspectRatio: "75%",
@@ -48,9 +49,7 @@ const CreativePortfolioFilmProduction = () => {
       category: "Film & On-Site Production",
       videoId: "3cf53f433691ac59dd2b4afdca7b249e",
       aspectRatio: "75%",
-      credits: [
-        { role: "Director", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Director", name: "Market Integrators Team" }],
     },
     {
       title: "Studio Production",
@@ -58,9 +57,7 @@ const CreativePortfolioFilmProduction = () => {
       category: "Film & On-Site Production",
       videoId: "dbd847725cb709f96558328d99e693d5",
       aspectRatio: "75%",
-      credits: [
-        { role: "Director of Photography", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Director of Photography", name: "Market Integrators Team" }],
     },
     {
       title: "On-Location Filming",
@@ -68,9 +65,7 @@ const CreativePortfolioFilmProduction = () => {
       category: "Film & On-Site Production",
       videoId: "6ead83892a5b04a0ed29f6fee1e4561a",
       aspectRatio: "75%",
-      credits: [
-        { role: "Cinematographer", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Cinematographer", name: "Market Integrators Team" }],
     },
     {
       title: "Vertical Content Production",
@@ -78,9 +73,7 @@ const CreativePortfolioFilmProduction = () => {
       category: "Film & On-Site Production",
       videoId: "ecddc3e3fcfd5b213c9b116c64c7e580",
       aspectRatio: "177.77777777777777%",
-      credits: [
-        { role: "Director", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Director", name: "Market Integrators Team" }],
     },
     {
       title: "Documentary Style Production",
@@ -99,7 +92,10 @@ const CreativePortfolioFilmProduction = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Film & On-Site Production Portfolio | Market Integrators Creative Studio</title>
-        <meta name="description" content="View our film production work including commercial shoots, event coverage, brand films, and documentary-style productions." />
+        <meta
+          name="description"
+          content="View our film production work including commercial shoots, event coverage, brand films, and documentary-style productions."
+        />
       </Helmet>
       <Header />
       <main className="pt-20">
@@ -113,11 +109,11 @@ const CreativePortfolioFilmProduction = () => {
               </Badge>
               <h1 className="mb-6">Film & On-Site Production Portfolio</h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Full-scale video production work including commercial and brand films, studio and on-location shoots, 
+                Full-scale video production work including commercial and brand films, studio and on-location shoots,
                 interviews, and B-roll footage.
               </p>
             </div>
-            
+
             <PortfolioTabs />
           </div>
         </section>
@@ -127,7 +123,11 @@ const CreativePortfolioFilmProduction = () => {
           <div className="container-custom max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6">
               {filmProductionProjects.map((project, index) => (
-                <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
+                <div
+                  key={index}
+                  className="relative w-full overflow-hidden rounded-lg"
+                  style={{ paddingTop: project.aspectRatio || "56.25%" }}
+                >
                   {project.videoId && (
                     <iframe
                       src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}

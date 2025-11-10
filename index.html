@@ -75,6 +75,10 @@
     <link rel="preconnect" href="https://wtjuzhjddqekvqmjbsdn.supabase.co" />
     <link rel="preconnect" href="https://customer-fupcxqt1psuecjaw.cloudflarestream.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Added for performance -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
     <!-- Preload Critical Brand Asset -->
     <link
@@ -82,6 +86,8 @@
       as="image"
       href="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/market-integrators-logo.png"
     />
+    <!-- Added: Preload entry module so hydration starts sooner -->
+    <link rel="modulepreload" href="/src/main.tsx" />
 
     <!-- Minimal Base Styles -->
     <style>
@@ -101,6 +107,10 @@
     </style>
 
     <!-- Comprehensive Structured Data (merged: original + extras) -->
+    <!-- NOTE: JSON-LD does not allow comments; moved notes to HTML comments to keep JSON valid. -->
+    <!-- -------- Global Navigation -------- -->
+    <!-- -------- Section Indexes as CollectionPages -------- -->
+    <!-- -------- Extra context layers -------- -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -191,8 +201,6 @@
               ]
             }
           },
-
-          /* -------- Global Navigation -------- */
           {
             "@type": "SiteNavigationElement",
             "@id": "https://www.marketintegrators.com/#sitenav",
@@ -217,8 +225,6 @@
               "https://www.marketintegrators.com/creative-portfolio"
             ]
           },
-
-          /* -------- Section Indexes as CollectionPages -------- */
           {
             "@type": "CollectionPage",
             "@id": "https://www.marketintegrators.com/services#page",
@@ -307,13 +313,11 @@
                 { "@type":"ListItem","position":2,"url":"https://www.marketintegrators.com/creative-portfolio/animated-videos-motion-graphics" },
                 { "@type":"ListItem","position":3,"url":"https://www.marketintegrators.com/creative-portfolio/edited-video-short-form-content" },
                 { "@type":"ListItem","position":4,"url":"https://www.marketintegrators.com/creative-portfolio/film-on-site-production" },
-                { "@type":"ListItem","position":5,"url":"https://www.marketintegrators.com/creative-portfolio/photography-media" },
+                { "@type":"ListItem","position":5,"url":"https://www.marketintegrators.com/creative-portfolio/photography-and-product-shoots" },
                 { "@type":"ListItem","position":6,"url":"https://www.marketintegrators.com/creative-portfolio/artificial-intelligence-prompted-animations" }
               ]
             }
           },
-
-          /* -------- Extra context layers -------- */
           {
             "@type": "WebPage",
             "@id": "https://www.marketintegrators.com/#webpage",

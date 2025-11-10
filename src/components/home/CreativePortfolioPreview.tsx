@@ -1,52 +1,61 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import LazyStream from "@/components/LazyStream";
+import LazyStreamHLS from "@/components/LazyStreamHLS";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const item = (i: number) => ({
+  hidden: { opacity: 0, y: 26, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: "easeOut", delay: i * 0.02 } },
+});
 
 const CreativePortfolioPreview = () => {
-  // Using videoId + poster + explicit aspect ratio (56.25% = 16:9, 177.78% = 9:16)
   const videos = [
     {
-      videoId: "ecddc3e3fcfd5b213c9b116c64c7e580",
-      title: "Client Story: Market Integrators — Vertical Reel",
+      id: "ecddc3e3fcfd5b213c9b116c64c7e580",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/ecddc3e3fcfd5b213c9b116c64c7e580/thumbnails/thumbnail.jpg?time=&height=600",
-      aspectRatio: "177.78%", // 9:16
+      aspectRatio: "177.78%",
+      title: "Client Story — Vertical Reel",
     },
     {
-      videoId: "66a00ceac5d17e0c7a84a88fd9290c8c",
-      title: "Case Study: Space Grotesk Campaign",
+      id: "66a00ceac5d17e0c7a84a88fd9290c8c",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/66a00ceac5d17e0c7a84a88fd9290c8c/thumbnails/thumbnail.jpg?time=&height=600",
-      aspectRatio: "56.25%", // 16:9
+      aspectRatio: "56.25%",
+      title: "Case Study — 16:9",
     },
     {
-      videoId: "9817d83102b37f954e97d2057d8db27e",
-      title: "Vertical Promo Reel",
+      id: "9817d83102b37f954e97d2057d8db27e",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/9817d83102b37f954e97d2057d8db27e/thumbnails/thumbnail.jpg?time=&height=600",
-      aspectRatio: "177.78%", // 9:16
+      aspectRatio: "177.78%",
+      title: "Vertical Promo Reel",
     },
     {
-      videoId: "0513b4f6894f874c68ccf40801eaae78",
-      title: "Product Walkthrough 16:9",
+      id: "0513b4f6894f874c68ccf40801eaae78",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/0513b4f6894f874c68ccf40801eaae78/thumbnails/thumbnail.jpg?time=&height=600",
-      aspectRatio: "56.25%", // 16:9
+      aspectRatio: "56.25%",
+      title: "Product Walkthrough",
     },
     {
-      videoId: "d5953abdc3671450f5ba170883c0b8c9",
-      title: "Results Montage 16:9",
+      id: "d5953abdc3671450f5ba170883c0b8c9",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/d5953abdc3671450f5ba170883c0b8c9/thumbnails/thumbnail.jpg?time=&height=600",
-      aspectRatio: "56.25%", // 16:9
+      aspectRatio: "56.25%",
+      title: "Results Montage",
     },
     {
-      videoId: "0187d5f146cf56547633cb0bbe68b6ca",
-      title: "Vertical Case Study Reel",
+      id: "0187d5f146cf56547633cb0bbe68b6ca",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/0187d5f146cf56547633cb0bbe68b6ca/thumbnails/thumbnail.jpg?time=&height=600",
-      aspectRatio: "177.78%", // 9:16
+      aspectRatio: "177.78%",
+      title: "Vertical Case Study",
     },
   ];
 
@@ -66,25 +75,27 @@ const CreativePortfolioPreview = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {videos.map((v, index) => (
-            <motion.div
-              key={v.videoId}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <LazyStream
-                videoId={v.videoId}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid md:grid-cols-2 gap-8 mb-12"
+        >
+          {videos.map((v, i) => (
+            <motion.div key={v.id} variants={item(i)}>
+              <LazyStreamHLS
+                videoId={v.id}
                 title={v.title}
                 poster={v.poster}
                 aspectRatio={v.aspectRatio}
-                // clickOnly // uncomment to require user tap (no viewport auto-load)
+                // clickOnly  // uncomment to require a tap before loading m3u8
+                autoPlayMuted={false}
+                controls
               />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

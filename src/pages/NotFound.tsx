@@ -111,7 +111,7 @@ const Tv404Card: React.FC = () => {
 };
 
 const StyledWrapper = styled.div`
-  /* Design Inspired by one of Stefan Devai's Design on Dribble */
+  /* Design Inspired by Stefan Devai's Design on Dribbble */
 
   .main_wrapper {
     display: flex;
@@ -140,6 +140,7 @@ const StyledWrapper = styled.div`
     margin-left: 0em;
     z-index: -1;
   }
+
   .antenna_shadow {
     position: absolute;
     background-color: transparent;
@@ -149,13 +150,9 @@ const StyledWrapper = styled.div`
     border-radius: 45%;
     transform: rotate(140deg);
     border: 4px solid transparent;
-    box-shadow:
-      inset 0px 16px #a85103,
-      inset 0px 16px 1px 1px #a85103;
-    -moz-box-shadow:
-      inset 0px 16px #a85103,
-      inset 0px 16px 1px 1px #a85103;
+    box-shadow: inset 0px 16px #a85103, inset 0px 16px 1px 1px #a85103;
   }
+
   .antenna::after {
     content: "";
     position: absolute;
@@ -167,6 +164,7 @@ const StyledWrapper = styled.div`
     border-radius: 50%;
     background-color: #f69e50;
   }
+
   .antenna::before {
     content: "";
     position: absolute;
@@ -178,6 +176,7 @@ const StyledWrapper = styled.div`
     border-radius: 50%;
     background-color: #f69e50;
   }
+
   .a1 {
     position: relative;
     top: -102%;
@@ -185,16 +184,11 @@ const StyledWrapper = styled.div`
     width: 12em;
     height: 5.5em;
     border-radius: 50px;
-    background-image: linear-gradient(
-      #171717,
-      #171717,
-      #353535,
-      #353535,
-      #171717
-    );
+    background-image: linear-gradient(#171717, #353535, #171717);
     transform: rotate(-29deg);
     clip-path: polygon(50% 0%, 49% 100%, 52% 100%);
   }
+
   .a1d {
     position: relative;
     top: -211%;
@@ -207,6 +201,7 @@ const StyledWrapper = styled.div`
     background-color: #979797;
     z-index: 99;
   }
+
   .a2 {
     position: relative;
     top: -210%;
@@ -214,15 +209,7 @@ const StyledWrapper = styled.div`
     width: 12em;
     height: 4em;
     border-radius: 50px;
-    background-color: #171717;
-    background-image: linear-gradient(
-      #171717,
-      #171717,
-      #353535,
-      #353535,
-      #171717
-    );
-    margin-right: 5em;
+    background-image: linear-gradient(#171717, #353535, #171717);
     clip-path: polygon(
       47% 0,
       47% 0,
@@ -235,6 +222,7 @@ const StyledWrapper = styled.div`
     );
     transform: rotate(-8deg);
   }
+
   .a2d {
     position: relative;
     top: -294%;
@@ -249,11 +237,9 @@ const StyledWrapper = styled.div`
 
   .notfound_text {
     background-color: black;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
+    padding: 0 0.3em;
     font-size: 0.75em;
     color: white;
-    letter-spacing: 0;
     border-radius: 5px;
     z-index: 10;
   }
@@ -269,18 +255,13 @@ const StyledWrapper = styled.div`
     border: 2px solid #1d0e01;
     box-shadow: inset 0.2em 0.2em #e69635;
   }
+
   .tv::after {
     content: "";
     position: absolute;
     width: 17em;
     height: 9em;
     border-radius: 15px;
-    background:
-      repeating-radial-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 50% 0/2500px
-        2500px,
-      repeating-conic-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 60% 60%/2500px
-        2500px;
-    background-blend-mode: difference;
     opacity: 0.09;
   }
 
@@ -308,7 +289,7 @@ const StyledWrapper = styled.div`
   }
 
   .screen_out1 {
-    width: 11em;
+    width: min(11em, 100%);
     height: 7.75em;
     display: flex;
     align-items: center;
@@ -316,18 +297,14 @@ const StyledWrapper = styled.div`
     border-radius: 10px;
   }
 
-  /* ✅ The animated CRT screen — used on ALL breakpoints (desktop + mobile) */
+  /* ✅ Mobile-safe CRT static */
   .screen,
   .screenM {
-    width: 13em;
+    width: 100%;
+    max-width: 13em;
     height: 7.85em;
     font-family: Montserrat, ui-sans-serif, system-ui;
     border: 2px solid #1d0e01;
-    background:
-      repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px 2500px,
-      repeating-conic-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 60% 60%/2500px 2500px;
-    background-blend-mode: difference;
-    animation: b 0.2s infinite alternate;
     border-radius: 10px;
     z-index: 99;
     display: flex;
@@ -338,9 +315,14 @@ const StyledWrapper = styled.div`
     letter-spacing: 0.15em;
     text-align: center;
     will-change: background-position;
+    background:
+      repeating-radial-gradient(#000 0px 1px, #fff 1px 2px) 50% 0 / 160px 160px,
+      repeating-conic-gradient(#000 0deg 1deg, #fff 1deg 2deg) 60% 60% / 160px 160px;
+    animation: b 0.2s infinite alternate;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 
-  /* Never pause on interaction */
   .screen:hover,
   .screen:active,
   .screenM:hover,
@@ -350,10 +332,12 @@ const StyledWrapper = styled.div`
 
   @keyframes b {
     100% {
-      background-position:
-        50% 0,
-        60% 50%;
+      background-position: 50% 0, 60% 50%;
     }
+  }
+
+  .screenM {
+    display: none !important;
   }
 
   .lines {
@@ -361,6 +345,7 @@ const StyledWrapper = styled.div`
     column-gap: 0.1em;
     align-self: flex-end;
   }
+
   .line1,
   .line3 {
     width: 2px;
@@ -369,6 +354,7 @@ const StyledWrapper = styled.div`
     border-radius: 25px 25px 0px 0px;
     margin-top: 0.5em;
   }
+
   .line2 {
     flex-grow: 1;
     width: 2px;
@@ -392,90 +378,29 @@ const StyledWrapper = styled.div`
     row-gap: 0.75em;
     box-shadow: 3px 3px 0px #e69635;
   }
-  .b1 {
-    width: 1.65em;
-    height: 1.65em;
-    border-radius: 50%;
-    background-color: #7f5934;
-    border: 2px solid black;
-    box-shadow:
-      inset 2px 2px 1px #b49577,
-      -2px 0px #513721,
-      -2px 0px 0px 1px black;
-  }
-  .b1::before {
-    content: "";
-    position: absolute;
-    margin-top: 1em;
-    margin-left: 0.5em;
-    transform: rotate(47deg);
-    border-radius: 5px;
-    width: 0.1em;
-    height: 0.4em;
-    background-color: #000000;
-  }
-  .b1::after {
-    content: "";
-    position: absolute;
-    margin-top: 0.9em;
-    margin-left: 0.8em;
-    transform: rotate(47deg);
-    border-radius: 5px;
-    width: 0.1em;
-    height: 0.55em;
-    background-color: #000000;
-  }
-  .b1 div {
-    content: "";
-    position: absolute;
-    margin-top: -0.1em;
-    margin-left: 0.65em;
-    transform: rotate(45deg);
-    width: 0.15em;
-    height: 1.5em;
-    background-color: #000000;
-  }
+
+  .b1,
   .b2 {
     width: 1.65em;
     height: 1.65em;
     border-radius: 50%;
     background-color: #7f5934;
     border: 2px solid black;
-    box-shadow:
-      inset 2px 2px 1px #b49577,
-      -2px 0px #513721,
+    box-shadow: inset 2px 2px 1px #b49577, -2px 0px #513721,
       -2px 0px 0px 1px black;
   }
-  .b2::before {
-    content: "";
-    position: absolute;
-    margin-top: 1.05em;
-    margin-left: 0.8em;
-    transform: rotate(-45deg);
-    border-radius: 5px;
-    width: 0.15em;
-    height: 0.4em;
-    background-color: #000000;
-  }
-  .b2::after {
-    content: "";
-    position: absolute;
-    margin-top: -0.1em;
-    margin-left: 0.65em;
-    transform: rotate(-45deg);
-    width: 0.15em;
-    height: 1.5em;
-    background-color: #000000;
-  }
+
   .speakers {
     display: flex;
     flex-direction: column;
     row-gap: 0.5em;
   }
+
   .speakers .g1 {
     display: flex;
     column-gap: 0.25em;
   }
+
   .speakers .g1 .g11,
   .g12,
   .g13 {
@@ -486,6 +411,7 @@ const StyledWrapper = styled.div`
     border: 2px solid black;
     box-shadow: inset 1.25px 1.25px 1px #b49577;
   }
+
   .speakers .g {
     width: auto;
     height: 2px;
@@ -500,14 +426,8 @@ const StyledWrapper = styled.div`
     justify-content: center;
     column-gap: 8.7em;
   }
-  .base1 {
-    height: 1em;
-    width: 2em;
-    border: 2px solid #171717;
-    background-color: #4d4d4d;
-    margin-top: -0.15em;
-    z-index: -1;
-  }
+
+  .base1,
   .base2 {
     height: 1em;
     width: 2em;
@@ -516,6 +436,7 @@ const StyledWrapper = styled.div`
     margin-top: -0.15em;
     z-index: -1;
   }
+
   .base3 {
     position: absolute;
     height: 0.15em;
@@ -536,6 +457,7 @@ const StyledWrapper = styled.div`
     opacity: 0.5;
     font-family: Montserrat, ui-sans-serif, system-ui;
   }
+
   .text_4041,
   .text_4042,
   .text_4043 {
@@ -543,19 +465,27 @@ const StyledWrapper = styled.div`
   }
 
   @media only screen and (max-width: 495px) {
-    .text_404 { column-gap: 6em; }
+    .text_404 {
+      column-gap: 6em;
+    }
   }
+
   @media only screen and (max-width: 395px) {
-    .text_404 { column-gap: 4em; }
-    .text_4041, .text_4042, .text_4043 { transform: scaleY(25) scaleX(8); }
+    .text_404 {
+      column-gap: 4em;
+    }
+    .text_4041,
+    .text_4042,
+    .text_4043 {
+      transform: scaleY(25) scaleX(8);
+    }
   }
 
   @media (max-width: 275px), (max-height: 520px) {
-    .main { position: relative; }
+    .main {
+      position: relative;
+    }
   }
-
-  /* ⛔ Remove the old mobile/desktop swap; screen is always visible */
-  .screenM { display: none !important; }
 `;
 
 export default NotFound;

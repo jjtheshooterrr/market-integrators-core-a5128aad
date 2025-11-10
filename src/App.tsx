@@ -10,7 +10,7 @@ import { ApolloProvider } from "@apollo/client/react";
 import { apolloClient } from "@/lib/apolloClient";
 import CustomCursor from "@/components/effects/CustomCursor";
 import ScrollToTop from "@/components/ScrollToTop";
-import SphereLoader from "@/components/effects/SphereLoader";
+import Loader from "@/components/effects/Loader";
 
 // Lazy load all route components for code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -88,7 +88,7 @@ const App = () => (
         <SpeedInsights />
         <BrowserRouter>
           <ScrollToTop />
-          <Suspense fallback={<SphereLoader />}>
+          <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/services" element={<Services />} />

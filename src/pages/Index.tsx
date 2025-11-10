@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CinematicHero from "@/components/home/CinematicHero";
-import SphereLoader from "@/components/effects/SphereLoader";
+import Loader from "@/components/effects/Loader";
 
 // Lazy load heavy components for better performance
 const ServicesGridAnimated = lazy(() => import("@/components/home/ServicesGridAnimated"));
@@ -19,7 +19,7 @@ const Index = () => {
       <Header />
       <main>
         <CinematicHero />
-        <Suspense fallback={<SphereLoader />}>
+        <Suspense fallback={<Loader />}>
           <ParallaxSection speed={0.3}>
             <ServicesGridAnimated />
           </ParallaxSection>

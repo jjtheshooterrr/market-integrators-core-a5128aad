@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -43,6 +43,7 @@ const Tv404Card: React.FC = () => {
             <div className="a2d" />
             <div className="a_base" />
           </div>
+
           <div className="tv">
             <div className="cruve">
               <svg
@@ -59,13 +60,16 @@ const Tv404Card: React.FC = () => {
                 />
               </svg>
             </div>
+
             <div className="display_div">
               <div className="screen_out">
                 <div className="screen_out1">
-                  {/* Only use the animated screen; mobile shows this too */}
+                  {/* Canvas-powered CRT static (mobile-safe) */}
                   <div className="screen">
+                    <CanvasStatic />
                     <span className="notfound_text"> NOT FOUND</span>
                   </div>
+
                   {/* Keep DOM but always hidden */}
                   <div className="screenM">
                     <span className="notfound_text"> NOT FOUND</span>
@@ -73,11 +77,13 @@ const Tv404Card: React.FC = () => {
                 </div>
               </div>
             </div>
+
             <div className="lines">
               <div className="line1" />
               <div className="line2" />
               <div className="line3" />
             </div>
+
             <div className="buttons_div">
               <div className="b1">
                 <div />
@@ -94,12 +100,14 @@ const Tv404Card: React.FC = () => {
               </div>
             </div>
           </div>
+
           <div className="bottom">
             <div className="base1" />
             <div className="base2" />
             <div className="base3" />
           </div>
         </div>
+
         <div className="text_404">
           <div className="text_4041">4</div>
           <div className="text_4042">0</div>
@@ -110,8 +118,83 @@ const Tv404Card: React.FC = () => {
   );
 };
 
+/** Canvas-based “TV static” — smooth on mobile + desktop */
+const CanvasStatic: React.FC = () => {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let raf = 0;
+    let running = true;
+    let last = 0;
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width * dpr));
+      const h = Math.max(1, Math.floor(rect.height * dpr));
+      canvas.width = w;
+      canvas.height = h;
+    };
+
+    const drawNoise = () => {
+      const { width, height } = canvas;
+      const imageData = ctx.createImageData(width, height);
+      const data = imageData.data;
+
+      // Fill with grayscale noise
+      for (let i = 0; i < data.length; i += 4) {
+        const v = (Math.random() * 255) | 0;
+        data[i] = v;
+        data[i + 1] = v;
+        data[i + 2] = v;
+        data[i + 3] = 255;
+      }
+      ctx.putImageData(imageData, 0, 0);
+    };
+
+    const loop = (ts: number) => {
+      if (!running) return;
+      // ~30 fps for a nice analog feel and battery friendliness
+      if (ts - last > 33) {
+        last = ts;
+        drawNoise();
+      }
+      raf = requestAnimationFrame(loop);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    if (prefersReduced) {
+      // Draw a single frame of noise
+      drawNoise();
+    } else {
+      raf = requestAnimationFrame(loop);
+    }
+
+    return () => {
+      running = false;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return <canvas ref={ref} className="crtCanvas" />;
+};
+
 const StyledWrapper = styled.div`
-  /* Design Inspired by Stefan Devai's Design on Dribbble */
+  /* Design Inspired by one of Stefan Devai's Design on Dribbble */
 
   .main_wrapper {
     display: flex;
@@ -140,7 +223,6 @@ const StyledWrapper = styled.div`
     margin-left: 0em;
     z-index: -1;
   }
-
   .antenna_shadow {
     position: absolute;
     background-color: transparent;
@@ -152,7 +234,6 @@ const StyledWrapper = styled.div`
     border: 4px solid transparent;
     box-shadow: inset 0px 16px #a85103, inset 0px 16px 1px 1px #a85103;
   }
-
   .antenna::after {
     content: "";
     position: absolute;
@@ -164,7 +245,6 @@ const StyledWrapper = styled.div`
     border-radius: 50%;
     background-color: #f69e50;
   }
-
   .antenna::before {
     content: "";
     position: absolute;
@@ -176,7 +256,6 @@ const StyledWrapper = styled.div`
     border-radius: 50%;
     background-color: #f69e50;
   }
-
   .a1 {
     position: relative;
     top: -102%;
@@ -188,7 +267,6 @@ const StyledWrapper = styled.div`
     transform: rotate(-29deg);
     clip-path: polygon(50% 0%, 49% 100%, 52% 100%);
   }
-
   .a1d {
     position: relative;
     top: -211%;
@@ -201,7 +279,6 @@ const StyledWrapper = styled.div`
     background-color: #979797;
     z-index: 99;
   }
-
   .a2 {
     position: relative;
     top: -210%;
@@ -222,7 +299,6 @@ const StyledWrapper = styled.div`
     );
     transform: rotate(-8deg);
   }
-
   .a2d {
     position: relative;
     top: -294%;
@@ -236,12 +312,15 @@ const StyledWrapper = styled.div`
   }
 
   .notfound_text {
+    position: relative;
+    z-index: 2;
     background-color: black;
-    padding: 0 0.3em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
     font-size: 0.75em;
     color: white;
+    letter-spacing: 0;
     border-radius: 5px;
-    z-index: 10;
   }
 
   .tv {
@@ -255,7 +334,6 @@ const StyledWrapper = styled.div`
     border: 2px solid #1d0e01;
     box-shadow: inset 0.2em 0.2em #e69635;
   }
-
   .tv::after {
     content: "";
     position: absolute;
@@ -287,7 +365,6 @@ const StyledWrapper = styled.div`
     height: auto;
     border-radius: 10px;
   }
-
   .screen_out1 {
     width: min(11em, 100%);
     height: 7.75em;
@@ -297,9 +374,10 @@ const StyledWrapper = styled.div`
     border-radius: 10px;
   }
 
-  /* ✅ Mobile-safe CRT static */
+  /* === CRT SCREEN (Canvas + overlays) === */
   .screen,
   .screenM {
+    position: relative;
     width: 100%;
     max-width: 13em;
     height: 7.85em;
@@ -314,38 +392,61 @@ const StyledWrapper = styled.div`
     color: #252525;
     letter-spacing: 0.15em;
     text-align: center;
-    will-change: background-position;
-    background:
-      repeating-radial-gradient(#000 0px 1px, #fff 1px 2px) 50% 0 / 160px 160px,
-      repeating-conic-gradient(#000 0deg 1deg, #fff 1deg 2deg) 60% 60% / 160px 160px;
-    animation: b 0.2s infinite alternate;
+    overflow: hidden;
+    background: #0b0b0b;
+  }
+
+  /* The animated noise canvas */
+  .crtCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated; /* chunky retro look */
+    filter: contrast(1.1) brightness(1.05);
     transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
+    will-change: contents;
   }
 
-  .screen:hover,
-  .screen:active,
-  .screenM:hover,
-  .screenM:active {
-    animation-play-state: running !important;
+  /* Scanlines */
+  .screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.18) 0 1px,
+      transparent 1px 2px
+    );
+    animation: scanflicker 2s infinite steps(60);
+    mix-blend-mode: multiply;
   }
 
-  @keyframes b {
-    100% {
-      background-position: 50% 0, 60% 50%;
-    }
+  /* Vignette/glass */
+  .screen::after {
+    content: "";
+    position: absolute;
+    inset: -15%;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08), transparent 60%) ,
+      radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.35) 100%);
   }
 
-  .screenM {
-    display: none !important;
+  @keyframes scanflicker {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
   }
+
+  /* Never use the old duplicate mobile screen */
+  .screenM { display: none !important; }
 
   .lines {
     display: flex;
     column-gap: 0.1em;
     align-self: flex-end;
   }
-
   .line1,
   .line3 {
     width: 2px;
@@ -354,7 +455,6 @@ const StyledWrapper = styled.div`
     border-radius: 25px 25px 0px 0px;
     margin-top: 0.5em;
   }
-
   .line2 {
     flex-grow: 1;
     width: 2px;
@@ -378,8 +478,47 @@ const StyledWrapper = styled.div`
     row-gap: 0.75em;
     box-shadow: 3px 3px 0px #e69635;
   }
-
-  .b1,
+  .b1 {
+    width: 1.65em;
+    height: 1.65em;
+    border-radius: 50%;
+    background-color: #7f5934;
+    border: 2px solid black;
+    box-shadow: inset 2px 2px 1px #b49577, -2px 0px #513721,
+      -2px 0px 0px 1px black;
+  }
+  .b1::before {
+    content: "";
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 0.5em;
+    transform: rotate(47deg);
+    border-radius: 5px;
+    width: 0.1em;
+    height: 0.4em;
+    background-color: #000000;
+  }
+  .b1::after {
+    content: "";
+    position: absolute;
+    margin-top: 0.9em;
+    margin-left: 0.8em;
+    transform: rotate(47deg);
+    border-radius: 5px;
+    width: 0.1em;
+    height: 0.55em;
+    background-color: #000000;
+  }
+  .b1 div {
+    content: "";
+    position: absolute;
+    margin-top: -0.1em;
+    margin-left: 0.65em;
+    transform: rotate(45deg);
+    width: 0.15em;
+    height: 1.5em;
+    background-color: #000000;
+  }
   .b2 {
     width: 1.65em;
     height: 1.65em;
@@ -389,18 +528,37 @@ const StyledWrapper = styled.div`
     box-shadow: inset 2px 2px 1px #b49577, -2px 0px #513721,
       -2px 0px 0px 1px black;
   }
+  .b2::before {
+    content: "";
+    position: absolute;
+    margin-top: 1.05em;
+    margin-left: 0.8em;
+    transform: rotate(-45deg);
+    border-radius: 5px;
+    width: 0.15em;
+    height: 0.4em;
+    background-color: #000000;
+  }
+  .b2::after {
+    content: "";
+    position: absolute;
+    margin-top: -0.1em;
+    margin-left: 0.65em;
+    transform: rotate(-45deg);
+    width: 0.15em;
+    height: 1.5em;
+    background-color: #000000;
+  }
 
   .speakers {
     display: flex;
     flex-direction: column;
     row-gap: 0.5em;
   }
-
   .speakers .g1 {
     display: flex;
     column-gap: 0.25em;
   }
-
   .speakers .g1 .g11,
   .g12,
   .g13 {
@@ -411,7 +569,6 @@ const StyledWrapper = styled.div`
     border: 2px solid black;
     box-shadow: inset 1.25px 1.25px 1px #b49577;
   }
-
   .speakers .g {
     width: auto;
     height: 2px;
@@ -426,7 +583,6 @@ const StyledWrapper = styled.div`
     justify-content: center;
     column-gap: 8.7em;
   }
-
   .base1,
   .base2 {
     height: 1em;
@@ -436,7 +592,6 @@ const StyledWrapper = styled.div`
     margin-top: -0.15em;
     z-index: -1;
   }
-
   .base3 {
     position: absolute;
     height: 0.15em;
@@ -457,7 +612,6 @@ const StyledWrapper = styled.div`
     opacity: 0.5;
     font-family: Montserrat, ui-sans-serif, system-ui;
   }
-
   .text_4041,
   .text_4042,
   .text_4043 {
@@ -469,7 +623,6 @@ const StyledWrapper = styled.div`
       column-gap: 6em;
     }
   }
-
   @media only screen and (max-width: 395px) {
     .text_404 {
       column-gap: 4em;
@@ -480,10 +633,16 @@ const StyledWrapper = styled.div`
       transform: scaleY(25) scaleX(8);
     }
   }
-
   @media (max-width: 275px), (max-height: 520px) {
     .main {
       position: relative;
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .screen::before {
+      animation: none;
     }
   }
 `;

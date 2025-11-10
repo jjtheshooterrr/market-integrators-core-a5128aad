@@ -7,8 +7,8 @@ import { Palette, X } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
 
-const ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // ✅ Correct Cloudflare Images delivery token
-const GRID_VARIANT = "public"; // can append ?width=900 etc if desired
+const ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // ✅ Cloudflare Images delivery token
+const GRID_VARIANT = "public";
 const LIGHTBOX_VARIANT = "public";
 
 function cfImageUrl(imageId: string, variant: string) {
@@ -31,39 +31,11 @@ const CreativePortfolioGraphicDesign = () => {
 
   const graphicDesignProjects: CreativeProject[] = [
     {
-      title: "Creative Gaming Poster",
-      description: "Dynamic gaming poster design with bold typography and vibrant colors.",
-      category: "Graphic & Visual Design",
-      imageId: "0f513cd0-8083-48cb-99fb-d96fa67bd600",
-      credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
-    },
-    {
       title: "Digital Art Design",
       description: "Contemporary digital art showcasing modern design techniques.",
       category: "Graphic & Visual Design",
       imageId: "6862417d-5b2d-4af9-c164-f68c94905a00",
       credits: [{ role: "Digital Artist", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Esports Event Poster",
-      description: "High-energy promotional design for competitive gaming events.",
-      category: "Graphic & Visual Design",
-      imageId: "cce7d09a-158c-478a-939d-f0db92db7e00",
-      credits: [{ role: "Creative Director", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Experimental Graphic Design",
-      description: "Cutting-edge experimental design pushing creative boundaries.",
-      category: "Graphic & Visual Design",
-      imageId: "7839db12-959d-43bb-2d9f-8542e8e2fa00",
-      credits: [{ role: "Art Director", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Fine Art Portrait Design",
-      description: "Artistic portrait design with sophisticated visual elements.",
-      category: "Graphic & Visual Design",
-      imageId: "4007fd00-51b7-4798-7b4e-4584f2020b00",
-      credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
     },
     {
       title: "Gaming Illustration",
@@ -73,6 +45,20 @@ const CreativePortfolioGraphicDesign = () => {
       credits: [{ role: "Illustrator", name: "Market Integrators Team" }],
     },
     {
+      title: "Creative Gaming Poster",
+      description: "Dynamic gaming poster design with bold typography and vibrant colors.",
+      category: "Graphic & Visual Design",
+      imageId: "0f513cd0-8083-48cb-99fb-d96fa67bd600",
+      credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
+    },
+    {
+      title: "Experimental Graphic Design",
+      description: "Cutting-edge experimental design pushing creative boundaries.",
+      category: "Graphic & Visual Design",
+      imageId: "7839db12-959d-43bb-2d9f-8542e8e2fa00",
+      credits: [{ role: "Art Director", name: "Market Integrators Team" }],
+    },
+    {
       title: "Gaming Promo Poster",
       description: "Eye-catching promotional poster for gaming campaigns.",
       category: "Graphic & Visual Design",
@@ -80,11 +66,18 @@ const CreativePortfolioGraphicDesign = () => {
       credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
     },
     {
-      title: "Gaming Thumbnail Design",
-      description: "Engaging thumbnail design optimized for gaming content.",
+      title: "Esports Event Poster",
+      description: "High-energy promotional design for competitive gaming events.",
       category: "Graphic & Visual Design",
-      imageId: "2cdc4055-3e02-4376-f78b-eacfb1646a00",
-      credits: [{ role: "Thumbnail Designer", name: "Market Integrators Team" }],
+      imageId: "cce7d09a-158c-478a-939d-f0db92db7e00",
+      credits: [{ role: "Creative Director", name: "Market Integrators Team" }],
+    },
+    {
+      title: "Fine Art Portrait Design",
+      description: "Artistic portrait design with sophisticated visual elements.",
+      category: "Graphic & Visual Design",
+      imageId: "4007fd00-51b7-4798-7b4e-4584f2020b00",
+      credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
     },
     {
       title: "Gaming YouTube Thumbnail",
@@ -94,32 +87,18 @@ const CreativePortfolioGraphicDesign = () => {
       credits: [{ role: "Thumbnail Designer", name: "Market Integrators Team" }],
     },
     {
+      title: "Gaming Thumbnail Design",
+      description: "Engaging thumbnail design optimized for gaming content.",
+      category: "Graphic & Visual Design",
+      imageId: "2cdc4055-3e02-4376-f78b-eacfb1646a00",
+      credits: [{ role: "Thumbnail Designer", name: "Market Integrators Team" }],
+    },
+    {
       title: "Music Cover Art",
       description: "Professional album cover art and music branding design.",
       category: "Graphic & Visual Design",
       imageId: "0b85f9a4-87d5-47f2-181a-e220ea89a000",
       credits: [{ role: "Cover Art Designer", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Sports Graphic Design",
-      description: "Dynamic sports graphics for digital and broadcast media.",
-      category: "Graphic & Visual Design",
-      imageId: "e618e930-cd41-485c-2c61-620b891a1700",
-      credits: [{ role: "Sports Designer", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Sports Promo Design",
-      description: "Bold promotional design for sports events and campaigns.",
-      category: "Graphic & Visual Design",
-      imageId: "839cfcc5-7a3d-464b-3e51-8cb8b459e400",
-      credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
-    },
-    {
-      title: "Fashion Design Concept",
-      description: "Creative fashion-inspired composition blending art and photography.",
-      category: "Graphic & Visual Design",
-      imageId: "7b8849d8-dedc-4dc1-35ef-f3c29c0e2600",
-      credits: [{ role: "Visual Artist", name: "Market Integrators Team" }],
     },
     {
       title: "Brand Identity Mockup",
@@ -134,6 +113,13 @@ const CreativePortfolioGraphicDesign = () => {
       category: "Graphic & Visual Design",
       imageId: "627468fd-d187-4d9e-76ee-bb3a17876a00",
       credits: [{ role: "Graphic Designer", name: "Market Integrators Team" }],
+    },
+    {
+      title: "Fashion Design Concept",
+      description: "Creative fashion-inspired composition blending art and photography.",
+      category: "Graphic & Visual Design",
+      imageId: "7b8849d8-dedc-4dc1-35ef-f3c29c0e2600",
+      credits: [{ role: "Visual Artist", name: "Market Integrators Team" }],
     },
   ];
 

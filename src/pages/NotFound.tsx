@@ -152,7 +152,6 @@ const CanvasStatic: React.FC = () => {
       const imageData = ctx.createImageData(width, height);
       const data = imageData.data;
 
-      // Fill with grayscale noise
       for (let i = 0; i < data.length; i += 4) {
         const v = (Math.random() * 255) | 0;
         data[i] = v;
@@ -165,7 +164,6 @@ const CanvasStatic: React.FC = () => {
 
     const loop = (ts: number) => {
       if (!running) return;
-      // ~30 fps for a nice analog feel and battery friendliness
       if (ts - last > 33) {
         last = ts;
         drawNoise();
@@ -177,7 +175,6 @@ const CanvasStatic: React.FC = () => {
     window.addEventListener("resize", resize);
 
     if (prefersReduced) {
-      // Draw a single frame of noise
       drawNoise();
     } else {
       raf = requestAnimationFrame(loop);
@@ -323,9 +320,11 @@ const StyledWrapper = styled.div`
     border-radius: 5px;
   }
 
+  /* === Responsive TV sizing (keeps aspect) === */
   .tv {
-    width: 17em;
-    height: 9em;
+    width: clamp(280px, 60vw, 560px);
+    /* ~ 16:9ish exterior; inner screen will be inset */
+    height: clamp(170px, 34vw, 320px);
     margin-top: 3em;
     border-radius: 15px;
     background-color: #d36604;
@@ -333,12 +332,12 @@ const StyledWrapper = styled.div`
     justify-content: center;
     border: 2px solid #1d0e01;
     box-shadow: inset 0.2em 0.2em #e69635;
+    position: relative;
   }
   .tv::after {
     content: "";
     position: absolute;
-    width: 17em;
-    height: 9em;
+    inset: 0;
     border-radius: 15px;
     opacity: 0.09;
   }
@@ -366,8 +365,9 @@ const StyledWrapper = styled.div`
     border-radius: 10px;
   }
   .screen_out1 {
-    width: min(11em, 100%);
-    height: 7.75em;
+    /* fill the TV interior */
+    width: calc(100% - 3.5rem);
+    height: calc(100% - 2rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -378,9 +378,10 @@ const StyledWrapper = styled.div`
   .screen,
   .screenM {
     position: relative;
-    width: 100%;
-    max-width: 13em;
-    height: 7.85em;
+    width: 62%;
+    /* interior screen closer to 4:3 feel */
+    aspect-ratio: 4 / 3;
+    height: auto;
     font-family: Montserrat, ui-sans-serif, system-ui;
     border: 2px solid #1d0e01;
     border-radius: 10px;
@@ -396,19 +397,17 @@ const StyledWrapper = styled.div`
     background: #0b0b0b;
   }
 
-  /* The animated noise canvas */
   .crtCanvas {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    image-rendering: pixelated; /* chunky retro look */
+    image-rendering: pixelated;
     filter: contrast(1.1) brightness(1.05);
     transform: translateZ(0);
     will-change: contents;
   }
 
-  /* Scanlines */
   .screen::before {
     content: "";
     position: absolute;
@@ -422,24 +421,19 @@ const StyledWrapper = styled.div`
     animation: scanflicker 2s infinite steps(60);
     mix-blend-mode: multiply;
   }
-
-  /* Vignette/glass */
   .screen::after {
     content: "";
     position: absolute;
     inset: -15%;
     pointer-events: none;
     background:
-      radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08), transparent 60%) ,
+      radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08), transparent 60%),
       radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.35) 100%);
   }
-
   @keyframes scanflicker {
     0%, 100% { opacity: 0.85; }
     50% { opacity: 1; }
   }
-
-  /* Never use the old duplicate mobile screen */
   .screenM { display: none !important; }
 
   .lines {
@@ -619,31 +613,19 @@ const StyledWrapper = styled.div`
   }
 
   @media only screen and (max-width: 495px) {
-    .text_404 {
-      column-gap: 6em;
-    }
+    .text_404 { column-gap: 6em; }
   }
   @media only screen and (max-width: 395px) {
-    .text_404 {
-      column-gap: 4em;
-    }
-    .text_4041,
-    .text_4042,
-    .text_4043 {
-      transform: scaleY(25) scaleX(8);
-    }
-  }
-  @media (max-width: 275px), (max-height: 520px) {
-    .main {
-      position: relative;
-    }
+    .text_404 { column-gap: 4em; }
+    .text_4041, .text_4042, .text_4043 { transform: scaleY(25) scaleX(8); }
   }
 
-  /* Respect reduced motion */
+  @media (max-width: 275px), (max-height: 520px) {
+    .main { position: relative; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .screen::before {
-      animation: none;
-    }
+    .screen::before { animation: none; }
   }
 `;
 

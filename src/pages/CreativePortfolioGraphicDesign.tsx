@@ -15,21 +15,24 @@ function cfImageUrl(imageId: string, variant: string) {
   return `https://imagedelivery.net/${ACCOUNT_HASH}/${imageId}/${variant}`;
 }
 
+interface CreativeCredit {
+  role: string;
+  name: string;
+}
+
 interface CreativeProject {
   title: string;
   description: string;
   category: string;
   imageId: string;
-  credits: {
-    role: string;
-    name: string;
-  }[];
+  credits: CreativeCredit[];
 }
 
 const CreativePortfolioGraphicDesign = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const graphicDesignProjects: CreativeProject[] = [
+  // --- Existing entries you already had ---
+  const baseProjects: CreativeProject[] = [
     {
       title: "Digital Art Design",
       description: "Contemporary digital art showcasing modern design techniques.",
@@ -123,6 +126,96 @@ const CreativePortfolioGraphicDesign = () => {
     },
   ];
 
+  // --- New image IDs provided ---
+  const extraImageIds: string[] = [
+    "49a13ac3-1725-4561-4400-526b31bb4700",
+    "c47fff04-07d8-48ca-48c2-f18ac135f500",
+    "7a696e77-0ed5-444c-03ad-32e5f6fed800",
+    "7e61357f-4417-4bf8-ef84-f32362e0f900",
+    "b9a38ea2-dcd0-479a-3541-fe18897abd00",
+    "dc41e99d-13d0-4593-7088-72394b76cc00",
+    "cd93e63b-a89f-4bcd-7baa-d524413dc400",
+    "9b0ae2db-c1cf-4e62-710a-82976c468600",
+    "58f21bea-81f6-423c-bf9d-d7bbcb6d7a00",
+    "5e3b975f-4b4b-4901-b0ee-a8d064dfc400",
+    "a22a366e-6504-43ad-87cd-6a1bd3964d00",
+    "6844126a-0b7a-438d-89da-cbba06304400",
+    "88f65b46-6ee5-43de-9011-9e1844ff2200",
+    "d2184918-d45a-4fa6-c045-be48aa0d2c00",
+    "219ca2dd-4397-45bc-bdb3-953d321c3b00",
+    "bfad765c-610a-4eea-0b63-f0c3be4cbc00",
+    "8e1aafad-c31a-42e8-b070-31d8682d4f00",
+    "c9c94b1b-8bde-4450-3e9e-64bb0fe0df00",
+    "6ff9c632-fd25-4cbf-3b23-ddc8b5a57f00",
+    "7af9dd78-0ba0-49bd-645a-171dcaea8500",
+    "52afd605-f3ff-47ea-251e-e8802fa6d800",
+    "f2e1bf19-1fe0-4196-5c50-cebef8da0000",
+    "aac1e039-a3b7-44bc-c3e6-ba0ee5626000",
+    "7a716a22-4763-4e2a-6b52-b57ddef1c600",
+    "685e1589-55c0-4b1a-6d5a-8168b43f8200",
+    "4f075f37-4248-4ea9-1a09-0819182e5500",
+    "fa5d0029-8251-4184-bc7c-4ae8affc5300",
+    "67cba7d3-a8d4-46f5-1dcc-231a4b899400",
+    "be78bebc-37d7-4ae2-6f5d-b35507946d00",
+    "a136ed51-e1fb-4106-f45d-4483cda16f00",
+    "2db6654b-36f8-47e7-8748-b9a9ea13d200",
+    "e49263ea-b64c-4f70-a9e9-b58d3b0cb800",
+    "3a9d996a-654b-4ee1-d588-a32f3b97f000",
+    "3d93b579-0817-4ef9-f137-77c69af23700",
+    "71fbd03f-ad40-45e3-9cbc-9edd1a48a200",
+    "ef776eea-a4d2-47ce-019a-16f160c85600",
+    "4ab7c48c-9e5f-4928-f6ba-ec383a628f00",
+    "7c4b595b-32a7-49a8-eff7-5514d56a3d00",
+    "3940bb47-1533-4e69-964f-6c56f95b4d00",
+    "9c738d5a-9456-4f18-1ed1-30e3a96e1d00",
+    "ec8584f5-43d9-46b6-ba1f-235838743600",
+    "f43f1da7-effc-4d4a-b2e7-facbffce1200",
+    "8756255f-a527-471f-9f2e-1c0d6b256100",
+    "fc52c133-ab96-407c-0376-70ca04a16e00",
+    "57e0b503-4258-4bdf-b0c2-7b934e3fc900",
+    "8923e028-79ce-49a7-3945-bc95fa96ed00",
+    "4dd26272-0372-4fad-1af4-34a764641800",
+    "06d20e7f-19bb-4493-8e5b-ed3973f14000",
+    "cce7d09a-158c-478a-939d-f0db92db7e00", // (duplicate-safe if already present)
+    "7839db12-959d-43bb-2d9f-8542e8e2fa00", // (duplicate-safe if already present)
+    "4007fd00-51b7-4798-7b4e-4584f2020b00", // (duplicate-safe if already present)
+    "e29032b9-4453-4284-6902-8492796e7200", // (duplicate-safe if already present)
+    "5a9bd77b-311c-4b2b-d9c8-d918b26aa700", // (duplicate-safe if already present)
+    "57e0b503-4258-4bdf-b0c2-7b934e3fc900",
+    "0f513cd0-8083-48cb-99fb-d96fa67bd600",
+    "6862417d-5b2d-4af9-c164-f68c94905a00",
+    "cce7d09a-158c-478a-939d-f0db92db7e00",
+    "4007fd00-51b7-4798-7b4e-4584f2020b00",
+    "7839db12-959d-43bb-2d9f-8542e8e2fa00",
+    "e29032b9-4453-4284-6902-8492796e7200",
+    "5a9bd77b-311c-4b2b-d9c8-d918b26aa700",
+    "8923e028-79ce-49a7-3945-bc95fa96ed00",
+    "4dd26272-0372-4fad-1af4-34a764641800",
+    "06d20e7f-19bb-4493-8e5b-ed3973f14000",
+    "0f513cd0-8083-48cb-99fb-d96fa67bd600",
+    "6862417d-5b2d-4af9-c164-f68c94905a00",
+    "6732124f-bccc-4d60-a474-38dc9ddfd000",
+    "2cdc4055-3e02-4376-f78b-eacfb1646a00",
+    "0b85f9a4-87d5-47f2-181a-e220ea89a000",
+    "c67cdfcf-61e3-4afa-c672-d4a723b6da00",
+    "627468fd-d187-4d9e-76ee-bb3a17876a00",
+    "7b8849d8-dedc-4dc1-35ef-f3c29c0e2600",
+  ];
+
+  // De-duplicate IDs in case some were already in baseProjects
+  const baseIds = new Set(baseProjects.map((p) => p.imageId));
+  const uniqueExtraIds = extraImageIds.filter((id) => !baseIds.has(id));
+
+  const extraProjects: CreativeProject[] = uniqueExtraIds.map((id, i) => ({
+    title: `Portfolio Image ${i + 1}`,
+    description: "Additional work sample.",
+    category: "Graphic & Visual Design",
+    imageId: id,
+    credits: [{ role: "Design", name: "Market Integrators Team" }],
+  }));
+
+  const graphicDesignProjects: CreativeProject[] = [...baseProjects, ...extraProjects];
+
   return (
     <div className="min-h-screen">
       <Helmet>
@@ -157,7 +250,7 @@ const CreativePortfolioGraphicDesign = () => {
             <div className="grid md:grid-cols-3 gap-6">
               {graphicDesignProjects.map((project, index) => (
                 <div
-                  key={index}
+                  key={`${project.imageId}-${index}`}
                   className="relative overflow-hidden rounded-lg group cursor-pointer"
                   onClick={() => setSelectedImage(cfImageUrl(project.imageId, LIGHTBOX_VARIANT))}
                 >

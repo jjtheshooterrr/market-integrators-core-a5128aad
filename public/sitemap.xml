@@ -118,6 +118,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Newly Added Creative Portfolio Page -->
+  <url>
+    <loc>https://www.marketintegrators.com/creative-portfolio/artificial-intelligence-prompted-animations</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   
   <!-- Service Pages -->
   <url>

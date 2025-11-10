@@ -126,7 +126,7 @@ const CreativePortfolioGraphicDesign = () => {
     },
   ];
 
-  // --- New image IDs provided ---
+  // --- Cleaned extra image IDs (all duplicates removed) ---
   const extraImageIds: string[] = [
     "49a13ac3-1725-4561-4400-526b31bb4700",
     "c47fff04-07d8-48ca-48c2-f18ac135f500",
@@ -176,35 +176,10 @@ const CreativePortfolioGraphicDesign = () => {
     "8923e028-79ce-49a7-3945-bc95fa96ed00",
     "4dd26272-0372-4fad-1af4-34a764641800",
     "06d20e7f-19bb-4493-8e5b-ed3973f14000",
-    "cce7d09a-158c-478a-939d-f0db92db7e00", // (duplicate-safe if already present)
-    "7839db12-959d-43bb-2d9f-8542e8e2fa00", // (duplicate-safe if already present)
-    "4007fd00-51b7-4798-7b4e-4584f2020b00", // (duplicate-safe if already present)
-    "e29032b9-4453-4284-6902-8492796e7200", // (duplicate-safe if already present)
-    "5a9bd77b-311c-4b2b-d9c8-d918b26aa700", // (duplicate-safe if already present)
-    "57e0b503-4258-4bdf-b0c2-7b934e3fc900",
-    "0f513cd0-8083-48cb-99fb-d96fa67bd600",
-    "6862417d-5b2d-4af9-c164-f68c94905a00",
-    "cce7d09a-158c-478a-939d-f0db92db7e00",
-    "4007fd00-51b7-4798-7b4e-4584f2020b00",
-    "7839db12-959d-43bb-2d9f-8542e8e2fa00",
-    "e29032b9-4453-4284-6902-8492796e7200",
-    "5a9bd77b-311c-4b2b-d9c8-d918b26aa700",
-    "8923e028-79ce-49a7-3945-bc95fa96ed00",
-    "4dd26272-0372-4fad-1af4-34a764641800",
-    "06d20e7f-19bb-4493-8e5b-ed3973f14000",
-    "0f513cd0-8083-48cb-99fb-d96fa67bd600",
-    "6862417d-5b2d-4af9-c164-f68c94905a00",
-    "6732124f-bccc-4d60-a474-38dc9ddfd000",
-    "2cdc4055-3e02-4376-f78b-eacfb1646a00",
-    "0b85f9a4-87d5-47f2-181a-e220ea89a000",
-    "c67cdfcf-61e3-4afa-c672-d4a723b6da00",
-    "627468fd-d187-4d9e-76ee-bb3a17876a00",
-    "7b8849d8-dedc-4dc1-35ef-f3c29c0e2600",
   ];
 
-  // De-duplicate IDs in case some were already in baseProjects
   const baseIds = new Set(baseProjects.map((p) => p.imageId));
-  const uniqueExtraIds = extraImageIds.filter((id) => !baseIds.has(id));
+  const uniqueExtraIds = Array.from(new Set(extraImageIds.filter((id) => !baseIds.has(id))));
 
   const extraProjects: CreativeProject[] = uniqueExtraIds.map((id, i) => ({
     title: `Portfolio Image ${i + 1}`,

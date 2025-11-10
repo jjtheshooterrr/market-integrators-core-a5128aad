@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 // Logos via Cloudflare Images (imagedelivery.net)
 // MacView backgrounds remain in /assets but are served via /cdn-cgi/image
 
-const CF_ACCOUNT_HASH = "YOUR_ACCOUNT_HASH"; // Replace with your Cloudflare Images account hash
+const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // Replace with your Cloudflare Images account hash
 
 const cfImg = (id: string) => `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${id}/public`;
 const cgiImg = (path: string) =>

@@ -82,12 +82,6 @@ const CreativePortfolioPhotography = () => {
                     className="w-full h-auto object-contain md:aspect-square md:object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <div>
-                      <h3 className="text-white text-lg font-semibold">Creative Photography</h3>
-                      <p className="text-white/80 text-sm">Capturing light, color, and emotion through our lens.</p>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>

@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin } from "lucide-react"; // ✅ FIXED import
+import { Phone, Mail, MapPin } from "lucide-react";
 import { FaTiktok, FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaLinkedin } from "react-icons/fa6";
+
+/* ---------- CLOUDFLARE IMAGE CONFIG ---------- */
+const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA";
+const LOGO_IMAGE_ID = "71fbd03f-ad40-45e3-9cbc-9edd1a48a200";
+const cloudflareImage = (imageId: string, variant: string = "public") =>
+  `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${imageId}/${variant}`;
+
+const Logo = ({ className = "h-16 w-16" }: { className?: string }) => (
+  <img
+    src={cloudflareImage(LOGO_IMAGE_ID, "public")}
+    alt="Market Integrators Logo"
+    className={className}
+    loading="lazy"
+    decoding="async"
+    referrerPolicy="no-referrer"
+    style={{ imageRendering: "auto" }}
+  />
+);
 
 /* ---------- DATA ---------- */
 
@@ -106,18 +124,11 @@ const Footer = () => {
   return (
     <footer className="bg-dark-bg text-dark-foreground" role="contentinfo">
       <div className="container-custom section-padding">
-        {/* Better spacing & alignment using a 12-col grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-10 lg:gap-12 mb-12 items-start">
           {/* Company Info */}
           <div className="md:col-span-3 lg:col-span-3 lg:order-1">
             <div className="flex items-center gap-3 mb-6">
-              <img
-                src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-black.webp"
-                alt="Market Integrators"
-                className="h-16 w-16"
-                loading="lazy"
-                decoding="async"
-              />
+              <Logo className="h-16 w-16" />
               <span className="font-heading font-bold text-xl">Market Integrators</span>
             </div>
 
@@ -219,7 +230,6 @@ const Footer = () => {
           {/* Services */}
           <nav className="md:col-span-6 lg:col-span-6 lg:order-2" aria-label="Services">
             <h3 className="font-heading font-bold text-lg mb-6">Services</h3>
-
             <div className="grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))]">
               {serviceGroups.map((group) => (
                 <div key={group.heading}>

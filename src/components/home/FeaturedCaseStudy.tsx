@@ -1,14 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA";
+const VARIANTS = {
+  LOGO_SMALL: "logosmall",
+  LOGO_THUMB: "logothumb",
+  CARD: "card", // ← create in Cloudflare (recommended). If missing, we’ll fallback to 'public'
+  LARGE: "public",
+} as const;
 
-// Simplified Cloudflare delivery — all images through Cloudflare Images (imagedelivery.net)
-// Single URL per image using the `public` variant (no 1x/2x). If you use a different variant, change VARIANT below.
+const cfImg = (id: string, variant: string = VARIANTS.LARGE) =>
+  `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${id}/${variant}`;
 
-const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // Cloudflare Images account hash
-const VARIANT = "public"; // change if you prefer a custom variant name
+/** Helper: build srcset + sizes for logos */
+const cfLogoSrc = (id: string) => ({
+  src: cfImg(id, VARIANTS.LOGO_THUMB),
+  srcSet: [`${cfImg(id, VARIANTS.LOGO_SMALL)} 64w`, `${cfImg(id, VARIANTS.LOGO_THUMB)} 96w`].join(", "),
+  sizes: "(min-width: 640px) 96px, 64px",
+});
 
-const cfImg = (id: string) => `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${id}/${VARIANT}`;
+const cfBgImageSet = (id: string) => {
+  const card = cfImg(id, VARIANTS.CARD);
+  const large = cfImg(id, VARIANTS.LARGE);
+  const useCard = VARIANTS.CARD !== VARIANTS.LARGE; // basic guard
+
+  return `image-set(
+    url('${useCard ? card : large}') 1x,
+    url('${large}') 2x
+  )`;
+};
 
 // LOGO IDs (provided)
 const IDS = {
@@ -21,10 +41,9 @@ const IDS = {
   pathway2peace: "4ab7c48c-9e5f-4928-f6ba-ec383a628f00",
   northernutah: "7c4b595b-32a7-49a8-eff7-5514d56a3d00",
   testmypools: "3940bb47-1533-4e69-964f-6c56f95b4d00",
-};
+} as const;
 
-// OPTIONAL: Mac-view/hero BACKGROUND IDs (upload those images to Cloudflare Images and paste IDs here).
-// If an entry is missing, the component will fall back to the logo image for background.
+// OPTIONAL: dedicated background IDs
 const BG_IDS: Partial<Record<keyof typeof IDS, string>> = {
   northernutah: "be78bebc-37d7-4ae2-6f5d-b35507946d00",
   controllerrepairs: "67cba7d3-a8d4-46f5-1dcc-231a4b899400",
@@ -34,20 +53,11 @@ const BG_IDS: Partial<Record<keyof typeof IDS, string>> = {
   imperialjewelry: "7a716a22-4763-4e2a-6b52-b57ddef1c600",
 };
 
-const BG_ASSETS = {
-  imperialjewelry: "/assets/imperialjewelry-macview.webp",
-  pathway2peace: "/assets/pathway2peace-macview.webp",
-  kranzcontractors: "/assets/kranzcontractors-macview.webp",
-  controllerrepairs: "/assets/controllerrepairs-macview.webp",
-  testmypools: "/assets/testmypools-macview.webp",
-  northernutah: "/assets/northernutahwindowwells-macview.webp",
-};
-
 const caseStudies = [
   {
     key: "audacy",
-    logo: cfImg(IDS.audacy),
-    bg: cfImg(BG_IDS.audacy ?? IDS.audacy),
+    logo: IDS.audacy,
+    bg: BG_IDS.audacy ?? IDS.audacy,
     industry: "Media / Enterprise",
     name: "Audacy Houston",
     highlight: "3.5M+ video views",
@@ -56,8 +66,8 @@ const caseStudies = [
   },
   {
     key: "imperialjewelry",
-    logo: cfImg(IDS.imperialjewelry),
-    bg: cfImg(BG_IDS.imperialjewelry ?? IDS.imperialjewelry),
+    logo: IDS.imperialjewelry,
+    bg: BG_IDS.imperialjewelry ?? IDS.imperialjewelry,
     industry: "Luxury eCommerce",
     name: "Imperial Jewelry",
     highlight: "Complete brand transformation",
@@ -66,8 +76,8 @@ const caseStudies = [
   },
   {
     key: "pathway2peace",
-    logo: cfImg(IDS.pathway2peace),
-    bg: cfImg(BG_IDS.pathway2peace ?? IDS.pathway2peace),
+    logo: IDS.pathway2peace,
+    bg: BG_IDS.pathway2peace ?? IDS.pathway2peace,
     industry: "Healthcare",
     name: "Pathway 2 Peace",
     highlight: "10+ hours saved weekly",
@@ -76,8 +86,8 @@ const caseStudies = [
   },
   {
     key: "kranzcontractors",
-    logo: cfImg(IDS.kranzcontractors),
-    bg: cfImg(BG_IDS.kranzcontractors ?? IDS.kranzcontractors),
+    logo: IDS.kranzcontractors,
+    bg: BG_IDS.kranzcontractors ?? IDS.kranzcontractors,
     industry: "Home Services",
     name: "Kranz Contractors",
     highlight: "+210% inbound leads",
@@ -86,8 +96,8 @@ const caseStudies = [
   },
   {
     key: "controllerrepairs",
-    logo: cfImg(IDS.controllerrepairs),
-    bg: cfImg(BG_IDS.controllerrepairs ?? IDS.controllerrepairs),
+    logo: IDS.controllerrepairs,
+    bg: BG_IDS.controllerrepairs ?? IDS.controllerrepairs,
     industry: "eCommerce",
     name: "ControllerRepairs.com",
     highlight: "+240% sales growth",
@@ -96,8 +106,8 @@ const caseStudies = [
   },
   {
     key: "thebull",
-    logo: cfImg(IDS.thebull),
-    bg: cfImg(BG_IDS.thebull ?? IDS.thebull),
+    logo: IDS.thebull,
+    bg: BG_IDS.thebull ?? IDS.thebull,
     industry: "Media / Country",
     name: "The Bull Houston",
     highlight: "+20K followers",
@@ -106,8 +116,8 @@ const caseStudies = [
   },
   {
     key: "testmypools",
-    logo: cfImg(IDS.testmypools),
-    bg: cfImg(BG_IDS.testmypools ?? IDS.testmypools),
+    logo: IDS.testmypools,
+    bg: BG_IDS.testmypools ?? IDS.testmypools,
     industry: "SaaS / AI",
     name: "TestMyPools.com",
     highlight: "Full AI software creation",
@@ -116,8 +126,8 @@ const caseStudies = [
   },
   {
     key: "mega101",
-    logo: cfImg(IDS.mega101),
-    bg: cfImg(BG_IDS.mega101 ?? IDS.mega101),
+    logo: IDS.mega101,
+    bg: BG_IDS.mega101 ?? IDS.mega101,
     industry: "Media / Latin",
     name: "Mega 101",
     highlight: "+807% follower lift",
@@ -126,8 +136,8 @@ const caseStudies = [
   },
   {
     key: "northernutah",
-    logo: cfImg(IDS.northernutah),
-    bg: cfImg(BG_IDS.northernutah ?? IDS.northernutah),
+    logo: IDS.northernutah,
+    bg: BG_IDS.northernutah ?? IDS.northernutah,
     industry: "Home Services",
     name: "Northern Utah Window Wells",
     highlight: "Digital transformation success",
@@ -154,59 +164,68 @@ const FeaturedCaseStudy = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Link
-                to={study.link}
-                className="group block relative h-[400px] rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+          {caseStudies.map((study, index) => {
+            const logo = cfLogoSrc(study.logo);
+            const bgImage = cfBgImageSet(study.bg);
+
+            return (
+              <motion.div
+                key={study.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div
-                  className="absolute inset-0 bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${study.bg})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/80 to-foreground/40" />
+                <Link
+                  to={study.link}
+                  className="group block relative h-[400px] rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+                >
+                  {/* Background image with transform-aware image-set */}
+                  <div
+                    className="absolute inset-0 bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      backgroundImage: bgImage, // image-set( card 1x , public 2x )
+                    }}
+                  />
 
-                <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
-                  <div>
-                    <img
-                      src={study.logo}
-                      alt={`${study.name} logo`}
-                      width={48}
-                      height={48}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-12 w-auto object-contain mb-4"
-                    />
-                    <div className="inline-block bg-primary/20 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold mb-3">
-                      {study.industry}
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2 text-primary-foreground">{study.name}</h3>
-                    <p className="text-lg font-semibold text-primary mb-4">{study.highlight}</p>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/80 to-foreground/40" />
 
-                  <div>
-                    <ul className="space-y-2 mb-6">
-                      {study.stats.map((stat, idx) => (
-                        <li key={idx} className="text-sm text-primary-foreground/90 flex items-start">
-                          <span className="text-primary mr-2">✓</span>
-                          {stat}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="inline-flex items-center text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform">
-                      View Case Study →
+                  <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
+                    <div>
+                      <img
+                        {...logo}
+                        alt={`${study.name} logo`}
+                        width={96}
+                        height={96}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-12 w-auto object-contain mb-4"
+                      />
+                      <div className="inline-block bg-primary/20 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                        {study.industry}
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2 text-primary-foreground">{study.name}</h3>
+                      <p className="text-lg font-semibold text-primary mb-4">{study.highlight}</p>
+                    </div>
+
+                    <div>
+                      <ul className="space-y-2 mb-6">
+                        {study.stats.map((stat, idx) => (
+                          <li key={idx} className="text-sm text-primary-foreground/90 flex items-start">
+                            <span className="text-primary mr-2">✓</span>
+                            {stat}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="inline-flex items-center text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform">
+                        View Case Study →
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div

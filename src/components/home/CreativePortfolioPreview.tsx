@@ -22,48 +22,57 @@ const item = (i: number): Variants => ({
 
 const CreativePortfolioPreview = () => {
   const videos = [
-    {
-      id: "ecddc3e3fcfd5b213c9b116c64c7e580",
-      poster:
-        "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/ecddc3e3fcfd5b213c9b116c64c7e580/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Client Story — Reel",
-    },
+    // Landscape (16:9) row
     {
       id: "66a00ceac5d17e0c7a84a88fd9290c8c",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/66a00ceac5d17e0c7a84a88fd9290c8c/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Case Study — Reel",
-    },
-    {
-      id: "9817d83102b37f954e97d2057d8db27e",
-      poster:
-        "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/9817d83102b37f954e97d2057d8db27e/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Vertical Promo Reel",
+      title: "Case Study — 16:9",
+      ratio: "16:9",
     },
     {
       id: "0513b4f6894f874c68ccf40801eaae78",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/0513b4f6894f874c68ccf40801eaae78/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Product Walkthrough",
+      title: "Product Walkthrough — 16:9",
+      ratio: "16:9",
     },
     {
       id: "d5953abdc3671450f5ba170883c0b8c9",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/d5953abdc3671450f5ba170883c0b8c9/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Results Montage",
+      title: "Results Montage — 16:9",
+      ratio: "16:9",
+    },
+
+    // Vertical (9:16) row
+    {
+      id: "ecddc3e3fcfd5b213c9b116c64c7e580",
+      poster:
+        "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/ecddc3e3fcfd5b213c9b116c64c7e580/thumbnails/thumbnail.jpg?time=&height=600",
+      title: "Client Story — 9:16",
+      ratio: "9:16",
+    },
+    {
+      id: "9817d83102b37f954e97d2057d8db27e",
+      poster:
+        "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/9817d83102b37f954e97d2057d8db27e/thumbnails/thumbnail.jpg?time=&height=600",
+      title: "Vertical Promo Reel — 9:16",
+      ratio: "9:16",
     },
     {
       id: "0187d5f146cf56547633cb0bbe68b6ca",
       poster:
         "https://customer-fupcxqt1psuecjaw.cloudflarestream.com/0187d5f146cf56547633cb0bbe68b6ca/thumbnails/thumbnail.jpg?time=&height=600",
-      title: "Vertical Case Study",
+      title: "Vertical Case Study — 9:16",
+      ratio: "9:16",
     },
   ];
 
   return (
     <section className="section-padding bg-background">
       <div className="container-custom max-w-6xl mx-auto px-4">
-        {/* Heading */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +86,7 @@ const CreativePortfolioPreview = () => {
           </p>
         </motion.div>
 
-        {/* Uniform 9:16 Grid */}
+        {/* Top Row: Landscape */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -85,18 +94,44 @@ const CreativePortfolioPreview = () => {
           viewport={{ once: true, amount: 0.2 }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 place-items-center"
         >
-          {videos.map((v, i) => (
-            <motion.div key={v.id} variants={item(i)} className="w-full max-w-[420px]">
-              <LazyStreamHLS
-                videoId={v.id}
-                title={v.title}
-                poster={v.poster}
-                ratio="9:16" // 🔥 all tall now
-                autoPlayMuted={false}
-                controls
-              />
-            </motion.div>
-          ))}
+          {videos
+            .filter((v) => v.ratio === "16:9")
+            .map((v, i) => (
+              <motion.div key={v.id} variants={item(i)} className="w-full">
+                <LazyStreamHLS
+                  videoId={v.id}
+                  title={v.title}
+                  poster={v.poster}
+                  ratio="16:9"
+                  autoPlayMuted={false}
+                  controls
+                />
+              </motion.div>
+            ))}
+        </motion.div>
+
+        {/* Bottom Row: Vertical */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 place-items-center"
+        >
+          {videos
+            .filter((v) => v.ratio === "9:16")
+            .map((v, i) => (
+              <motion.div key={v.id} variants={item(i)} className="w-full max-w-[420px]">
+                <LazyStreamHLS
+                  videoId={v.id}
+                  title={v.title}
+                  poster={v.poster}
+                  ratio="9:16"
+                  autoPlayMuted={false}
+                  controls
+                />
+              </motion.div>
+            ))}
         </motion.div>
 
         {/* CTA */}

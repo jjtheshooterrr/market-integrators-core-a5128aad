@@ -8,6 +8,7 @@ const portfolioCategories = [
   { name: 'Edited Videos', path: '/creative-portfolio/edited-video-short-form-content' },
   { name: 'Film Production', path: '/creative-portfolio/film-on-site-production' },
   { name: 'Photography', path: '/creative-portfolio/photography-media' },
+  { name: 'AI Animations', path: '/creative-portfolio/artificial-intelligence-prompted-animations' },
 ];
 
 export const PortfolioTabs = () => {

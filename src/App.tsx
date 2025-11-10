@@ -68,6 +68,7 @@ import CreativePortfolioAnimatedVideos from "./pages/CreativePortfolioAnimatedVi
 import CreativePortfolioEditedVideo from "./pages/CreativePortfolioEditedVideo";
 import CreativePortfolioFilmProduction from "./pages/CreativePortfolioFilmProduction";
 import CreativePortfolioPhotography from "./pages/CreativePortfolioPhotography";
+import CreativePortfolioAIAnimations from "./pages/CreativePortfolioAIAnimations";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -140,6 +141,7 @@ const App = () => (
             <Route path="/creative-portfolio/edited-video-short-form-content" element={<CreativePortfolioEditedVideo />} />
             <Route path="/creative-portfolio/film-on-site-production" element={<CreativePortfolioFilmProduction />} />
             <Route path="/creative-portfolio/photography-media" element={<CreativePortfolioPhotography />} />
+            <Route path="/creative-portfolio/artificial-intelligence-prompted-animations" element={<CreativePortfolioAIAnimations />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

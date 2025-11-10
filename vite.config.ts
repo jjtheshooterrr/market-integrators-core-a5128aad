@@ -15,4 +15,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', 'gsap'],
+          'animation-vendor': ['framer-motion', '@lottiefiles/dotlottie-react'],
+          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
 }));

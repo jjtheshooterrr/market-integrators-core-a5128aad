@@ -4,6 +4,14 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrendingUp, FileText, Award, Target } from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import aprenovationsLogo from "@/assets/aprenovations-logo.webp";
 import aprenovationsMacview from "@/assets/aprenovationsmacview.webp";
 const CaseStudyAPRenovations = () => {
@@ -36,17 +44,25 @@ const CaseStudyAPRenovations = () => {
         {/* Breadcrumb */}
         <section className="py-4 bg-secondary/50">
           <div className="container-custom">
-            <nav className="text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-foreground transition-colors">
-                Home
-              </Link>
-              {" → "}
-              <Link to="/case-studies" className="hover:text-foreground transition-colors">
-                Case Studies
-              </Link>
-              {" → "}
-              <span className="text-foreground">A&P Renovations</span>
-            </nav>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/case-studies">Case Studies</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>A&P Renovations</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
         </section>
 

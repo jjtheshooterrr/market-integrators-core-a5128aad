@@ -2,7 +2,15 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
 import lylagrayMacview from "@/assets/lylagray-macview.webp";
 
@@ -11,15 +19,34 @@ const CaseStudyLylaGray = () => {
     <div className="min-h-screen">
       <Header />
       <main className="pt-20">
+        {/* Breadcrumb */}
+        <section className="py-4 bg-secondary/50">
+          <div className="container-custom">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/case-studies">Case Studies</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Lyla Gray</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </section>
+
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-4xl">
-            <Button asChild variant="ghost" className="mb-8">
-              <Link to="/case-studies">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Case Studies
-              </Link>
-            </Button>
 
             <div className="text-center mb-12">
               <img

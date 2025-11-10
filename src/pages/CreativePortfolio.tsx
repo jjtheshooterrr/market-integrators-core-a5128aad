@@ -66,8 +66,6 @@ const CreativePortfolio = () => {
                 Every project showcases our commitment to quality storytelling and visual excellence.
               </p>
             </div>
-            
-            <PortfolioTabs />
           </div>
         </section>
 

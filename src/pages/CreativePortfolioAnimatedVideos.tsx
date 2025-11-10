@@ -20,8 +20,21 @@ interface CreativeProject {
 const CreativePortfolioAnimatedVideos = () => {
   const animatedVideosProjects: CreativeProject[] = [
     {
+      title: "Hero Animation Reel",
+      description:
+        "A showcase of our latest animation and motion graphics work — blending creativity and technical precision.",
+      category: "Animated Videos & Motion Graphics",
+      videoId: "66a00ceac5d17e0c7a84a88fd9290c8c",
+      aspectRatio: "56.25%", // 16:9
+      credits: [
+        { role: "Creative Director", name: "Market Integrators Team" },
+        { role: "Animator", name: "Studio Team" },
+      ],
+    },
+    {
       title: "Radio Station Logo Stings",
-      description: "Animated logo reveals and transitions for Audacy Houston stations including The Bull, Mega 101, and SportsRadio 610.",
+      description:
+        "Animated logo reveals and transitions for Audacy Houston stations including The Bull, Mega 101, and SportsRadio 610.",
       category: "Animated Videos & Motion Graphics",
       videoId: "42199c78495b788ffdaee9a341d01c23",
       aspectRatio: "75%",
@@ -36,9 +49,7 @@ const CreativePortfolioAnimatedVideos = () => {
       category: "Animated Videos & Motion Graphics",
       videoId: "b0a6799c890d34169781027f8a503474",
       aspectRatio: "56.25%",
-      credits: [
-        { role: "Motion Graphics Artist", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Motion Graphics Artist", name: "Market Integrators Team" }],
     },
     {
       title: "Event Graphics & Transitions",
@@ -46,9 +57,7 @@ const CreativePortfolioAnimatedVideos = () => {
       category: "Animated Videos & Motion Graphics",
       videoId: "15e013844bdd96b947a347b11851bdca",
       aspectRatio: "56.25%",
-      credits: [
-        { role: "Motion Graphics Artist", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Motion Graphics Artist", name: "Market Integrators Team" }],
     },
     {
       title: "Social Media Animations",
@@ -56,9 +65,7 @@ const CreativePortfolioAnimatedVideos = () => {
       category: "Animated Videos & Motion Graphics",
       videoId: "3e77bd4ada463b6a39c5e7978c377e28",
       aspectRatio: "56.25%",
-      credits: [
-        { role: "Animation Artist", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Animation Artist", name: "Market Integrators Team" }],
     },
     {
       title: "Brand Story Animations",
@@ -77,9 +84,7 @@ const CreativePortfolioAnimatedVideos = () => {
       category: "Animated Videos & Motion Graphics",
       videoId: "48d7b689a7411cf82770ef69022ddd73",
       aspectRatio: "56.25%",
-      credits: [
-        { role: "Motion Designer", name: "Market Integrators Team" },
-      ],
+      credits: [{ role: "Motion Designer", name: "Market Integrators Team" }],
     },
   ];
 
@@ -87,7 +92,10 @@ const CreativePortfolioAnimatedVideos = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Animated Videos & Motion Graphics Portfolio | Market Integrators Creative Studio</title>
-        <meta name="description" content="View our motion graphics and animation work including logo stings, lower thirds, animated explainers, and motion graphic ad spots." />
+        <meta
+          name="description"
+          content="View our motion graphics and animation work including logo stings, lower thirds, animated explainers, and motion graphic ad spots."
+        />
       </Helmet>
       <Header />
       <main className="pt-20">
@@ -101,11 +109,11 @@ const CreativePortfolioAnimatedVideos = () => {
               </Badge>
               <h1 className="mb-6">Animated Videos & Motion Graphics Portfolio</h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Dynamic content designed for storytelling and brand identity including logo stings, 
-                lower thirds, animated explainers, and motion graphic ad spots.
+                Dynamic content designed for storytelling and brand identity including logo stings, lower thirds,
+                animated explainers, and motion graphic ad spots.
               </p>
             </div>
-            
+
             <PortfolioTabs />
           </div>
         </section>
@@ -115,13 +123,17 @@ const CreativePortfolioAnimatedVideos = () => {
           <div className="container-custom max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6">
               {animatedVideosProjects.map((project, index) => (
-                <div key={index} className="relative w-full overflow-hidden rounded-lg" style={{ paddingTop: project.aspectRatio || "56.25%" }}>
+                <div
+                  key={index}
+                  className="relative w-full overflow-hidden rounded-lg"
+                  style={{ paddingTop: project.aspectRatio || "56.25%" }}
+                >
                   {project.videoId && (
                     <iframe
                       src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
                       loading="lazy"
                       className="absolute top-0 left-0 w-full h-full border-none"
-                      allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
+                      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                       allowFullScreen
                     />
                   )}

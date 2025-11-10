@@ -26,6 +26,25 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Cloudflare Image Config
+const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA";
+const LOGO_IMAGE_ID = "71fbd03f-ad40-45e3-9cbc-9edd1a48a200";
+const cloudflareImage = (imageId: string, variant: string = "public") =>
+  `https://imagedelivery.net/${CF_ACCOUNT_HASH}/${imageId}/${variant}`;
+
+// Logo Component
+const Logo = ({ className = "h-20 w-20" }: { className?: string }) => (
+  <img
+    src={cloudflareImage(LOGO_IMAGE_ID, "public")}
+    alt="Market Integrators Logo"
+    className={className}
+    loading="eager"
+    decoding="async"
+    referrerPolicy="no-referrer"
+    style={{ imageRendering: "auto" }}
+  />
+);
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -187,11 +206,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img
-              src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-transparent.webp"
-              alt="Market Integrators Logo"
-              className="h-20 w-20"
-            />
+            <Logo className="h-20 w-20" />
           </Link>
 
           {/* Desktop Navigation */}

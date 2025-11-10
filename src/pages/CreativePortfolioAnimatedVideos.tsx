@@ -37,7 +37,7 @@ const CreativePortfolioAnimatedVideos = () => {
         "Animated logo reveals and transitions for Audacy Houston stations including The Bull, Mega 101, and SportsRadio 610.",
       category: "Animated Videos & Motion Graphics",
       videoId: "42199c78495b788ffdaee9a341d01c23",
-      aspectRatio: "75%",
+      aspectRatio: "75%", // 4:3 style
       credits: [
         { role: "Motion Designer", name: "Market Integrators Team" },
         { role: "Animation Director", name: "Studio Team" },
@@ -48,7 +48,7 @@ const CreativePortfolioAnimatedVideos = () => {
       description: "Broadcast-quality animated graphics for video content and live streams.",
       category: "Animated Videos & Motion Graphics",
       videoId: "b0a6799c890d34169781027f8a503474",
-      aspectRatio: "56.25%",
+      aspectRatio: "56.25%", // 16:9
       credits: [{ role: "Motion Graphics Artist", name: "Market Integrators Team" }],
     },
     {
@@ -56,7 +56,7 @@ const CreativePortfolioAnimatedVideos = () => {
       description: "Dynamic motion graphics for live events and streaming content.",
       category: "Animated Videos & Motion Graphics",
       videoId: "15e013844bdd96b947a347b11851bdca",
-      aspectRatio: "56.25%",
+      aspectRatio: "56.25%", // 16:9
       credits: [{ role: "Motion Graphics Artist", name: "Market Integrators Team" }],
     },
     {
@@ -64,7 +64,7 @@ const CreativePortfolioAnimatedVideos = () => {
       description: "Dynamic animated content optimized for social media platforms.",
       category: "Animated Videos & Motion Graphics",
       videoId: "3e77bd4ada463b6a39c5e7978c377e28",
-      aspectRatio: "56.25%",
+      aspectRatio: "56.25%", // 16:9
       credits: [{ role: "Animation Artist", name: "Market Integrators Team" }],
     },
     {
@@ -72,7 +72,7 @@ const CreativePortfolioAnimatedVideos = () => {
       description: "Narrative-driven motion graphics for brand storytelling.",
       category: "Animated Videos & Motion Graphics",
       videoId: "c0e27ea609903709c29feb83e931503e",
-      aspectRatio: "75%",
+      aspectRatio: "75%", // 4:3 style
       credits: [
         { role: "Creative Director", name: "Market Integrators Team" },
         { role: "Motion Designer", name: "Studio Team" },
@@ -83,8 +83,17 @@ const CreativePortfolioAnimatedVideos = () => {
       description: "Complete motion graphics suite for digital broadcast content.",
       category: "Animated Videos & Motion Graphics",
       videoId: "48d7b689a7411cf82770ef69022ddd73",
-      aspectRatio: "56.25%",
+      aspectRatio: "56.25%", // 16:9
       credits: [{ role: "Motion Designer", name: "Market Integrators Team" }],
+    },
+    // NEW VIDEO ADDED
+    {
+      title: "Animated Video – C83D19",
+      description: "High-impact animated video formatted for 4:3 style presentations.",
+      category: "Animated Videos & Motion Graphics",
+      videoId: "c83d19a2d04bb161d7c0007a4e2298c2",
+      aspectRatio: "75%", // matches your snippet
+      credits: [{ role: "Animation Artist", name: "Market Integrators Team" }],
     },
   ];
 
@@ -130,7 +139,7 @@ const CreativePortfolioAnimatedVideos = () => {
                 >
                   {project.videoId && (
                     <iframe
-                      src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?preload=true&loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+                      src={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${project.videoId}/iframe?loop=true&poster=https%3A%2F%2Fcustomer-fupcxqt1psuecjaw.cloudflarestream.com%2F${project.videoId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
                       loading="lazy"
                       className="absolute top-0 left-0 w-full h-full border-none"
                       allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"

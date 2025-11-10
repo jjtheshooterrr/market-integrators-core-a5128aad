@@ -1,16 +1,33 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, type Variants, type Transition } from "framer-motion";
 import LazyStreamHLS from "@/components/LazyStreamHLS";
 
-const container = {
+// ✅ Proper easing array (typed)
+const EASE_OUT: Transition["ease"] = [0.22, 1, 0.36, 1];
+
+const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
+    },
+  },
 };
 
-const item = (i: number) => ({
+const item = (i: number): Variants => ({
   hidden: { opacity: 0, y: 26, scale: 0.98 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: "easeOut", delay: i * 0.02 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.45,
+      ease: EASE_OUT,
+      delay: i * 0.02,
+    },
+  },
 });
 
 const CreativePortfolioPreview = () => {
@@ -62,6 +79,7 @@ const CreativePortfolioPreview = () => {
   return (
     <section className="section-padding bg-background">
       <div className="container-custom">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,6 +93,7 @@ const CreativePortfolioPreview = () => {
           </p>
         </motion.div>
 
+        {/* Video Grid */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -89,7 +108,7 @@ const CreativePortfolioPreview = () => {
                 title={v.title}
                 poster={v.poster}
                 aspectRatio={v.aspectRatio}
-                // clickOnly  // uncomment to require a tap before loading m3u8
+                // clickOnly // uncomment to require user tap before loading m3u8
                 autoPlayMuted={false}
                 controls
               />
@@ -97,6 +116,7 @@ const CreativePortfolioPreview = () => {
           ))}
         </motion.div>
 
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

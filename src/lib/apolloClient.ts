@@ -1,32 +1,40 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-const SUPABASE_URL = 'https://wtjuzhjddqekvqmjbsdn.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0anV6aGpkZHFla3ZxbWpic2RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjEyNjcsImV4cCI6MjA3NTMzNzI2N30.pxm2gze_4J246ijopoGuUjGR-Gwy7Ld49Za3ugj8vww';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL!;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY!;
 
-// Create HTTP link to Supabase GraphQL endpoint
 const httpLink = createHttpLink({
   uri: `${SUPABASE_URL}/graphql/v1`,
 });
 
-// Set authentication context with Supabase anon key
-const authLink = setContext((_, { headers }) => {
+const authLink = setContext(async (_, { headers }) => {
+  // If you’re using Supabase Auth, prefer a user session token as Bearer
+  // Fallback to anon key if not logged in.
+  let bearer: string | undefined = undefined;
+  try {
+    // Lazy import to avoid bundling if you’re not using auth in this bundle
+    const { createClient } = await import('@supabase/supabase-js');
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data } = await supabase.auth.getSession();
+    bearer = data.session?.access_token;
+  } catch {
+    // ignore if auth not configured in this app
+  }
+
   return {
     headers: {
       ...headers,
+      // apikey header must always be present
       apikey: SUPABASE_ANON_KEY,
-      authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      // Prefer user token; otherwise omit Authorization (or use anon if you must)
+      ...(bearer ? { authorization: `Bearer ${bearer}` } : {}),
     },
   };
 });
 
-// Create Apollo Client instance
 export const apolloClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  defaultOptions: {
-    watchQuery: {
-      fetchPolicy: 'cache-and-network',
-    },
-  },
+  defaultOptions: { watchQuery: { fetchPolicy: 'cache-and-network' } },
 });

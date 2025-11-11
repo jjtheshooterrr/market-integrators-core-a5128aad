@@ -12,10 +12,8 @@ const CreativePortfolioPreview = lazy(() => import("@/components/home/CreativePo
 const MetricsSection = lazy(() => import("@/components/home/MetricsSection"));
 const CTASection = lazy(() => import("@/components/home/CTASection"));
 const ParallaxSection = lazy(() => import("@/components/effects/ParallaxSection"));
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       <main>
         <CinematicHero />
@@ -27,7 +25,7 @@ const Index = () => {
             <ProcessStepsAnimated />
           </ParallaxSection>
           <FeaturedCaseStudy />
-          <CreativePortfolioPreview />
+          
           <ParallaxSection speed={0.3}>
             <MetricsSection />
           </ParallaxSection>
@@ -35,8 +33,6 @@ const Index = () => {
         </Suspense>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

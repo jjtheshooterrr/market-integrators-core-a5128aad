@@ -1,10 +1,10 @@
-import { useQuery } from '@apollo/client/react';
-import { GET_HOME_METRICS } from '@/lib/graphql/queries';
-import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
-import gsap from 'gsap';
-import * as Icons from 'lucide-react';
+import { useQuery } from "@apollo/client";
+import { GET_HOME_METRICS } from "@/lib/graphql/queries";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import gsap from "gsap";
+import * as Icons from "lucide-react";
 
 interface MetricNode {
   id: string;
@@ -28,6 +28,15 @@ const MetricsDisplay = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  // ✅ Log detailed GraphQL error information
+  if (error) {
+    console.error("🚨 Metrics GraphQL error:", {
+      message: error.message,
+      graphQLErrors: error.graphQLErrors,
+      networkError: (error as any)?.networkError,
+    });
+  }
 
   if (loading) {
     return (
@@ -63,12 +72,12 @@ const MetricsDisplay = () => {
           duration: 0.5,
           ease: "power2.out",
           snap: { textContent: 1 },
-          onUpdate: function() {
+          onUpdate: function () {
             if (numberRef.current) {
               const val = Math.ceil(Number(this.targets()[0].textContent));
               numberRef.current.textContent = val.toLocaleString();
             }
-          }
+          },
         });
       }
     }, [inView, value]);
@@ -82,11 +91,9 @@ const MetricsDisplay = () => {
         const IconComponent = node.icon
           ? (Icons as any)[
               node.icon
-                .split('-')
-                .map((part: string, i: number) =>
-                  i === 0 ? part.charAt(0).toUpperCase() + part.slice(1) : part.charAt(0).toUpperCase() + part.slice(1)
-                )
-                .join('')
+                .split("-")
+                .map((part: string, i: number) => part.charAt(0).toUpperCase() + part.slice(1))
+                .join("")
             ]
           : null;
 
@@ -101,11 +108,9 @@ const MetricsDisplay = () => {
             <div className="flex items-center justify-center gap-2 mb-2">
               {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
               <div className="text-4xl font-bold">
-                {node.suffix === '$' && <span className="text-primary">{node.suffix}</span>}
+                {node.suffix === "$" && <span className="text-primary">{node.suffix}</span>}
                 <CountUpMetric value={Number(node.value)} suffix={node.suffix} />
-                {node.suffix && node.suffix !== '$' && (
-                  <span className="text-primary">{node.suffix}</span>
-                )}
+                {node.suffix && node.suffix !== "$" && <span className="text-primary">{node.suffix}</span>}
               </div>
             </div>
             <p className="text-muted-foreground">{node.label}</p>

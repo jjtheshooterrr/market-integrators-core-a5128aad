@@ -1,4 +1,5 @@
-import { useQuery } from "@apollo/client/react"; // <- compatible path for your bundle
+import { useQuery } from "@apollo/client/react"; // keep this for your current bundle
+import type { ApolloError } from "@apollo/client"; // types only; not bundled
 import { GET_HOME_METRICS } from "@/lib/graphql/queries";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
@@ -16,23 +17,28 @@ interface MetricNode {
 
 interface MetricsData {
   mi_home_metricsCollection: {
-    edges: Array<{
-      node: MetricNode;
-    }>;
+    edges: Array<{ node: MetricNode }>;
   };
+}
+
+// Safe logger that works regardless of the exact Apollo version/types
+function logApolloError(err: unknown) {
+  const e = err as Partial<ApolloError> & { message?: string; networkError?: unknown; graphQLErrors?: unknown };
+  // Avoid TS errors by optional-chaining and casting to any for unknown shapes
+  // eslint-disable-next-line no-console
+  console.error("🚨 Metrics GraphQL error:", {
+    message: e?.message,
+    graphQLErrors: (e as any)?.graphQLErrors,
+    networkError: (e as any)?.networkError,
+  });
 }
 
 const MetricsDisplay = () => {
   const { loading, error, data } = useQuery<MetricsData>(GET_HOME_METRICS);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  // Log full details so we can see the real cause (RLS/401/schema/etc.)
   if (error) {
-    console.error("🚨 Metrics GraphQL error:", {
-      message: error.message,
-      graphQLErrors: error.graphQLErrors,
-      networkError: (error as any)?.networkError,
-    });
+    logApolloError(error);
   }
 
   if (loading) {
@@ -40,8 +46,8 @@ const MetricsDisplay = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[1, 2, 3].map((i) => (
           <div key={i} className="animate-pulse">
-            <div className="h-12 bg-muted rounded mb-2"></div>
-            <div className="h-6 bg-muted rounded w-3/4"></div>
+            <div className="h-12 bg-muted rounded mb-2" />
+            <div className="h-6 bg-muted rounded w-3/4" />
           </div>
         ))}
       </div>
@@ -58,7 +64,7 @@ const MetricsDisplay = () => {
 
   const metrics = data?.mi_home_metricsCollection?.edges || [];
 
-  const CountUpMetric = ({ value, suffix }: { value: number; suffix: string | null }) => {
+  const CountUpMetric = ({ value }: { value: number; suffix: string | null }) => {
     const numberRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
@@ -71,7 +77,7 @@ const MetricsDisplay = () => {
           snap: { textContent: 1 },
           onUpdate: function () {
             if (numberRef.current) {
-              const val = Math.ceil(Number(this.targets()[0].textContent));
+              const val = Math.ceil(Number((this.targets() as any)[0].textContent));
               numberRef.current.textContent = val.toLocaleString();
             }
           },

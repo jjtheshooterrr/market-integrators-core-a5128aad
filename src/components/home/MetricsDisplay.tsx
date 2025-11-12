@@ -23,12 +23,6 @@ interface MetricsData {
 // Version-agnostic error logger (no Apollo types needed)
 function logApolloError(err: unknown) {
   const e = err as any;
-  // eslint-disable-next-line no-console
-  console.error("🚨 Metrics GraphQL error:", {
-    message: e?.message,
-    graphQLErrors: e?.graphQLErrors,
-    networkError: e?.networkError,
-  });
 }
 
 const MetricsDisplay = () => {

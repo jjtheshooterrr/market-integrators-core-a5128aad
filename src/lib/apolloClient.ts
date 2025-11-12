@@ -1,45 +1,47 @@
+// src/lib/apolloClient.ts
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { supabase } from "@/integrations/supabase/client"; // <— reuse the single client
 
-// Load environment variables
+// Env (already validated in your supabase client file)
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL!;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY!;
 
-// Create HTTP link to Supabase GraphQL endpoint
+// HTTP link to Supabase GraphQL
 const httpLink = createHttpLink({
   uri: `${SUPABASE_URL}/graphql/v1`,
 });
 
-// Set authentication context dynamically
+// Attach auth headers
 const authLink = setContext(async (_, { headers }) => {
+  // If this ever runs in an SSR context, skip trying to read browser storage
+  const isBrowser = typeof window !== "undefined";
+
   let bearer: string | undefined;
 
-  try {
-    // Lazy import to avoid bundling if Supabase auth isn’t used elsewhere
-    const { createClient } = await import("@supabase/supabase-js");
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const { data } = await supabase.auth.getSession();
-    bearer = data.session?.access_token;
-  } catch (error) {
-    console.warn("Supabase auth not configured or failed to load session:", error);
+  if (isBrowser) {
+    try {
+      const { data } = await supabase.auth.getSession();
+      bearer = data.session?.access_token;
+    } catch {
+      // no-op; we'll fall back to anon below
+    }
   }
 
   return {
     headers: {
       ...headers,
-      // Always include anon key
       apikey: SUPABASE_ANON_KEY,
-      // Use user token if logged in, otherwise fallback to anon
-      authorization: `Bearer ${bearer ?? SUPABASE_ANON_KEY}`,
+      Authorization: `Bearer ${bearer ?? SUPABASE_ANON_KEY}`, // fallback ensures GraphQL never gets a blank token
     },
   };
 });
 
-// Create and export Apollo Client instance
 export const apolloClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   defaultOptions: {
+    // Good for UI that should refresh when online
     watchQuery: { fetchPolicy: "cache-and-network" },
     query: { fetchPolicy: "network-only" },
   },

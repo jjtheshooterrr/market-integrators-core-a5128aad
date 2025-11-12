@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client/react"; // <- compatible path for your bundle
 import { GET_HOME_METRICS } from "@/lib/graphql/queries";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
@@ -24,12 +24,9 @@ interface MetricsData {
 
 const MetricsDisplay = () => {
   const { loading, error, data } = useQuery<MetricsData>(GET_HOME_METRICS);
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  // ✅ Log detailed GraphQL error information
+  // Log full details so we can see the real cause (RLS/401/schema/etc.)
   if (error) {
     console.error("🚨 Metrics GraphQL error:", {
       message: error.message,
@@ -92,7 +89,7 @@ const MetricsDisplay = () => {
           ? (Icons as any)[
               node.icon
                 .split("-")
-                .map((part: string, i: number) => part.charAt(0).toUpperCase() + part.slice(1))
+                .map((part: string) => part.charAt(0).toUpperCase() + part.slice(1))
                 .join("")
             ]
           : null;

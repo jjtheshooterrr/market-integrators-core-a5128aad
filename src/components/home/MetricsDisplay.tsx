@@ -1,5 +1,4 @@
-import { useQuery } from "@apollo/client/react"; // keep this for your current bundle
-import type { ApolloError } from "@apollo/client"; // types only; not bundled
+import { useQuery } from "@apollo/client/react"; // compatible with your build
 import { GET_HOME_METRICS } from "@/lib/graphql/queries";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
@@ -21,15 +20,14 @@ interface MetricsData {
   };
 }
 
-// Safe logger that works regardless of the exact Apollo version/types
+// Version-agnostic error logger (no Apollo types needed)
 function logApolloError(err: unknown) {
-  const e = err as Partial<ApolloError> & { message?: string; networkError?: unknown; graphQLErrors?: unknown };
-  // Avoid TS errors by optional-chaining and casting to any for unknown shapes
+  const e = err as any;
   // eslint-disable-next-line no-console
   console.error("🚨 Metrics GraphQL error:", {
     message: e?.message,
-    graphQLErrors: (e as any)?.graphQLErrors,
-    networkError: (e as any)?.networkError,
+    graphQLErrors: e?.graphQLErrors,
+    networkError: e?.networkError,
   });
 }
 
@@ -37,9 +35,7 @@ const MetricsDisplay = () => {
   const { loading, error, data } = useQuery<MetricsData>(GET_HOME_METRICS);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  if (error) {
-    logApolloError(error);
-  }
+  if (error) logApolloError(error);
 
   if (loading) {
     return (
@@ -64,7 +60,7 @@ const MetricsDisplay = () => {
 
   const metrics = data?.mi_home_metricsCollection?.edges || [];
 
-  const CountUpMetric = ({ value }: { value: number; suffix: string | null }) => {
+  const CountUpMetric = ({ value }: { value: number }) => {
     const numberRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
@@ -77,7 +73,8 @@ const MetricsDisplay = () => {
           snap: { textContent: 1 },
           onUpdate: function () {
             if (numberRef.current) {
-              const val = Math.ceil(Number((this.targets() as any)[0].textContent));
+              const current = (this.targets() as any)[0]?.textContent ?? "0";
+              const val = Math.ceil(Number(current));
               numberRef.current.textContent = val.toLocaleString();
             }
           },
@@ -112,7 +109,7 @@ const MetricsDisplay = () => {
               {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
               <div className="text-4xl font-bold">
                 {node.suffix === "$" && <span className="text-primary">{node.suffix}</span>}
-                <CountUpMetric value={Number(node.value)} suffix={node.suffix} />
+                <CountUpMetric value={Number(node.value)} />
                 {node.suffix && node.suffix !== "$" && <span className="text-primary">{node.suffix}</span>}
               </div>
             </div>

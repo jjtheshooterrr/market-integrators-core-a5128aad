@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -164,9 +165,9 @@ const CaseStudyMega101 = () => {
             <div className="container-custom max-w-4xl">
               <h2 className="mb-6">Key Highlights</h2>
               <ul className="space-y-4 text-lg text-muted-foreground">
-                {keyHighlights.map((highlight, index) => (
+              {keyHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-primary">✅</span>
+                    <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span>{highlight.title}</span>
                   </li>
                 ))}

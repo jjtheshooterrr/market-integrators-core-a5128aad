@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { TrendingUp, FileText, Award, Target } from "lucide-react";
+import { TrendingUp, FileText, Award, Target, Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -230,7 +230,7 @@ const CaseStudyAPRenovations = () => {
             <h2 className="mb-8">Key Highlights</h2>
             <div className="grid md:grid-cols-2 gap-4">
               {keyHighlights.map((highlight, index) => <div key={index} className="flex items-start gap-3 p-4 rounded-lg bg-secondary/50">
-                  <span className="text-primary text-xl">✓</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span className="text-muted-foreground">{highlight}</span>
                 </div>)}
             </div>

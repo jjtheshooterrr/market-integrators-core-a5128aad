@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -154,7 +155,7 @@ const CaseStudyAvale = () => {
             <ul className="space-y-4">
               {results.map((result, index) => (
                 <li key={index} className="flex items-start gap-3 text-lg text-muted-foreground">
-                  <span className="text-primary mt-1">✓</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-1" />
                   <span>{result}</span>
                 </li>
               ))}

@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -202,19 +203,19 @@ const CaseStudyPathway2Peace = () => {
               <h2 className="mb-6">Key Highlights</h2>
               <ul className="space-y-4 text-lg text-muted-foreground">
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Compassionate, ADA-minded design</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Clear patient pathway with simple forms</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Local SEO that drives qualified traffic</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Custom HR automation saving 10+ hours weekly</span>
                 </li>
               </ul>

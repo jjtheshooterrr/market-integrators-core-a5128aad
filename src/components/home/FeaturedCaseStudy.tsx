@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 
 /** Cloudflare Images setup */
 const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA";
@@ -216,7 +217,7 @@ const FeaturedCaseStudy = () => {
                       <ul className="space-y-2 mb-6">
                         {study.stats.map((stat, idx) => (
                           <li key={idx} className="text-sm text-primary-foreground/90 flex items-start">
-                            <span className="text-primary mr-2">✓</span>
+                            <Check className="text-primary mr-2 h-4 w-4 flex-shrink-0 mt-0.5" />
                             {stat}
                           </li>
                         ))}

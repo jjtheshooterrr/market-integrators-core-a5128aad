@@ -34,22 +34,22 @@ export function TeamTab() {
 
     // Fetch users
     const { data: usersData } = await supabase
-      .from("users")
+      .from("users" as any)
       .select("*")
       .order("full_name");
 
     // Fetch all leads
     const { data: leadsData } = await supabase
-      .from("leads")
+      .from("leads" as any)
       .select("owner_id, status");
 
     if (usersData && leadsData) {
-      setUsers(usersData);
+      setUsers(usersData as any);
 
       // Calculate lead counts per user
       const counts: Record<string, LeadCounts> = {};
       
-      usersData.forEach(user => {
+      (usersData as any[]).forEach(user => {
         counts[user.id] = {
           new: 0,
           contacted: 0,
@@ -61,7 +61,7 @@ export function TeamTab() {
         };
       });
 
-      leadsData.forEach(lead => {
+      (leadsData as any[]).forEach(lead => {
         if (lead.owner_id && counts[lead.owner_id]) {
           const status = lead.status as keyof LeadCounts;
           counts[lead.owner_id][status]++;

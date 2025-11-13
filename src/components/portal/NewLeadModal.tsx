@@ -43,19 +43,19 @@ export function NewLeadModal({ open, onOpenChange, onLeadCreated }: Props) {
   const getCurrentUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
-      const { data } = await supabase.from("users").select("id").eq("id", user.id).single();
+      const { data } = await supabase.from("users" as any).select("id").eq("id", user.id).single();
       if (data) {
-        setCurrentUser(data.id);
-        setFormData(prev => ({ ...prev, owner_id: data.id }));
+        setCurrentUser((data as any).id);
+        setFormData(prev => ({ ...prev, owner_id: (data as any).id }));
       }
     }
   };
 
   const fetchData = async () => {
     const [usersRes, companiesRes, contactsRes] = await Promise.all([
-      supabase.from("users").select("*"),
-      supabase.from("companies").select("*"),
-      supabase.from("contacts").select("*"),
+      supabase.from("users" as any).select("*"),
+      supabase.from("companies" as any).select("*"),
+      supabase.from("contacts" as any).select("*"),
     ]);
 
     setUsers(usersRes.data || []);
@@ -86,7 +86,7 @@ export function NewLeadModal({ open, onOpenChange, onLeadCreated }: Props) {
       owner_id: formData.owner_id || null,
     };
 
-    const { error } = await supabase.from("leads").insert(leadData);
+    const { error } = await supabase.from("leads" as any).insert(leadData);
 
     if (error) {
       toast.error("Failed to create lead");

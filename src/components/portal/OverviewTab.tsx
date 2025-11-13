@@ -37,26 +37,27 @@ export function OverviewTab() {
 
     // Fetch all leads
     const { data: leads } = await supabase
-      .from("leads")
+      .from("leads" as any)
       .select("*, users(full_name)");
 
     if (leads) {
+      const leadsData = leads as any[];
       const sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
       // Calculate stats
-      const totalOpen = leads.filter(
-        (l) => l.status !== "closed_won" && l.status !== "closed_lost"
+      const totalOpen = leadsData.filter(
+        (l: any) => l.status !== "closed_won" && l.status !== "closed_lost"
       ).length;
 
-      const newLastWeek = leads.filter(
-        (l) => new Date(l.created_at) >= sevenDaysAgo
+      const newLastWeek = leadsData.filter(
+        (l: any) => new Date(l.created_at) >= sevenDaysAgo
       ).length;
 
       const byService: Record<string, number> = {};
       const bySource: Record<string, number> = {};
 
-      leads.forEach((lead) => {
+      leadsData.forEach((lead: any) => {
         if (lead.service_type) {
           byService[lead.service_type] = (byService[lead.service_type] || 0) + 1;
         }
@@ -66,7 +67,7 @@ export function OverviewTab() {
       });
 
       // Find stale leads
-      const stale = leads.filter((lead) => {
+      const stale = leadsData.filter((lead: any) => {
         if (lead.status === "closed_won" || lead.status === "closed_lost") return false;
         if (!lead.last_activity_at) return true;
         const lastActivity = new Date(lead.last_activity_at);
@@ -74,7 +75,7 @@ export function OverviewTab() {
       }).slice(0, 5);
 
       setStats({ totalOpen, newLastWeek, byService, bySource });
-      setStaleLeads(stale as StaleLead[]);
+      setStaleLeads(stale as any);
     }
 
     setLoading(false);

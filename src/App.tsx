@@ -74,6 +74,7 @@ const CreativePortfolioFilmProduction = lazy(() => import("./pages/CreativePortf
 const CreativePortfolioPhotography = lazy(() => import("./pages/CreativePortfolioPhotography"));
 const CreativePortfolioAIAnimations = lazy(() => import("./pages/CreativePortfolioAIAnimations"));
 const PortalMI = lazy(() => import("./pages/PortalMI"));
+const Auth = lazy(() => import("./pages/Auth"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -151,6 +152,7 @@ const App = () => (
               <Route path="/careers" element={<Careers />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/auth" element={<Auth />} />
               <Route path="/portalmi" element={<PortalMI />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

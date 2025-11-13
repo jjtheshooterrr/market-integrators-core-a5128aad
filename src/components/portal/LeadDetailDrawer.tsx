@@ -41,17 +41,17 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
   const getCurrentUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
-      const { data } = await supabase.from("users").select("id").eq("id", user.id).single();
+      const { data } = await supabase.from("users" as any).select("id").eq("id", user.id).single();
       if (data) {
-        setCurrentUserId(data.id);
-        setNewTask(prev => ({ ...prev, assignee_id: data.id }));
+        setCurrentUserId((data as any).id);
+        setNewTask(prev => ({ ...prev, assignee_id: (data as any).id }));
       }
     }
   };
 
   const fetchUsers = async () => {
-    const { data } = await supabase.from("users").select("*");
-    setUsers(data || []);
+    const { data } = await supabase.from("users" as any).select("*");
+    setUsers((data as any) || []);
   };
 
   const fetchLeadDetails = async () => {
@@ -61,7 +61,7 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
 
     const [leadRes, notesRes, tasksRes] = await Promise.all([
       supabase
-        .from("leads")
+        .from("leads" as any)
         .select(`
           *,
           companies(name),
@@ -71,12 +71,12 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
         .eq("id", leadId)
         .single(),
       supabase
-        .from("lead_notes")
+        .from("lead_notes" as any)
         .select("*, users(full_name)")
         .eq("lead_id", leadId)
         .order("created_at", { ascending: false }),
       supabase
-        .from("lead_tasks")
+        .from("lead_tasks" as any)
         .select("*, users(full_name)")
         .eq("lead_id", leadId)
         .order("created_at", { ascending: false }),
@@ -93,7 +93,7 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
     if (!leadId) return;
 
     const { error } = await supabase
-      .from("leads")
+      .from("leads" as any)
       .update({ [field]: value })
       .eq("id", leadId);
 
@@ -109,7 +109,7 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
   const handleAddNote = async () => {
     if (!leadId || !newNote.trim()) return;
 
-    const { error } = await supabase.from("lead_notes").insert({
+    const { error } = await supabase.from("lead_notes" as any).insert({
       lead_id: leadId,
       author_id: currentUserId,
       body: newNote,
@@ -128,7 +128,7 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
   const handleAddTask = async () => {
     if (!leadId || !newTask.title.trim()) return;
 
-    const { error } = await supabase.from("lead_tasks").insert({
+    const { error } = await supabase.from("lead_tasks" as any).insert({
       lead_id: leadId,
       title: newTask.title,
       assignee_id: newTask.assignee_id || null,
@@ -149,8 +149,8 @@ export function LeadDetailDrawer({ leadId, open, onOpenChange, onLeadUpdated }: 
     const newStatus = currentStatus === "open" ? "done" : "open";
     
     const { error } = await supabase
-      .from("lead_tasks")
-      .update({ status: newStatus })
+      .from("lead_tasks" as any)
+      .update({ status: newStatus as any })
       .eq("id", taskId);
 
     if (error) {

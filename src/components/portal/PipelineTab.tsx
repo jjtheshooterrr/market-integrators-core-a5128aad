@@ -37,7 +37,7 @@ export function PipelineTab() {
   const fetchLeads = async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from("leads")
+      .from("leads" as any)
       .select(`
         *,
         companies(name),
@@ -48,7 +48,7 @@ export function PipelineTab() {
     if (error) {
       console.error("Error fetching leads:", error);
     } else {
-      setLeads(data || []);
+      setLeads((data as any) || []);
     }
     setLoading(false);
   };
@@ -65,7 +65,7 @@ export function PipelineTab() {
     if (!draggedLead) return;
 
     const { error } = await supabase
-      .from("leads")
+      .from("leads" as any)
       .update({ status: status as any })
       .eq("id", draggedLead);
 

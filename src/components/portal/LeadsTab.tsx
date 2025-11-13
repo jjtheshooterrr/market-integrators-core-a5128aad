@@ -50,7 +50,7 @@ export function LeadsTab() {
   const fetchLeads = async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from("leads")
+      .from("leads" as any)
       .select(`
         *,
         companies(name),
@@ -62,14 +62,14 @@ export function LeadsTab() {
     if (error) {
       console.error("Error fetching leads:", error);
     } else {
-      setLeads(data || []);
+      setLeads((data as any) || []);
     }
     setLoading(false);
   };
 
   const fetchUsers = async () => {
-    const { data } = await supabase.from("users").select("*");
-    setUsers(data || []);
+    const { data } = await supabase.from("users" as any).select("*");
+    setUsers((data as any) || []);
   };
 
   const applyFilters = () => {

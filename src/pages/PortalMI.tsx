@@ -6,6 +6,7 @@ import { LeadsTab } from "@/components/portal/LeadsTab";
 import { PipelineTab } from "@/components/portal/PipelineTab";
 import { TeamTab } from "@/components/portal/TeamTab";
 import { OverviewTab } from "@/components/portal/OverviewTab";
+import { AIAssistantTab } from "@/components/portal/AIAssistantTab";
 
 export default function PortalMI() {
   const navigate = useNavigate();
@@ -49,11 +50,12 @@ export default function PortalMI() {
 
       <main className="container mx-auto px-6 py-6">
         <Tabs defaultValue="leads" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 lg:w-[600px]">
+          <TabsList className="grid w-full grid-cols-5 lg:w-[750px]">
             <TabsTrigger value="leads">Leads</TabsTrigger>
             <TabsTrigger value="pipeline">Pipeline</TabsTrigger>
             <TabsTrigger value="team">Team</TabsTrigger>
             <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="ai">AI Assistant</TabsTrigger>
           </TabsList>
 
           <TabsContent value="leads" className="space-y-4">
@@ -70,6 +72,10 @@ export default function PortalMI() {
 
           <TabsContent value="overview" className="space-y-4">
             <OverviewTab />
+          </TabsContent>
+
+          <TabsContent value="ai" className="space-y-4">
+            <AIAssistantTab />
           </TabsContent>
         </Tabs>
       </main>

@@ -35,6 +35,54 @@ export type Database = {
         }
         Relationships: []
       }
+      client_intake_submissions: {
+        Row: {
+          budget_range: string | null
+          calendar_scheduled: boolean | null
+          company: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          pain_points: string | null
+          phone: string | null
+          selected_services: Json
+          updated_at: string
+          video_watched: boolean | null
+          website: string | null
+        }
+        Insert: {
+          budget_range?: string | null
+          calendar_scheduled?: boolean | null
+          company: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          pain_points?: string | null
+          phone?: string | null
+          selected_services?: Json
+          updated_at?: string
+          video_watched?: boolean | null
+          website?: string | null
+        }
+        Update: {
+          budget_range?: string | null
+          calendar_scheduled?: boolean | null
+          company?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          pain_points?: string | null
+          phone?: string | null
+          selected_services?: Json
+          updated_at?: string
+          video_watched?: boolean | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       companies: {
         Row: {
           created_at: string | null

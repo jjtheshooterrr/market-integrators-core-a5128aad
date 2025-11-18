@@ -75,6 +75,10 @@ const CreativePortfolioPhotography = lazy(() => import("./pages/CreativePortfoli
 const CreativePortfolioAIAnimations = lazy(() => import("./pages/CreativePortfolioAIAnimations"));
 const PortalMI = lazy(() => import("./pages/PortalMI"));
 const Auth = lazy(() => import("./pages/Auth"));
+const IntakeEntry = lazy(() => import("./pages/IntakeEntry"));
+const IntakeForm = lazy(() => import("./pages/IntakeForm"));
+const IntakeVideo = lazy(() => import("./pages/IntakeVideo"));
+const IntakeCalendar = lazy(() => import("./pages/IntakeCalendar"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -154,6 +158,10 @@ const App = () => (
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/portalmi" element={<PortalMI />} />
+              <Route path="/intake" element={<IntakeEntry />} />
+              <Route path="/intake/form" element={<IntakeForm />} />
+              <Route path="/intake/video" element={<IntakeVideo />} />
+              <Route path="/intake/schedule" element={<IntakeCalendar />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

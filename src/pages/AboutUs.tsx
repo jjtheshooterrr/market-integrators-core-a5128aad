@@ -4,33 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Target, Users, Award, TrendingUp } from "lucide-react";
 import aboutTeam from "@/assets/about-team.jpg";
-
 const AboutUs = () => {
-  const values = [
-    {
-      icon: Target,
-      title: "Results-Driven",
-      description: "We're obsessed with delivering measurable ROI for our clients, not vanity metrics.",
-    },
-    {
-      icon: Users,
-      title: "Partnership Approach",
-      description: "Your success is our success. We work as an extension of your team.",
-    },
-    {
-      icon: Award,
-      title: "Expertise & Innovation",
-      description: "Certified specialists staying ahead of industry trends and platform updates.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Continuous Optimization",
-      description: "We never stop testing, learning, and improving your campaigns.",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const values = [{
+    icon: Target,
+    title: "Results-Driven",
+    description: "We're obsessed with delivering measurable ROI for our clients, not vanity metrics."
+  }, {
+    icon: Users,
+    title: "Partnership Approach",
+    description: "Your success is our success. We work as an extension of your team."
+  }, {
+    icon: Award,
+    title: "Expertise & Innovation",
+    description: "Certified specialists staying ahead of industry trends and platform updates."
+  }, {
+    icon: TrendingUp,
+    title: "Continuous Optimization",
+    description: "We never stop testing, learning, and improving your campaigns."
+  }];
+  return <div className="min-h-screen">
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
@@ -85,44 +77,21 @@ const AboutUs = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => {
-                const Icon = value.icon;
-                return (
-                  <div key={index} className="text-center">
+              const Icon = value.icon;
+              return <div key={index} className="text-center">
                     <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
                       <Icon className="text-primary" size={32} />
                     </div>
                     <h3 className="text-xl mb-3">{value.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">{value.description}</p>
-                  </div>
-                );
-              })}
+                  </div>;
+            })}
             </div>
           </div>
         </section>
 
         {/* Stats Section */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-5xl font-bold text-primary mb-2">1+</div>
-                <div className="text-lg text-muted-foreground">Years in Business</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold text-primary mb-2">100+</div>
-                <div className="text-lg text-muted-foreground">Happy Clients</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold text-primary mb-2">$1M+</div>
-                <div className="text-lg text-muted-foreground">Revenue Generated</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold text-primary mb-2">87%</div>
-                <div className="text-lg text-muted-foreground">Client Retention</div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* CTA Section */}
         <section className="section-padding bg-foreground text-primary-foreground">
@@ -138,8 +107,6 @@ const AboutUs = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default AboutUs;

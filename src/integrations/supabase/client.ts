@@ -3,8 +3,9 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "./types";
 
 // Load from Vite env (do not hardcode!)
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL!;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY!;
+// Strip quotes if present (handles quoted env values)
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL!.replace(/^["'](.*)["']$/, '$1');
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY!.replace(/^["'](.*)["']$/, '$1');
 
 // Single client export using the anon key
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {

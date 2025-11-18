@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Calendar, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import CustomCalendar from "@/components/CustomCalendar";
 
 export default function IntakeCalendar() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const submissionId = searchParams.get("id");
   const [submission, setSubmission] = useState<any>(null);
-
-  // Replace with your actual Calendly link
-  const CALENDLY_URL = "https://calendly.com/your-link";
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [selectedTime, setSelectedTime] = useState<string>();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   useEffect(() => {
     if (!submissionId) {
@@ -36,68 +40,170 @@ export default function IntakeCalendar() {
 
       if (error) throw error;
       setSubmission(data);
-
-      // Update that they reached the calendar page
-      await supabase
-        .from("client_intake_submissions")
-        .update({ calendar_scheduled: true })
-        .eq("id", submissionId);
     } catch (error) {
       console.error("Error fetching submission:", error);
+      toast.error("Failed to load submission details");
     }
   };
 
-  // Build prefilled Calendly URL
-  const calendlyUrlWithParams = submission
-    ? `${CALENDLY_URL}?name=${encodeURIComponent(submission.name)}&email=${encodeURIComponent(submission.email)}&a1=${encodeURIComponent(submission.company)}`
-    : CALENDLY_URL;
+  const handleDateTimeSelect = (date: Date, time: string) => {
+    setSelectedDate(date);
+    setSelectedTime(time);
+  };
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1 px-4 py-8 md:py-16 max-w-5xl mx-auto w-full">
-        <Card className="p-6 md:p-8">
-          <div className="text-center mb-8">
+  const handleConfirmAppointment = async () => {
+    if (!selectedDate || !selectedTime || !submission) {
+      toast.error("Please select both a date and time");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Save appointment to database
+      const { error: appointmentError } = await supabase
+        .from("calendar_appointments")
+        .insert({
+          submission_id: submissionId,
+          customer_name: submission.name,
+          customer_email: submission.email,
+          scheduled_date: selectedDate.toISOString().split('T')[0],
+          scheduled_time: selectedTime,
+        });
+
+      if (appointmentError) throw appointmentError;
+
+      // Update submission to mark calendar as scheduled
+      const { error: updateError } = await supabase
+        .from("client_intake_submissions")
+        .update({ calendar_scheduled: true })
+        .eq("id", submissionId);
+
+      if (updateError) throw updateError;
+
+      // Send confirmation emails
+      const { error: emailError } = await supabase.functions.invoke(
+        "send-intake-confirmation",
+        {
+          body: {
+            customerName: submission.name,
+            customerEmail: submission.email,
+            scheduledDate: selectedDate.toISOString().split('T')[0],
+            scheduledTime: selectedTime,
+            company: submission.company,
+            phone: submission.phone,
+            selectedServices: submission.selected_services,
+          },
+        }
+      );
+
+      if (emailError) throw emailError;
+
+      setIsConfirmed(true);
+      toast.success("Appointment confirmed! Check your email for details.");
+      
+      // Redirect to home after 3 seconds
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+
+    } catch (error) {
+      console.error("Error confirming appointment:", error);
+      toast.error("Failed to confirm appointment. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isConfirmed) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 px-4 pt-24 pb-8 md:py-16 max-w-3xl mx-auto w-full flex items-center justify-center">
+          <Card className="p-8 text-center">
             <div className="flex justify-center mb-4">
               <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center">
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
             </div>
+            <h1 className="text-3xl font-bold mb-4">All Set!</h1>
+            <p className="text-lg text-muted-foreground mb-2">
+              Your consultation has been scheduled for{" "}
+              {selectedDate?.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'long', 
+                day: 'numeric',
+                year: 'numeric'
+              })}{" "}
+              at {selectedTime}.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Check your email for confirmation details.
+            </p>
+          </Card>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1 px-4 pt-24 pb-8 md:py-16 max-w-5xl mx-auto w-full">
+        <Card className="p-6 md:p-8">
+          <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              You're Almost There!
+              Schedule Your Consultation
             </h1>
             <p className="text-lg text-muted-foreground mb-2">
-              Schedule your consultation to discuss your project in detail.
+              Choose a date and time that works best for you.
             </p>
             {submission && (
               <p className="text-sm text-muted-foreground">
-                Hi {submission.name}, we've pre-filled your information below.
+                Hi {submission.name}, select your preferred time below.
               </p>
             )}
           </div>
 
-          <div className="aspect-video w-full mb-8 bg-muted rounded-lg overflow-hidden border-2 border-border">
-            <iframe
-              src={calendlyUrlWithParams}
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              title="Schedule Consultation"
-            ></iframe>
-          </div>
+          <CustomCalendar
+            onSelectDateTime={handleDateTimeSelect}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+          />
 
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-2 text-muted-foreground">
-              <Calendar className="h-5 w-5" />
-              <p className="text-sm">Choose a time that works best for you</p>
+          {selectedDate && selectedTime && (
+            <div className="mt-8 space-y-4">
+              <div className="bg-muted/50 rounded-lg p-4">
+                <p className="text-sm font-medium mb-2">Selected Time:</p>
+                <p className="text-lg">
+                  {selectedDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric',
+                    year: 'numeric'
+                  })}{" "}
+                  at {selectedTime}
+                </p>
+              </div>
+              
+              <div className="bg-muted/50 rounded-lg p-4">
+                <p className="text-sm">
+                  <strong>What to expect:</strong> During this 30-minute consultation, we'll discuss your goals, 
+                  review your intake responses, and create a customized strategy for your project.
+                </p>
+              </div>
+
+              <Button 
+                onClick={handleConfirmAppointment}
+                disabled={isSubmitting}
+                className="w-full"
+                size="lg"
+              >
+                {isSubmitting ? "Confirming..." : "Confirm Appointment"}
+              </Button>
             </div>
-            <div className="bg-muted/50 rounded-lg p-4 max-w-md mx-auto">
-              <p className="text-sm">
-                <strong>What to expect:</strong> During this 30-minute consultation, we'll discuss your goals, 
-                review your intake responses, and create a customized strategy for your project.
-              </p>
-            </div>
-          </div>
+          )}
         </Card>
       </main>
       <Footer />

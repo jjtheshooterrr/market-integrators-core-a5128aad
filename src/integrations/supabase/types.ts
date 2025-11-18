@@ -35,6 +35,44 @@ export type Database = {
         }
         Relationships: []
       }
+      calendar_appointments: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          id: string
+          scheduled_date: string
+          scheduled_time: string
+          submission_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          id?: string
+          scheduled_date: string
+          scheduled_time: string
+          submission_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          id?: string
+          scheduled_date?: string
+          scheduled_time?: string
+          submission_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendar_appointments_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "client_intake_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       client_intake_submissions: {
         Row: {
           budget_range: string | null

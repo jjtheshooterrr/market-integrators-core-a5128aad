@@ -167,7 +167,7 @@ export default function IntakeForm() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 px-4 py-8 md:py-16 max-w-3xl mx-auto w-full">
+      <main className="flex-1 px-4 pt-24 pb-8 md:py-16 max-w-3xl mx-auto w-full">
         <div className="mb-8">
           <Progress value={progress} className="h-2 mb-4" />
           <p className="text-sm text-muted-foreground text-center">

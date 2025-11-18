@@ -467,6 +467,81 @@ export type Database = {
         }
         Relationships: []
       }
+      n8n_leads: {
+        Row: {
+          address: string | null
+          business_name: string
+          call_notes: string | null
+          call_status: string | null
+          call_transcripts: string | null
+          city: string | null
+          country: string | null
+          created_at: string | null
+          email: string | null
+          id: string
+          interest_level: string | null
+          lead_score: number | null
+          next_follow_up_date: string | null
+          opportunities: string | null
+          phone: string | null
+          priority: string | null
+          rating: number | null
+          replied: string | null
+          reviews: number | null
+          updated_at: string | null
+          website: string | null
+          zip: string | null
+        }
+        Insert: {
+          address?: string | null
+          business_name: string
+          call_notes?: string | null
+          call_status?: string | null
+          call_transcripts?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          interest_level?: string | null
+          lead_score?: number | null
+          next_follow_up_date?: string | null
+          opportunities?: string | null
+          phone?: string | null
+          priority?: string | null
+          rating?: number | null
+          replied?: string | null
+          reviews?: number | null
+          updated_at?: string | null
+          website?: string | null
+          zip?: string | null
+        }
+        Update: {
+          address?: string | null
+          business_name?: string
+          call_notes?: string | null
+          call_status?: string | null
+          call_transcripts?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          interest_level?: string | null
+          lead_score?: number | null
+          next_follow_up_date?: string | null
+          opportunities?: string | null
+          phone?: string | null
+          priority?: string | null
+          rating?: number | null
+          replied?: string | null
+          reviews?: number | null
+          updated_at?: string | null
+          website?: string | null
+          zip?: string | null
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           created_at: string | null

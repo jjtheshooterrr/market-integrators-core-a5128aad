@@ -2,8 +2,9 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL!;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY!;
+// Strip quotes if present (handles quoted env values)
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL!.replace(/^["'](.*)["']$/, '$1');
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY!.replace(/^["'](.*)["']$/, '$1');
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 

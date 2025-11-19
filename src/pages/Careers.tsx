@@ -69,11 +69,29 @@ const Careers = () => {
       const {
         data,
         error
-      } = await supabase.from("careers_open_roles" as any).select("*").order("salary_max", {
+      } = await supabase.from("jobs").select("*").eq("status", "open").order("salary_max", {
         ascending: false
       });
       if (error) throw error;
-      setJobs(data as any || []);
+      
+      // Map database jobs to Job interface
+      const mappedJobs: Job[] = (data || []).map(job => ({
+        slug: job.slug || '',
+        title: job.title,
+        department: job.team || 'General',
+        team: job.team,
+        location: job.location || 'Remote',
+        onsite_requirement: job.onsite_requirement || 'Remote-first',
+        employment: job.employment,
+        seniority: job.seniority,
+        salary_min: job.salary_min || undefined,
+        salary_max: job.salary_max || undefined,
+        currency: job.currency || 'USD',
+        tags: job.tags || [],
+        brief: job.description
+      }));
+      
+      setJobs(mappedJobs);
     } catch (error) {
       toast({
         title: "Error",

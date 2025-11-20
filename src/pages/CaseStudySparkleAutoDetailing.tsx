@@ -293,9 +293,9 @@ const CaseStudySparkleAutoDetailing = () => {
           </div>
         </section>
 
-        {/* CTA Section — FIXED */}
-        <section className="container mx-auto px-4">
-          <div className="bg-primary text-primary-foreground p-12 rounded-lg text-center mx-auto max-w-xl">
+        {/* CTA Section (centered) */}
+        <section className="container mx-auto px-4 flex justify-center">
+          <div className="bg-primary text-primary-foreground p-12 rounded-lg text-center w-full max-w-xl">
             <h2 className="text-3xl font-bold mb-4">Want Results Like Sparkle Auto Detailing?</h2>
             <p className="text-xl mb-8 opacity-90">
               We help local businesses build market-dominant digital systems that bring predictable leads and long-term

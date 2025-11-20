@@ -301,12 +301,14 @@ const CaseStudySparkleAutoDetailing = () => {
               We help local businesses build market-dominant digital systems that bring predictable leads and long-term
               growth.
             </p>
-            <Button asChild size="lg" variant="secondary" className="text-lg px-8 mx-auto">
-              <Link to="/contact">
-                Request Your Proposal
-                <ArrowRight className="ml-2" />
-              </Link>
-            </Button>
+            <div className="flex justify-center">
+              <Button asChild size="lg" variant="secondary" className="text-lg px-8">
+                <Link to="/contact">
+                  Request Your Proposal
+                  <ArrowRight className="ml-2" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>

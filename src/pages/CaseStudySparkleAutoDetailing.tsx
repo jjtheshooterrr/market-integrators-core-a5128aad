@@ -16,6 +16,7 @@ import sparkleLogo from "@/assets/sparkle-logo.webp";
 import sparkleView from "@/assets/sparkle_autodetailingviewer.webp";
 
 const CaseStudySparkleAutoDetailing = () => {
+  // Triggering new deployment for image update
   const keyHighlights = [
     "109+ five-star Google reviews showcased to increase trust",
     "Website rebuilt & optimized for SEO and conversion",

@@ -304,7 +304,7 @@ const CaseStudySparkleAutoDetailing = () => {
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
-                <Link to="/contact">
+                <Link to="/contact-us">
                   Request Your Proposal
                   <ArrowRight className="ml-2" />
                 </Link>

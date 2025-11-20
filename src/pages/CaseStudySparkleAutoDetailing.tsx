@@ -130,17 +130,11 @@ const CaseStudySparkleAutoDetailing = () => {
           <div className="max-w-5xl mx-auto text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img
-                src={sparkleLogo}
-                alt="Sparkle Auto Detailing Logo"
-                className="h-32 w-auto object-contain"
-              />
+              <img src={sparkleLogo} alt="Sparkle Auto Detailing Logo" className="h-32 w-auto object-contain" />
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-              Sparkle Auto Detailing
-            </h1>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">Sparkle Auto Detailing</h1>
 
             {/* Subtitle */}
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
@@ -177,16 +171,14 @@ const CaseStudySparkleAutoDetailing = () => {
           <h2 className="text-3xl font-bold mb-6 text-foreground">Overview</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
-              Sparkle Auto Detailing is a Brigham City–based mobile and in-shop detailing company
-              offering interior & exterior detailing, ceramic coatings, paint enhancement, and more.
-              Despite having strong customer reviews and a loyal base, they struggled with
-              inconsistent online visibility and needed a modern brand presence that matched the
-              quality of their service.
+              Sparkle Auto Detailing is a Brigham City–based mobile and in-shop detailing company offering interior &
+              exterior detailing, ceramic coatings, paint enhancement, and more. Despite having strong customer reviews
+              and a loyal base, they struggled with inconsistent online visibility and needed a modern brand presence
+              that matched the quality of their service.
             </p>
             <p>
-              Our team partnered with Sparkle Auto Detailing to overhaul their digital footprint,
-              increase discoverability, and create a scalable lead-generation system that works
-              24/7.
+              Our team partnered with Sparkle Auto Detailing to overhaul their digital footprint, increase
+              discoverability, and create a scalable lead-generation system that works 24/7.
             </p>
           </div>
         </section>
@@ -196,41 +188,31 @@ const CaseStudySparkleAutoDetailing = () => {
           <h2 className="text-3xl font-bold mb-6 text-foreground">The Challenge</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-xl font-semibold mb-3 text-foreground">
-                Inconsistent Online Presence
-              </h3>
+              <h3 className="text-xl font-semibold mb-3 text-foreground">Inconsistent Online Presence</h3>
               <p className="text-muted-foreground">
-                Their brand name appeared across multiple platforms, but profiles lacked
-                optimization, causing Google to show incomplete or incorrect listings.
+                Their brand name appeared across multiple platforms, but profiles lacked optimization, causing Google to
+                show incomplete or incorrect listings.
               </p>
             </div>
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-xl font-semibold mb-3 text-foreground">
-                Website Not Aligned With Buyer Intent
-              </h3>
+              <h3 className="text-xl font-semibold mb-3 text-foreground">Website Not Aligned With Buyer Intent</h3>
               <p className="text-muted-foreground">
-                The site didn't clearly communicate services offered, pricing expectations, local
-                coverage areas, social proof, or calls to action—reducing conversion rates and user
-                trust.
+                The site didn't clearly communicate services offered, pricing expectations, local coverage areas, social
+                proof, or calls to action—reducing conversion rates and user trust.
               </p>
             </div>
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-xl font-semibold mb-3 text-foreground">
-                Low Local SEO Visibility
-              </h3>
+              <h3 className="text-xl font-semibold mb-3 text-foreground">Low Local SEO Visibility</h3>
               <p className="text-muted-foreground">
-                Even with 100+ five-star reviews, Google wasn't ranking them where they deserved
-                because NAP data wasn't consistent, listings lacked structured local SEO, and
-                content didn't target high-intent keywords.
+                Even with 100+ five-star reviews, Google wasn't ranking them where they deserved because NAP data wasn't
+                consistent, listings lacked structured local SEO, and content didn't target high-intent keywords.
               </p>
             </div>
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-xl font-semibold mb-3 text-foreground">
-                No Scalable Lead Generation System
-              </h3>
+              <h3 className="text-xl font-semibold mb-3 text-foreground">No Scalable Lead Generation System</h3>
               <p className="text-muted-foreground">
-                Customer acquisition relied heavily on social media, referrals, and manual
-                messages—not a sustainable growth strategy.
+                Customer acquisition relied heavily on social media, referrals, and manual messages—not a sustainable
+                growth strategy.
               </p>
             </div>
           </div>
@@ -240,8 +222,8 @@ const CaseStudySparkleAutoDetailing = () => {
         <section className="container mx-auto px-4 mb-16">
           <h2 className="text-3xl font-bold mb-6 text-foreground">Our Solution</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            We executed a full-spectrum digital optimization designed to boost local authority,
-            increase search visibility, and convert traffic into booked jobs.
+            We executed a full-spectrum digital optimization designed to boost local authority, increase search
+            visibility, and convert traffic into booked jobs.
           </p>
           <div className="grid md:grid-cols-2 gap-8">
             {solutions.map((solution, index) => (
@@ -298,10 +280,9 @@ const CaseStudySparkleAutoDetailing = () => {
         <section className="container mx-auto px-4 mb-16">
           <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 md:p-12 rounded-lg border border-primary/20">
             <blockquote className="text-xl md:text-2xl font-medium text-foreground mb-6">
-              "Market Integrators transformed our online presence. We're now ranking at the top for
-              local searches, getting more qualified leads than ever, and our 109+ reviews are
-              finally working for us. The team built us a system that brings in customers while we
-              focus on detailing cars."
+              "Market Integrators transformed our online presence. We're now ranking at the top for local searches,
+              getting more qualified leads than ever, and our 109+ reviews are finally working for us. The team built us
+              a system that brings in customers while we focus on detailing cars."
             </blockquote>
             <div className="flex items-center gap-4">
               <div>
@@ -312,20 +293,15 @@ const CaseStudySparkleAutoDetailing = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section — FIXED */}
         <section className="container mx-auto px-4">
-          <div className="bg-primary text-primary-foreground p-12 rounded-lg text-center">
+          <div className="bg-primary text-primary-foreground p-12 rounded-lg text-center mx-auto max-w-xl">
             <h2 className="text-3xl font-bold mb-4">Want Results Like Sparkle Auto Detailing?</h2>
             <p className="text-xl mb-8 opacity-90">
-              We help local businesses build market-dominant digital systems that bring predictable
-              leads and long-term growth.
+              We help local businesses build market-dominant digital systems that bring predictable leads and long-term
+              growth.
             </p>
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="text-lg px-8"
-            >
+            <Button asChild size="lg" variant="secondary" className="text-lg px-8 mx-auto">
               <Link to="/contact">
                 Request Your Proposal
                 <ArrowRight className="ml-2" />

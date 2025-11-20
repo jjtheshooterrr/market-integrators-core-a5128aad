@@ -127,29 +127,36 @@ const CaseStudySparkleAutoDetailing = () => {
 
         {/* Hero Section */}
         <section className="container mx-auto px-4 mb-16">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Logo */}
+            <div className="mb-8 flex justify-center">
               <img
                 src={sparkleLogo}
                 alt="Sparkle Auto Detailing Logo"
-                className="w-48 h-auto mb-6 object-contain"
+                className="h-32 w-auto object-contain"
               />
-              <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-                Sparkle Auto Detailing
-              </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                Local SEO Dominance & Digital Transformation for a Brigham City Detailing Company
-              </p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
-                <span className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  Brigham City, UT
-                </span>
-                <span className="flex items-center gap-2">
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  109+ Five-Star Reviews
-                </span>
-              </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
+              Sparkle Auto Detailing
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
+              Local SEO Dominance & Digital Transformation for a Brigham City Detailing Company
+            </p>
+
+            {/* Location & Reviews */}
+            <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground mb-12">
+              <span className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                Brigham City, UT
+              </span>
+              <span className="flex items-center gap-2">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                109+ Five-Star Reviews
+              </span>
             </div>
           </div>
         </section>

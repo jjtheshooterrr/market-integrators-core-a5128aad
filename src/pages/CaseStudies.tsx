@@ -18,6 +18,7 @@ import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
+import sparkleLogo from "@/assets/sparkle-logo.webp";
 
 const CaseStudies = () => {
   // Client logos data (Lyla Gray moved to last)
@@ -96,6 +97,11 @@ const CaseStudies = () => {
       name: "Lyla Gray",
       logo: lylagrayLogo,
       link: "/case-studies/lylagray",
+    },
+    {
+      name: "Sparkle Auto Detailing",
+      logo: sparkleLogo,
+      link: "/case-studies/sparkle-auto-detailing",
     },
   ];
 

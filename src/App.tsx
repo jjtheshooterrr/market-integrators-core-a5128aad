@@ -30,6 +30,7 @@ const CaseStudyNorthernUtahWindowWells = lazy(() => import("./pages/CaseStudyNor
 const CaseStudyImperialJewelry = lazy(() => import("./pages/CaseStudyImperialJewelry"));
 const CaseStudyLylaGray = lazy(() => import("./pages/CaseStudyLylaGray"));
 const CaseStudyCrewcoEvents = lazy(() => import("./pages/CaseStudyCrewcoEvents"));
+const CaseStudySparkleAutoDetailing = lazy(() => import("./pages/CaseStudySparkleAutoDetailing"));
 const CaseStudyAudacyHouston = lazy(() => import("./pages/CaseStudyAudacyHouston"));
 const CaseStudySportsRadio610 = lazy(() => import("./pages/CaseStudySportsRadio610"));
 const CaseStudyMega101 = lazy(() => import("./pages/CaseStudyMega101"));
@@ -141,8 +142,9 @@ const App = () => (
               <Route path="/case-studies/northern-utah-window-wells" element={<CaseStudyNorthernUtahWindowWells />} />
               <Route path="/case-studies/imperial-jewelry" element={<CaseStudyImperialJewelry />} />
               <Route path="/case-studies/lylagray" element={<CaseStudyLylaGray />} />
-              <Route path="/case-studies/crewco-events" element={<CaseStudyCrewcoEvents />} />
-              <Route path="/case-studies/audacy-houston" element={<CaseStudyAudacyHouston />} />
+            <Route path="/case-studies/crewco-events" element={<CaseStudyCrewcoEvents />} />
+            <Route path="/case-studies/sparkle-auto-detailing" element={<CaseStudySparkleAutoDetailing />} />
+            <Route path="/case-studies/audacy-houston" element={<CaseStudyAudacyHouston />} />
               <Route path="/case-studies/sportsradio-610" element={<CaseStudySportsRadio610 />} />
               <Route path="/case-studies/mega-101" element={<CaseStudyMega101 />} />
               <Route path="/case-studies/the-bull-houston" element={<CaseStudyTheBullHouston />} />

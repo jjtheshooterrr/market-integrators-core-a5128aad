@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { ArrowRight, CheckCircle2, MapPin, Star } from "lucide-react";
 import sparkleLogo from "@/assets/sparkle-logo.webp";
-import sparkleView from "@/assets/sparkleautodetailingview.webp";
+import sparkleView from "@/assets/sparkle_autodetailingviewer.webp";
 
 const CaseStudySparkleAutoDetailing = () => {
   const keyHighlights = [

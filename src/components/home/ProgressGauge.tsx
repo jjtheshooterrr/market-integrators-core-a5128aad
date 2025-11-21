@@ -3,154 +3,133 @@ import { useEffect, useState } from "react";
 
 const ProgressGauge = () => {
   const [progress, setProgress] = useState(0);
+  const target = 85; // change this if you want a different final value
 
   useEffect(() => {
-    const timer = setTimeout(() => setProgress(85), 100);
+    const timer = setTimeout(() => setProgress(target), 150);
     return () => clearTimeout(timer);
   }, []);
 
+  // ----- Gauge geometry -----
+  const centerX = 110;
+  const centerY = 110;
   const radius = 70;
-  const strokeWidth = 8;
-  const centerX = 100;
-  const centerY = 100;
-  const startAngle = 180;
-  const endAngle = 0;
-  const totalAngle = startAngle - endAngle;
 
-  // Calculate arc path for gauge background
-  const arcPath = () => {
-    const start = (Math.PI * startAngle) / 180;
-    const end = (Math.PI * endAngle) / 180;
-    const x1 = centerX + radius * Math.cos(start);
-    const y1 = centerY + radius * Math.sin(start);
-    const x2 = centerX + radius * Math.cos(end);
-    const y2 = centerY + radius * Math.sin(end);
-    return `M ${x1} ${y1} A ${radius} ${radius} 0 0 1 ${x2} ${y2}`;
+  // For the needle we sweep from bottom-left to bottom-right
+  const needleStartAngle = 225; // degrees
+  const needleEndAngle = 315; // degrees
+
+  const getNeedlePoint = (value: number) => {
+    const clamped = Math.max(0, Math.min(100, value));
+    const angle = needleStartAngle + (clamped / 100) * (needleEndAngle - needleStartAngle);
+    const rad = (Math.PI / 180) * angle;
+    const needleLength = 55;
+    const x = centerX + needleLength * Math.cos(rad);
+    const y = centerY + needleLength * Math.sin(rad);
+    return { x, y };
   };
 
-  // Calculate needle angle based on progress
-  const needleAngle = startAngle - (progress / 100) * totalAngle;
-  const needleRad = (Math.PI * needleAngle) / 180;
-  const needleLength = radius - 10;
-  const needleX = centerX + needleLength * Math.cos(needleRad);
-  const needleY = centerY + needleLength * Math.sin(needleRad);
+  const { x: needleX, y: needleY } = getNeedlePoint(progress);
+  const { x: initialNeedleX, y: initialNeedleY } = getNeedlePoint(0);
+
+  // Path for the top semicircle arc (left → right)
+  const arcPath = `M ${centerX - radius} ${centerY} A ${radius} ${radius} 0 0 1 ${centerX + radius} ${centerY}`;
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <svg viewBox="0 0 200 120" className="w-full h-full">
-        {/* Gauge Background Arc */}
-        <path
-          d={arcPath()}
-          fill="none"
-          stroke="hsl(0, 0%, 20%)"
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-        />
+    <div className="relative flex items-center justify-center w-full h-full">
+      <svg viewBox="0 0 220 170" className="w-[220px] h-[170px] md:w-[260px] md:h-[190px]">
+        {/* Background arc (dark gray) */}
+        <path d={arcPath} fill="none" stroke="hsl(0, 0%, 25%)" strokeWidth={10} strokeLinecap="round" />
 
-        {/* Gauge Progress Arc */}
+        {/* Progress arc (animated red) */}
         <motion.path
-          d={arcPath()}
+          d={arcPath}
           fill="none"
-          stroke="hsl(0, 90%, 53%)"
-          strokeWidth={strokeWidth}
+          stroke="hsl(0, 90%, 55%)"
+          strokeWidth={10}
           strokeLinecap="round"
-          initial={{ strokeDasharray: "0 1000" }}
-          animate={{ strokeDasharray: `${(progress / 100) * 220} 1000` }}
-          transition={{ duration: 2, ease: "easeOut", delay: 0.3 }}
+          pathLength={100}
+          initial={{ strokeDasharray: "0 100" }}
+          animate={{ strokeDasharray: `${progress} 100` }}
+          transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
         />
 
-        {/* Gauge Ticks */}
-        {[0, 25, 50, 75, 100].map((tick) => {
-          const tickAngle = startAngle - (tick / 100) * totalAngle;
-          const tickRad = (Math.PI * tickAngle) / 180;
-          const tickStart = radius - 5;
-          const tickEnd = radius + 5;
-          const x1 = centerX + tickStart * Math.cos(tickRad);
-          const y1 = centerY + tickStart * Math.sin(tickRad);
-          const x2 = centerX + tickEnd * Math.cos(tickRad);
-          const y2 = centerY + tickEnd * Math.sin(tickRad);
+        {/* End caps on arc (subtle darker tips) */}
+        <circle cx={centerX - radius} cy={centerY} r={3} fill="hsl(0, 0%, 40%)" />
+        <circle cx={centerX + radius} cy={centerY} r={3} fill="hsl(0, 0%, 40%)" />
 
-          return (
-            <line
-              key={tick}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              stroke="hsl(0, 0%, 40%)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          );
-        })}
+        {/* LOW / HIGH labels */}
+        <text x={centerX - radius + 8} y={centerY + 22} fill="hsl(0, 0%, 65%)" fontSize="11" fontWeight="600">
+          LOW
+        </text>
+        <text x={centerX + radius - 30} y={centerY + 22} fill="hsl(0, 0%, 65%)" fontSize="11" fontWeight="600">
+          HIGH
+        </text>
 
-        {/* Center Pivot */}
-        <circle cx={centerX} cy={centerY} r="4" fill="hsl(0, 0%, 30%)" />
-
-        {/* Animated Needle */}
+        {/* Needle line (animated) */}
         <motion.line
           x1={centerX}
           y1={centerY}
           x2={needleX}
           y2={needleY}
-          stroke="hsl(0, 90%, 53%)"
-          strokeWidth="3"
+          stroke="hsl(0, 90%, 55%)"
+          strokeWidth={4}
           strokeLinecap="round"
-          initial={{ x2: centerX - needleLength, y2: centerY }}
+          initial={{ x2: initialNeedleX, y2: initialNeedleY }}
           animate={{ x2: needleX, y2: needleY }}
-          transition={{ duration: 2, ease: "easeOut", delay: 0.3 }}
+          transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
         />
 
-        {/* Center Dot */}
-        <circle cx={centerX} cy={centerY} r="6" fill="hsl(0, 90%, 53%)" />
+        {/* Needle head */}
+        <motion.circle
+          cx={needleX}
+          cy={needleY}
+          r={4}
+          fill="hsl(0, 90%, 60%)"
+          initial={{ cx: initialNeedleX, cy: initialNeedleY }}
+          animate={{ cx: needleX, cy: needleY }}
+          transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
+        />
 
-        {/* Labels */}
-        <text
-          x={centerX - radius + 10}
-          y={centerY + 20}
-          fill="hsl(0, 0%, 60%)"
-          fontSize="12"
-          fontWeight="600"
-        >
-          LOW
-        </text>
-        <text
-          x={centerX + radius - 25}
-          y={centerY + 20}
-          fill="hsl(0, 0%, 60%)"
-          fontSize="12"
-          fontWeight="600"
-        >
-          HIGH
-        </text>
+        {/* Center pivot & ring */}
+        <circle cx={centerX} cy={centerY} r={7} fill="hsl(0, 0%, 18%)" />
+        <circle cx={centerX} cy={centerY} r={12} fill="none" stroke="hsl(0, 90%, 55%)" strokeWidth={3} />
 
-        {/* Center Value */}
-        <text
-          x={centerX}
-          y={centerY + 35}
-          fill="hsl(0, 90%, 53%)"
-          fontSize="20"
-          fontWeight="700"
-          textAnchor="middle"
-        >
+        {/* % value */}
+        <text x={centerX} y={centerY + 40} fill="hsl(0, 90%, 55%)" fontSize="20" fontWeight="700" textAnchor="middle">
           <motion.tspan
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3, duration: 0.4 }}
           >
-            {progress}%
+            {target}%
           </motion.tspan>
         </text>
-        <text
-          x={centerX}
-          y={centerY + 50}
-          fill="hsl(0, 0%, 60%)"
-          fontSize="10"
-          fontWeight="500"
-          textAnchor="middle"
-        >
+
+        {/* PERFORMANCE label */}
+        <text x={centerX} y={centerY + 55} fill="hsl(0, 0%, 70%)" fontSize="10" fontWeight="500" textAnchor="middle">
           PERFORMANCE
         </text>
+
+        {/* Small angled “brackets” under PERFORMANCE to echo your design */}
+        <line
+          x1={centerX - 18}
+          y1={centerY + 58}
+          x2={centerX - 26}
+          y2={centerY + 66}
+          stroke="hsl(0, 0%, 45%)"
+          strokeWidth={1.4}
+          strokeLinecap="round"
+        />
+        <line
+          x1={centerX + 18}
+          y1={centerY + 58}
+          x2={centerX + 26}
+          y2={centerY + 66}
+          stroke="hsl(0, 0%, 45%)"
+          strokeWidth={1.4}
+          strokeLinecap="round"
+        />
       </svg>
     </div>
   );

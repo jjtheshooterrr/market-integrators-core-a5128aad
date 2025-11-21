@@ -45,16 +45,18 @@ const ProgressGauge = () => {
   const centerY = 110;
   const radius = 70;
 
-  // Needle moves from bottom-left-ish (210°) to almost right (330°)
+  // Needle moves from bottom-left-ish (210°) to full right (360° = 0°)
   const needleStartAngle = 210;
-  const needleEndAngle = 330;
+  const needleEndAngle = 360;
 
   const getNeedlePoint = (value: number) => {
     const clamped = Math.max(0, Math.min(100, value));
+
+    // span is 360 - 210 = 150 degrees
     const angle = needleStartAngle + (clamped / 100) * (needleEndAngle - needleStartAngle);
 
     const rad = (Math.PI / 180) * angle;
-    const needleLength = 56;
+    const needleLength = 68; // closer to arc radius so tip reaches the HIGH notch
 
     const x = centerX + needleLength * Math.cos(rad);
     const y = centerY + needleLength * Math.sin(rad);

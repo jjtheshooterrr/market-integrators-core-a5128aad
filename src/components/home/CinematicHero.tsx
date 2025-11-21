@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import ProgressGauge from "@/components/home/ProgressGauge";
 const LogoMorph = lazy(() => import("@/components/effects/LogoMorph"));
 const CinematicHero = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -119,7 +119,7 @@ const CinematicHero = () => {
               </motion.span>)}
           </h1>
 
-          {/* Lottie Animation */}
+          {/* Progress Gauge Animation */}
           <motion.div initial={prefersReducedMotion ? {
           opacity: 1
         } : {
@@ -132,7 +132,7 @@ const CinematicHero = () => {
           delay: 0.5,
           duration: 0.5
         }} className="mx-auto mb-8 w-48 h-48 md:w-64 md:h-64">
-            <DotLottieReact src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/Sew%20Stitch%20Doodle.lottie" loop autoplay />
+            <ProgressGauge />
           </motion.div>
 
           {/* Subtext */}

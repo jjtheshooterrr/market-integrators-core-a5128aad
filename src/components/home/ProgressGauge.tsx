@@ -2,22 +2,22 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const ProgressGauge = () => {
+  const target = 100; // <-- needle maxes out now
   const [progress, setProgress] = useState(0);
-  const target = 85; // change this if you want a different final value
 
   useEffect(() => {
     const timer = setTimeout(() => setProgress(target), 150);
     return () => clearTimeout(timer);
-  }, []);
+  }, [target]);
 
-  // ----- Gauge geometry -----
+  // Geometry
   const centerX = 110;
   const centerY = 110;
   const radius = 70;
 
-  // For the needle we sweep from bottom-left to bottom-right
-  const needleStartAngle = 225; // degrees
-  const needleEndAngle = 315; // degrees
+  // Needle from bottom-left → bottom-right
+  const needleStartAngle = 225;
+  const needleEndAngle = 315;
 
   const getNeedlePoint = (value: number) => {
     const clamped = Math.max(0, Math.min(100, value));
@@ -32,16 +32,16 @@ const ProgressGauge = () => {
   const { x: needleX, y: needleY } = getNeedlePoint(progress);
   const { x: initialNeedleX, y: initialNeedleY } = getNeedlePoint(0);
 
-  // Path for the top semicircle arc (left → right)
+  // Top arc
   const arcPath = `M ${centerX - radius} ${centerY} A ${radius} ${radius} 0 0 1 ${centerX + radius} ${centerY}`;
 
   return (
     <div className="relative flex items-center justify-center w-full h-full">
       <svg viewBox="0 0 220 170" className="w-[220px] h-[170px] md:w-[260px] md:h-[190px]">
-        {/* Background arc (dark gray) */}
+        {/* Background arc */}
         <path d={arcPath} fill="none" stroke="hsl(0, 0%, 25%)" strokeWidth={10} strokeLinecap="round" />
 
-        {/* Progress arc (animated red) */}
+        {/* Progress arc */}
         <motion.path
           d={arcPath}
           fill="none"
@@ -54,11 +54,11 @@ const ProgressGauge = () => {
           transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
         />
 
-        {/* End caps on arc (subtle darker tips) */}
+        {/* End caps */}
         <circle cx={centerX - radius} cy={centerY} r={3} fill="hsl(0, 0%, 40%)" />
         <circle cx={centerX + radius} cy={centerY} r={3} fill="hsl(0, 0%, 40%)" />
 
-        {/* LOW / HIGH labels */}
+        {/* LOW/HIGH labels */}
         <text x={centerX - radius + 8} y={centerY + 22} fill="hsl(0, 0%, 65%)" fontSize="11" fontWeight="600">
           LOW
         </text>
@@ -66,7 +66,7 @@ const ProgressGauge = () => {
           HIGH
         </text>
 
-        {/* Needle line (animated) */}
+        {/* Needle */}
         <motion.line
           x1={centerX}
           y1={centerY}
@@ -91,11 +91,11 @@ const ProgressGauge = () => {
           transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
         />
 
-        {/* Center pivot & ring */}
+        {/* Center pivot */}
         <circle cx={centerX} cy={centerY} r={7} fill="hsl(0, 0%, 18%)" />
         <circle cx={centerX} cy={centerY} r={12} fill="none" stroke="hsl(0, 90%, 55%)" strokeWidth={3} />
 
-        {/* % value */}
+        {/* Number */}
         <text x={centerX} y={centerY + 40} fill="hsl(0, 90%, 55%)" fontSize="20" fontWeight="700" textAnchor="middle">
           <motion.tspan
             initial={{ opacity: 0, y: 4 }}
@@ -111,7 +111,7 @@ const ProgressGauge = () => {
           PERFORMANCE
         </text>
 
-        {/* Small angled “brackets” under PERFORMANCE to echo your design */}
+        {/* Decorative brackets */}
         <line
           x1={centerX - 18}
           y1={centerY + 58}

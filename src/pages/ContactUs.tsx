@@ -368,7 +368,10 @@ const ContactUs = () => {
                         <SelectItem value="seo">SEO Services</SelectItem>
                         <SelectItem value="web">Web Development</SelectItem>
                         <SelectItem value="video">Video Production</SelectItem>
-                        <SelectItem value="cro">Conversion Optimization</SelectItem>
+                        <SelectItem value="youtube">YouTube Advertising</SelectItem>
+                        <SelectItem value="cro">Conversion Rate Optimization</SelectItem>
+                        <SelectItem value="landing">Landing Pages</SelectItem>
+                        <SelectItem value="social">Paid Social Advertising</SelectItem>
                         <SelectItem value="multiple">Multiple Services</SelectItem>
                         <SelectItem value="not-sure">Not Sure Yet</SelectItem>
                       </SelectContent>

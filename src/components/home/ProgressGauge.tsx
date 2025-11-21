@@ -6,9 +6,9 @@ const ProgressGauge = () => {
   const [displayValue, setDisplayValue] = useState(0); // integer for text
 
   useEffect(() => {
-    const target = 100; // we want to fully max out
-    const delay = 150; // wait a tiny bit after load
-    const duration = 1800; // ms for full animation
+    const target = 100; // fully max out
+    const delay = 150; // slight pause after load
+    const duration = 1800; // ms
 
     let frameId: number;
     let startTime: number | null = null;
@@ -45,9 +45,9 @@ const ProgressGauge = () => {
   const centerY = 110;
   const radius = 70;
 
-  // Needle moves from bottom-left (225°) to bottom-right (315°)
-  const needleStartAngle = 225;
-  const needleEndAngle = 315;
+  // Needle moves from bottom-left-ish (210°) to almost right (330°)
+  const needleStartAngle = 210;
+  const needleEndAngle = 330;
 
   const getNeedlePoint = (value: number) => {
     const clamped = Math.max(0, Math.min(100, value));
@@ -96,8 +96,7 @@ const ProgressGauge = () => {
         {/* Background arc (track) */}
         <path d={arcPath} fill="none" stroke="hsl(0, 0%, 20%)" strokeWidth={11} strokeLinecap="round" />
 
-        {/* Progress arc with gradient + glow.
-            We use pathLength=100 so strokeDasharray in "percent" */}
+        {/* Progress arc with gradient + glow */}
         <path
           d={arcPath}
           fill="none"
@@ -106,9 +105,7 @@ const ProgressGauge = () => {
           strokeLinecap="round"
           pathLength={100}
           strokeDasharray={`${progress} 100`}
-          style={{
-            filter: "url(#gaugeGlow)",
-          }}
+          style={{ filter: "url(#gaugeGlow)" }}
         />
 
         {/* Arc end caps */}
@@ -134,7 +131,7 @@ const ProgressGauge = () => {
           strokeLinecap="round"
         />
 
-        {/* Animated needle */}
+        {/* Animated needle (position driven by RAF) */}
         <motion.line
           x1={centerX}
           y1={centerY}
@@ -145,7 +142,7 @@ const ProgressGauge = () => {
           strokeLinecap="round"
           initial={{ x2: initialNeedleX, y2: initialNeedleY }}
           animate={{ x2: needleX, y2: needleY }}
-          transition={{ duration: 0.001 }} // motion driven by requestAnimationFrame
+          transition={{ duration: 0.001 }}
         />
 
         {/* Needle tip */}

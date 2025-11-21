@@ -111,11 +111,11 @@ export default function LazyStreamHLS({
   }, [ready, autoPlayMuted]);
 
   useEffect(() => {
-    if (!videoRef.current || !onEnded) return;
+    if (!ready || !videoRef.current || !onEnded) return;
     const video = videoRef.current;
     video.addEventListener('ended', onEnded);
     return () => video.removeEventListener('ended', onEnded);
-  }, [onEnded]);
+  }, [ready, onEnded]);
 
   return (
     <div

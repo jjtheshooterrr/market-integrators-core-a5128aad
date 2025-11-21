@@ -103,18 +103,6 @@ export default function IntakeVideo() {
               </div>
             )}
           </div>
-
-          {/* Temporary skip button for testing - REMOVE IN PRODUCTION */}
-          <div className="mt-8 text-center">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => setVideoEnded(true)}
-              className="text-xs text-muted-foreground"
-            >
-              Skip for testing (remove in production)
-            </Button>
-          </div>
         </Card>
       </main>
       <Footer />

@@ -128,6 +128,27 @@ export default function IntakeForm() {
     setStep(step - 1);
   };
 
+  const determineVideoId = (services: string[]): string => {
+    const creativeServices = [
+      "Video Production",
+      "Post-Production & Editing",
+      "Animation & Motion Graphics",
+      "3D & Visual Effects",
+      "Audio Production",
+      "Photography & Product Shoots"
+    ];
+    
+    const hasCreative = services.some(service => creativeServices.includes(service));
+    
+    // If they selected creative services, show creative video
+    if (hasCreative) {
+      return "aba1022f9ddf8c5a8d11d0c0210c6a8b";
+    }
+    
+    // Otherwise show tech video (for tech, website, and marketing services)
+    return "a0c2a445181eb89c220f32cb39a2329f";
+  };
+
   const handleSubmit = async () => {
     try {
       formSchema.parse(formData);
@@ -157,8 +178,9 @@ export default function IntakeForm() {
 
       if (error) throw error;
 
+      const videoId = determineVideoId(formData.services);
       toast.success("Intake submitted successfully!");
-      navigate(`/intake/video?id=${data.id}`);
+      navigate(`/intake/video?id=${data.id}&videoId=${videoId}`);
     } catch (error) {
       console.error("Error submitting intake:", error);
       toast.error("Failed to submit intake. Please try again.");

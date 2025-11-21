@@ -363,15 +363,33 @@ const ContactUs = () => {
                       <SelectTrigger className="mt-2">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="ppc">PPC Management</SelectItem>
-                        <SelectItem value="seo">SEO Services</SelectItem>
-                        <SelectItem value="web">Web Development</SelectItem>
+                      <SelectContent className="max-h-[400px]">
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">TECHNOLOGY & INNOVATION</div>
+                        <SelectItem value="ai-ml">AI & Machine Learning</SelectItem>
+                        <SelectItem value="cloud">Cloud Services</SelectItem>
+                        <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
+                        <SelectItem value="data-analytics">Data Analytics</SelectItem>
+                        <SelectItem value="app-dev">App Development</SelectItem>
+                        <SelectItem value="web-dev">Website Development</SelectItem>
+                        <SelectItem value="digital-strategy">Digital Strategy Consulting</SelectItem>
+                        <SelectItem value="automation">Automation & Integrations</SelectItem>
+                        
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground mt-2">MARKETING & GROWTH</div>
+                        <SelectItem value="ppc">PPC & Paid Media</SelectItem>
+                        <SelectItem value="google-ads">Google Ads Management</SelectItem>
+                        <SelectItem value="meta-ads">Meta Ads Management</SelectItem>
+                        <SelectItem value="seo">SEO & Organic Growth</SelectItem>
+                        <SelectItem value="social-media">Social Media Marketing</SelectItem>
+                        
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground mt-2">CREATIVE MEDIA STUDIO</div>
                         <SelectItem value="video">Video Production</SelectItem>
-                        <SelectItem value="youtube">YouTube Advertising</SelectItem>
-                        <SelectItem value="cro">Conversion Rate Optimization</SelectItem>
-                        <SelectItem value="landing">Landing Pages</SelectItem>
-                        <SelectItem value="social">Paid Social Advertising</SelectItem>
+                        <SelectItem value="post-production">Post-Production & Editing</SelectItem>
+                        <SelectItem value="animation">Animation & Motion Graphics</SelectItem>
+                        <SelectItem value="3d-vfx">3D & Visual Effects</SelectItem>
+                        <SelectItem value="audio">Audio Production</SelectItem>
+                        <SelectItem value="photography">Photography & Product Shoots</SelectItem>
+                        
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground mt-2">OTHER</div>
                         <SelectItem value="multiple">Multiple Services</SelectItem>
                         <SelectItem value="not-sure">Not Sure Yet</SelectItem>
                       </SelectContent>

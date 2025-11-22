@@ -36,23 +36,22 @@ export default function CustomCalendar({
   }, [selectedDate]);
 
   const fetchBookedSlots = async (date: Date) => {
-    const dateStr = date.toISOString().split('T')[0];
-    
+    const dateStr = date.toISOString().split("T")[0];
+
     try {
-      const { data, error } = await supabase
-        .from('calendar_appointments')
-        .select('scheduled_time')
-        .eq('scheduled_date', dateStr);
+      const { data, error } = await supabase.functions.invoke("get-booked-slots", {
+        body: { date: dateStr },
+      });
 
       if (error) {
-        console.error('Error fetching booked slots:', error);
+        console.error("Error fetching booked slots via function:", error);
         return;
       }
 
-      const booked = new Set(data?.map(apt => apt.scheduled_time) || []);
-      setBookedSlots(booked);
+      const slots = (data?.slots ?? []) as string[];
+      setBookedSlots(new Set(slots));
     } catch (error) {
-      console.error('Error fetching booked slots:', error);
+      console.error("Error fetching booked slots:", error);
     }
   };
 

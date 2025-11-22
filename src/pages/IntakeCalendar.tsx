@@ -13,6 +13,7 @@ export default function IntakeCalendar() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const submissionId = searchParams.get("id");
+
   const [submission, setSubmission] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState<string>();
@@ -24,7 +25,6 @@ export default function IntakeCalendar() {
       toast.error("Invalid submission ID");
       return;
     }
-
     fetchSubmission();
   }, [submissionId]);
 
@@ -60,16 +60,16 @@ export default function IntakeCalendar() {
     setIsSubmitting(true);
 
     try {
+      const scheduledDateIso = selectedDate.toISOString().split("T")[0];
+
       // Save appointment to database
-      const { error: appointmentError } = await supabase
-        .from("calendar_appointments")
-        .insert({
-          submission_id: submissionId,
-          customer_name: submission.name,
-          customer_email: submission.email,
-          scheduled_date: selectedDate.toISOString().split('T')[0],
-          scheduled_time: selectedTime,
-        });
+      const { error: appointmentError } = await supabase.from("calendar_appointments").insert({
+        submission_id: submissionId,
+        customer_name: submission.name,
+        customer_email: submission.email,
+        scheduled_date: scheduledDateIso,
+        scheduled_time: selectedTime,
+      });
 
       if (appointmentError) throw appointmentError;
 
@@ -81,62 +81,74 @@ export default function IntakeCalendar() {
 
       if (updateError) throw updateError;
 
-      // Create Google Calendar event
-      const [hours, minutes] = selectedTime.replace(/\s(AM|PM)/, '').split(':').map(Number);
-      const isPM = selectedTime.includes('PM');
-      const hour24 = isPM && hours !== 12 ? hours + 12 : (!isPM && hours === 12 ? 0 : hours);
-      
+      // Convert selectedTime (e.g. "2:00 PM") into a proper Date range
+      const [hoursStr, minutesStr] = selectedTime.replace(/\s(AM|PM)/, "").split(":");
+      const hours = Number(hoursStr);
+      const minutes = Number(minutesStr);
+      const isPM = selectedTime.includes("PM");
+      const hour24 = isPM && hours !== 12 ? hours + 12 : !isPM && hours === 12 ? 0 : hours;
+
       const startDateTime = new Date(selectedDate);
       startDateTime.setHours(hour24, minutes, 0, 0);
-      
+
       const endDateTime = new Date(startDateTime);
       endDateTime.setMinutes(endDateTime.getMinutes() + 30);
 
-      const { error: calendarError } = await supabase.functions.invoke(
-        "create-calendar-event",
-        {
-          body: {
-            summary: `Consultation - ${submission.name}`,
-            description: `Consultation with ${submission.name} from ${submission.company}\n\nServices: ${JSON.stringify(submission.selected_services)}\nPhone: ${submission.phone || 'N/A'}`,
-            startDateTime: startDateTime.toISOString(),
-            endDateTime: endDateTime.toISOString(),
-            attendeeEmail: submission.email,
-            attendeeName: submission.name,
-          },
-        }
-      );
+      // Build selected services as an array safely
+      const selectedServicesArray = Array.isArray(submission.selected_services)
+        ? submission.selected_services
+        : submission.selected_services
+          ? [submission.selected_services]
+          : [];
+
+      // 1) Create Google Calendar event
+      const calendarPayload = {
+        summary: `Consultation - ${submission.name}`,
+        description: `Consultation with ${submission.name} from ${
+          submission.company || "N/A"
+        }\n\nServices: ${JSON.stringify(selectedServicesArray)}\nPhone: ${submission.phone || "N/A"}`,
+        startDateTime: startDateTime.toISOString(),
+        endDateTime: endDateTime.toISOString(),
+        attendeeEmail: submission.email,
+        attendeeName: submission.name,
+      };
+
+      console.log("create-calendar-event payload:", calendarPayload);
+
+      const { error: calendarError } = await supabase.functions.invoke("create-calendar-event", {
+        body: calendarPayload,
+      });
 
       if (calendarError) {
         console.error("Calendar event creation failed:", calendarError);
         toast.error("Appointment saved but calendar event failed. We'll contact you shortly.");
       }
 
-      // Send confirmation emails
-      const { error: emailError } = await supabase.functions.invoke(
-        "send-intake-confirmation",
-        {
-          body: {
-            customerName: submission.name,
-            customerEmail: submission.email,
-            scheduledDate: selectedDate.toISOString().split('T')[0],
-            scheduledTime: selectedTime,
-            company: submission.company,
-            phone: submission.phone,
-            selectedServices: submission.selected_services,
-          },
-        }
-      );
+      // 2) Send confirmation emails
+      const emailPayload = {
+        customerName: submission.name,
+        customerEmail: submission.email,
+        scheduledDate: scheduledDateIso,
+        scheduledTime: selectedTime,
+        company: submission.company,
+        phone: submission.phone,
+        selectedServices: selectedServicesArray,
+      };
+
+      console.log("send-intake-confirmation payload:", emailPayload);
+
+      const { error: emailError } = await supabase.functions.invoke("send-intake-confirmation", {
+        body: emailPayload,
+      });
 
       if (emailError) throw emailError;
 
       setIsConfirmed(true);
       toast.success("Appointment confirmed! Check your email for details.");
-      
-      // Redirect to home after 3 seconds
+
       setTimeout(() => {
         navigate("/");
       }, 3000);
-
     } catch (error) {
       console.error("Error confirming appointment:", error);
       toast.error("Failed to confirm appointment. Please try again.");
@@ -159,17 +171,15 @@ export default function IntakeCalendar() {
             <h1 className="text-3xl font-bold mb-4">All Set!</h1>
             <p className="text-lg text-muted-foreground mb-2">
               Your consultation has been scheduled for{" "}
-              {selectedDate?.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                month: 'long', 
-                day: 'numeric',
-                year: 'numeric'
+              {selectedDate?.toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
               })}{" "}
               at {selectedTime}.
             </p>
-            <p className="text-sm text-muted-foreground">
-              Check your email for confirmation details.
-            </p>
+            <p className="text-sm text-muted-foreground">Check your email for confirmation details.</p>
           </Card>
         </main>
         <Footer />
@@ -183,16 +193,10 @@ export default function IntakeCalendar() {
       <main className="flex-1 px-4 pt-24 pb-8 md:py-16 max-w-5xl mx-auto w-full">
         <Card className="p-6 md:p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Schedule Your Consultation
-            </h1>
-            <p className="text-lg text-muted-foreground mb-2">
-              Choose a date and time that works best for you.
-            </p>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Schedule Your Consultation</h1>
+            <p className="text-lg text-muted-foreground mb-2">Choose a date and time that works best for you.</p>
             {submission && (
-              <p className="text-sm text-muted-foreground">
-                Hi {submission.name}, select your preferred time below.
-              </p>
+              <p className="text-sm text-muted-foreground">Hi {submission.name}, select your preferred time below.</p>
             )}
           </div>
 
@@ -207,29 +211,24 @@ export default function IntakeCalendar() {
               <div className="bg-muted/50 rounded-lg p-4">
                 <p className="text-sm font-medium mb-2">Selected Time:</p>
                 <p className="text-lg">
-                  {selectedDate.toLocaleDateString('en-US', { 
-                    weekday: 'long', 
-                    month: 'long', 
-                    day: 'numeric',
-                    year: 'numeric'
+                  {selectedDate.toLocaleDateString("en-US", {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
                   })}{" "}
                   at {selectedTime}
                 </p>
               </div>
-              
+
               <div className="bg-muted/50 rounded-lg p-4">
                 <p className="text-sm">
-                  <strong>What to expect:</strong> During this 30-minute consultation, we'll discuss your goals, 
-                  review your intake responses, and create a customized strategy for your project.
+                  <strong>What to expect:</strong> During this 30-minute consultation, we'll discuss your goals, review
+                  your intake responses, and create a customized strategy for your project.
                 </p>
               </div>
 
-              <Button 
-                onClick={handleConfirmAppointment}
-                disabled={isSubmitting}
-                className="w-full"
-                size="lg"
-              >
+              <Button onClick={handleConfirmAppointment} disabled={isSubmitting} className="w-full" size="lg">
                 {isSubmitting ? "Confirming..." : "Confirm Appointment"}
               </Button>
             </div>

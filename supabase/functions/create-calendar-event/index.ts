@@ -42,12 +42,21 @@ async function getAccessToken(serviceAccountKey: any): Promise<string> {
   const signatureInput = `${encodedHeader}.${encodedPayload}`;
 
   // Import the private key
-  const privateKey = serviceAccountKey.private_key as string;
+  let privateKey = serviceAccountKey.private_key as string;
+  
+  // Ensure newlines are properly formatted
+  if (!privateKey.includes('\n')) {
+    privateKey = privateKey.replace(/\\n/g, '\n');
+  }
+  
   const pemHeader = "-----BEGIN PRIVATE KEY-----";
   const pemFooter = "-----END PRIVATE KEY-----";
-  const pemContents = privateKey
-    .substring(pemHeader.length, privateKey.length - pemFooter.length)
-    .replace(/\s/g, "");
+  
+  // Extract the base64 content between header and footer
+  const pemLines = privateKey.split('\n').filter(line => 
+    line && !line.includes('BEGIN') && !line.includes('END')
+  );
+  const pemContents = pemLines.join('');
 
   const binaryKey = Uint8Array.from(atob(pemContents), (c) => c.charCodeAt(0));
 

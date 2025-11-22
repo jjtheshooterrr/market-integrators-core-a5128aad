@@ -140,6 +140,8 @@ const handler = async (req: Request): Promise<Response> => {
     const accessToken = await getAccessToken(serviceAccountKey);
 
     // Create calendar event in Google Calendar
+    // Note: Service accounts cannot invite attendees without Domain-Wide Delegation
+    // Customer is notified via the confirmation email instead
     const event = {
       summary,
       description,
@@ -151,12 +153,6 @@ const handler = async (req: Request): Promise<Response> => {
         dateTime: endDateTime,
         timeZone: "America/Chicago",
       },
-      attendees: [
-        {
-          email: attendeeEmail,
-          displayName: attendeeName,
-        },
-      ],
       reminders: {
         useDefault: false,
         overrides: [

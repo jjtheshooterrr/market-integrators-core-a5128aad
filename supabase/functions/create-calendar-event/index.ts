@@ -92,8 +92,10 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    console.log('Attempting to create Google Calendar event...');
     const serviceAccountKeyStr = Deno.env.get('GOOGLE_SERVICE_ACCOUNT_KEY');
     if (!serviceAccountKeyStr) {
+      console.error('GOOGLE_SERVICE_ACCOUNT_KEY environment variable not found');
       throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY not configured');
     }
 

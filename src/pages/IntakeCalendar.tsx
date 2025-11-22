@@ -81,6 +81,36 @@ export default function IntakeCalendar() {
 
       if (updateError) throw updateError;
 
+      // Create Google Calendar event
+      const [hours, minutes] = selectedTime.replace(/\s(AM|PM)/, '').split(':').map(Number);
+      const isPM = selectedTime.includes('PM');
+      const hour24 = isPM && hours !== 12 ? hours + 12 : (!isPM && hours === 12 ? 0 : hours);
+      
+      const startDateTime = new Date(selectedDate);
+      startDateTime.setHours(hour24, minutes, 0, 0);
+      
+      const endDateTime = new Date(startDateTime);
+      endDateTime.setMinutes(endDateTime.getMinutes() + 30);
+
+      const { error: calendarError } = await supabase.functions.invoke(
+        "create-calendar-event",
+        {
+          body: {
+            summary: `Consultation - ${submission.name}`,
+            description: `Consultation with ${submission.name} from ${submission.company}\n\nServices: ${JSON.stringify(submission.selected_services)}\nPhone: ${submission.phone || 'N/A'}`,
+            startDateTime: startDateTime.toISOString(),
+            endDateTime: endDateTime.toISOString(),
+            attendeeEmail: submission.email,
+            attendeeName: submission.name,
+          },
+        }
+      );
+
+      if (calendarError) {
+        console.error("Calendar event creation failed:", calendarError);
+        toast.error("Appointment saved but calendar event failed. We'll contact you shortly.");
+      }
+
       // Send confirmation emails
       const { error: emailError } = await supabase.functions.invoke(
         "send-intake-confirmation",

@@ -60,18 +60,37 @@ export default function IntakeCalendar() {
     setIsSubmitting(true);
 
     try {
-      const scheduledDateIso = selectedDate.toISOString().split("T")[0];
-
-      // Save appointment to database
-      const { error: appointmentError } = await supabase.from("calendar_appointments").insert({
-        submission_id: submissionId,
-        customer_name: submission.name,
-        customer_email: submission.email,
-        scheduled_date: scheduledDateIso,
-        scheduled_time: selectedTime,
-      });
-
-      if (appointmentError) throw appointmentError;
+       const scheduledDateIso = selectedDate.toISOString().split("T")[0];
+ 
+       // Check for existing appointment at this date and time to avoid double booking
+       try {
+         const { data: existingAppointments, error: existingError } = await supabase
+           .from("calendar_appointments")
+           .select("id")
+           .eq("scheduled_date", scheduledDateIso)
+           .eq("scheduled_time", selectedTime);
+ 
+         if (existingError) {
+           console.error("Error checking existing appointment:", existingError);
+         } else if (existingAppointments && existingAppointments.length > 0) {
+           toast.error("That time slot has just been booked. Please choose another time.");
+           setIsSubmitting(false);
+           return;
+         }
+       } catch (checkError) {
+         console.error("Unexpected error while checking for existing appointment:", checkError);
+       }
+ 
+       // Save appointment to database
+       const { error: appointmentError } = await supabase.from("calendar_appointments").insert({
+         submission_id: submissionId,
+         customer_name: submission.name,
+         customer_email: submission.email,
+         scheduled_date: scheduledDateIso,
+         scheduled_time: selectedTime,
+       });
+ 
+       if (appointmentError) throw appointmentError;
 
       // Update submission to mark calendar as scheduled
       const { error: updateError } = await supabase
@@ -92,7 +111,7 @@ export default function IntakeCalendar() {
       startDateTime.setHours(hour24, minutes, 0, 0);
 
       const endDateTime = new Date(startDateTime);
-      endDateTime.setMinutes(endDateTime.getMinutes() + 30);
+       endDateTime.setMinutes(endDateTime.getMinutes() + 120);
 
       // Build selected services as an array safely
       const selectedServicesArray = Array.isArray(submission.selected_services)

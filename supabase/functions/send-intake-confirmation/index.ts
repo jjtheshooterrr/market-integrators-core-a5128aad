@@ -46,7 +46,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email to company
     const companyEmail = await resend.emails.send({
-      from: "Market Integrators <onboarding@resend.dev>",
+      from: "Market Integrators <noreply@marketintegrators.com>",
       to: ["marketintegrators@gmail.com"],
       subject: `New Client Consultation Scheduled - ${customerName}`,
       html: `
@@ -67,7 +67,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to customer
     const customerConfirmation = await resend.emails.send({
-      from: "Market Integrators <onboarding@resend.dev>",
+      from: "Market Integrators <noreply@marketintegrators.com>",
       to: [customerEmail],
       subject: "Your Consultation is Scheduled!",
       html: `

@@ -263,16 +263,20 @@ export default function IntakeForm() {
               <p className="text-muted-foreground">What services are you interested in? (Select all that apply)</p>
               <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
                 {SERVICES.map((service) => (
-                  <div key={service} className="flex items-center space-x-2">
+                  <Label 
+                    key={service} 
+                    htmlFor={service}
+                    className="flex items-center space-x-2 cursor-pointer py-2 hover:bg-accent/50 rounded-md px-2 -mx-2 transition-colors"
+                  >
                     <Checkbox
                       id={service}
                       checked={formData.services.includes(service)}
                       onCheckedChange={() => handleServiceToggle(service)}
                     />
-                    <Label htmlFor={service} className="font-normal cursor-pointer">
+                    <span className="font-normal">
                       {service}
-                    </Label>
-                  </div>
+                    </span>
+                  </Label>
                 ))}
               </div>
             </div>
@@ -284,12 +288,16 @@ export default function IntakeForm() {
               <p className="text-muted-foreground">What's your estimated budget for this project?</p>
               <RadioGroup value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
                 {BUDGET_RANGES.map((range) => (
-                  <div key={range} className="flex items-center space-x-2">
+                  <Label 
+                    key={range}
+                    htmlFor={range}
+                    className="flex items-center space-x-2 cursor-pointer py-2 hover:bg-accent/50 rounded-md px-2 -mx-2 transition-colors"
+                  >
                     <RadioGroupItem value={range} id={range} />
-                    <Label htmlFor={range} className="font-normal cursor-pointer">
+                    <span className="font-normal">
                       {range}
-                    </Label>
-                  </div>
+                    </span>
+                  </Label>
                 ))}
               </RadioGroup>
             </div>

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 interface CustomCalendarProps {
   onSelectDateTime: (date: Date, time: string) => void;
@@ -16,16 +17,45 @@ export default function CustomCalendar({
   selectedTime 
 }: CustomCalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set());
   
-  const availableTimes = [
+  const allAvailableTimes = [
     "9:00 AM",
-    "10:00 AM",
     "11:00 AM",
     "1:00 PM",
-    "2:00 PM",
     "3:00 PM",
-    "4:00 PM"
+    "5:00 PM",
+    "7:00 PM",
+    "9:00 PM"
   ];
+
+  useEffect(() => {
+    if (selectedDate) {
+      fetchBookedSlots(selectedDate);
+    }
+  }, [selectedDate]);
+
+  const fetchBookedSlots = async (date: Date) => {
+    const dateStr = date.toISOString().split("T")[0];
+
+    try {
+      const { data, error } = await supabase.functions.invoke("get-booked-slots", {
+        body: { date: dateStr },
+      });
+
+      if (error) {
+        console.error("Error fetching booked slots via function:", error);
+        return;
+      }
+
+      const slots = (data?.slots ?? []) as string[];
+      setBookedSlots(new Set(slots));
+    } catch (error) {
+      console.error("Error fetching booked slots:", error);
+    }
+  };
+
+  const availableTimes = allAvailableTimes.filter(time => !bookedSlots.has(time));
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -52,7 +82,7 @@ export default function CustomCalendar({
     const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    return date < today || date.getDay() === 0 || date.getDay() === 6; // Disable past dates and weekends
+    return date < today; // Only disable past dates
   };
 
   const handleDateClick = (day: number) => {
@@ -134,18 +164,25 @@ export default function CustomCalendar({
       {selectedDate && (
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Select a Time</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {availableTimes.map(time => (
-              <Button
-                key={time}
-                variant={selectedTime === time ? "default" : "outline"}
-                onClick={() => handleTimeClick(time)}
-                className="w-full"
-              >
-                {time}
-              </Button>
-            ))}
-          </div>
+          {availableTimes.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <p className="text-lg font-medium mb-2">All slots are booked for this day</p>
+              <p className="text-sm">Please select a different date</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {availableTimes.map(time => (
+                <Button
+                  key={time}
+                  variant={selectedTime === time ? "default" : "outline"}
+                  onClick={() => handleTimeClick(time)}
+                  className="w-full"
+                >
+                  {time}
+                </Button>
+              ))}
+            </div>
+          )}
         </Card>
       )}
     </div>

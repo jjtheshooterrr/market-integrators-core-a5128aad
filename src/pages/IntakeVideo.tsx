@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import LazyStreamHLS from "@/components/LazyStreamHLS";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { CheckCircle2, Loader2 } from "lucide-react";
@@ -12,11 +13,9 @@ export default function IntakeVideo() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const submissionId = searchParams.get("id");
+  const videoId = searchParams.get("videoId") || "a0c2a445181eb89c220f32cb39a2329f";
   const [videoEnded, setVideoEnded] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-
-  // Replace with your actual Loom video embed URL
-  const LOOM_EMBED_URL = "https://www.loom.com/embed/YOUR_VIDEO_ID";
 
   useEffect(() => {
     if (!submissionId) {
@@ -24,17 +23,6 @@ export default function IntakeVideo() {
       navigate("/intake");
       return;
     }
-
-    // Listen for video end event using postMessage
-    const handleMessage = (event: MessageEvent) => {
-      // Loom sends a message when video ends
-      if (event.data && event.data.type === "video_ended") {
-        setVideoEnded(true);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
   }, [submissionId, navigate]);
 
   const handleContinue = async () => {
@@ -72,14 +60,17 @@ export default function IntakeVideo() {
             </p>
           </div>
 
-          <div className="aspect-video w-full mb-8 bg-muted rounded-lg overflow-hidden">
-            <iframe
-              src={LOOM_EMBED_URL}
-              frameBorder="0"
-              allowFullScreen
-              className="w-full h-full"
+          <div className="w-full mb-8">
+            <LazyStreamHLS
+              videoId={videoId}
               title="Introduction Video"
-            ></iframe>
+              poster={`https://customer-fupcxqt1psuecjaw.cloudflarestream.com/${videoId}/thumbnails/thumbnail.jpg`}
+              ratio="16:9"
+              clickOnly={false}
+              autoPlayMuted={false}
+              controls={true}
+              onEnded={() => setVideoEnded(true)}
+            />
           </div>
 
           <div className="text-center">
@@ -111,18 +102,6 @@ export default function IntakeVideo() {
                 </Button>
               </div>
             )}
-          </div>
-
-          {/* Temporary skip button for testing - REMOVE IN PRODUCTION */}
-          <div className="mt-8 text-center">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => setVideoEnded(true)}
-              className="text-xs text-muted-foreground"
-            >
-              Skip for testing (remove in production)
-            </Button>
           </div>
         </Card>
       </main>

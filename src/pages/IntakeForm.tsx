@@ -16,22 +16,25 @@ import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { z } from "zod";
 
 const SERVICES = [
-  "Website Design & Development",
-  "SEO (Search Engine Optimization)",
-  "Paid Ads (Google/Meta/LinkedIn)",
-  "Branding & Logo Design",
-  "Marketing Automation",
-  "Custom Software Development",
-  "Social Media Management",
-  "Content Marketing",
-  "Email Marketing",
-  "Video Production",
-  "Photography",
-  "3D Visual Effects & Animation",
-  "AI/ML Solutions",
-  "Cloud Infrastructure",
+  "AI & Machine Learning",
+  "Cloud Services",
   "Cybersecurity",
   "Data Analytics",
+  "App Development",
+  "Website Development",
+  "Digital Strategy Consulting",
+  "Automation & Integrations",
+  "PPC & Paid Media",
+  "Google Ads Management",
+  "Meta Ads Management",
+  "SEO & Organic Growth",
+  "Social Media Marketing",
+  "Video Production",
+  "Post-Production & Editing",
+  "Animation & Motion Graphics",
+  "3D & Visual Effects",
+  "Audio Production",
+  "Photography & Product Shoots",
   "Not Sure / Need Recommendations"
 ];
 
@@ -125,6 +128,27 @@ export default function IntakeForm() {
     setStep(step - 1);
   };
 
+  const determineVideoId = (services: string[]): string => {
+    const creativeServices = [
+      "Video Production",
+      "Post-Production & Editing",
+      "Animation & Motion Graphics",
+      "3D & Visual Effects",
+      "Audio Production",
+      "Photography & Product Shoots"
+    ];
+    
+    const hasCreative = services.some(service => creativeServices.includes(service));
+    
+    // If they selected creative services, show creative video
+    if (hasCreative) {
+      return "aba1022f9ddf8c5a8d11d0c0210c6a8b";
+    }
+    
+    // Otherwise show tech video (for tech, website, and marketing services)
+    return "a0c2a445181eb89c220f32cb39a2329f";
+  };
+
   const handleSubmit = async () => {
     try {
       formSchema.parse(formData);
@@ -154,8 +178,9 @@ export default function IntakeForm() {
 
       if (error) throw error;
 
+      const videoId = determineVideoId(formData.services);
       toast.success("Intake submitted successfully!");
-      navigate(`/intake/video?id=${data.id}`);
+      navigate(`/intake/video?id=${data.id}&videoId=${videoId}`);
     } catch (error) {
       console.error("Error submitting intake:", error);
       toast.error("Failed to submit intake. Please try again.");
@@ -238,16 +263,20 @@ export default function IntakeForm() {
               <p className="text-muted-foreground">What services are you interested in? (Select all that apply)</p>
               <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
                 {SERVICES.map((service) => (
-                  <div key={service} className="flex items-center space-x-2">
+                  <Label 
+                    key={service} 
+                    htmlFor={service}
+                    className="flex items-center space-x-2 cursor-pointer py-2 hover:bg-accent/50 rounded-md px-2 -mx-2 transition-colors"
+                  >
                     <Checkbox
                       id={service}
                       checked={formData.services.includes(service)}
                       onCheckedChange={() => handleServiceToggle(service)}
                     />
-                    <Label htmlFor={service} className="font-normal cursor-pointer">
+                    <span className="font-normal">
                       {service}
-                    </Label>
-                  </div>
+                    </span>
+                  </Label>
                 ))}
               </div>
             </div>
@@ -259,12 +288,16 @@ export default function IntakeForm() {
               <p className="text-muted-foreground">What's your estimated budget for this project?</p>
               <RadioGroup value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
                 {BUDGET_RANGES.map((range) => (
-                  <div key={range} className="flex items-center space-x-2">
+                  <Label 
+                    key={range}
+                    htmlFor={range}
+                    className="flex items-center space-x-2 cursor-pointer py-2 hover:bg-accent/50 rounded-md px-2 -mx-2 transition-colors"
+                  >
                     <RadioGroupItem value={range} id={range} />
-                    <Label htmlFor={range} className="font-normal cursor-pointer">
+                    <span className="font-normal">
                       {range}
-                    </Label>
-                  </div>
+                    </span>
+                  </Label>
                 ))}
               </RadioGroup>
             </div>

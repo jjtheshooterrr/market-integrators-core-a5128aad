@@ -5,6 +5,9 @@ import { Card } from "@/components/ui/card";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceSEO = () => {
   const features = [
@@ -77,10 +80,47 @@ const ServiceSEO = () => {
     "Enhanced brand credibility"
   ];
 
+  const faqs = [
+    {
+      question: "How long does it take to see SEO results?",
+      answer: "SEO is a long-term strategy. While some improvements can be seen in 3-6 months, significant results typically take 6-12 months of consistent effort. The timeline depends on your industry competitiveness, current website state, and the scope of optimization work."
+    },
+    {
+      question: "What's the difference between on-page and off-page SEO?",
+      answer: "On-page SEO involves optimizing elements on your website like content, meta tags, headers, and internal links. Off-page SEO focuses on external factors like backlinks, social signals, and online reputation that influence your site's authority and rankings."
+    },
+    {
+      question: "Do you guarantee first-page rankings?",
+      answer: "No reputable SEO agency can guarantee specific rankings, as search algorithms are constantly evolving and controlled by search engines. However, we use proven strategies and best practices to maximize your visibility and organic traffic growth."
+    },
+    {
+      question: "How do you measure SEO success?",
+      answer: "We track multiple metrics including organic traffic growth, keyword rankings, conversion rates, bounce rates, page load times, and overall ROI. We provide detailed monthly reports showing progress across all key performance indicators."
+    },
+    {
+      question: "Is SEO better than paid advertising?",
+      answer: "SEO and paid advertising serve different purposes. SEO provides long-term, sustainable organic traffic, while paid ads deliver immediate results. The best strategy often combines both approaches for maximum visibility and ROI."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="SEO Services | Search Engine Optimization - Market Integrators"
+        description="Drive sustainable organic traffic with data-driven SEO strategies. Comprehensive keyword research, on-page optimization, link building, and content strategy services."
+        canonical="https://www.marketintegrators.com/services/search-engine-optimization-and-organic-growth"
+        keywords="SEO services, search engine optimization, organic growth, keyword research, link building, local SEO, content strategy"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "SEO & Organic Growth", url: "https://www.marketintegrators.com/services/search-engine-optimization-and-organic-growth" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="container-custom">
@@ -94,16 +134,16 @@ const ServiceSEO = () => {
               <Search className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-primary">SEO & Organic Growth</span>
             </div>
-            
+
             <h1 className="heading-1 mb-6">
               Search Engine Optimization & Organic Growth
             </h1>
-            
+
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               Dominate search results and drive sustainable organic traffic with data-driven SEO strategies
               that deliver measurable results.
             </p>
-            
+
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild size="lg" className="btn-text">
                 <Link to="/contact-us">Get Started</Link>

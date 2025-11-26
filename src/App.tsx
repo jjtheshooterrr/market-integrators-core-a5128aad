@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +11,9 @@ import { apolloClient } from "@/lib/apolloClient";
 import CustomCursor from "@/components/effects/CustomCursor";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loader from "@/components/effects/Loader";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { SkipLink } from "@/components/SkipLink";
+import { analytics } from "@/lib/analytics";
 
 // Lazy load all route components for code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -84,94 +87,103 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <ApolloProvider client={apolloClient}>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <CustomCursor />
-        <Toaster />
-        <Sonner />
-        <Analytics />
-        <SpeedInsights />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/ppc-services" element={<ServicePPC />} />
-              <Route path="/services/cybersecurity" element={<ServiceCybersecurity />} />
-              <Route path="/services/data-analytics" element={<ServiceDataAnalytics />} />
-              <Route path="/services/ai-and-machine-learning" element={<ServiceAIML />} />
-              <Route path="/services/cloud" element={<ServiceCloud />} />
-              <Route path="/services/website-development" element={<ServiceWebDevelopment />} />
-              <Route path="/services/app-development" element={<ServiceAppDevelopment />} />
-              <Route path="/services/digital-strategy-consulting" element={<ServiceDigitalStrategy />} />
-              <Route path="/services/automation-and-integrations" element={<ServiceAutomation />} />
-              <Route path="/services/search-engine-optimization-and-organic-growth" element={<ServiceSEO />} />
-              <Route path="/services/social-media-marketing" element={<ServiceSocialMedia />} />
-              <Route path="/services/google-ads-management" element={<ServiceGoogleAds />} />
-              <Route path="/services/meta-ads-management" element={<ServiceMetaAds />} />
-              <Route path="/services/video-production" element={<ServiceVideoProduction />} />
-              <Route path="/services/post-production-editing" element={<ServicePostProduction />} />
-              <Route path="/services/animation-and-motion-graphics" element={<ServiceAnimation />} />
-              <Route path="/services/3d-and-visual-effects" element={<Service3DVisualEffects />} />
-              <Route path="/services/audio-production" element={<ServiceAudioProduction />} />
-              <Route path="/services/photography-and-product-shoots" element={<ServicePhotography />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/industries" element={<Industries />} />
-              <Route path="/industries/ecommerce-and-retail" element={<IndustryEcommerce />} />
-              <Route path="/industries/saas-and-technology" element={<IndustrySaaS />} />
-              <Route path="/industries/home-services-and-franchises" element={<IndustryHomeServices />} />
-              <Route path="/industries/healthcare-and-medical" element={<IndustryHealthcare />} />
-              <Route path="/industries/legal-and-professional-services" element={<IndustryLegal />} />
-              <Route path="/industries/finance-and-banking" element={<IndustryFinance />} />
-              <Route path="/industries/education-and-elearning" element={<IndustryEducation />} />
-              <Route path="/industries/real-estate-and-property-management" element={<IndustryRealEstate />} />
-              <Route path="/industries/ai-automation-and-emerging-tech" element={<IndustryAITech />} />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route path="/about-us" element={<AboutUs />} />
-              <Route path="/case-studies" element={<CaseStudies />} />
-              <Route path="/case-studies/aprenovations" element={<CaseStudyAPRenovations />} />
-              <Route path="/case-studies/avalemusic" element={<CaseStudyAvaleMusic />} />
-              <Route path="/case-studies/pathway-to-peace" element={<CaseStudyPathway2Peace />} />
-              <Route path="/case-studies/testmypools" element={<CaseStudyTestMyPools />} />
-              <Route path="/case-studies/kranz-contractors" element={<CaseStudyKranzContractors />} />
-              <Route path="/case-studies/controllerrepairs" element={<CaseStudyControllerRepairs />} />
-              <Route path="/case-studies/lonestarzentertainment" element={<CaseStudyLoneStarzEntertainment />} />
-              <Route path="/case-studies/northern-utah-window-wells" element={<CaseStudyNorthernUtahWindowWells />} />
-              <Route path="/case-studies/imperial-jewelry" element={<CaseStudyImperialJewelry />} />
-              <Route path="/case-studies/lylagray" element={<CaseStudyLylaGray />} />
-            <Route path="/case-studies/crewco-events" element={<CaseStudyCrewcoEvents />} />
-            <Route path="/case-studies/sparkle-auto-detailing" element={<CaseStudySparkleAutoDetailing />} />
-            <Route path="/case-studies/audacy-houston" element={<CaseStudyAudacyHouston />} />
-              <Route path="/case-studies/sportsradio-610" element={<CaseStudySportsRadio610 />} />
-              <Route path="/case-studies/mega-101" element={<CaseStudyMega101 />} />
-              <Route path="/case-studies/the-bull-houston" element={<CaseStudyTheBullHouston />} />
-              <Route path="/creative-portfolio" element={<CreativePortfolio />} />
-              <Route path="/creative-portfolio/graphic-and-visual-design" element={<CreativePortfolioGraphicDesign />} />
-              <Route path="/creative-portfolio/animated-videos-motion-graphics" element={<CreativePortfolioAnimatedVideos />} />
-              <Route path="/creative-portfolio/edited-video-short-form-content" element={<CreativePortfolioEditedVideo />} />
-              <Route path="/creative-portfolio/film-on-site-production" element={<CreativePortfolioFilmProduction />} />
-              <Route path="/creative-portfolio/photography-media" element={<CreativePortfolioPhotography />} />
-              <Route path="/creative-portfolio/artificial-intelligence-prompted-animations" element={<CreativePortfolioAIAnimations />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/portalmi" element={<PortalMI />} />
-              <Route path="/intake" element={<IntakeEntry />} />
-              <Route path="/intake/form" element={<IntakeForm />} />
-              <Route path="/intake/video" element={<IntakeVideo />} />
-              <Route path="/intake/schedule" element={<IntakeCalendar />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </ApolloProvider>
-);
+const App = () => {
+  useEffect(() => {
+    analytics.init();
+  }, []);
+
+  return (
+    <ErrorBoundary>
+      <ApolloProvider client={apolloClient}>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <SkipLink />
+            <CustomCursor />
+            <Toaster />
+            <Sonner />
+            <Analytics />
+            <SpeedInsights />
+            <BrowserRouter>
+              <ScrollToTop />
+              <Suspense fallback={<Loader />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/services/ppc-services" element={<ServicePPC />} />
+                  <Route path="/services/cybersecurity" element={<ServiceCybersecurity />} />
+                  <Route path="/services/data-analytics" element={<ServiceDataAnalytics />} />
+                  <Route path="/services/ai-and-machine-learning" element={<ServiceAIML />} />
+                  <Route path="/services/cloud" element={<ServiceCloud />} />
+                  <Route path="/services/website-development" element={<ServiceWebDevelopment />} />
+                  <Route path="/services/app-development" element={<ServiceAppDevelopment />} />
+                  <Route path="/services/digital-strategy-consulting" element={<ServiceDigitalStrategy />} />
+                  <Route path="/services/automation-and-integrations" element={<ServiceAutomation />} />
+                  <Route path="/services/search-engine-optimization-and-organic-growth" element={<ServiceSEO />} />
+                  <Route path="/services/social-media-marketing" element={<ServiceSocialMedia />} />
+                  <Route path="/services/google-ads-management" element={<ServiceGoogleAds />} />
+                  <Route path="/services/meta-ads-management" element={<ServiceMetaAds />} />
+                  <Route path="/services/video-production" element={<ServiceVideoProduction />} />
+                  <Route path="/services/post-production-editing" element={<ServicePostProduction />} />
+                  <Route path="/services/animation-and-motion-graphics" element={<ServiceAnimation />} />
+                  <Route path="/services/3d-and-visual-effects" element={<Service3DVisualEffects />} />
+                  <Route path="/services/audio-production" element={<ServiceAudioProduction />} />
+                  <Route path="/services/photography-and-product-shoots" element={<ServicePhotography />} />
+                  <Route path="/pricing" element={<Pricing />} />
+                  <Route path="/industries" element={<Industries />} />
+                  <Route path="/industries/ecommerce-and-retail" element={<IndustryEcommerce />} />
+                  <Route path="/industries/saas-and-technology" element={<IndustrySaaS />} />
+                  <Route path="/industries/home-services-and-franchises" element={<IndustryHomeServices />} />
+                  <Route path="/industries/healthcare-and-medical" element={<IndustryHealthcare />} />
+                  <Route path="/industries/legal-and-professional-services" element={<IndustryLegal />} />
+                  <Route path="/industries/finance-and-banking" element={<IndustryFinance />} />
+                  <Route path="/industries/education-and-elearning" element={<IndustryEducation />} />
+                  <Route path="/industries/real-estate-and-property-management" element={<IndustryRealEstate />} />
+                  <Route path="/industries/ai-automation-and-emerging-tech" element={<IndustryAITech />} />
+                  <Route path="/contact-us" element={<ContactUs />} />
+                  <Route path="/about-us" element={<AboutUs />} />
+                  <Route path="/case-studies" element={<CaseStudies />} />
+                  <Route path="/case-studies/aprenovations" element={<CaseStudyAPRenovations />} />
+                  <Route path="/case-studies/avalemusic" element={<CaseStudyAvaleMusic />} />
+                  <Route path="/case-studies/pathway-to-peace" element={<CaseStudyPathway2Peace />} />
+                  <Route path="/case-studies/testmypools" element={<CaseStudyTestMyPools />} />
+                  <Route path="/case-studies/kranz-contractors" element={<CaseStudyKranzContractors />} />
+                  <Route path="/case-studies/controllerrepairs" element={<CaseStudyControllerRepairs />} />
+                  <Route path="/case-studies/lonestarzentertainment" element={<CaseStudyLoneStarzEntertainment />} />
+                  <Route path="/case-studies/northern-utah-window-wells" element={<CaseStudyNorthernUtahWindowWells />} />
+                  <Route path="/case-studies/imperial-jewelry" element={<CaseStudyImperialJewelry />} />
+                  <Route path="/case-studies/lylagray" element={<CaseStudyLylaGray />} />
+                  <Route path="/case-studies/crewco-events" element={<CaseStudyCrewcoEvents />} />
+                  <Route path="/case-studies/sparkle-auto-detailing" element={<CaseStudySparkleAutoDetailing />} />
+                  <Route path="/case-studies/audacy-houston" element={<CaseStudyAudacyHouston />} />
+                  <Route path="/case-studies/sportsradio-610" element={<CaseStudySportsRadio610 />} />
+                  <Route path="/case-studies/mega-101" element={<CaseStudyMega101 />} />
+                  <Route path="/case-studies/the-bull-houston" element={<CaseStudyTheBullHouston />} />
+                  <Route path="/creative-portfolio" element={<CreativePortfolio />} />
+                  <Route path="/creative-portfolio/graphic-and-visual-design" element={<CreativePortfolioGraphicDesign />} />
+                  <Route path="/creative-portfolio/animated-videos-motion-graphics" element={<CreativePortfolioAnimatedVideos />} />
+                  <Route path="/creative-portfolio/edited-video-short-form-content" element={<CreativePortfolioEditedVideo />} />
+                  <Route path="/creative-portfolio/film-on-site-production" element={<CreativePortfolioFilmProduction />} />
+                  <Route path="/creative-portfolio/photography-media" element={<CreativePortfolioPhotography />} />
+                  <Route path="/creative-portfolio/artificial-intelligence-prompted-animations" element={<CreativePortfolioAIAnimations />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/portalmi" element={<PortalMI />} />
+                  <Route path="/intake" element={<IntakeEntry />} />
+                  <Route path="/intake/form" element={<IntakeForm />} />
+                  <Route path="/intake/video" element={<IntakeVideo />} />
+                  <Route path="/intake/schedule" element={<IntakeCalendar />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </TooltipProvider>
+        </QueryClientProvider>
+      </ApolloProvider>
+    </ErrorBoundary>
+  );
+};
 
 export default App;

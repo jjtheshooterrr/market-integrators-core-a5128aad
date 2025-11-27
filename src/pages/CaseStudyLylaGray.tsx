@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
 import lylagrayMacview from "@/assets/lylagray-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyLylaGray = () => {
   return (
@@ -49,7 +50,7 @@ const CaseStudyLylaGray = () => {
           <div className="container-custom max-w-4xl">
 
             <div className="text-center mb-12">
-              <img
+              <OptimizedImage
                 src={lylagrayLogo}
                 alt="Lyla Gray logo"
                 className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
@@ -68,7 +69,7 @@ const CaseStudyLylaGray = () => {
             </div>
 
             <div className="rounded-lg overflow-hidden shadow-2xl mb-8">
-              <img
+              <OptimizedImage
                 src={lylagrayMacview}
                 alt="MacBook mockup showing Lyla Gray adult model brand website homepage"
                 className="w-full h-auto"

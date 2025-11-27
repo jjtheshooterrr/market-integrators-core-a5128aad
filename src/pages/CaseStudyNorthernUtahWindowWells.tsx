@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 import northernutahwindowwellsMacview from "@/assets/northernutahwindowwells-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyNorthernUtahWindowWells = () => {
   return (
@@ -63,7 +64,7 @@ const CaseStudyNorthernUtahWindowWells = () => {
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-5xl">
             <div className="text-center mb-12">
-              <img
+              <OptimizedImage
                 src={northernutahwindowwellsLogo}
                 alt="Northern Utah Window Wells logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
@@ -79,7 +80,7 @@ const CaseStudyNorthernUtahWindowWells = () => {
 
             {/* MacBook Mockup */}
             <div className="mb-12">
-              <img
+              <OptimizedImage
                 src={northernutahwindowwellsMacview}
                 alt="MacBook mockup showing Northern Utah Window Wells website homepage"
                 className="w-full h-auto rounded-lg shadow-2xl"

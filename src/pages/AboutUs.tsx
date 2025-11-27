@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Target, Users, Award, TrendingUp } from "lucide-react";
 import aboutTeam from "@/assets/about-team.jpg";
+import { OptimizedImage } from "@/components/OptimizedImage";
+
 const AboutUs = () => {
   const values = [{
     icon: Target,
@@ -59,7 +61,7 @@ const AboutUs = () => {
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg">
-              <img src={aboutTeam} alt="Market Integrators digital marketing and web development team in Houston, Texas" className="w-full h-full object-cover" />
+              <OptimizedImage src={aboutTeam} alt="Market Integrators digital marketing and web development team in Houston, Texas" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

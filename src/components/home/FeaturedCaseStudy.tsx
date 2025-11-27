@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 /** Cloudflare Images setup */
 const CF_ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA";
@@ -197,7 +198,7 @@ const FeaturedCaseStudy = () => {
 
                   <div className="relative h-full flex flex-col justify-between p-8 text-primary-foreground">
                     <div>
-                      <img
+                      <OptimizedImage
                         {...logo}
                         alt={`${study.name} logo`}
                         width={96}

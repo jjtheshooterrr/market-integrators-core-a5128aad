@@ -8,6 +8,7 @@ import servicePPC from "@/assets/service-ppc.jpg";
 import { SEO } from "@/components/SEO";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FAQSchema } from "@/components/FAQSchema";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const ServicePPC = () => {
   const features = [
@@ -140,7 +141,7 @@ const ServicePPC = () => {
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-lg">
-                <img src={servicePPC} alt="Digital advertising campaign dashboard showing PPC performance metrics and analytics" className="w-full h-full object-cover" />
+                <OptimizedImage src={servicePPC} alt="Digital advertising campaign dashboard showing PPC performance metrics and analytics" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

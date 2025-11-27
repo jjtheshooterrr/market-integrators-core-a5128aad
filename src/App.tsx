@@ -12,7 +12,7 @@ import CustomCursor from "@/components/effects/CustomCursor";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loader from "@/components/effects/Loader";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { SkipLink } from "@/components/SkipLink";
+
 import { analytics } from "@/lib/analytics";
 
 // Lazy load all route components for code splitting
@@ -97,7 +97,7 @@ const App = () => {
       <ApolloProvider client={apolloClient}>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
-            <SkipLink />
+
             <CustomCursor />
             <Toaster />
             <Sonner />

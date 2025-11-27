@@ -72,7 +72,7 @@ const CaseStudyAPRenovations = () => {
         <div className="container-custom max-w-5xl text-center">
           {/* Logo */}
           <div className="mb-8 flex justify-center">
-            <OptimizedImage src={aprenovationsLogo} alt="A&P Renovations logo" className="h-32 w-auto object-contain" />
+            <OptimizedImage src={aprenovationsLogo} alt="A&P Renovations - General Contractor and Home Renovation Expert logo" className="h-32 w-auto object-contain" />
           </div>
 
           {/* Title */}
@@ -105,7 +105,7 @@ const CaseStudyAPRenovations = () => {
       <section className="section-padding bg-secondary/30">
         <div className="container-custom max-w-6xl">
           <div className="rounded-2xl overflow-hidden shadow-2xl">
-            <OptimizedImage src={aprenovationsMacview} alt="MacBook mockup showing the A&P Renovations website homepage with a modern kitchen remodel" className="w-full h-auto" />
+            <OptimizedImage src={aprenovationsMacview} alt="MacBook Pro displaying A&P Renovations website homepage featuring modern kitchen remodel portfolio" className="w-full h-auto" />
           </div>
           <p className="text-center text-sm text-muted-foreground mt-6 italic">
             Modern, responsive website design highlighting A&P Renovations' craftsmanship and services.

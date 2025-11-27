@@ -99,7 +99,7 @@ const CaseStudyAudacyHouston = () => {
               <div className="mb-8 flex justify-center">
                 <OptimizedImage
                   src={audacyLogo}
-                  alt="Audacy Houston logo"
+                  alt="Audacy Houston - Radio Broadcasting and Digital Media logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>

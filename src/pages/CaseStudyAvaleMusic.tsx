@@ -88,7 +88,7 @@ const CaseStudyAvale = () => {
           <div className="container-custom max-w-5xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <OptimizedImage src={avaleLogo} alt="AVALE logo" className="h-32 md:h-40 w-auto object-contain" />
+              <OptimizedImage src={avaleLogo} alt="AVALE - Independent Electronic Artist logo" className="h-32 md:h-40 w-auto object-contain" />
             </div>
 
             {/* Title & Subhead */}
@@ -103,7 +103,7 @@ const CaseStudyAvale = () => {
         <section className="section-padding bg-muted/30">
           <div className="container-custom max-w-6xl">
             <div className="rounded-xl overflow-hidden shadow-2xl animate-fade-in">
-              <OptimizedImage src={avalemusicview} alt="MacBook mockup of AVALE website homepage" className="w-full h-auto" />
+              <OptimizedImage src={avalemusicview} alt="MacBook Pro displaying AVALE official artist website with dark immersive design" className="w-full h-auto" />
             </div>
             <p className="text-center text-sm text-muted-foreground mt-6">
               Immersive, performance-optimized redesign for officialavale.com

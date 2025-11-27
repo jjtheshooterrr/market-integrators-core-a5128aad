@@ -98,7 +98,7 @@ export default function CaseStudyCrewcoEvents() {
             <div className="mb-8 flex justify-center">
               <OptimizedImage
                 src={crewcoLogo}
-                alt="Crewco Events logo"
+                alt="Crewco Events - Houston Event Production and Lighting logo"
                 className="w-[170px] md:w-[170px] h-auto"
               />
             </div>
@@ -115,7 +115,7 @@ export default function CaseStudyCrewcoEvents() {
             <div className="mb-4">
               <OptimizedImage
                 src={crewcoMacView}
-                alt="MacBook mockup of the Crewco Events website redesign"
+                alt="MacBook Pro displaying Crewco Events website featuring event lighting portfolio"
                 className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"
               />
             </div>

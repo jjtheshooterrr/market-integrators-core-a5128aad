@@ -7,6 +7,7 @@ interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     height?: number;
     priority?: boolean;
     sizes?: string;
+    imgClassName?: string;
 }
 
 export const OptimizedImage = ({
@@ -17,6 +18,7 @@ export const OptimizedImage = ({
     priority = false,
     sizes,
     className,
+    imgClassName,
     ...props
 }: OptimizedImageProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -42,8 +44,7 @@ export const OptimizedImage = ({
                 sizes={sizes}
                 onLoad={handleLoad}
                 onError={handleError}
-                className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
+                className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${imgClassName || ''}`}
                 {...props}
             />
             {!isLoaded && !hasError && (

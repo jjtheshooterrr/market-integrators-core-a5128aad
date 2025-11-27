@@ -66,7 +66,7 @@ const CaseStudyNorthernUtahWindowWells = () => {
             <div className="text-center mb-12">
               <OptimizedImage
                 src={northernutahwindowwellsLogo}
-                alt="Northern Utah Window Wells logo"
+                alt="Northern Utah Window Wells - Window Well Cleaning and Repair logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
               />
               <h1 className="mb-6">Northern Utah Window Wells</h1>
@@ -82,7 +82,7 @@ const CaseStudyNorthernUtahWindowWells = () => {
             <div className="mb-12">
               <OptimizedImage
                 src={northernutahwindowwellsMacview}
-                alt="MacBook mockup showing Northern Utah Window Wells website homepage"
+                alt="MacBook Pro displaying Northern Utah Window Wells service booking page"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
               <p className="text-sm text-muted-foreground text-center mt-4">

@@ -69,7 +69,7 @@ const CaseStudyTestMyPools = () => {
             <div className="mb-8 flex justify-center">
               <OptimizedImage
                 src={testmypoolsLogo}
-                alt="TestMyPools logo"
+                alt="TestMyPools - AI Pool Maintenance App logo"
                 className="h-auto w-[180px] md:w-[180px] object-contain"
               />
             </div>
@@ -86,7 +86,7 @@ const CaseStudyTestMyPools = () => {
             <div className="mb-6">
               <OptimizedImage
                 src={testmypoolsMacview}
-                alt="MacBook mockup showing TestMyPools AI dashboard and marketing site"
+                alt="MacBook Pro displaying TestMyPools AI dashboard for water chemistry analysis"
                 className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"
               />
             </div>

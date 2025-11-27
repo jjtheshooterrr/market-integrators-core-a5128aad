@@ -132,7 +132,7 @@ const CaseStudySparkleAutoDetailing = () => {
           <div className="max-w-5xl mx-auto text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <OptimizedImage src={sparkleLogo} alt="Sparkle Auto Detailing Logo" className="h-32 w-auto object-contain" />
+              <OptimizedImage src={sparkleLogo} alt="Sparkle Auto Detailing - Mobile Car Detailing Service logo" className="h-32 w-auto object-contain" />
             </div>
 
             {/* Title */}
@@ -162,7 +162,7 @@ const CaseStudySparkleAutoDetailing = () => {
           <div className="relative">
             <OptimizedImage
               src={sparkleView}
-              alt="Sparkle Auto Detailing Website"
+              alt="MacBook Pro displaying Sparkle Auto Detailing service menu and booking form"
               className="w-full h-auto rounded-lg shadow-2xl"
             />
           </div>

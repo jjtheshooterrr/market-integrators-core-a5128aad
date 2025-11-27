@@ -69,7 +69,7 @@ const CaseStudyPathway2Peace = () => {
               <div className="mb-8 flex justify-center">
                 <OptimizedImage
                   src={pathway2peaceLogo}
-                  alt="Pathway2Peace logo"
+                  alt="Pathway2Peace - Mental Health and Counseling Services logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>
@@ -86,7 +86,7 @@ const CaseStudyPathway2Peace = () => {
               <div className="mb-4">
                 <OptimizedImage
                   src={pathway2peaceMacview}
-                  alt="MacBook mockup of the Pathway2Peace website redesign"
+                  alt="MacBook Pro displaying Pathway2Peace therapy appointment scheduling portal"
                   className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"
                 />
               </div>

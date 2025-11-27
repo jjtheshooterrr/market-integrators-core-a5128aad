@@ -96,7 +96,7 @@ const CaseStudyTheBullHouston = () => {
               <div className="mb-8 flex justify-center">
                 <OptimizedImage
                   src={thebullLogo}
-                  alt="The Bull Houston logo"
+                  alt="The Bull Houston - Country Music Radio Station logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>

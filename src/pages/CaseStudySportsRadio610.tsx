@@ -97,7 +97,7 @@ const CaseStudySportsRadio610 = () => {
               <div className="mb-8 flex justify-center">
                 <OptimizedImage
                   src={sportsradio610Logo}
-                  alt="SportsRadio 610 logo"
+                  alt="SportsRadio 610 - Houston Sports Talk Radio logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>

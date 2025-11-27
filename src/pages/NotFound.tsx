@@ -10,7 +10,7 @@ const NotFound: React.FC = () => {
       <div className="flex w-full max-w-4xl flex-col items-center gap-8 px-4 py-12">
         <OptimizedImage
           src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-transparent.webp"
-          alt="Market Integrators Logo"
+          alt="Market Integrators - Digital Marketing Agency Logo"
           className="h-16 w-16 md:h-20 md:w-20"
           loading="lazy"
         />

@@ -27,81 +27,97 @@ const CaseStudies = () => {
     {
       name: "Audacy Houston",
       logo: audacyLogo,
+      alt: "Audacy Houston - Radio Broadcasting and Digital Media logo",
       link: "/case-studies/audacy-houston",
     },
     {
       name: "ControllerRepairs",
       logo: controllerrepairsLogo,
+      alt: "ControllerRepairs.com - Custom Gaming Controller Repair logo",
       link: "/case-studies/controllerrepairs",
     },
     {
       name: "A&P Renovations",
       logo: aprenovationsLogo,
+      alt: "A&P Renovations - General Contractor and Home Renovation Expert logo",
       link: "/case-studies/aprenovations",
     },
     {
       name: "TestMyPools",
       logo: testmypoolsLogo,
+      alt: "TestMyPools - AI Pool Maintenance App logo",
       link: "/case-studies/testmypools",
     },
     {
       name: "Mega 101",
       logo: mega101Logo,
+      alt: "Mega 101 - Houston Latin Radio Station logo",
       link: "/case-studies/mega-101",
     },
     {
       name: "Northern Utah Window Wells",
       logo: northernutahwindowwellsLogo,
+      alt: "Northern Utah Window Wells - Window Well Cleaning and Repair logo",
       link: "/case-studies/northern-utah-window-wells",
     },
     {
       name: "Crewco Events",
       logo: crewcoLogo,
+      alt: "Crewco Events - Houston Event Production and Lighting logo",
       link: "/case-studies/crewco-events",
     },
     {
       name: "Pathway2Peace",
       logo: pathway2peaceLogo,
+      alt: "Pathway2Peace - Mental Health and Counseling Services logo",
       link: "/case-studies/pathway-to-peace",
     },
     {
       name: "The Bull Houston",
       logo: thebullLogo,
+      alt: "The Bull Houston - Country Music Radio Station logo",
       link: "/case-studies/the-bull-houston",
     },
     {
       name: "Imperial Jewelry",
       logo: imperialjewelryLogo,
+      alt: "Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo",
       link: "/case-studies/imperial-jewelry",
     },
     {
       name: "LoneStarz Entertainment",
       logo: lonestarzentLogo,
+      alt: "LoneStarz Entertainment - Live Events and DJ Booking logo",
       link: "/case-studies/lonestarzentertainment",
     },
     {
       name: "SportsRadio 610",
       logo: sportsradio610Logo,
+      alt: "SportsRadio 610 - Houston Sports Talk Radio logo",
       link: "/case-studies/sportsradio-610",
     },
     {
       name: "Kranz Contractors",
       logo: kranzcontractorsLogo,
+      alt: "Kranz Contractors - Home Improvement and Gutter Services logo",
       link: "/case-studies/kranz-contractors",
     },
     {
       name: "AVALE",
       logo: avaleLogo,
+      alt: "AVALE - Independent Electronic Artist logo",
       link: "/case-studies/avalemusic",
     },
     {
       name: "Lyla Gray",
       logo: lylagrayLogo,
+      alt: "Lyla Gray - Personal Brand and Creator logo",
       link: "/case-studies/lylagray",
     },
     {
       name: "Sparkle Auto Detailing",
       logo: sparkleLogo,
+      alt: "Sparkle Auto Detailing - Mobile Car Detailing Service logo",
       link: "/case-studies/sparkle-auto-detailing",
     },
   ];
@@ -262,7 +278,7 @@ const CaseStudies = () => {
                 >
                   <OptimizedImage
                     src={client.logo}
-                    alt={`${client.name} logo`}
+                    alt={client.alt || `${client.name} logo`}
                     className="h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                   />
                 </Link>

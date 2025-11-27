@@ -10,6 +10,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceAppDevelopment = () => {
 
@@ -122,165 +125,179 @@ const ServiceAppDevelopment = () => {
 
   return (
     <div className="min-h-screen bg-background">
-        <Header />
-        
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
-          <div className="container-custom relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                App Development Services
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Transform your ideas into powerful mobile applications. We build native and cross-platform apps that users love.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link to="/contact-us">Start Your Project</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/case-studies">View Our Work</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+      <SEO
+        title="Mobile App Development Services | iOS & Android - Market Integrators"
+        description="Custom mobile app development for iOS and Android. Native and cross-platform solutions."
+        canonical="https://www.marketintegrators.com/services/app-development"
+        keywords="app development, mobile apps, iOS development, Android development, React Native"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "App Development", url: "https://www.marketintegrators.com/services/app-development" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
+      <Header />
 
-        {/* Features Grid */}
-        <section className="py-20 px-4">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Why Choose Our App Development Services
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                We combine technical expertise with creative design to deliver apps that stand out in the marketplace
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <Card key={index} className="border-border hover:border-primary/50 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-heading font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Platforms Section */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Platforms & Technologies
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                We develop for all major platforms using cutting-edge technologies
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {platforms.map((platform, index) => (
-                <Card key={index} className="border-border">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-heading font-semibold mb-3">{platform.name}</h3>
-                    <p className="text-muted-foreground mb-4">{platform.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {platform.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-20 px-4">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Our Development Process
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                A proven methodology that delivers exceptional results
-              </p>
-            </div>
-
-            <div className="max-w-4xl mx-auto space-y-8">
-              {processSteps.map((step, index) => (
-                <div key={index} className="flex gap-6 items-start">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-primary">{step.number}</span>
-                    </div>
-                  </div>
-                  <div className="flex-1 pt-2">
-                    <h3 className="text-xl font-heading font-semibold mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="max-w-3xl mx-auto">
-              <Accordion type="single" collapsible>
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 px-4">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-                Ready to Build Your App?
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Let's discuss your project and create an app that exceeds expectations
-              </p>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              App Development Services
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Transform your ideas into powerful mobile applications. We build native and cross-platform apps that users love.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
-                <Link to="/contact-us">Get Started Today</Link>
+                <Link to="/contact-us">Start Your Project</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/case-studies">View Our Work</Link>
               </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <Footer />
+      {/* Features Grid */}
+      <section className="py-20 px-4">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Why Choose Our App Development Services
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We combine technical expertise with creative design to deliver apps that stand out in the marketplace
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <Card key={index} className="border-border hover:border-primary/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Platforms Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Platforms & Technologies
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We develop for all major platforms using cutting-edge technologies
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {platforms.map((platform, index) => (
+              <Card key={index} className="border-border">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-heading font-semibold mb-3">{platform.name}</h3>
+                  <p className="text-muted-foreground mb-4">{platform.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {platform.technologies.map((tech, techIndex) => (
+                      <span key={techIndex} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 px-4">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Our Development Process
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A proven methodology that delivers exceptional results
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-8">
+            {processSteps.map((step, index) => (
+              <div key={index} className="flex gap-6 items-start">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-primary">{step.number}</span>
+                  </div>
+                </div>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-xl font-heading font-semibold mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible>
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+              Ready to Build Your App?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Let's discuss your project and create an app that exceeds expectations
+            </p>
+            <Button asChild size="lg">
+              <Link to="/contact-us">Get Started Today</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 };

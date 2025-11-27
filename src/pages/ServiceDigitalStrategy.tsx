@@ -10,6 +10,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceDigitalStrategy = () => {
 
@@ -122,167 +125,181 @@ const ServiceDigitalStrategy = () => {
 
   return (
     <div className="min-h-screen bg-background">
-        <Header />
-        
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
-          <div className="container-custom relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                Digital Strategy Consulting
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Transform your business with comprehensive digital strategies that drive growth, innovation, and competitive advantage.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link to="/contact-us">Schedule Consultation</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/case-studies">View Success Stories</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+      <SEO
+        title="Digital Strategy Consulting Services - Market Integrators"
+        description="Transform your business with expert digital strategy consulting. Digital transformation, marketing strategy, and growth planning."
+        canonical="https://www.marketintegrators.com/services/digital-strategy"
+        keywords="digital strategy, digital transformation, marketing strategy, business consulting"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Digital Strategy", url: "https://www.marketintegrators.com/services/digital-strategy" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
+      <Header />
 
-        {/* Features Grid */}
-        <section className="py-20 px-4">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Strategic Consulting That Delivers Results
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                We provide expert guidance to navigate digital transformation and maximize your online impact
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <Card key={index} className="border-border hover:border-primary/50 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-heading font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Our Consulting Services
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Tailored strategies for every aspect of your digital presence
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {services.map((service, index) => (
-                <Card key={index} className="border-border">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-heading font-semibold mb-3">{service.name}</h3>
-                    <p className="text-muted-foreground mb-4">{service.description}</p>
-                    <div className="space-y-2">
-                      <div className="text-sm font-semibold text-primary mb-2">Key Deliverables:</div>
-                      {service.deliverables.map((deliverable, delIndex) => (
-                        <div key={delIndex} className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          <span className="text-sm text-muted-foreground">{deliverable}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-20 px-4">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Our Consulting Process
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                A proven methodology for developing effective digital strategies
-              </p>
-            </div>
-
-            <div className="max-w-4xl mx-auto space-y-8">
-              {processSteps.map((step, index) => (
-                <div key={index} className="flex gap-6 items-start">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-primary">{step.number}</span>
-                    </div>
-                  </div>
-                  <div className="flex-1 pt-2">
-                    <h3 className="text-xl font-heading font-semibold mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="max-w-3xl mx-auto">
-              <Accordion type="single" collapsible>
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 px-4">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-                Ready to Transform Your Digital Presence?
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Let's create a strategic roadmap for your digital success
-              </p>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              Digital Strategy Consulting
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Transform your business with comprehensive digital strategies that drive growth, innovation, and competitive advantage.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
-                <Link to="/contact-us">Get Started Today</Link>
+                <Link to="/contact-us">Schedule Consultation</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/case-studies">View Success Stories</Link>
               </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <Footer />
+      {/* Features Grid */}
+      <section className="py-20 px-4">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Strategic Consulting That Delivers Results
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We provide expert guidance to navigate digital transformation and maximize your online impact
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <Card key={index} className="border-border hover:border-primary/50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Our Consulting Services
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Tailored strategies for every aspect of your digital presence
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {services.map((service, index) => (
+              <Card key={index} className="border-border">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-heading font-semibold mb-3">{service.name}</h3>
+                  <p className="text-muted-foreground mb-4">{service.description}</p>
+                  <div className="space-y-2">
+                    <div className="text-sm font-semibold text-primary mb-2">Key Deliverables:</div>
+                    {service.deliverables.map((deliverable, delIndex) => (
+                      <div key={delIndex} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        <span className="text-sm text-muted-foreground">{deliverable}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 px-4">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Our Consulting Process
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A proven methodology for developing effective digital strategies
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-8">
+            {processSteps.map((step, index) => (
+              <div key={index} className="flex gap-6 items-start">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-primary">{step.number}</span>
+                  </div>
+                </div>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-xl font-heading font-semibold mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible>
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+              Ready to Transform Your Digital Presence?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Let's create a strategic roadmap for your digital success
+            </p>
+            <Button asChild size="lg">
+              <Link to="/contact-us">Get Started Today</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 };

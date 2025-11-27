@@ -13,6 +13,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Loader from "@/components/effects/Loader";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
+
 import { analytics } from "@/lib/analytics";
 
 // Lazy load all route components for code splitting
@@ -104,6 +105,7 @@ const App = () => {
             <Analytics />
             <SpeedInsights />
             <BrowserRouter>
+
               <ScrollToTop />
               <Suspense fallback={<Loader />}>
                 <Routes>

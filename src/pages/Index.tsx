@@ -14,25 +14,25 @@ const CTASection = lazy(() => import("@/components/home/CTASection"));
 const ParallaxSection = lazy(() => import("@/components/effects/ParallaxSection"));
 const Index = () => {
   return <div className="min-h-screen">
-      <Header />
-      <main>
-        <CinematicHero />
-        <Suspense fallback={<Loader />}>
-          <ParallaxSection speed={0.3}>
-            <ServicesGridAnimated />
-          </ParallaxSection>
-          <ParallaxSection speed={0.5}>
-            <ProcessStepsAnimated />
-          </ParallaxSection>
-          <FeaturedCaseStudy />
-          
-          <ParallaxSection speed={0.3}>
-            <MetricsSection />
-          </ParallaxSection>
-          <CTASection />
-        </Suspense>
-      </main>
-      <Footer />
-    </div>;
+    <Header />
+    <main>
+      <CinematicHero />
+      <Suspense fallback={<Loader />}>
+        <ParallaxSection speed={0.3}>
+          <ServicesGridAnimated />
+        </ParallaxSection>
+        <ParallaxSection speed={0.5}>
+          <ProcessStepsAnimated />
+        </ParallaxSection>
+        <FeaturedCaseStudy />
+
+        <ParallaxSection speed={0.3}>
+          <MetricsSection />
+        </ParallaxSection>
+        <CTASection />
+      </Suspense>
+    </main>
+    <Footer />
+  </div>;
 };
 export default Index;

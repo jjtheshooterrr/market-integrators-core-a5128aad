@@ -5,6 +5,9 @@ import { CheckCircle2, Sparkles, Layers, Zap, Wand2, Tv, Target, Rocket } from "
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceAnimation = () => {
   const services = [
@@ -93,10 +96,43 @@ const ServiceAnimation = () => {
     "Photoshop"
   ];
 
+  const faqs = [
+    {
+      question: "How much does an animation cost?",
+      answer: "Animation costs vary based on style (2D vs 3D), length, and complexity. Simple motion graphics start around $1,500, while complex 3D character animation can range from $5,000 to $20,000+. We provide custom quotes based on your specific needs."
+    },
+    {
+      question: "How long does it take to create an animation?",
+      answer: "A typical 60-90 second explainer video takes 4-6 weeks. Simple logo animations can be done in a few days, while complex 3D projects may take 8-10 weeks. We'll provide a detailed timeline during the proposal phase."
+    },
+    {
+      question: "Do you provide the voiceover and music?",
+      answer: "Yes, we handle full audio production including professional voiceover casting, recording, music licensing, and sound effects."
+    },
+    {
+      question: "What do I need to provide to get started?",
+      answer: "A brief or script is helpful, but not required. We can help you develop the concept, script, and visual style from scratch. Any brand guidelines or assets (logos, fonts) you have are also useful."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Animation & Motion Graphics Services - Market Integrators"
+        description="Bring your brand to life with professional animation and motion graphics. 2D/3D animation, explainer videos, and visual storytelling."
+        canonical="https://www.marketintegrators.com/services/animation"
+        keywords="animation services, motion graphics, 2D animation, 3D animation, explainer videos"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Animation", url: "https://www.marketintegrators.com/services/animation" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import testmypoolsLogo from "@/assets/testmypools-logo.webp";
 import testmypoolsMacview from "@/assets/testmypools-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyTestMyPools = () => {
   return (
@@ -66,7 +67,7 @@ const CaseStudyTestMyPools = () => {
           <div className="container-custom max-w-4xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img
+              <OptimizedImage
                 src={testmypoolsLogo}
                 alt="TestMyPools logo"
                 className="h-auto w-[180px] md:w-[180px] object-contain"
@@ -83,7 +84,7 @@ const CaseStudyTestMyPools = () => {
 
             {/* MacBook Mockup */}
             <div className="mb-6">
-              <img
+              <OptimizedImage
                 src={testmypoolsMacview}
                 alt="MacBook mockup showing TestMyPools AI dashboard and marketing site"
                 className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"

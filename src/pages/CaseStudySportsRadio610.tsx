@@ -13,6 +13,7 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import sportsradio610Logo from "@/assets/sportsradio610-logo.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudySportsRadio610 = () => {
   const solutions = [
@@ -50,9 +51,9 @@ const CaseStudySportsRadio610 = () => {
     <>
       <Helmet>
         <title>SportsRadio 610 Case Study - YouTube & Social Growth | Market Integrators</title>
-        <meta 
-          name="description" 
-          content="Turning broadcast moments into viral short-form sports content. Achieved 1.43M+ YouTube views and 100% engagement growth in under 8 months." 
+        <meta
+          name="description"
+          content="Turning broadcast moments into viral short-form sports content. Achieved 1.43M+ YouTube views and 100% engagement growth in under 8 months."
         />
         <meta property="og:title" content="SportsRadio 610 Case Study - YouTube & Social Growth Strategy" />
         <meta property="og:description" content="Digital content transformation for Houston sports radio" />
@@ -94,7 +95,7 @@ const CaseStudySportsRadio610 = () => {
           <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
               <div className="mb-8 flex justify-center">
-                <img
+                <OptimizedImage
                   src={sportsradio610Logo}
                   alt="SportsRadio 610 logo"
                   className="w-[170px] md:w-[170px] h-auto"
@@ -102,7 +103,7 @@ const CaseStudySportsRadio610 = () => {
               </div>
 
               <h1 className="mb-4">SportsRadio 610 — YouTube & Social Growth Strategy</h1>
-              
+
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                 Turning broadcast moments into viral short-form sports content.
               </p>
@@ -166,7 +167,7 @@ const CaseStudySportsRadio610 = () => {
             <div className="container-custom max-w-4xl">
               <h2 className="mb-6">Key Highlights</h2>
               <ul className="space-y-4 text-lg text-muted-foreground">
-              {keyHighlights.map((highlight, index) => (
+                {keyHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span>{highlight.title}</span>

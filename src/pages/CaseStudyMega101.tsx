@@ -13,6 +13,7 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import mega101Logo from "@/assets/mega101-logo.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyMega101 = () => {
   const solutions = [
@@ -49,9 +50,9 @@ const CaseStudyMega101 = () => {
     <>
       <Helmet>
         <title>Mega 101 Case Study - Digital Audience Expansion | Market Integrators</title>
-        <meta 
-          name="description" 
-          content="Bilingual engagement and cultural relevance at scale. Achieved 807% follower lift in one week and 717% increase in weekly impressions." 
+        <meta
+          name="description"
+          content="Bilingual engagement and cultural relevance at scale. Achieved 807% follower lift in one week and 717% increase in weekly impressions."
         />
         <meta property="og:title" content="Mega 101 Case Study - Digital Acceleration & Crisis Coverage" />
         <meta property="og:description" content="Digital transformation for Houston's premier Latin radio station" />
@@ -93,7 +94,7 @@ const CaseStudyMega101 = () => {
           <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
               <div className="mb-8 flex justify-center">
-                <img
+                <OptimizedImage
                   src={mega101Logo}
                   alt="Mega 101 logo"
                   className="w-[170px] md:w-[170px] h-auto"
@@ -101,7 +102,7 @@ const CaseStudyMega101 = () => {
               </div>
 
               <h1 className="mb-4">Mega 101 — Digital Audience Expansion</h1>
-              
+
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                 Bilingual engagement and cultural relevance at scale.
               </p>
@@ -165,7 +166,7 @@ const CaseStudyMega101 = () => {
             <div className="container-custom max-w-4xl">
               <h2 className="mb-6">Key Highlights</h2>
               <ul className="space-y-4 text-lg text-muted-foreground">
-              {keyHighlights.map((highlight, index) => (
+                {keyHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span>{highlight.title}</span>

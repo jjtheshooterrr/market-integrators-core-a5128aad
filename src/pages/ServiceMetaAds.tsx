@@ -5,6 +5,9 @@ import { CheckCircle2, Share2, Target, Users, ShoppingBag, TrendingUp, Award, Ba
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceMetaAds = () => {
   const services = [
@@ -91,10 +94,39 @@ const ServiceMetaAds = () => {
     { label: "Conversion Rate", value: "+89%" }
   ];
 
+  const faqs = [
+    {
+      question: "What's the difference between Meta Ads and Google Ads?",
+      answer: "Meta Ads (Facebook/Instagram) target users based on interests and behavior, ideal for brand awareness. Google Ads targets search intent for immediate conversion."
+    },
+    {
+      question: "What budget do I need for Meta Ads?",
+      answer: "We recommend a minimum of $1,000-$1,500 monthly ad spend to properly test and optimize Meta campaigns."
+    },
+    {
+      question: "Can you help with creative content?",
+      answer: "Yes, we provide creative strategy and can coordinate with our design team for high-performing ad creatives."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Meta Ads Management | Facebook & Instagram Advertising - Market Integrators"
+        description="Drive results with expert Meta Ads management. Facebook and Instagram campaigns optimized for ROI and engagement."
+        canonical="https://www.marketintegrators.com/services/meta-ads-management"
+        keywords="Meta Ads, Facebook Ads, Instagram Ads, social media advertising"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Meta Ads Management", url: "https://www.marketintegrators.com/services/meta-ads-management" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

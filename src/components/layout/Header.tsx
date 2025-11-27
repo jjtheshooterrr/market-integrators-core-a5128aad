@@ -63,18 +63,24 @@ const Header = () => {
       category: "TECHNOLOGY & INNOVATION",
       services: [
         {
+          name: "Automation & Integrations",
+          href: "/services/automation-and-integrations",
+          icon: Zap,
+          description: "Workflow automation & system integration",
+        },
+        {
+          name: "Website Development",
+          href: "/services/website-development",
+          icon: Globe,
+          description: "Custom web solutions",
+        },
+        {
           name: "AI & Machine Learning",
           href: "/services/ai-and-machine-learning",
           icon: Brain,
           description: "Intelligent automation solutions",
         },
         { name: "Cloud Services", href: "/services/cloud", icon: Cloud, description: "Scalable cloud infrastructure" },
-        {
-          name: "Cybersecurity",
-          href: "/services/cybersecurity",
-          icon: Shield,
-          description: "Advanced security solutions",
-        },
         {
           name: "Data Analytics",
           href: "/services/data-analytics",
@@ -88,22 +94,16 @@ const Header = () => {
           description: "Native & cross-platform apps",
         },
         {
-          name: "Website Development",
-          href: "/services/website-development",
-          icon: Globe,
-          description: "Custom web solutions",
-        },
-        {
           name: "Digital Strategy Consulting",
           href: "/services/digital-strategy-consulting",
           icon: Lightbulb,
           description: "Strategic digital transformation",
         },
         {
-          name: "Automation & Integrations",
-          href: "/services/automation-and-integrations",
-          icon: Zap,
-          description: "Workflow automation & system integration",
+          name: "Cybersecurity",
+          href: "/services/cybersecurity",
+          icon: Shield,
+          description: "Advanced security solutions",
         },
       ],
     },
@@ -218,9 +218,8 @@ const Header = () => {
               onMouseLeave={() => setIsServicesOpen(false)}
             >
               <button
-                className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 ${
-                  location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"
-                }`}
+                className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 ${location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"
+                  }`}
               >
                 Services
                 <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
@@ -254,26 +253,23 @@ const Header = () => {
                                   initial={{ opacity: 0, x: -20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ delay: categoryIndex * 0.1 + index * 0.05 }}
-                                  className={`flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${
-                                    location.pathname === service.href ? "bg-primary/10" : ""
-                                  }`}
+                                  className={`flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-primary/10 hover:scale-[1.02] ${location.pathname === service.href ? "bg-primary/10" : ""
+                                    }`}
                                 >
                                   <div
-                                    className={`p-2 rounded-lg transition-colors ${
-                                      location.pathname === service.href
+                                    className={`p-2 rounded-lg transition-colors ${location.pathname === service.href
                                         ? "bg-primary text-primary-foreground"
                                         : "bg-muted group-hover:bg-primary/20"
-                                    }`}
+                                      }`}
                                   >
                                     <Icon className="w-5 h-5" />
                                   </div>
                                   <div className="flex-1">
                                     <div
-                                      className={`font-body font-semibold transition-colors ${
-                                        location.pathname === service.href
+                                      className={`font-body font-semibold transition-colors ${location.pathname === service.href
                                           ? "text-primary"
                                           : "text-foreground group-hover:text-primary"
-                                      }`}
+                                        }`}
                                     >
                                       {service.name}
                                     </div>
@@ -295,9 +291,8 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-body font-medium transition-colors hover:text-primary ${
-                  location.pathname === item.href ? "text-primary" : "text-foreground"
-                }`}
+                className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"
+                  }`}
               >
                 {item.name}
               </Link>
@@ -328,9 +323,8 @@ const Header = () => {
               <div>
                 <button
                   onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                  className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 w-full ${
-                    location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"
-                  }`}
+                  className={`font-body font-medium transition-colors hover:text-primary flex items-center gap-1 w-full ${location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"
+                    }`}
                 >
                   Services
                   <ChevronDown className={`w-4 h-4 transition-transform ${isMobileServicesOpen ? "rotate-180" : ""}`} />
@@ -347,9 +341,8 @@ const Header = () => {
                             <Link
                               key={service.name}
                               to={service.href}
-                              className={`block font-body font-medium transition-colors hover:text-primary ${
-                                location.pathname === service.href ? "text-primary" : "text-foreground"
-                              }`}
+                              className={`block font-body font-medium transition-colors hover:text-primary ${location.pathname === service.href ? "text-primary" : "text-foreground"
+                                }`}
                               onClick={() => {
                                 setIsMobileMenuOpen(false);
                                 setIsMobileServicesOpen(false);
@@ -369,9 +362,8 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`font-body font-medium transition-colors hover:text-primary ${
-                    location.pathname === item.href ? "text-primary" : "text-foreground"
-                  }`}
+                  className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"
+                    }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}

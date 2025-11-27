@@ -258,8 +258,8 @@ const Header = () => {
                                 >
                                   <div
                                     className={`p-2 rounded-lg transition-colors ${location.pathname === service.href
-                                        ? "bg-primary text-primary-foreground"
-                                        : "bg-muted group-hover:bg-primary/20"
+                                      ? "bg-primary text-primary-foreground"
+                                      : "bg-muted group-hover:bg-primary/20"
                                       }`}
                                   >
                                     <Icon className="w-5 h-5" />
@@ -267,8 +267,8 @@ const Header = () => {
                                   <div className="flex-1">
                                     <div
                                       className={`font-body font-semibold transition-colors ${location.pathname === service.href
-                                          ? "text-primary"
-                                          : "text-foreground group-hover:text-primary"
+                                        ? "text-primary"
+                                        : "text-foreground group-hover:text-primary"
                                         }`}
                                     >
                                       {service.name}
@@ -337,20 +337,31 @@ const Header = () => {
                           {category.category}
                         </h3>
                         <div className="space-y-2">
-                          {category.services.map((service) => (
-                            <Link
-                              key={service.name}
-                              to={service.href}
-                              className={`block font-body font-medium transition-colors hover:text-primary ${location.pathname === service.href ? "text-primary" : "text-foreground"
-                                }`}
-                              onClick={() => {
-                                setIsMobileMenuOpen(false);
-                                setIsMobileServicesOpen(false);
-                              }}
-                            >
-                              {service.name}
-                            </Link>
-                          ))}
+                          {category.services.map((service) => {
+                            const Icon = service.icon;
+                            return (
+                              <Link
+                                key={service.name}
+                                to={service.href}
+                                className={`flex items-center gap-3 py-1 font-body font-medium transition-colors hover:text-primary ${location.pathname === service.href ? "text-primary" : "text-foreground"
+                                  }`}
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+                                  setIsMobileServicesOpen(false);
+                                }}
+                              >
+                                <div
+                                  className={`p-1.5 rounded-md transition-colors ${location.pathname === service.href
+                                      ? "bg-primary/10 text-primary"
+                                      : "bg-muted text-muted-foreground"
+                                    }`}
+                                >
+                                  <Icon size={16} />
+                                </div>
+                                {service.name}
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     ))}

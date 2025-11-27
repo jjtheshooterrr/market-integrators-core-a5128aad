@@ -6,6 +6,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Palette, X } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { PortfolioTabs } from "@/components/portfolio/PortfolioTabs";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const ACCOUNT_HASH = "GaQ2AWTI-tcX975k7hp2yA"; // ✅ Cloudflare Images delivery token
 const GRID_VARIANT = "public";
@@ -204,11 +205,11 @@ const CreativePortfolioGraphicDesign = () => {
                   className="relative overflow-hidden rounded-lg group cursor-pointer"
                   onClick={() => setSelectedImage(cfImageUrl(project.imageId, LIGHTBOX_VARIANT))}
                 >
-                  <img
+                  <OptimizedImage
                     src={cfImageUrl(project.imageId, GRID_VARIANT)}
                     alt={project.title}
-                    className="w-full h-auto object-contain md:aspect-square md:object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
+                    imgClassName="w-full h-auto object-contain md:aspect-square md:object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full"
                   />
                 </div>
               ))}
@@ -245,10 +246,11 @@ const CreativePortfolioGraphicDesign = () => {
           </button>
           {selectedImage && (
             <div className="w-full h-full flex items-center justify-center p-8">
-              <img
+              <OptimizedImage
                 src={selectedImage}
                 alt="Modern graphic design portfolio featuring brand identities and marketing materials"
-                className="max-w-full max-h-[calc(95vh-4rem)] object-contain"
+                imgClassName="max-w-full max-h-[calc(95vh-4rem)] object-contain"
+                className="flex items-center justify-center"
               />
             </div>
           )}

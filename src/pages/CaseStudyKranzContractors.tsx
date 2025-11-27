@@ -69,7 +69,7 @@ const CaseStudyKranzContractors = () => {
             <div className="mb-8 flex justify-center">
               <OptimizedImage
                 src={kranzcontractorsLogo}
-                alt="Kranz Contractors logo"
+                alt="Kranz Contractors - Home Improvement and Gutter Services logo"
                 className="h-auto w-[120px] md:w-[180px] object-contain"
               />
             </div>
@@ -86,7 +86,7 @@ const CaseStudyKranzContractors = () => {
             <div className="mb-6">
               <OptimizedImage
                 src={kranzcontractorsMacview}
-                alt="MacBook mockup showing Kranz Contractors website homepage"
+                alt="MacBook Pro displaying Kranz Contractors home services website with quote request form"
                 className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"
               />
             </div>

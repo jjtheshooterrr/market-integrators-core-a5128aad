@@ -51,7 +51,7 @@ const CaseStudyImperialJewelry = () => {
 
             <OptimizedImage
               src={imperialjewelryLogo}
-              alt="Imperial Jewelry logo"
+              alt="Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo"
               className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
             />
 
@@ -72,7 +72,7 @@ const CaseStudyImperialJewelry = () => {
           <div className="container-custom max-w-5xl">
             <OptimizedImage
               src={imperialjewelryMacview}
-              alt="MacBook mockup showing Imperial Jewelry website homepage"
+              alt="MacBook Pro displaying Imperial Jewelry luxury eCommerce website with custom ring catalog"
               className="w-full rounded-lg shadow-2xl"
             />
             <p className="text-center text-sm text-muted-foreground mt-4">

@@ -96,7 +96,7 @@ const CaseStudyMega101 = () => {
               <div className="mb-8 flex justify-center">
                 <OptimizedImage
                   src={mega101Logo}
-                  alt="Mega 101 logo"
+                  alt="Mega 101 - Houston Latin Radio Station logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>

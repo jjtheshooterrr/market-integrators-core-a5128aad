@@ -66,7 +66,7 @@ const CaseStudyLoneStarzEntertainment = () => {
             <div className="text-center mb-12">
               <OptimizedImage
                 src={lonestarzentLogo}
-                alt="LoneStarz Entertainment logo"
+                alt="LoneStarz Entertainment - Live Events and DJ Booking logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
               />
               <h1 className="mb-6">LoneStarz Entertainment</h1>
@@ -82,7 +82,7 @@ const CaseStudyLoneStarzEntertainment = () => {
             <div className="mb-12">
               <OptimizedImage
                 src={lonestarzentMacview}
-                alt="MacBook mockup showing LoneStarz Entertainment website homepage"
+                alt="MacBook Pro displaying LoneStarz Entertainment booking platform with artist profiles"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
               <p className="text-sm text-muted-foreground text-center mt-4">

@@ -52,7 +52,7 @@ const CaseStudyLylaGray = () => {
             <div className="text-center mb-12">
               <OptimizedImage
                 src={lylagrayLogo}
-                alt="Lyla Gray logo"
+                alt="Lyla Gray - Personal Brand and Creator logo"
                 className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
               />
               <h1 className="mb-4">Lyla Gray</h1>
@@ -71,7 +71,7 @@ const CaseStudyLylaGray = () => {
             <div className="rounded-lg overflow-hidden shadow-2xl mb-8">
               <OptimizedImage
                 src={lylagrayMacview}
-                alt="MacBook mockup showing Lyla Gray adult model brand website homepage"
+                alt="MacBook Pro displaying Lyla Gray official website with exclusive content gallery"
                 className="w-full h-auto"
               />
               <p className="text-center text-sm text-muted-foreground mt-4 italic">

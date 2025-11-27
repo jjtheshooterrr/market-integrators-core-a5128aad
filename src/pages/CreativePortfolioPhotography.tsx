@@ -120,7 +120,7 @@ const CreativePortfolioPhotography = () => {
             <div className="w-full h-full flex items-center justify-center p-8">
               <img
                 src={selectedImage}
-                alt="Full size preview"
+                alt="Professional lifestyle photography portfolio showcase"
                 className="max-w-full max-h-[calc(95vh-4rem)] object-contain"
               />
             </div>

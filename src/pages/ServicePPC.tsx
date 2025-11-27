@@ -140,7 +140,7 @@ const ServicePPC = () => {
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-lg">
-                <img src={servicePPC} alt="PPC Advertising" className="w-full h-full object-cover" />
+                <img src={servicePPC} alt="Digital advertising campaign dashboard showing PPC performance metrics and analytics" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

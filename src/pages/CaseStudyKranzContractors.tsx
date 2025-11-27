@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import kranzcontractorsLogo from "@/assets/kranzcontractors-logo.webp";
 import kranzcontractorsMacview from "@/assets/kranzcontractors-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyKranzContractors = () => {
   return (
@@ -66,7 +67,7 @@ const CaseStudyKranzContractors = () => {
           <div className="container-custom max-w-4xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img
+              <OptimizedImage
                 src={kranzcontractorsLogo}
                 alt="Kranz Contractors logo"
                 className="h-auto w-[120px] md:w-[180px] object-contain"
@@ -83,7 +84,7 @@ const CaseStudyKranzContractors = () => {
 
             {/* MacBook Mockup */}
             <div className="mb-6">
-              <img
+              <OptimizedImage
                 src={kranzcontractorsMacview}
                 alt="MacBook mockup showing Kranz Contractors website homepage"
                 className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"

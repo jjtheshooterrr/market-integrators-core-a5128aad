@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import controllerrepairsLogo from "@/assets/controllerrepairs-logo.webp";
 import controllerrepairsMacview from "@/assets/controllerrepairs-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyControllerRepairs = () => {
   return (
@@ -67,7 +68,7 @@ const CaseStudyControllerRepairs = () => {
           {/* Hero Section */}
           <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
-              <img
+              <OptimizedImage
                 src={controllerrepairsLogo}
                 alt="ControllerRepairs.com logo"
                 className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
@@ -84,7 +85,7 @@ const CaseStudyControllerRepairs = () => {
           {/* MacBook Mockup */}
           <section className="section-padding">
             <div className="container-custom max-w-6xl">
-              <img
+              <OptimizedImage
                 src={controllerrepairsMacview}
                 alt="MacBook mockup showing ControllerRepairs.com homepage"
                 className="w-full h-auto rounded-lg shadow-2xl"

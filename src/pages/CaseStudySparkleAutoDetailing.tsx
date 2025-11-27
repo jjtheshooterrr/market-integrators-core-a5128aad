@@ -14,6 +14,7 @@ import {
 import { ArrowRight, CheckCircle2, MapPin, Star } from "lucide-react";
 import sparkleLogo from "@/assets/sparkle-logo.webp";
 import sparkleView from "@/assets/sparkle_autodetailingviewer.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudySparkleAutoDetailing = () => {
   // Triggering new deployment for image update
@@ -131,7 +132,7 @@ const CaseStudySparkleAutoDetailing = () => {
           <div className="max-w-5xl mx-auto text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img src={sparkleLogo} alt="Sparkle Auto Detailing Logo" className="h-32 w-auto object-contain" />
+              <OptimizedImage src={sparkleLogo} alt="Sparkle Auto Detailing Logo" className="h-32 w-auto object-contain" />
             </div>
 
             {/* Title */}
@@ -159,7 +160,7 @@ const CaseStudySparkleAutoDetailing = () => {
         {/* MacBook Mockup */}
         <section className="container mx-auto px-4 mb-20">
           <div className="relative">
-            <img
+            <OptimizedImage
               src={sparkleView}
               alt="Sparkle Auto Detailing Website"
               className="w-full h-auto rounded-lg shadow-2xl"

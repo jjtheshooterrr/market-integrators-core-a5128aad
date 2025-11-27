@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import PricingCard from "@/components/pricing/PricingCard";
 import { Target, TrendingUp, BarChart3, Zap, CheckCircle2 } from "lucide-react";
 import servicePPC from "@/assets/service-ppc.jpg";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServicePPC = () => {
   const features = [
@@ -102,6 +105,20 @@ const ServicePPC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="PPC Management Services | Pay-Per-Click Advertising - Market Integrators"
+        description="Drive instant qualified traffic with expert PPC management. Google Ads, Facebook Ads, LinkedIn campaigns optimized for maximum ROI. Get results fast."
+        canonical="https://www.marketintegrators.com/services/ppc-services"
+        keywords="PPC management, pay per click advertising, Google Ads management, Facebook Ads, paid media management, PPC services"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "PPC & Paid Media", url: "https://www.marketintegrators.com/services/ppc-services" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
@@ -109,7 +126,7 @@ const ServicePPC = () => {
           <div className="container-custom">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="mb-6">PPC Management Services</h1>
+                <h1 className="mb-6">PPC & Paid Media Management Services</h1>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                   Drive instant qualified traffic and maximize ROI with expertly managed pay-per-click campaigns across Google, Facebook, LinkedIn, and more.
                 </p>

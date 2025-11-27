@@ -5,6 +5,9 @@ import { CheckCircle2, Video, Film, Camera, Mic, Edit3, Play, Award } from "luci
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceVideoProduction = () => {
   const services = [
@@ -84,10 +87,43 @@ const ServiceVideoProduction = () => {
     }
   ];
 
+  const faqs = [
+    {
+      question: "How much does a video cost?",
+      answer: "Video production costs vary widely based on complexity, length, location, and requirements. We offer packages starting from $2,500 for simple social content to $25,000+ for high-end commercials. We'll provide a custom quote based on your specific needs."
+    },
+    {
+      question: "How long does the production process take?",
+      answer: "A typical project takes 4-8 weeks from concept to final delivery. Simple projects can be completed faster, while complex productions may take longer. We provide a detailed timeline at the start of every project."
+    },
+    {
+      question: "Do you provide scripts and storyboards?",
+      answer: "Yes! Our creative team can handle everything from concept development and scriptwriting to storyboarding and shot lists, ensuring your vision is clearly planned before filming begins."
+    },
+    {
+      question: "Can you travel for shoots?",
+      answer: "Absolutely. While we are based locally, our team is available to travel domestically and internationally for productions."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Video Production Services - Market Integrators"
+        description="Professional video production services. Corporate videos, commercials, social media content, and post-production."
+        canonical="https://www.marketintegrators.com/services/video-production"
+        keywords="video production, corporate video, commercial production, video marketing, video editing"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Video Production", url: "https://www.marketintegrators.com/services/video-production" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">
@@ -252,7 +288,7 @@ const ServiceVideoProduction = () => {
             <Award className="w-16 h-16 mx-auto mb-6 text-primary" />
             <h2 className="text-4xl font-bold mb-4">Professional Quality, Every Time</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              We use industry-leading equipment and techniques to ensure your videos look and sound incredible. 
+              We use industry-leading equipment and techniques to ensure your videos look and sound incredible.
               Our experienced team combines technical expertise with creative vision to deliver videos that exceed expectations.
             </p>
             <div className="grid md:grid-cols-3 gap-8 mt-12">

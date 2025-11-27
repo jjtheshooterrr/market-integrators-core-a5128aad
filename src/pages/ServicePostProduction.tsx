@@ -5,6 +5,9 @@ import { CheckCircle2, Edit3, Palette, Music, Sparkles, Film, Layers, Zap } from
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServicePostProduction = () => {
   const services = [
@@ -93,10 +96,43 @@ const ServicePostProduction = () => {
     "Pro Tools"
   ];
 
+  const faqs = [
+    {
+      question: "What is the difference between editing and post-production?",
+      answer: "Editing is one part of post-production. Post-production includes the entire process after filming: editing, color grading, sound design, visual effects, and final delivery."
+    },
+    {
+      question: "How long does it take to edit a video?",
+      answer: "It depends on the length and complexity of the project. A simple social media video might take a few hours, while a complex commercial or documentary could take weeks. We provide estimates based on your specific project."
+    },
+    {
+      question: "Can you edit footage I already have?",
+      answer: "Yes! We can work with footage you've filmed yourself or from previous projects. We'll review the footage first to ensure it meets quality standards for the desired outcome."
+    },
+    {
+      question: "What file formats do you deliver?",
+      answer: "We deliver in all standard formats including MP4, MOV, ProRes, and formats optimized for specific social media platforms (Instagram, TikTok, YouTube, etc.)."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Video Post-Production Services - Market Integrators"
+        description="Expert video post-production. Video editing, color grading, VFX, and sound design services."
+        canonical="https://www.marketintegrators.com/services/post-production"
+        keywords="video editing, post production, color grading, visual effects, sound design"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Post-Production", url: "https://www.marketintegrators.com/services/post-production" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">
@@ -314,7 +350,7 @@ const ServicePostProduction = () => {
             <Zap className="w-16 h-16 mx-auto mb-6 text-primary" />
             <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Footage?</h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let our expert editors bring your vision to life with professional post-production services
+              Let's discuss your vision and bring it to life with professional post-production services
             </p>
             <Button asChild size="lg">
               <Link to="/contact-us">Get Started Today</Link>

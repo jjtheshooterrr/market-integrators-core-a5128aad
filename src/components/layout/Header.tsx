@@ -291,7 +291,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-body font-medium transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"
+                className={`font-body font-medium transition-colors hover:text-primary flex items-center h-full ${location.pathname === item.href ? "text-primary" : "text-foreground"
                   }`}
               >
                 {item.name}
@@ -352,8 +352,8 @@ const Header = () => {
                               >
                                 <div
                                   className={`p-1.5 rounded-md transition-colors ${location.pathname === service.href
-                                      ? "bg-primary/10 text-primary"
-                                      : "bg-muted text-muted-foreground"
+                                    ? "bg-primary/10 text-primary"
+                                    : "bg-muted text-muted-foreground"
                                     }`}
                                 >
                                   <Icon size={16} />

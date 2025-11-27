@@ -166,7 +166,7 @@ const FeaturedCaseStudy = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Proven Results</h2>
+          <h2 className="mb-4">Proven Digital Marketing & Web Development Results</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Real growth stories from businesses we've helped scale through strategy, design, and automation.
           </p>
@@ -240,7 +240,7 @@ const FeaturedCaseStudy = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Want results like these?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Achieve Similar Digital Growth?</h3>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             We help businesses turn strategy and technology into measurable growth.
           </p>

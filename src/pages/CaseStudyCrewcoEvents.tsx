@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import crewcoLogo from "@/assets/crewco-logo.webp";
 import crewcoMacView from "@/assets/crewco-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 export default function CaseStudyCrewcoEvents() {
   const keyHighlights = [
@@ -53,9 +54,9 @@ export default function CaseStudyCrewcoEvents() {
     <>
       <Helmet>
         <title>Crewco Events Case Study - Website Redesign & Local SEO | Market Integrators</title>
-        <meta 
-          name="description" 
-          content="See how we transformed Crewco Events' online presence with a full website redesign and local SEO strategy, achieving 132% organic traffic growth and top 3 rankings for Houston event production keywords." 
+        <meta
+          name="description"
+          content="See how we transformed Crewco Events' online presence with a full website redesign and local SEO strategy, achieving 132% organic traffic growth and top 3 rankings for Houston event production keywords."
         />
         <meta property="og:title" content="Crewco Events Case Study - Website Redesign & Local SEO" />
         <meta property="og:description" content="Website redesign and local SEO for Houston event production company" />
@@ -95,7 +96,7 @@ export default function CaseStudyCrewcoEvents() {
           <div className="container-custom max-w-5xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <img
+              <OptimizedImage
                 src={crewcoLogo}
                 alt="Crewco Events logo"
                 className="w-[170px] md:w-[170px] h-auto"
@@ -104,7 +105,7 @@ export default function CaseStudyCrewcoEvents() {
 
             {/* Title */}
             <h1 className="mb-4">Crewco Events — Website Redesign & Local SEO</h1>
-            
+
             {/* Subheadline */}
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
               Transforming a Houston event production company's online presence into a high-performing local lead generator.
@@ -112,13 +113,13 @@ export default function CaseStudyCrewcoEvents() {
 
             {/* Mac Mockup */}
             <div className="mb-4">
-              <img
+              <OptimizedImage
                 src={crewcoMacView}
                 alt="MacBook mockup of the Crewco Events website redesign"
                 className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"
               />
             </div>
-            
+
             {/* Caption */}
             <p className="text-sm text-muted-foreground mb-6">
               Modern, mobile-optimized website with local SEO strategy.
@@ -126,9 +127,9 @@ export default function CaseStudyCrewcoEvents() {
 
             {/* View Website Button */}
             <Button asChild size="lg">
-              <a 
-                href="https://www.crewcoevents.com" 
-                target="_blank" 
+              <a
+                href="https://www.crewcoevents.com"
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 View Website

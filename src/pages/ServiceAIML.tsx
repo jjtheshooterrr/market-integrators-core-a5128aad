@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceAIML = () => {
   const features = [
@@ -74,8 +77,22 @@ const ServiceAIML = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="AI & Machine Learning Services - Market Integrators"
+        description="Harness AI and machine learning for your business. Custom AI solutions and intelligent automation."
+        canonical="https://www.marketintegrators.com/services/ai-and-machine-learning"
+        keywords="AI services, machine learning, artificial intelligence, predictive analytics"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "AI & Machine Learning", url: "https://www.marketintegrators.com/services/ai-and-machine-learning" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container-custom">

@@ -5,6 +5,9 @@ import { CheckCircle2, Target, TrendingUp, MousePointerClick, BarChart3, Zap, Aw
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceGoogleAds = () => {
   const services = [
@@ -94,7 +97,7 @@ const ServiceGoogleAds = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">
@@ -170,122 +173,109 @@ const ServiceGoogleAds = () => {
                 >
                   <Card className="p-6 h-full hover:shadow-lg transition-shadow">
                     <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-primary" />
+                      <section className="py-20 bg-muted/50">
+                        <div className="container-custom">
+                          <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold mb-4">Our Google Ads Process</h2>
+                            <p className="text-xl text-muted-foreground">
+                              A proven methodology for driving results through Google Ads
+                            </p>
+                          </div>
+
+                          <div className="max-w-4xl mx-auto space-y-8">
+                            {process.map((item, index) => (
+                              <motion.div
+                                key={item.step}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                              >
+                                <Card className="p-6 hover:shadow-lg transition-shadow">
+                                  <div className="flex items-start gap-6">
+                                    <div className="text-4xl font-bold text-primary/20">{item.step}</div>
+                                    <div className="flex-1">
+                                      <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                                      <p className="text-muted-foreground">{item.description}</p>
+                                    </div>
+                                  </div>
+                                </Card>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      </section>
+
+                      {/* Benefits Section */}
+                      <section className="py-20">
+                        <div className="container-custom">
+                          <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl font-bold mb-12 text-center">Why Google Ads?</h2>
+                            <div className="grid md:grid-cols-2 gap-6">
+                              {benefits.map((benefit, index) => (
+                                <motion.div
+                                  key={benefit}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  whileInView={{ opacity: 1, y: 0 }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: index * 0.05 }}
+                                  className="flex items-start gap-3"
+                                >
+                                  <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                                  <p className="text-lg">{benefit}</p>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+
+                      {/* What's Included */}
+                      <section className="py-20 bg-muted/50">
+                        <div className="container-custom">
+                          <div className="max-w-4xl mx-auto text-center">
+                            <Award className="w-16 h-16 mx-auto mb-6 text-primary" />
+                            <h2 className="text-4xl font-bold mb-4">What's Included</h2>
+                            <p className="text-xl text-muted-foreground mb-8">
+                              Everything you need for successful Google Ads campaigns
+                            </p>
+                            <div className="grid md:grid-cols-3 gap-8 mt-12">
+                              <div>
+                                <h3 className="text-2xl font-bold mb-2">Expert Management</h3>
+                                <p className="text-muted-foreground">Certified Google Ads specialists managing your campaigns</p>
+                              </div>
+                              <div>
+                                <h3 className="text-2xl font-bold mb-2">Transparent Reporting</h3>
+                                <p className="text-muted-foreground">Detailed monthly reports with actionable insights</p>
+                              </div>
+                              <div>
+                                <h3 className="text-2xl font-bold mb-2">Continuous Optimization</h3>
+                                <p className="text-muted-foreground">Ongoing testing and refinement for better performance</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+
+                      {/* CTA Section */}
+                      <section className="py-20">
+                        <div className="container-custom">
+                          <Card className="p-12 text-center bg-gradient-to-r from-primary/10 to-primary/5">
+                            <Target className="w-16 h-16 mx-auto mb-6 text-primary" />
+                            <h2 className="text-4xl font-bold mb-4">Ready to Drive More Conversions?</h2>
+                            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                              Get a free Google Ads audit and discover how we can help you maximize your advertising ROI
+                            </p>
+                            <Button asChild size="lg">
+                              <Link to="/contact-us">Request Free Audit</Link>
+                            </Button>
+                          </Card>
+                        </div>
+                      </section>
+
+                      <Footer />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground">{service.description}</p>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20 bg-muted/50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Google Ads Process</h2>
-            <p className="text-xl text-muted-foreground">
-              A proven methodology for driving results through Google Ads
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-8">
-            {process.map((item, index) => (
-              <motion.div
-                key={item.step}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-start gap-6">
-                    <div className="text-4xl font-bold text-primary/20">{item.step}</div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center">Why Google Ads?</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={benefit}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-start gap-3"
-                >
-                  <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-lg">{benefit}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included */}
-      <section className="py-20 bg-muted/50">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <Award className="w-16 h-16 mx-auto mb-6 text-primary" />
-            <h2 className="text-4xl font-bold mb-4">What's Included</h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Everything you need for successful Google Ads campaigns
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Expert Management</h3>
-                <p className="text-muted-foreground">Certified Google Ads specialists managing your campaigns</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Transparent Reporting</h3>
-                <p className="text-muted-foreground">Detailed monthly reports with actionable insights</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Continuous Optimization</h3>
-                <p className="text-muted-foreground">Ongoing testing and refinement for better performance</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container-custom">
-          <Card className="p-12 text-center bg-gradient-to-r from-primary/10 to-primary/5">
-            <Target className="w-16 h-16 mx-auto mb-6 text-primary" />
-            <h2 className="text-4xl font-bold mb-4">Ready to Drive More Conversions?</h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Get a free Google Ads audit and discover how we can help you maximize your advertising ROI
-            </p>
-            <Button asChild size="lg">
-              <Link to="/contact-us">Request Free Audit</Link>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
-  );
+                    );
 };
 
-export default ServiceGoogleAds;
+                    export default ServiceGoogleAds;

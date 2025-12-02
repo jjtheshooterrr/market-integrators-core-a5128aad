@@ -159,7 +159,7 @@ const ServiceAutomation = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
+      <section className="pt-40 md:pt-44 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -264,17 +264,17 @@ const Header = () => {
                                   >
                                     <Icon className="w-5 h-5" />
                                   </div>
-                                   <div className="flex-1 min-w-0">
-                                     <div
-                                       className={`font-body font-semibold transition-colors leading-tight ${location.pathname === service.href
-                                         ? "text-primary"
-                                         : "text-foreground group-hover:text-primary"
-                                         }`}
-                                     >
-                                       {service.name}
-                                     </div>
-                                     <div className="text-xs text-muted-foreground mt-1 leading-snug">{service.description}</div>
-                                   </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div
+                                      className={`font-body font-semibold transition-colors leading-tight ${location.pathname === service.href
+                                        ? "text-primary"
+                                        : "text-foreground group-hover:text-primary"
+                                        }`}
+                                    >
+                                      {service.name}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground mt-1 leading-snug">{service.description}</div>
+                                  </div>
                                 </motion.div>
                               </Link>
                             );
@@ -301,7 +301,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <Button asChild className="btn-text hidden sm:inline-flex">
+            <Button asChild className="hidden sm:inline-flex bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-600 text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 rounded-full px-8 font-semibold tracking-wide">
               <Link to="/contact-us">Request Proposal</Link>
             </Button>
 
@@ -381,7 +381,7 @@ const Header = () => {
                 </Link>
               ))}
 
-              <Button asChild className="btn-text w-full">
+              <Button asChild className="w-full bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-600 text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-full font-semibold tracking-wide">
                 <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
                   Request Proposal
                 </Link>

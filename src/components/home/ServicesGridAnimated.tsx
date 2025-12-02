@@ -115,10 +115,9 @@ const ServicesGridAnimated = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Industries We Serve with Digital Marketing</h2>
+          <h2 className="mb-4">Industries We Transform with Digital Solutions</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Specialized digital marketing and web development solutions tailored to the unique challenges and opportunities of your
-            industry.
+            Integrated technology, marketing, and creative solutions tailored to your industry's unique challenges and growth opportunities.
           </p>
         </motion.div>
 

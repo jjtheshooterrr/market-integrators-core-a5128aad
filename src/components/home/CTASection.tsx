@@ -67,7 +67,7 @@ const CTASection = () => {
             }}
             className="text-xl text-primary-foreground/90 mb-8 leading-relaxed"
           >
-            Get a free, customized digital marketing proposal tailored to your business goals. No commitments, no
+            Get a free, customized digital strategy proposal tailored to your business goals. No commitments, no
             pressure—just actionable strategies to help you succeed.
           </motion.p>
 

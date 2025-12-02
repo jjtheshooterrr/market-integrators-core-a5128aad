@@ -81,7 +81,7 @@ const CinematicHero = () => {
       }
     })
   };
-  const headline = ["Digital", "Marketing", "&", "Web", "Development"];
+  const headline = ["Technology,", "Creative", "&", "Digital", "Growth"];
   const proofPillars = [{
     icon: Brain,
     text: "Built for the AI Era"

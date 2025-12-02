@@ -132,7 +132,7 @@ const CaseStudySparkleAutoDetailing = () => {
           <div className="max-w-5xl mx-auto text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <OptimizedImage src={sparkleLogo} alt="Sparkle Auto Detailing - Mobile Car Detailing Service logo" className="h-32 w-auto object-contain" />
+              <img src={sparkleLogo} alt="Sparkle Auto Detailing - Mobile Car Detailing Service logo" className="h-32 w-auto object-contain" loading="eager" />
             </div>
 
             {/* Title */}

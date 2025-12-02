@@ -88,7 +88,7 @@ const CaseStudyAvale = () => {
           <div className="container-custom max-w-5xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <OptimizedImage src={avaleLogo} alt="AVALE - Independent Electronic Artist logo" className="h-32 md:h-40 w-auto object-contain" />
+              <img src={avaleLogo} alt="AVALE - Independent Electronic Artist logo" className="h-32 md:h-40 w-auto object-contain" loading="eager" />
             </div>
 
             {/* Title & Subhead */}

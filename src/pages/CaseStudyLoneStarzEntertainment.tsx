@@ -64,10 +64,11 @@ const CaseStudyLoneStarzEntertainment = () => {
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-5xl">
             <div className="text-center mb-12">
-              <OptimizedImage
+              <img
                 src={lonestarzentLogo}
                 alt="LoneStarz Entertainment - Live Events and DJ Booking logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
+                loading="eager"
               />
               <h1 className="mb-6">LoneStarz Entertainment</h1>
               <p className="text-xl text-muted-foreground mb-4">

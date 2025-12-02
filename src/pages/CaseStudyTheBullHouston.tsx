@@ -94,10 +94,11 @@ const CaseStudyTheBullHouston = () => {
           <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
               <div className="mb-8 flex justify-center">
-                <OptimizedImage
+                <img
                   src={thebullLogo}
                   alt="The Bull Houston - Country Music Radio Station logo"
                   className="w-[170px] md:w-[170px] h-auto"
+                  loading="eager"
                 />
               </div>
 

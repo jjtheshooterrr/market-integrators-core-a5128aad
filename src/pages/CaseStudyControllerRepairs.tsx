@@ -66,12 +66,12 @@ const CaseStudyControllerRepairs = () => {
           </section>
 
           {/* Hero Section */}
-          <section className="section-padding bg-gradient-to-b from-secondary to-background">
+          <section className="section-padding bg-gradient-to-b from-secondary to-background relative z-10">
             <div className="container-custom max-w-5xl text-center">
               <OptimizedImage
                 src={controllerrepairsLogo}
                 alt="ControllerRepairs.com - Custom Gaming Controller Repair logo"
-                className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
+                className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain relative z-10"
               />
               <h1 className="mb-6">Controller Repairs</h1>
               <p className="text-xl text-muted-foreground mb-4">eCommerce / Electronics Repair</p>
@@ -83,12 +83,12 @@ const CaseStudyControllerRepairs = () => {
           </section>
 
           {/* MacBook Mockup */}
-          <section className="section-padding">
+          <section className="section-padding relative z-20">
             <div className="container-custom max-w-6xl">
               <OptimizedImage
                 src={controllerrepairsMacview}
                 alt="MacBook Pro displaying ControllerRepairs.com eCommerce dashboard and repair tracking system"
-                className="w-full h-auto rounded-lg shadow-2xl"
+                className="w-full h-auto rounded-lg shadow-2xl relative z-20"
               />
               <p className="text-center text-sm text-muted-foreground mt-4 italic">
                 End-to-end eCommerce and operations platform for ControllerRepairs.com.

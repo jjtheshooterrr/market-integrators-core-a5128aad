@@ -67,10 +67,11 @@ const CaseStudyPathway2Peace = () => {
             <div className="container-custom max-w-5xl text-center">
               {/* Logo */}
               <div className="mb-8 flex justify-center">
-                <OptimizedImage
+                <img
                   src={pathway2peaceLogo}
                   alt="Pathway2Peace - Mental Health and Counseling Services logo"
                   className="w-[170px] md:w-[170px] h-auto"
+                  loading="eager"
                 />
               </div>
 

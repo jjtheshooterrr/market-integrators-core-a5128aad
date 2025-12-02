@@ -64,10 +64,11 @@ const CaseStudyNorthernUtahWindowWells = () => {
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-5xl">
             <div className="text-center mb-12">
-              <OptimizedImage
+              <img
                 src={northernutahwindowwellsLogo}
                 alt="Northern Utah Window Wells - Window Well Cleaning and Repair logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
+                loading="eager"
               />
               <h1 className="mb-6">Northern Utah Window Wells</h1>
               <p className="text-xl text-muted-foreground mb-4">

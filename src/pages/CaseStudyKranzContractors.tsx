@@ -67,10 +67,11 @@ const CaseStudyKranzContractors = () => {
           <div className="container-custom max-w-4xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <OptimizedImage
+              <img
                 src={kranzcontractorsLogo}
                 alt="Kranz Contractors - Home Improvement and Gutter Services logo"
                 className="h-auto w-[120px] md:w-[180px] object-contain"
+                loading="eager"
               />
             </div>
 

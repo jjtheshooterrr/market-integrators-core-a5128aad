@@ -67,10 +67,11 @@ const CaseStudyTestMyPools = () => {
           <div className="container-custom max-w-4xl text-center">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
-              <OptimizedImage
+              <img
                 src={testmypoolsLogo}
                 alt="TestMyPools - AI Pool Maintenance App logo"
                 className="h-auto w-[180px] md:w-[180px] object-contain"
+                loading="eager"
               />
             </div>
 

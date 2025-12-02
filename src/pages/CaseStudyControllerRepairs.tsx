@@ -66,12 +66,13 @@ const CaseStudyControllerRepairs = () => {
           </section>
 
           {/* Hero Section */}
-          <section className="section-padding bg-gradient-to-b from-secondary to-background relative z-10">
+          <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
-              <OptimizedImage
+              <img
                 src={controllerrepairsLogo}
                 alt="ControllerRepairs.com - Custom Gaming Controller Repair logo"
-                className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain relative z-10"
+                className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
+                loading="eager"
               />
               <h1 className="mb-6">Controller Repairs</h1>
               <p className="text-xl text-muted-foreground mb-4">eCommerce / Electronics Repair</p>

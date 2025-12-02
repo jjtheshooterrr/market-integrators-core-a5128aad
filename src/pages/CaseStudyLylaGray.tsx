@@ -50,10 +50,11 @@ const CaseStudyLylaGray = () => {
           <div className="container-custom max-w-4xl">
 
             <div className="text-center mb-12">
-              <OptimizedImage
+              <img
                 src={lylagrayLogo}
                 alt="Lyla Gray - Personal Brand and Creator logo"
                 className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
+                loading="eager"
               />
               <h1 className="mb-4">Lyla Gray</h1>
               <p className="text-xl text-muted-foreground mb-6">

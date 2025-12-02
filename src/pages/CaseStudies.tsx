@@ -317,12 +317,16 @@ const CaseStudies = () => {
                         loading="lazy"
                       />
                     </div>
-                    <div className="flex-grow text-center md:text-left">
-                      <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">{caseStudy.description}</p>
-                      <Button asChild variant="default">
-                        <Link to={caseStudy.link}>Read Case Study →</Link>
-                      </Button>
+                    <div className="flex-grow text-center md:text-left flex flex-col">
+                      <div className="flex-grow">
+                        <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>
+                        <p className="text-muted-foreground mb-6 leading-relaxed">{caseStudy.description}</p>
+                      </div>
+                      <div>
+                        <Button asChild variant="default">
+                          <Link to={caseStudy.link}>Read Case Study →</Link>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>

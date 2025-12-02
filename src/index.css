@@ -503,6 +503,13 @@
     animation-delay: -1800ms;
   }
 
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   @keyframes floating {
     0% {
       transform: translateY(0px);

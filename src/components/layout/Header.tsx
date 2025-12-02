@@ -301,7 +301,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <Button asChild className="hidden sm:inline-flex bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-600 text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 rounded-full px-8 font-semibold tracking-wide">
+            <Button asChild className="hidden sm:inline-flex bg-slate-900 border border-primary/50 hover:border-primary hover:bg-primary text-white shadow-lg transition-all duration-300 rounded-full px-8 font-semibold tracking-wide">
               <Link to="/contact-us">Request Proposal</Link>
             </Button>
 
@@ -381,7 +381,7 @@ const Header = () => {
                 </Link>
               ))}
 
-              <Button asChild className="w-full bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-600 text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-full font-semibold tracking-wide">
+              <Button asChild className="w-full bg-slate-900 border border-primary/50 hover:border-primary hover:bg-primary text-white shadow-lg transition-all duration-300 rounded-full font-semibold tracking-wide">
                 <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
                   Request Proposal
                 </Link>

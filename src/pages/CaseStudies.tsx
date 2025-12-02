@@ -305,7 +305,7 @@ const CaseStudies = () => {
         <section className="section-padding bg-secondary">
           <div className="container-custom max-w-5xl">
             <h2 className="text-center mb-12">Featured Success Stories</h2>
-            <div className="grid md:grid-cols-1 gap-8">
+            <div className="flex flex-col gap-8">
               {featuredCaseStudies.map((caseStudy, index) => (
                 <div key={index} className="card-premium p-10 hover:shadow-xl transition-all duration-300">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-8">

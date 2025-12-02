@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import imperialjewelryLogo from "@/assets/imperialjewelryshoplogo (1).webp";
 import imperialjewelryMacview from "@/assets/imperialjewelry-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyImperialJewelry = () => {
   return (
@@ -48,9 +49,9 @@ const CaseStudyImperialJewelry = () => {
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-4xl text-center">
 
-            <img
+            <OptimizedImage
               src={imperialjewelryLogo}
-              alt="Imperial Jewelry logo"
+              alt="Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo"
               className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
             />
 
@@ -69,9 +70,9 @@ const CaseStudyImperialJewelry = () => {
         {/* MacBook Mockup */}
         <section className="section-padding">
           <div className="container-custom max-w-5xl">
-            <img
+            <OptimizedImage
               src={imperialjewelryMacview}
-              alt="MacBook mockup showing Imperial Jewelry website homepage"
+              alt="MacBook Pro displaying Imperial Jewelry luxury eCommerce website with custom ring catalog"
               className="w-full rounded-lg shadow-2xl"
             />
             <p className="text-center text-sm text-muted-foreground mt-4">

@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -12,6 +13,7 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import thebullLogo from "@/assets/thebull-logo.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyTheBullHouston = () => {
   const solutions = [
@@ -48,9 +50,9 @@ const CaseStudyTheBullHouston = () => {
     <>
       <Helmet>
         <title>The Bull Houston Case Study - Country Brand Modernization | Market Integrators</title>
-        <meta 
-          name="description" 
-          content="Transforming a heritage radio brand into a digital engagement leader. Achieved 20,000 new followers and 1.2M+ video views." 
+        <meta
+          name="description"
+          content="Transforming a heritage radio brand into a digital engagement leader. Achieved 20,000 new followers and 1.2M+ video views."
         />
         <meta property="og:title" content="The Bull Houston Case Study - Country Radio Digital Growth" />
         <meta property="og:description" content="Digital modernization for Houston's country radio station" />
@@ -92,15 +94,15 @@ const CaseStudyTheBullHouston = () => {
           <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
               <div className="mb-8 flex justify-center">
-                <img
+                <OptimizedImage
                   src={thebullLogo}
-                  alt="The Bull Houston logo"
+                  alt="The Bull Houston - Country Music Radio Station logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>
 
               <h1 className="mb-4">The Bull Houston — Country Brand Modernization</h1>
-              
+
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                 Transforming a heritage radio brand into a digital engagement leader.
               </p>
@@ -166,7 +168,7 @@ const CaseStudyTheBullHouston = () => {
               <ul className="space-y-4 text-lg text-muted-foreground">
                 {keyHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-primary">✅</span>
+                    <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span>{highlight.title}</span>
                   </li>
                 ))}

@@ -2,14 +2,15 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const NotFound: React.FC = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="flex w-full max-w-4xl flex-col items-center gap-8 px-4 py-12">
-        <img
+        <OptimizedImage
           src="https://wtjuzhjddqekvqmjbsdn.supabase.co/storage/v1/object/public/imagebuck/marketintegrators-logo-transparent.webp"
-          alt="Market Integrators Logo"
+          alt="Market Integrators - Digital Marketing Agency Logo"
           className="h-16 w-16 md:h-20 md:w-20"
           loading="lazy"
         />

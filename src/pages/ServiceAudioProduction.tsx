@@ -5,6 +5,9 @@ import { CheckCircle2, Music, Mic, Headphones, Radio, Volume2, Disc, Zap } from 
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceAudioProduction = () => {
   const services = [
@@ -93,10 +96,43 @@ const ServiceAudioProduction = () => {
     "Waves Plugins"
   ];
 
+  const faqs = [
+    {
+      question: "How much does podcast production cost?",
+      answer: "We offer podcast packages starting at $250 per episode for editing and mixing. Full production services including recording and distribution start at $500 per episode. We can customize a package based on your frequency and needs."
+    },
+    {
+      question: "Can I record remotely?",
+      answer: "Yes! We can facilitate high-quality remote recording sessions using professional tools, ensuring studio-quality sound even when guests are in different locations."
+    },
+    {
+      question: "Do you provide voice actors?",
+      answer: "We have a diverse roster of professional voice talent for commercials, narration, and character work. We can handle casting and direction to find the perfect voice for your project."
+    },
+    {
+      question: "What is the difference between mixing and mastering?",
+      answer: "Mixing involves balancing individual tracks (voice, music, SFX) to create a cohesive sound. Mastering is the final step that ensures the overall audio sounds consistent, polished, and loud enough for distribution across all platforms."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Audio Production Services - Market Integrators"
+        description="Professional audio production services. Podcast production, voiceover recording, sound design, and audio mixing."
+        canonical="https://www.marketintegrators.com/services/audio-production"
+        keywords="audio production, podcast production, voiceover, sound design, audio mixing, mastering"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Audio Production", url: "https://www.marketintegrators.com/services/audio-production" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

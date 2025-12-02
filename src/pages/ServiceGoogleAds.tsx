@@ -5,6 +5,9 @@ import { CheckCircle2, Target, TrendingUp, MousePointerClick, BarChart3, Zap, Aw
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceGoogleAds = () => {
   const services = [
@@ -91,10 +94,39 @@ const ServiceGoogleAds = () => {
     { label: "Quality Score", value: "8.5/10" }
   ];
 
+  const faqs = [
+    {
+      question: "What is the minimum budget for Google Ads?",
+      answer: "We recommend a minimum monthly ad spend of $1,500-$2,000 for meaningful results. This allows enough data to test, optimize, and achieve positive ROI."
+    },
+    {
+      question: "How quickly will I see results?",
+      answer: "Google Ads can drive traffic immediately. However, optimal performance typically takes 2-3 months as we gather data and refine targeting."
+    },
+    {
+      question: "Will I own the Google Ads account?",
+      answer: "Yes, all campaigns are set up in your own Google Ads account. You retain 100% ownership and access to all data."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Google Ads Management Services | Expert PPC - Market Integrators"
+        description="Maximize ROI with expert Google Ads management. Search, Display, Shopping, and YouTube campaigns optimized for conversions."
+        canonical="https://www.marketintegrators.com/services/google-ads-management"
+        keywords="Google Ads management, Google PPC, search ads, display ads, shopping ads"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Google Ads Management", url: "https://www.marketintegrators.com/services/google-ads-management" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

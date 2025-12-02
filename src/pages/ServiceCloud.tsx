@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceCloud = () => {
   const features = [
@@ -88,8 +91,22 @@ const ServiceCloud = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Cloud Services | Infrastructure & Migration - Market Integrators"
+        description="Professional cloud services and infrastructure management. AWS, Azure, Google Cloud migration and optimization."
+        canonical="https://www.marketintegrators.com/services/cloud"
+        keywords="cloud services, cloud infrastructure, AWS, Azure, Google Cloud"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Cloud Services", url: "https://www.marketintegrators.com/services/cloud" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container-custom">

@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceWebDevelopment = () => {
   const features = [
@@ -105,8 +108,22 @@ const ServiceWebDevelopment = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Website Development Services | Custom Web Solutions - Market Integrators"
+        description="Professional website development services. Custom web applications, responsive design, and modern frameworks."
+        canonical="https://www.marketintegrators.com/services/website-development"
+        keywords="website development, web development services, custom websites, responsive design"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Website Development", url: "https://www.marketintegrators.com/services/website-development" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container-custom">

@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import lonestarzentMacview from "@/assets/lonestarzent-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyLoneStarzEntertainment = () => {
   return (
@@ -62,9 +64,9 @@ const CaseStudyLoneStarzEntertainment = () => {
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-5xl">
             <div className="text-center mb-12">
-              <img
+              <OptimizedImage
                 src={lonestarzentLogo}
-                alt="LoneStarz Entertainment logo"
+                alt="LoneStarz Entertainment - Live Events and DJ Booking logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
               />
               <h1 className="mb-6">LoneStarz Entertainment</h1>
@@ -78,9 +80,9 @@ const CaseStudyLoneStarzEntertainment = () => {
 
             {/* MacBook Mockup */}
             <div className="mb-12">
-              <img
+              <OptimizedImage
                 src={lonestarzentMacview}
-                alt="MacBook mockup showing LoneStarz Entertainment website homepage"
+                alt="MacBook Pro displaying LoneStarz Entertainment booking platform with artist profiles"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
               <p className="text-sm text-muted-foreground text-center mt-4">
@@ -145,31 +147,31 @@ const CaseStudyLoneStarzEntertainment = () => {
             <p className="text-lg text-muted-foreground font-semibold mb-4">What we implemented:</p>
             <ul className="space-y-4 text-lg text-muted-foreground">
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Full Website Design & Brand Identity:</strong> A sleek, dark-themed layout with vivid photography and smooth motion elements that capture the live entertainment vibe.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Booking Automation System:</strong> Built an intelligent contact and request system allowing visitors to browse services, select event types, and automatically route inquiries to the correct team member.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Performer Profiles:</strong> Created dynamic artist pages showcasing bios, videos, and performance categories.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Local SEO:</strong> Optimized for "event entertainment Texas," "DJ booking Houston," and related high-intent keywords.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>CRM Integration:</strong> Connected booking form data to their CRM for automated follow-ups and lead tracking.
                 </span>
@@ -212,19 +214,19 @@ const CaseStudyLoneStarzEntertainment = () => {
             <h2 className="mb-6">Key Highlights</h2>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Visually stunning, performance-driven web design</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Smart booking automation for fast lead response</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Optimized local SEO presence across Texas markets</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Enhanced brand identity for artists and event partners</p>
               </div>
             </div>

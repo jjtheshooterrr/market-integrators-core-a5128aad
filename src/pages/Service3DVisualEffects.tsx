@@ -5,6 +5,9 @@ import { CheckCircle2, Box, Sparkles, Eye, Zap, Layers, Globe, Rocket } from "lu
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const Service3DVisualEffects = () => {
   const services = [
@@ -93,10 +96,43 @@ const Service3DVisualEffects = () => {
     "Unreal Engine"
   ];
 
+  const faqs = [
+    {
+      question: "What is the difference between 3D modeling and rendering?",
+      answer: "Modeling is the process of creating the 3D geometry and shape of an object. Rendering is the final step where lighting, textures, and materials are calculated to create the final 2D image or video."
+    },
+    {
+      question: "How much does a 3D product render cost?",
+      answer: "Costs vary based on complexity and realism required. Simple product renders can start around $500, while complex photorealistic environments or animations can range from $2,000 to $10,000+."
+    },
+    {
+      question: "Can you use my existing CAD files?",
+      answer: "Yes, we can often import and optimize existing CAD files (STEP, IGES, etc.) to use as a base for high-quality marketing renders, saving time and ensuring accuracy."
+    },
+    {
+      question: "How long does it take to render an animation?",
+      answer: "Rendering time depends on the resolution, frame rate, and complexity of the scene. We use powerful render farms to deliver high-quality animations efficiently, but complex sequences can still take days to render."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="3D Modeling & Visual Effects Services - Market Integrators"
+        description="Professional 3D modeling, rendering, and visual effects services. Product visualization, architectural renders, and cinematic VFX."
+        canonical="https://www.marketintegrators.com/services/3d-visual-effects"
+        keywords="3D modeling, visual effects, VFX, product visualization, architectural visualization, 3D rendering"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "3D & Visual Effects", url: "https://www.marketintegrators.com/services/3d-visual-effects" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

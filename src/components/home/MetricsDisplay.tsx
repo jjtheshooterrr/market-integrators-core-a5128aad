@@ -1,10 +1,10 @@
-import { useQuery } from '@apollo/client/react';
-import { GET_HOME_METRICS } from '@/lib/graphql/queries';
-import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
-import gsap from 'gsap';
-import * as Icons from 'lucide-react';
+import { useQuery } from "@apollo/client/react"; // compatible with your build
+import { GET_HOME_METRICS } from "@/lib/graphql/queries";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import gsap from "gsap";
+import * as Icons from "lucide-react";
 
 interface MetricNode {
   id: string;
@@ -16,26 +16,28 @@ interface MetricNode {
 
 interface MetricsData {
   mi_home_metricsCollection: {
-    edges: Array<{
-      node: MetricNode;
-    }>;
+    edges: Array<{ node: MetricNode }>;
   };
+}
+
+// Version-agnostic error logger (no Apollo types needed)
+function logApolloError(err: unknown) {
+  const e = err as any;
 }
 
 const MetricsDisplay = () => {
   const { loading, error, data } = useQuery<MetricsData>(GET_HOME_METRICS);
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  if (error) logApolloError(error);
 
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[1, 2, 3].map((i) => (
           <div key={i} className="animate-pulse">
-            <div className="h-12 bg-muted rounded mb-2"></div>
-            <div className="h-6 bg-muted rounded w-3/4"></div>
+            <div className="h-12 bg-muted rounded mb-2" />
+            <div className="h-6 bg-muted rounded w-3/4" />
           </div>
         ))}
       </div>
@@ -52,7 +54,7 @@ const MetricsDisplay = () => {
 
   const metrics = data?.mi_home_metricsCollection?.edges || [];
 
-  const CountUpMetric = ({ value, suffix }: { value: number; suffix: string | null }) => {
+  const CountUpMetric = ({ value }: { value: number }) => {
     const numberRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
@@ -63,12 +65,13 @@ const MetricsDisplay = () => {
           duration: 0.5,
           ease: "power2.out",
           snap: { textContent: 1 },
-          onUpdate: function() {
+          onUpdate: function () {
             if (numberRef.current) {
-              const val = Math.ceil(Number(this.targets()[0].textContent));
+              const current = (this.targets() as any)[0]?.textContent ?? "0";
+              const val = Math.ceil(Number(current));
               numberRef.current.textContent = val.toLocaleString();
             }
-          }
+          },
         });
       }
     }, [inView, value]);
@@ -82,11 +85,9 @@ const MetricsDisplay = () => {
         const IconComponent = node.icon
           ? (Icons as any)[
               node.icon
-                .split('-')
-                .map((part: string, i: number) =>
-                  i === 0 ? part.charAt(0).toUpperCase() + part.slice(1) : part.charAt(0).toUpperCase() + part.slice(1)
-                )
-                .join('')
+                .split("-")
+                .map((part: string) => part.charAt(0).toUpperCase() + part.slice(1))
+                .join("")
             ]
           : null;
 
@@ -101,11 +102,9 @@ const MetricsDisplay = () => {
             <div className="flex items-center justify-center gap-2 mb-2">
               {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
               <div className="text-4xl font-bold">
-                {node.suffix === '$' && <span className="text-primary">{node.suffix}</span>}
-                <CountUpMetric value={Number(node.value)} suffix={node.suffix} />
-                {node.suffix && node.suffix !== '$' && (
-                  <span className="text-primary">{node.suffix}</span>
-                )}
+                {node.suffix === "$" && <span className="text-primary">{node.suffix}</span>}
+                <CountUpMetric value={Number(node.value)} />
+                {node.suffix && node.suffix !== "$" && <span className="text-primary">{node.suffix}</span>}
               </div>
             </div>
             <p className="text-muted-foreground">{node.label}</p>

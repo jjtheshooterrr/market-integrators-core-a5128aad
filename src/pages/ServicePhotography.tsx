@@ -5,6 +5,9 @@ import { CheckCircle2, Camera, Image, Package, Users, Palette, Zap, Award } from
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServicePhotography = () => {
   const services = [
@@ -84,10 +87,43 @@ const ServicePhotography = () => {
     }
   ];
 
+  const faqs = [
+    {
+      question: "How much does a photoshoot cost?",
+      answer: "Pricing varies based on the type of shoot (product vs. corporate), number of images, and usage rights. Product photography starts at $50/image, while half-day commercial shoots start at $1,500. We provide custom quotes for every project."
+    },
+    {
+      question: "Do you have a studio?",
+      answer: "Yes, we have a fully equipped professional studio with various backdrops and lighting setups. We can also shoot on-location at your office or other venues."
+    },
+    {
+      question: "How long does it take to get the photos?",
+      answer: "Standard turnaround time is 5-7 business days after the shoot. Rush delivery (24-48 hours) is available for an additional fee."
+    },
+    {
+      question: "Do you handle retouching?",
+      answer: "Yes, all delivered images include professional color correction and basic retouching. Advanced retouching (complex composites, detailed skin work) is available upon request."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Professional Photography Services - Market Integrators"
+        description="Expert photography services for business. Product photography, corporate headshots, commercial shoots, and event coverage."
+        canonical="https://www.marketintegrators.com/services/photography"
+        keywords="photography services, product photography, corporate headshots, commercial photography, event photography"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Photography", url: "https://www.marketintegrators.com/services/photography" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">
@@ -252,7 +288,7 @@ const ServicePhotography = () => {
             <Award className="w-16 h-16 mx-auto mb-6 text-primary" />
             <h2 className="text-4xl font-bold mb-4">Studio-Quality Results</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              We use professional-grade cameras, lighting, and editing software to ensure your images 
+              We use professional-grade cameras, lighting, and editing software to ensure your images
               are crisp, vibrant, and ready for any platform—from web to print.
             </p>
             <div className="grid md:grid-cols-3 gap-8 mt-12">

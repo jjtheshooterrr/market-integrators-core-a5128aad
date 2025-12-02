@@ -20,6 +20,7 @@ type Props = {
   clickOnly?: boolean;
   autoPlayMuted?: boolean;
   controls?: boolean;
+  onEnded?: () => void;
 };
 
 export default function LazyStreamHLS({
@@ -31,6 +32,7 @@ export default function LazyStreamHLS({
   clickOnly = false,
   autoPlayMuted = true,
   controls = true,
+  onEnded,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -107,6 +109,13 @@ export default function LazyStreamHLS({
     v.playsInline = true;
     v.play().catch(() => {});
   }, [ready, autoPlayMuted]);
+
+  useEffect(() => {
+    if (!ready || !videoRef.current || !onEnded) return;
+    const video = videoRef.current;
+    video.addEventListener('ended', onEnded);
+    return () => video.removeEventListener('ended', onEnded);
+  }, [ready, onEnded]);
 
   return (
     <div

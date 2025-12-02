@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import pathway2peaceLogo from "@/assets/pathway2peace-logo.webp";
 import pathway2peaceMacview from "@/assets/pathway2peace-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyPathway2Peace = () => {
   return (
@@ -65,16 +67,16 @@ const CaseStudyPathway2Peace = () => {
             <div className="container-custom max-w-5xl text-center">
               {/* Logo */}
               <div className="mb-8 flex justify-center">
-                <img
+                <OptimizedImage
                   src={pathway2peaceLogo}
-                  alt="Pathway2Peace logo"
+                  alt="Pathway2Peace - Mental Health and Counseling Services logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>
 
               {/* Title */}
               <h1 className="mb-4">Pathway2Peace — Mental Health Website & HR Automation</h1>
-              
+
               {/* Subheadline */}
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                 Calming, accessible web redesign + a custom onboarding & payroll system that saves 10+ hours every week.
@@ -82,13 +84,13 @@ const CaseStudyPathway2Peace = () => {
 
               {/* Mac Mockup */}
               <div className="mb-4">
-                <img
+                <OptimizedImage
                   src={pathway2peaceMacview}
-                  alt="MacBook mockup of the Pathway2Peace website redesign"
+                  alt="MacBook Pro displaying Pathway2Peace therapy appointment scheduling portal"
                   className="w-full max-w-[1100px] mx-auto rounded-lg shadow-2xl"
                 />
               </div>
-              
+
               {/* Caption */}
               <p className="text-sm text-muted-foreground">
                 Modern, ADA-minded redesign with built-in HR efficiency.
@@ -101,8 +103,8 @@ const CaseStudyPathway2Peace = () => {
             <div className="container-custom max-w-4xl">
               <h2 className="mb-6">Overview</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Pathway2Peace is a mental health agency providing counseling and behavioral support. They needed a 
-                compassionate, professional site that made it easy for patients to find services and request 
+                Pathway2Peace is a mental health agency providing counseling and behavioral support. They needed a
+                compassionate, professional site that made it easy for patients to find services and request
                 appointments—while reducing time spent on manual staff onboarding and payroll.
               </p>
             </div>
@@ -159,7 +161,7 @@ const CaseStudyPathway2Peace = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Custom HR System</h3>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Secure employee onboarding + payroll dashboard to automate time tracking, docs, and weekly 
+                    Secure employee onboarding + payroll dashboard to automate time tracking, docs, and weekly
                     payroll—saving 10+ hours per week.
                   </p>
                 </div>
@@ -202,19 +204,19 @@ const CaseStudyPathway2Peace = () => {
               <h2 className="mb-6">Key Highlights</h2>
               <ul className="space-y-4 text-lg text-muted-foreground">
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Compassionate, ADA-minded design</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Clear patient pathway with simple forms</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Local SEO that drives qualified traffic</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary">✅</span>
+                  <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span>Custom HR automation saving 10+ hours weekly</span>
                 </li>
               </ul>

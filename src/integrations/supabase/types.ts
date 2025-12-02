@@ -14,6 +14,137 @@ export type Database = {
   }
   public: {
     Tables: {
+      approved_emails: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      calendar_appointments: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          id: string
+          scheduled_date: string
+          scheduled_time: string
+          submission_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          id?: string
+          scheduled_date: string
+          scheduled_time: string
+          submission_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          id?: string
+          scheduled_date?: string
+          scheduled_time?: string
+          submission_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendar_appointments_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "client_intake_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      client_intake_submissions: {
+        Row: {
+          budget_range: string | null
+          calendar_scheduled: boolean | null
+          company: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          pain_points: string | null
+          phone: string | null
+          selected_services: Json
+          updated_at: string
+          video_watched: boolean | null
+          website: string | null
+        }
+        Insert: {
+          budget_range?: string | null
+          calendar_scheduled?: boolean | null
+          company: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          pain_points?: string | null
+          phone?: string | null
+          selected_services?: Json
+          updated_at?: string
+          video_watched?: boolean | null
+          website?: string | null
+        }
+        Update: {
+          budget_range?: string | null
+          calendar_scheduled?: boolean | null
+          company?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          pain_points?: string | null
+          phone?: string | null
+          selected_services?: Json
+          updated_at?: string
+          video_watched?: boolean | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      companies: {
+        Row: {
+          created_at: string | null
+          domain: string | null
+          id: string
+          industry: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          domain?: string | null
+          id?: string
+          industry?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          domain?: string | null
+          id?: string
+          industry?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
       contact_leads: {
         Row: {
           company: string | null
@@ -55,6 +186,50 @@ export type Database = {
           website?: string | null
         }
         Relationships: []
+      }
+      contacts: {
+        Row: {
+          company_id: string | null
+          created_at: string | null
+          email: string | null
+          first_name: string | null
+          id: string
+          last_name: string | null
+          linkedin_url: string | null
+          phone: string | null
+          title: string | null
+        }
+        Insert: {
+          company_id?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          linkedin_url?: string | null
+          phone?: string | null
+          title?: string | null
+        }
+        Update: {
+          company_id?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          linkedin_url?: string | null
+          phone?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contacts_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       job_applications: {
         Row: {
@@ -185,6 +360,166 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_notes: {
+        Row: {
+          author_id: string | null
+          body: string
+          created_at: string | null
+          id: string
+          lead_id: string | null
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          created_at?: string | null
+          id?: string
+          lead_id?: string | null
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          created_at?: string | null
+          id?: string
+          lead_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_notes_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_notes_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_tasks: {
+        Row: {
+          assignee_id: string | null
+          created_at: string | null
+          due_at: string | null
+          id: string
+          lead_id: string | null
+          status: Database["public"]["Enums"]["task_status"]
+          title: string
+        }
+        Insert: {
+          assignee_id?: string | null
+          created_at?: string | null
+          due_at?: string | null
+          id?: string
+          lead_id?: string | null
+          status?: Database["public"]["Enums"]["task_status"]
+          title: string
+        }
+        Update: {
+          assignee_id?: string | null
+          created_at?: string | null
+          due_at?: string | null
+          id?: string
+          lead_id?: string | null
+          status?: Database["public"]["Enums"]["task_status"]
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_tasks_assignee_id_fkey"
+            columns: ["assignee_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_tasks_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          amount: number | null
+          budget_range: string | null
+          close_date: string | null
+          company_id: string | null
+          contact_id: string | null
+          created_at: string | null
+          id: string
+          last_activity_at: string | null
+          owner_id: string | null
+          priority: string | null
+          service_type: string | null
+          source: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          amount?: number | null
+          budget_range?: string | null
+          close_date?: string | null
+          company_id?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          id?: string
+          last_activity_at?: string | null
+          owner_id?: string | null
+          priority?: string | null
+          service_type?: string | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number | null
+          budget_range?: string | null
+          close_date?: string | null
+          company_id?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          id?: string
+          last_activity_at?: string | null
+          owner_id?: string | null
+          priority?: string | null
+          service_type?: string | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leads_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leads_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mi_home_metrics: {
         Row: {
           created_at: string | null
@@ -218,29 +553,111 @@ export type Database = {
         }
         Relationships: []
       }
-    }
-    Views: {
-      careers_open_roles: {
+      n8n_leads: {
         Row: {
-          brief: string | null
-          currency: string | null
-          department: string | null
-          employment: string | null
-          location: string | null
-          onsite_requirement: string | null
-          salary_max: number | null
-          salary_min: number | null
-          seniority: string | null
-          slug: string | null
-          tags: string[] | null
-          team: string | null
-          title: string | null
+          address: string | null
+          business_name: string
+          call_notes: string | null
+          call_status: string | null
+          call_transcripts: string | null
+          city: string | null
+          country: string | null
+          created_at: string | null
+          email: string | null
+          id: string
+          interest_level: string | null
+          lead_score: number | null
+          next_follow_up_date: string | null
+          opportunities: string | null
+          phone: string | null
+          priority: string | null
+          rating: number | null
+          replied: string | null
+          reviews: number | null
+          updated_at: string | null
+          website: string | null
+          zip: string | null
+        }
+        Insert: {
+          address?: string | null
+          business_name: string
+          call_notes?: string | null
+          call_status?: string | null
+          call_transcripts?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          interest_level?: string | null
+          lead_score?: number | null
+          next_follow_up_date?: string | null
+          opportunities?: string | null
+          phone?: string | null
+          priority?: string | null
+          rating?: number | null
+          replied?: string | null
+          reviews?: number | null
+          updated_at?: string | null
+          website?: string | null
+          zip?: string | null
+        }
+        Update: {
+          address?: string | null
+          business_name?: string
+          call_notes?: string | null
+          call_status?: string | null
+          call_transcripts?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          interest_level?: string | null
+          lead_score?: number | null
+          next_follow_up_date?: string | null
+          opportunities?: string | null
+          phone?: string | null
+          priority?: string | null
+          rating?: number | null
+          replied?: string | null
+          reviews?: number | null
+          updated_at?: string | null
+          website?: string | null
+          zip?: string | null
+        }
+        Relationships: []
+      }
+      users: {
+        Row: {
+          created_at: string | null
+          email: string
+          full_name: string | null
+          id: string
+          role: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          full_name?: string | null
+          id: string
+          role?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          role?: string | null
         }
         Relationships: []
       }
     }
-    Functions: {
+    Views: {
       [_ in never]: never
+    }
+    Functions: {
+      is_email_approved: { Args: { user_email: string }; Returns: boolean }
     }
     Enums: {
       employment_type:
@@ -250,6 +667,14 @@ export type Database = {
         | "internship"
         | "temporary"
       job_status: "draft" | "open" | "paused" | "closed"
+      lead_status:
+        | "new"
+        | "contacted"
+        | "discovery"
+        | "proposal_sent"
+        | "follow_up"
+        | "closed_won"
+        | "closed_lost"
       seniority_level:
         | "intern"
         | "junior"
@@ -260,6 +685,7 @@ export type Database = {
         | "director"
         | "vp"
         | "cxo"
+      task_status: "open" | "done"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -395,6 +821,15 @@ export const Constants = {
         "temporary",
       ],
       job_status: ["draft", "open", "paused", "closed"],
+      lead_status: [
+        "new",
+        "contacted",
+        "discovery",
+        "proposal_sent",
+        "follow_up",
+        "closed_won",
+        "closed_lost",
+      ],
       seniority_level: [
         "intern",
         "junior",
@@ -406,6 +841,7 @@ export const Constants = {
         "vp",
         "cxo",
       ],
+      task_status: ["open", "done"],
     },
   },
 } as const

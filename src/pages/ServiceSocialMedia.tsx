@@ -5,6 +5,9 @@ import { CheckCircle2, Users, TrendingUp, MessageCircle, Target, BarChart3, Zap,
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceSocialMedia = () => {
   const features = [
@@ -79,10 +82,43 @@ const ServiceSocialMedia = () => {
     }
   ];
 
+  const faqs = [
+    {
+      question: "Which social media platforms should my business be on?",
+      answer: "It depends on your target audience and industry. We analyze where your customers are most active and recommend a tailored mix of platforms to maximize your reach and engagement."
+    },
+    {
+      question: "How often should I post on social media?",
+      answer: "Posting frequency varies by platform and audience. Generally, consistency is key. We develop a content calendar that ensures regular engagement without overwhelming your audience."
+    },
+    {
+      question: "Can you handle customer service on social media?",
+      answer: "Yes, our community management services include monitoring comments and messages, responding to inquiries, and escalating issues to your team when necessary."
+    },
+    {
+      question: "Do you create the content or do we provide it?",
+      answer: "We can do both! We offer full-service content creation including graphics, copy, and video, or we can work with assets you provide to create polished social posts."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Social Media Marketing Services - Market Integrators"
+        description="Build your brand with expert social media marketing. Content creation, community management, and paid social campaigns."
+        canonical="https://www.marketintegrators.com/services/social-media"
+        keywords="social media marketing, social media management, content creation, social advertising"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Social Media Marketing", url: "https://www.marketintegrators.com/services/social-media" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

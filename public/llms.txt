@@ -1,0 +1,29 @@
+# Market Integrators
+# https://www.marketintegrators.com
+
+# Summary
+Market Integrators is a digital solutions agency specializing in technology, marketing, and creative services. We help businesses grow through digital transformation, custom software development, and data-driven marketing strategies.
+
+# Main Sections
+- /services: Comprehensive list of digital services including Web Development, SEO, PPC, and Video Production.
+- /industries: Industry-specific solutions for Healthcare, Finance, SaaS, and more.
+- /case-studies: Success stories and project portfolios.
+- /about-us: Company information and mission.
+- /contact-us: Get in touch for consultations.
+
+# Key Resources
+- /sitemap.xml: XML Sitemap for all pages.
+- /robots.txt: Crawling rules.
+
+# Services
+- Search Engine Optimization (SEO)
+- Pay-Per-Click (PPC) Advertising
+- Web & App Development
+- Cybersecurity
+- Data Analytics & AI
+- Video Production & Animation
+- Social Media Marketing
+
+# Contact
+- Email: info@marketintegrators.com
+- Location: Houston, TX

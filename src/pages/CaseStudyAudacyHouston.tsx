@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -12,6 +13,7 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import audacyLogo from "@/assets/audacy-logo.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyAudacyHouston = () => {
   const solutions = [
@@ -51,9 +53,9 @@ const CaseStudyAudacyHouston = () => {
     <>
       <Helmet>
         <title>Audacy Houston Case Study - Digital Media Transformation | Market Integrators</title>
-        <meta 
-          name="description" 
-          content="Transforming Houston's top radio stations into modern, social-first digital powerhouses. Achieved 3.5M+ video views and 400%+ increase in average watch time." 
+        <meta
+          name="description"
+          content="Transforming Houston's top radio stations into modern, social-first digital powerhouses. Achieved 3.5M+ video views and 400%+ increase in average watch time."
         />
         <meta property="og:title" content="Audacy Houston Case Study - Digital Media Transformation" />
         <meta property="og:description" content="Digital transformation for Houston's top radio stations" />
@@ -95,15 +97,15 @@ const CaseStudyAudacyHouston = () => {
           <section className="section-padding bg-gradient-to-b from-secondary to-background">
             <div className="container-custom max-w-5xl text-center">
               <div className="mb-8 flex justify-center">
-                <img
+                <OptimizedImage
                   src={audacyLogo}
-                  alt="Audacy Houston logo"
+                  alt="Audacy Houston - Radio Broadcasting and Digital Media logo"
                   className="w-[170px] md:w-[170px] h-auto"
                 />
               </div>
 
               <h1 className="mb-4">Audacy Houston — Digital Media Transformation</h1>
-              
+
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                 Transforming Houston's top radio stations into modern, social-first digital powerhouses.
               </p>
@@ -169,7 +171,7 @@ const CaseStudyAudacyHouston = () => {
               <ul className="space-y-4 text-lg text-muted-foreground">
                 {keyHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-primary">✅</span>
+                    <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span>{highlight.title}</span>
                   </li>
                 ))}

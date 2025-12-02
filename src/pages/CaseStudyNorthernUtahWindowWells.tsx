@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Check } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 import northernutahwindowwellsMacview from "@/assets/northernutahwindowwells-macview.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudyNorthernUtahWindowWells = () => {
   return (
@@ -62,9 +64,9 @@ const CaseStudyNorthernUtahWindowWells = () => {
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-5xl">
             <div className="text-center mb-12">
-              <img
+              <OptimizedImage
                 src={northernutahwindowwellsLogo}
-                alt="Northern Utah Window Wells logo"
+                alt="Northern Utah Window Wells - Window Well Cleaning and Repair logo"
                 className="h-32 w-auto object-contain mx-auto mb-8"
               />
               <h1 className="mb-6">Northern Utah Window Wells</h1>
@@ -78,9 +80,9 @@ const CaseStudyNorthernUtahWindowWells = () => {
 
             {/* MacBook Mockup */}
             <div className="mb-12">
-              <img
+              <OptimizedImage
                 src={northernutahwindowwellsMacview}
-                alt="MacBook mockup showing Northern Utah Window Wells website homepage"
+                alt="MacBook Pro displaying Northern Utah Window Wells service booking page"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
               <p className="text-sm text-muted-foreground text-center mt-4">
@@ -144,31 +146,31 @@ const CaseStudyNorthernUtahWindowWells = () => {
             <p className="text-lg text-muted-foreground font-semibold mb-4">What we implemented:</p>
             <ul className="space-y-4 text-lg text-muted-foreground">
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Website Design:</strong> Built a fast, modern site emphasizing before/after visuals, customer trust, and easy quote requests.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Local SEO:</strong> Optimized for "window well cleaning," "window well covers," and "Utah home maintenance" keywords.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Seasonal Campaigns:</strong> Created an automated email and ad retargeting system that re-engages customers ahead of high-demand months (spring & fall).
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Lead Management:</strong> Integrated form tracking and call analytics to measure ad ROI and conversion rates.
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-primary font-bold">✓</span>
+                <Check className="mr-3 text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>Content & Copy:</strong> Added FAQ and safety sections to educate visitors while boosting keyword depth.
                 </span>
@@ -211,19 +213,19 @@ const CaseStudyNorthernUtahWindowWells = () => {
             <h2 className="mb-6">Key Highlights</h2>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Built an SEO-optimized, trust-driven website</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Automated seasonal marketing to stabilize leads year-round</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">2.7× more quote requests within one quarter</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="text-primary text-xl">✓</span>
+                <Check className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                 <p className="text-lg">Clear lead tracking and conversion analytics</p>
               </div>
             </div>

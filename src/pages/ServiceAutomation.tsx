@@ -5,6 +5,9 @@ import { CheckCircle2, Zap, Workflow, Link2, Clock, ArrowRightLeft, Award, Trend
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEO } from "@/components/SEO";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 
 const ServiceAutomation = () => {
   const services = [
@@ -122,10 +125,39 @@ const ServiceAutomation = () => {
     }
   ];
 
+  const faqs = [
+    {
+      question: "What tools do you use for automation?",
+      answer: "We work with leading platforms like Zapier, Make (formerly Integromat), Power Automate, and custom API integrations depending on your specific needs and existing tech stack."
+    },
+    {
+      question: "Is automation secure?",
+      answer: "Yes, security is our top priority. We use encrypted connections, secure API keys, and follow industry best practices to ensure your data remains safe during transfer and processing."
+    },
+    {
+      question: "Can you automate legacy systems?",
+      answer: "In many cases, yes. Even if your system doesn't have a modern API, we can often use RPA (Robotic Process Automation) or database connectors to bridge the gap."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Automation & Integration Services - Market Integrators"
+        description="Streamline operations with automation and system integration. Connect tools, automate workflows, boost productivity."
+        canonical="https://www.marketintegrators.com/services/automation-and-integrations"
+        keywords="automation services, workflow automation, system integration, business automation"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.marketintegrators.com/" },
+          { name: "Services", url: "https://www.marketintegrators.com/services" },
+          { name: "Automation & Integrations", url: "https://www.marketintegrators.com/services/automation-and-integrations" }
+        ]}
+      />
+      <FAQSchema faqs={faqs} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container-custom">

@@ -43,6 +43,7 @@ const ServiceSocialMedia = () => {
     }
   ];
 
+  // Updated platforms (removed Twitter/X and Pinterest)
   const platforms = [
     "Facebook",
     "Instagram",
@@ -179,7 +180,7 @@ const ServiceSocialMedia = () => {
         </div>
       </section>
 
-      {/* Platforms Section */}
+      {/* Platforms Section - Updated to 3x3 grid */}
       <section className="py-20 bg-muted/50">
         <div className="container-custom">
           <div className="text-center mb-16">
@@ -189,7 +190,7 @@ const ServiceSocialMedia = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {platforms.map((platform, index) => (
               <motion.div
                 key={platform}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import CyberButton from "@/components/ui/CyberButton";
 import {
   Menu,
   X,
@@ -301,9 +302,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <Button asChild className="hidden sm:inline-flex bg-slate-900 border border-primary/50 hover:border-primary hover:bg-primary text-white shadow-lg transition-all duration-300 rounded-full px-8 font-semibold tracking-wide">
-              <Link to="/contact-us">Request Proposal</Link>
-            </Button>
+            <CyberButton to="/contact-us" className="hidden sm:flex" />
 
             {/* Mobile Menu Button */}
             <button
@@ -381,11 +380,12 @@ const Header = () => {
                 </Link>
               ))}
 
-              <Button asChild className="w-full bg-slate-900 border border-primary/50 hover:border-primary hover:bg-primary text-white shadow-lg transition-all duration-300 rounded-full font-semibold tracking-wide">
-                <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
-                  Request Proposal
-                </Link>
-              </Button>
+              <div className="w-full flex justify-center pb-4">
+                <CyberButton
+                  to="/contact-us"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                />
+              </div>
             </div>
           </div>
         )}

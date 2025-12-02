@@ -48,12 +48,15 @@ const CaseStudyImperialJewelry = () => {
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-4xl text-center">
-
-            <OptimizedImage
-              src={imperialjewelryLogo}
-              alt="Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo"
-              className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
-            />
+            <div className="mb-8 flex justify-center">
+              <div className="h-32 md:h-40 w-auto flex items-center justify-center overflow-hidden">
+                <OptimizedImage
+                  src={imperialjewelryLogo}
+                  alt="Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo"
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+            </div>
 
             <h1 className="mb-6">Imperial Jewelry</h1>
             <p className="text-xl text-muted-foreground mb-4">Luxury eCommerce Web Design & Brand Identity</p>

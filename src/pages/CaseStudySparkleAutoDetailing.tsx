@@ -159,11 +159,11 @@ const CaseStudySparkleAutoDetailing = () => {
 
         {/* MacBook Mockup */}
         <section className="container mx-auto px-4 mb-20">
-          <div className="relative">
+          <div className="max-w-6xl mx-auto">
             <OptimizedImage
               src={sparkleView}
               alt="MacBook Pro displaying Sparkle Auto Detailing service menu and booking form"
-              className="w-full h-auto rounded-lg shadow-2xl"
+              className="w-full h-auto rounded-lg shadow-2xl mx-auto"
             />
           </div>
         </section>

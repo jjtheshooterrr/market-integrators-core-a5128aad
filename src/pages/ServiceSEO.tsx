@@ -135,7 +135,7 @@ const ServiceSEO = () => {
               <span className="text-sm font-medium text-primary">SEO & Organic Growth</span>
             </div>
 
-            <h1 className="heading-1 mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight py-2">
               Search Engine Optimization & Organic Growth
             </h1>
 

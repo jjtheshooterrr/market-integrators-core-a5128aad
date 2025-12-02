@@ -97,13 +97,14 @@ const ServiceCybersecurity = () => {
     <Header />
 
     {/* Hero Section */}
+    {/* Hero Section */}
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background to-muted">
       <div className="max-w-7xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
           <Shield className="w-4 h-4" />
           <span className="text-sm font-medium">Enterprise Cybersecurity Solutions</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight py-2">
           Protect Your Business from Cyber Threats
         </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -116,12 +117,12 @@ const ServiceCybersecurity = () => {
           <Button size="lg" variant="outline" asChild>
             <Link to="/case-studies">View Case Studies</Link>
           </Button>
-        </div>
-      </div>
-    </section>
+        </div >
+      </div >
+    </section >
 
     {/* Problem/Solution Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
@@ -168,10 +169,10 @@ const ServiceCybersecurity = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Features Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+    < section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive Security Services</h2>
@@ -187,10 +188,10 @@ const ServiceCybersecurity = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Solutions Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Security Solutions We Provide</h2>
@@ -205,10 +206,10 @@ const ServiceCybersecurity = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Process Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+    < section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Security Process</h2>
@@ -226,15 +227,15 @@ const ServiceCybersecurity = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Pricing Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
 
-    </section>
+    </section >
 
     {/* FAQ Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+    < section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50" >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
@@ -249,10 +250,10 @@ const ServiceCybersecurity = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* CTA Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Ready to Secure Your Business?
@@ -266,9 +267,9 @@ const ServiceCybersecurity = () => {
           </Link>
         </Button>
       </div>
-    </section>
+    </section >
 
     <Footer />
-  </div>;
+  </div >;
 };
 export default ServiceCybersecurity;

@@ -140,13 +140,12 @@ const ServiceDigitalStrategy = () => {
       />
       <FAQSchema faqs={faqs} />
       <Header />
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight py-2">
               Digital Strategy Consulting
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -159,13 +158,13 @@ const ServiceDigitalStrategy = () => {
               <Button asChild size="lg" variant="outline">
                 <Link to="/case-studies">View Success Stories</Link>
               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+            </div >
+          </div >
+        </div >
+      </section >
 
       {/* Features Grid */}
-      <section className="py-20 px-4">
+      < section className="py-20 px-4" >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
@@ -190,10 +189,10 @@ const ServiceDigitalStrategy = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Services Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      < section className="py-20 px-4 bg-muted/30" >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
@@ -224,10 +223,10 @@ const ServiceDigitalStrategy = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Process Section */}
-      <section className="py-20 px-4">
+      < section className="py-20 px-4" >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
@@ -254,10 +253,10 @@ const ServiceDigitalStrategy = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* FAQ Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      < section className="py-20 px-4 bg-muted/30" >
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
@@ -280,10 +279,10 @@ const ServiceDigitalStrategy = () => {
             </Accordion>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      < section className="py-20 px-4" >
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
@@ -297,10 +296,10 @@ const ServiceDigitalStrategy = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section >
 
       <Footer />
-    </div>
+    </div >
   );
 };
 

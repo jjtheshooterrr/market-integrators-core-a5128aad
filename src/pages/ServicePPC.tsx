@@ -127,7 +127,7 @@ const ServicePPC = () => {
           <div className="container-custom">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="mb-6">PPC & Paid Media Management Services</h1>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight py-2">PPC & Paid Media Management Services</h1>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                   Drive instant qualified traffic and maximize ROI with expertly managed pay-per-click campaigns across Google, Facebook, LinkedIn, and more.
                 </p>

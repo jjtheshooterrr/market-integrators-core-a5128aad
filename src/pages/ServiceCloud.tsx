@@ -116,7 +116,7 @@ const ServiceCloud = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight py-2">
               Cloud Computing Services
             </h1>
             <p className="text-xl text-muted-foreground mb-8">

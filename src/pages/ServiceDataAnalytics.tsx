@@ -116,13 +116,14 @@ const ServiceDataAnalytics = () => {
     <Header />
 
     {/* Hero Section */}
+    {/* Hero Section */}
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background to-muted">
       <div className="max-w-7xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
           <BarChart3 className="w-4 h-4" />
           <span className="text-sm font-medium">Data-Driven Business Intelligence</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight py-2">
           Turn Data Into Actionable Insights
         </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -135,12 +136,12 @@ const ServiceDataAnalytics = () => {
           <Button size="lg" variant="outline" asChild>
             <Link to="/case-studies">View Success Stories</Link>
           </Button>
-        </div>
-      </div>
-    </section>
+        </div >
+      </div >
+    </section >
 
     {/* Problem/Solution Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
@@ -187,10 +188,10 @@ const ServiceDataAnalytics = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Features Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+    < section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive Analytics Services</h2>
@@ -206,10 +207,10 @@ const ServiceDataAnalytics = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Solutions Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Analytics Solutions By Department</h2>
@@ -224,10 +225,10 @@ const ServiceDataAnalytics = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Tools & Technologies */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+    < section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Tools & Technologies We Use</h2>
@@ -242,10 +243,10 @@ const ServiceDataAnalytics = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Process Section */}
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    < section className="py-20 px-4 sm:px-6 lg:px-8" >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Analytics Process</h2>
@@ -263,7 +264,7 @@ const ServiceDataAnalytics = () => {
           </div>)}
         </div>
       </div>
-    </section>
+    </section >
 
     {/* Pricing Section */}
 
@@ -303,6 +304,6 @@ const ServiceDataAnalytics = () => {
     </section>
 
     <Footer />
-  </div>;
+  </div >;
 };
 export default ServiceDataAnalytics;

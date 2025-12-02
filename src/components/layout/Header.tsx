@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import CyberButton from "@/components/ui/CyberButton";
+import JellyButton from "@/components/ui/JellyButton";
 import {
   Menu,
   X,
@@ -302,7 +302,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <CyberButton to="/contact-us" className="hidden sm:flex" />
+            <JellyButton to="/contact-us" className="hidden sm:flex" />
 
             {/* Mobile Menu Button */}
             <button
@@ -381,7 +381,7 @@ const Header = () => {
               ))}
 
               <div className="w-full flex justify-center pb-4">
-                <CyberButton
+                <JellyButton
                   to="/contact-us"
                   onClick={() => setIsMobileMenuOpen(false)}
                 />

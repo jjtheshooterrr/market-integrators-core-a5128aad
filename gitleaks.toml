@@ -1,0 +1,7 @@
+title = "Repo gitleaks config" 
+ 
+[allowlist] 
+paths = [ 
+  '''\.env$''', 
+  '''\.env\.local$''' 
+] 

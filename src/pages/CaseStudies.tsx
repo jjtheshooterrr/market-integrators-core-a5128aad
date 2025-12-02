@@ -19,7 +19,6 @@ import lonestarzentLogo from "@/assets/lonestarzent-logo.webp";
 import northernutahwindowwellsLogo from "@/assets/northernutahwindowwells-logo.webp";
 import lylagrayLogo from "@/assets/lylagray-logo.webp";
 import sparkleLogo from "@/assets/sparkle-logo.webp";
-import { OptimizedImage } from "@/components/OptimizedImage";
 
 const CaseStudies = () => {
   // Client logos data (Lyla Gray moved to last)
@@ -273,13 +272,14 @@ const CaseStudies = () => {
                 <Link
                   key={client.name}
                   to={client.link}
-                  className="group flex items-center justify-center p-6 rounded-lg hover:bg-background transition-all duration-300"
+                  className="group flex items-center justify-center p-6 rounded-lg hover:bg-background transition-colors duration-300"
                   title="View Case Study →"
                 >
-                  <OptimizedImage
+                  <img
                     src={client.logo}
                     alt={client.alt || `${client.name} logo`}
                     className="h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    loading="lazy"
                   />
                 </Link>
               ))}
@@ -307,10 +307,15 @@ const CaseStudies = () => {
             <h2 className="text-center mb-12">Featured Success Stories</h2>
             <div className="flex flex-col gap-8">
               {featuredCaseStudies.map((caseStudy, index) => (
-                <div key={index} className="card-premium p-10 hover:shadow-xl transition-all duration-300">
+                <div key={index} className="card-premium p-10 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                     <div className="flex-shrink-0">
-                      <OptimizedImage src={caseStudy.logo} alt={caseStudy.title} className="h-20 w-auto object-contain" />
+                      <img 
+                        src={caseStudy.logo} 
+                        alt={caseStudy.title} 
+                        className="h-20 w-auto object-contain"
+                        loading="lazy"
+                      />
                     </div>
                     <div className="flex-grow text-center md:text-left">
                       <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>

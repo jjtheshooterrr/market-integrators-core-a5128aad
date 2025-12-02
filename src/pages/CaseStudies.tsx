@@ -310,16 +310,16 @@ const CaseStudies = () => {
                 <div key={index} className="card-premium p-10 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                     <div className="flex-shrink-0">
-                      <img 
-                        src={caseStudy.logo} 
-                        alt={caseStudy.title} 
+                      <img
+                        src={caseStudy.logo}
+                        alt={caseStudy.title}
                         className="h-20 w-auto object-contain"
                         loading="lazy"
                       />
                     </div>
                     <div className="flex-grow text-center md:text-left flex flex-col">
                       <div className="flex-grow">
-                        <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>
+                        <h3 className="text-2xl font-bold mb-4 min-h-[4rem] flex items-center md:items-start justify-center md:justify-start">{caseStudy.title}</h3>
                         <p className="text-muted-foreground mb-6 leading-relaxed min-h-[72px] line-clamp-3">{caseStudy.description}</p>
                       </div>
                       <div>

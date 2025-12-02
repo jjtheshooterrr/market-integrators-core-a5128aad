@@ -41,37 +41,24 @@ const CinematicHero = () => {
   const wordVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: 40,
-      filter: "blur(10px)",
-      scale: 1.1,
+      y: 20,
     },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
-      scale: 1,
       transition: {
-        delay: i * 0.15,
-        duration: 0.8,
+        delay: i * 0.1,
+        duration: 0.5,
         ease: [0.22, 1, 0.36, 1],
       },
     }),
   };
 
-  // Shimmer animation for the text
-  const shimmerVariants: Variants = {
-    animate: {
-      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-      transition: {
-        duration: 5,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    },
-  };
-
   const ctaVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+    },
     visible: {
       opacity: 1,
       scale: 1,
@@ -85,7 +72,10 @@ const CinematicHero = () => {
   };
 
   const proofVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
@@ -128,7 +118,7 @@ const CinematicHero = () => {
             </Suspense>
           )}
 
-          {/* Headline with Staggered Word Reveal and Shimmer */}
+          {/* Headline with Staggered Word Reveal */}
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight">
             {headline.map((word, i) => (
               <motion.span
@@ -137,15 +127,9 @@ const CinematicHero = () => {
                 variants={prefersReducedMotion ? {} : wordVariants}
                 initial={prefersReducedMotion ? "visible" : "hidden"}
                 animate="visible"
-                className="inline-block mr-4 last:mr-0 relative"
+                className="inline-block mr-4 last:mr-0"
               >
-                <motion.span
-                  className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70 bg-[length:200%_auto]"
-                  variants={shimmerVariants}
-                  animate="animate"
-                >
-                  {word}
-                </motion.span>
+                {word}
               </motion.span>
             ))}
           </h1>

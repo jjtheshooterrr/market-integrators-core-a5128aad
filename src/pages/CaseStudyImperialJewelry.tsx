@@ -48,15 +48,12 @@ const CaseStudyImperialJewelry = () => {
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-b from-secondary to-background">
           <div className="container-custom max-w-4xl text-center">
-            <div className="mb-8 flex justify-center">
-              <div className="h-32 md:h-40 w-auto flex items-center justify-center overflow-hidden">
-                <OptimizedImage
-                  src={imperialjewelryLogo}
-                  alt="Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo"
-                  className="h-full w-auto object-contain"
-                />
-              </div>
-            </div>
+            <img
+              src={imperialjewelryLogo}
+              alt="Imperial Jewelry - Luxury eCommerce and Custom Jewelry logo"
+              className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain"
+              loading="eager"
+            />
 
             <h1 className="mb-6">Imperial Jewelry</h1>
             <p className="text-xl text-muted-foreground mb-4">Luxury eCommerce Web Design & Brand Identity</p>
@@ -71,12 +68,13 @@ const CaseStudyImperialJewelry = () => {
         </section>
 
         {/* MacBook Mockup */}
-        <section className="section-padding">
+        <section className="section-padding bg-background">
           <div className="container-custom max-w-5xl">
-            <OptimizedImage
+            <img
               src={imperialjewelryMacview}
               alt="MacBook Pro displaying Imperial Jewelry luxury eCommerce website with custom ring catalog"
               className="w-full rounded-lg shadow-2xl"
+              loading="lazy"
             />
             <p className="text-center text-sm text-muted-foreground mt-4">
               Elegant eCommerce redesign built to reflect luxury and trust.

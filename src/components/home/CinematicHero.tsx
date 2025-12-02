@@ -80,7 +80,7 @@ const CinematicHero = () => {
       },
     }),
   };
-  const headline = ["Digital", "Solutions", "That", "Move", "the", "Needle."];
+  const headline = ["Technology,", "Creative", "&", "Digital", "Growth"];
   const proofPillars = [
     {
       icon: Brain,
@@ -103,9 +103,9 @@ const CinematicHero = () => {
           prefersReducedMotion
             ? {}
             : {
-                y,
-                opacity,
-              }
+              y,
+              opacity,
+            }
         }
         className="absolute inset-0 z-0"
       >
@@ -164,12 +164,12 @@ const CinematicHero = () => {
             initial={
               prefersReducedMotion
                 ? {
-                    opacity: 1,
-                  }
+                  opacity: 1,
+                }
                 : {
-                    opacity: 0,
-                    y: 20,
-                  }
+                  opacity: 0,
+                  y: 20,
+                }
             }
             animate={{
               opacity: 1,
@@ -181,8 +181,7 @@ const CinematicHero = () => {
             }}
             className="font-body text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Full-funnel, data-driven growth strategies that turn insights into action and campaigns into revenue. We
-            engineer digital solutions that deliver measurable impact across every customer touchpoint.
+            We engineer comprehensive digital ecosystems. By fusing data-driven marketing with cutting-edge web development and creative production, we turn insights into action and campaigns into revenue.
           </motion.p>
 
           {/* CTAs */}
@@ -219,12 +218,12 @@ const CinematicHero = () => {
             initial={
               prefersReducedMotion
                 ? {
-                    opacity: 1,
-                  }
+                  opacity: 1,
+                }
                 : {
-                    opacity: 0,
-                    y: 20,
-                  }
+                  opacity: 0,
+                  y: 20,
+                }
             }
             animate={{
               opacity: 1,
@@ -267,32 +266,32 @@ const CinematicHero = () => {
         initial={
           prefersReducedMotion
             ? {
-                opacity: 1,
-              }
+              opacity: 1,
+            }
             : {
-                opacity: 0,
-              }
+              opacity: 0,
+            }
         }
         animate={
           prefersReducedMotion
             ? {
-                opacity: 1,
-              }
+              opacity: 1,
+            }
             : {
-                opacity: 1,
-                y: [0, 10, 0],
-              }
+              opacity: 1,
+              y: [0, 10, 0],
+            }
         }
         transition={
           prefersReducedMotion
             ? {
-                duration: 0,
-              }
+              duration: 0,
+            }
             : {
-                duration: 1.5,
-                delay: 1.5,
-                repeat: Infinity,
-              }
+              duration: 1.5,
+              delay: 1.5,
+              repeat: Infinity,
+            }
         }
         className="absolute bottom-8 inset-x-0 z-10 flex justify-center"
       >
@@ -302,16 +301,16 @@ const CinematicHero = () => {
               prefersReducedMotion
                 ? {}
                 : {
-                    y: [0, 12, 0],
-                  }
+                  y: [0, 12, 0],
+                }
             }
             transition={
               prefersReducedMotion
                 ? {}
                 : {
-                    duration: 1.5,
-                    repeat: Infinity,
-                  }
+                  duration: 1.5,
+                  repeat: Infinity,
+                }
             }
             className="w-1 h-3 bg-brand-red rounded-full mt-2"
           />

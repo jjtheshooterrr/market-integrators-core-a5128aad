@@ -309,11 +309,11 @@ const CaseStudies = () => {
               {featuredCaseStudies.map((caseStudy, index) => (
                 <div key={index} className="card-premium p-10 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 w-full md:w-48 flex justify-center md:justify-start">
                       <img
                         src={caseStudy.logo}
                         alt={caseStudy.title}
-                        className="h-20 w-auto object-contain"
+                        className="h-20 w-auto max-w-full object-contain"
                         loading="lazy"
                       />
                     </div>

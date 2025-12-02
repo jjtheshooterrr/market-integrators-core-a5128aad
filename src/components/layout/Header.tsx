@@ -232,7 +232,7 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-80 bg-white border border-border rounded-xl shadow-2xl overflow-hidden z-50"
+                    className="absolute top-full left-0 mt-2 w-96 bg-background border border-border rounded-xl shadow-2xl overflow-hidden z-[100]"
                   >
                     <div className="p-2 max-h-[80vh] overflow-y-auto">
                       {serviceCategories.map((category, categoryIndex) => (
@@ -264,17 +264,17 @@ const Header = () => {
                                   >
                                     <Icon className="w-5 h-5" />
                                   </div>
-                                  <div className="flex-1">
-                                    <div
-                                      className={`font-body font-semibold transition-colors ${location.pathname === service.href
-                                        ? "text-primary"
-                                        : "text-foreground group-hover:text-primary"
-                                        }`}
-                                    >
-                                      {service.name}
-                                    </div>
-                                    <div className="text-xs text-muted-foreground mt-0.5">{service.description}</div>
-                                  </div>
+                                   <div className="flex-1 min-w-0">
+                                     <div
+                                       className={`font-body font-semibold transition-colors leading-tight ${location.pathname === service.href
+                                         ? "text-primary"
+                                         : "text-foreground group-hover:text-primary"
+                                         }`}
+                                     >
+                                       {service.name}
+                                     </div>
+                                     <div className="text-xs text-muted-foreground mt-1 leading-snug">{service.description}</div>
+                                   </div>
                                 </motion.div>
                               </Link>
                             );
@@ -318,7 +318,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border bg-white max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="lg:hidden py-4 border-t border-border bg-background max-h-[calc(100vh-5rem)] overflow-y-auto z-[100]">
             <div className="flex flex-col space-y-4">
               <div>
                 <button
